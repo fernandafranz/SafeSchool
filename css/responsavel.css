@@ -448,7 +448,8 @@ body {
 }
 
 
-.descricao-secao {
+.descricao-secao,
+.titulo-secao > p {
 
     max-width: 760px;
 
@@ -525,7 +526,7 @@ body {
 }
 
 
-.card-icone {
+.card-acesso-icone {
 
     width: 56px;
 
@@ -598,24 +599,30 @@ body {
 }
 
 
-.cards-sinais {
+.grade-orientacoes {
 
     display: grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(4, minmax(0, 1fr));
 
     gap: 20px;
 
 }
 
 
-.card-sinal {
+.card-orientacao {
+
+    min-height: 245px;
 
     padding: 27px;
 
     background:
         var(--branco);
+
+    border:
+        1px solid
+        #e4def2;
 
     border-radius: 18px;
 
@@ -625,19 +632,38 @@ body {
         28px
         rgba(50, 40, 100, 0.06);
 
-}
+    display: flex;
 
-
-.sinal-icone {
-
-    font-size: 36px;
-
-    margin-bottom: 16px;
+    flex-direction: column;
 
 }
 
 
-.card-sinal h3 {
+.orientacao-icone {
+
+    width: 54px;
+
+    height: 54px;
+
+    margin-bottom: 17px;
+
+    border-radius: 15px;
+
+    background:
+        var(--roxo-claro);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 27px;
+
+}
+
+
+.card-orientacao h3 {
 
     font-size: 17px;
 
@@ -646,11 +672,11 @@ body {
 }
 
 
-.card-sinal p {
+.card-orientacao p {
 
     font-size: 13px;
 
-    line-height: 1.6;
+    line-height: 1.65;
 
     color:
         var(--cinza-texto);
@@ -665,7 +691,7 @@ body {
     display: grid;
 
     grid-template-columns:
-        repeat(2, 1fr);
+        repeat(2, minmax(0, 1fr));
 
     gap: 16px;
 
@@ -681,7 +707,7 @@ body {
     gap: 16px;
 
     background:
-        rgba(255, 255, 255, 0.76);
+        rgba(255, 255, 255, 0.82);
 
     border:
         1px solid
@@ -859,17 +885,133 @@ body {
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1.35fr)
-        minmax(260px, 0.65fr);
+        minmax(0, 1fr)
+        minmax(360px, 0.9fr);
 
-    gap: 25px;
+    gap: 30px;
 
-    align-items: start;
+    align-items: stretch;
+
+}
+
+
+.apoio-explicacao {
+
+    min-height: 100%;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f0ebff,
+            #faf8ff
+        );
+
+    border:
+        1px solid
+        #e2daf4;
+
+}
+
+
+.apoio-explicacao-icone {
+
+    width: 58px;
+
+    height: 58px;
+
+    margin-bottom: 18px;
+
+    border-radius: 17px;
+
+    background:
+        var(--branco);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 30px;
+
+    box-shadow:
+        0
+        8px
+        22px
+        rgba(83, 57, 145, 0.08);
+
+}
+
+
+.apoio-explicacao h3 {
+
+    margin-bottom: 12px;
+
+    font-size: 19px;
+
+}
+
+
+.apoio-explicacao > p {
+
+    margin-bottom: 16px;
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+}
+
+
+.apoio-alerta {
+
+    margin-top: 22px;
+
+    padding: 18px;
+
+    border-radius: 14px;
+
+    background:
+        var(--branco);
+
+    border:
+        1px solid
+        #ebe5f5;
+
+}
+
+
+.apoio-alerta strong {
+
+    font-size: 12px;
+
+}
+
+
+.apoio-alerta p {
+
+    margin-top: 6px;
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 11px;
+
+    line-height: 1.6;
 
 }
 
 
 .formulario-apoio {
+
+    width: 100%;
 
     padding: 30px;
 
@@ -882,39 +1024,56 @@ body {
         1px solid
         var(--cinza-borda);
 
+    box-shadow:
+        0
+        8px
+        26px
+        rgba(50, 40, 100, 0.05);
+
 }
 
 
-.campo-formulario {
+.formulario-apoio .grupo-campo {
 
-    margin-bottom: 20px;
+    width: 100%;
+
+    margin-bottom: 22px;
 
 }
 
 
-.campo-formulario label {
+.formulario-apoio .grupo-campo label {
 
     display: block;
 
-    margin-bottom: 8px;
+    margin-bottom: 9px;
+
+    color:
+        var(--azul-escuro);
 
     font-size: 12px;
 
     font-weight: bold;
 
+    line-height: 1.4;
+
 }
 
 
-.campo-formulario select,
-.campo-formulario textarea {
+.formulario-apoio select,
+.formulario-apoio textarea {
+
+    display: block;
 
     width: 100%;
 
+    max-width: 100%;
+
     border:
         1px solid
-        #ddd9e9;
+        #dcd7e8;
 
-    border-radius: 11px;
+    border-radius: 12px;
 
     background:
         var(--branco);
@@ -928,35 +1087,41 @@ body {
 
     outline: none;
 
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+
 }
 
 
-.campo-formulario select {
+.formulario-apoio select {
 
-    min-height: 46px;
+    min-height: 48px;
 
     padding:
         0
-        13px;
+        14px;
+
+    cursor: pointer;
 
 }
 
 
-.campo-formulario textarea {
+.formulario-apoio textarea {
 
-    min-height: 165px;
+    min-height: 170px;
 
-    padding: 14px;
+    padding: 15px;
 
     resize: vertical;
 
-    line-height: 1.55;
+    line-height: 1.6;
 
 }
 
 
-.campo-formulario select:focus,
-.campo-formulario textarea:focus {
+.formulario-apoio select:focus,
+.formulario-apoio textarea:focus {
 
     border-color:
         var(--roxo-principal);
@@ -966,28 +1131,47 @@ body {
         0
         0
         3px
-        rgba(108, 76, 229, 0.08);
+        rgba(108, 76, 229, 0.09);
 
 }
 
 
-.campo-formulario small {
+.campo-contador {
 
-    display: block;
+    width: 100%;
 
-    margin-top: 7px;
+    margin-top: 8px;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 15px;
 
     color:
-        #928a9f;
+        #8c8498;
 
     font-size: 10px;
 
-    line-height: 1.5;
+    line-height: 1.45;
 
 }
 
 
-.confirmacao-formulario {
+.campo-contador span:last-child {
+
+    white-space: nowrap;
+
+    font-weight: bold;
+
+}
+
+
+.confirmacao-apoio {
+
+    width: 100%;
 
     margin-bottom: 20px;
 
@@ -1002,14 +1186,45 @@ body {
 
     font-size: 11px;
 
-    line-height: 1.5;
+    line-height: 1.55;
+
+    cursor: pointer;
 
 }
 
 
-.confirmacao-formulario input {
+.confirmacao-apoio input {
 
     margin-top: 2px;
+
+    flex:
+        0
+        0
+        auto;
+
+    accent-color:
+        var(--roxo-principal);
+
+}
+
+
+.erro-campo {
+
+    margin-top: 7px;
+
+    color:
+        #b5485d;
+
+    font-size: 10px;
+
+    line-height: 1.45;
+
+}
+
+
+.erro-campo[hidden] {
+
+    display: none;
 
 }
 
@@ -1040,6 +1255,10 @@ body {
 
     font-weight: bold;
 
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+
 }
 
 
@@ -1048,10 +1267,16 @@ body {
     transform:
         translateY(-1px);
 
+    box-shadow:
+        0
+        9px
+        20px
+        rgba(108, 76, 229, 0.18);
+
 }
 
 
-.mensagem-formulario {
+.mensagem-sucesso-apoio {
 
     margin-top: 15px;
 
@@ -1076,96 +1301,9 @@ body {
 }
 
 
-.mensagem-formulario[hidden] {
+.mensagem-sucesso-apoio[hidden] {
 
     display: none;
-
-}
-
-
-.apoio-explicacao {
-
-    padding: 28px;
-
-    border-radius: 20px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #f0ebff,
-            #faf8ff
-        );
-
-    border:
-        1px solid
-        #e2daf4;
-
-}
-
-
-.apoio-explicacao-icone {
-
-    margin-bottom: 15px;
-
-    font-size: 36px;
-
-}
-
-
-.apoio-explicacao h3 {
-
-    margin-bottom: 10px;
-
-    font-size: 18px;
-
-}
-
-
-.apoio-explicacao > p {
-
-    margin-bottom: 12px;
-
-    color:
-        var(--cinza-texto);
-
-    font-size: 12px;
-
-    line-height: 1.65;
-
-}
-
-
-.apoio-alerta {
-
-    margin-top: 19px;
-
-    padding: 16px;
-
-    border-radius: 12px;
-
-    background:
-        var(--branco);
-
-}
-
-
-.apoio-alerta strong {
-
-    font-size: 12px;
-
-}
-
-
-.apoio-alerta p {
-
-    margin-top: 5px;
-
-    color:
-        var(--cinza-texto);
-
-    font-size: 11px;
-
-    line-height: 1.55;
 
 }
 
@@ -1778,19 +1916,14 @@ body {
    DENÚNCIA
 ========================================= */
 
-.area-denuncia {
+.denuncia-familia {
 
-    padding:
+    margin:
         0
         8%
-        65px;
+        28px;
 
-}
-
-
-.denuncia-conteudo {
-
-    padding: 32px;
+    padding: 34px;
 
     border-radius: 22px;
 
@@ -1808,7 +1941,9 @@ body {
 
     align-items: center;
 
-    gap: 22px;
+    justify-content: space-between;
+
+    gap: 28px;
 
     box-shadow:
         0
@@ -1819,40 +1954,20 @@ body {
 }
 
 
-.denuncia-icone {
-
-    width: 65px;
-
-    height: 65px;
-
-    min-width: 65px;
-
-    border-radius: 18px;
-
-    background:
-        rgba(255, 255, 255, 0.14);
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 30px;
-
-}
-
-
-.denuncia-texto {
+.denuncia-familia > div {
 
     flex: 1;
 
+    min-width: 0;
+
 }
 
 
-.denuncia-texto > span {
+.denuncia-familia > div > span {
 
     display: block;
+
+    margin-bottom: 7px;
 
     font-size: 9px;
 
@@ -1860,36 +1975,41 @@ body {
 
     font-weight: bold;
 
-    opacity: 0.8;
-
-    margin-bottom: 7px;
+    opacity: 0.82;
 
 }
 
 
-.denuncia-texto h2 {
+.denuncia-familia h2 {
 
-    font-size: 22px;
+    margin-bottom: 8px;
 
-    margin-bottom: 7px;
+    font-size: 23px;
+
+    line-height: 1.25;
 
 }
 
 
-.denuncia-texto p {
+.denuncia-familia p {
 
-    max-width: 650px;
+    max-width: 760px;
 
     font-size: 13px;
 
-    line-height: 1.6;
+    line-height: 1.65;
 
-    opacity: 0.9;
+    opacity: 0.92;
 
 }
 
 
 .botao-denuncia {
+
+    flex:
+        0
+        0
+        auto;
 
     padding:
         14px
@@ -1911,6 +2031,17 @@ body {
 
     white-space: nowrap;
 
+    transition:
+        transform 0.2s;
+
+}
+
+
+.botao-denuncia:hover {
+
+    transform:
+        translateY(-2px);
+
 }
 
 
@@ -1918,60 +2049,169 @@ body {
    PRIVACIDADE
 ========================================= */
 
-.privacidade {
+.privacidade-responsavel {
 
     margin:
         0
         8%
-        25px;
+        28px;
 
-    padding: 20px;
+    padding: 22px;
 
-    border-radius: 14px;
+    border-radius: 16px;
 
     background:
         #f0f7ff;
 
     border:
-        1px
-        solid
+        1px solid
         #d8e8fa;
 
     display: flex;
 
     align-items: flex-start;
 
-    gap: 14px;
+    gap: 15px;
 
 }
 
 
 .privacidade-icone {
 
-    font-size: 23px;
+    width: 42px;
+
+    height: 42px;
+
+    flex:
+        0
+        0
+        42px;
+
+    border-radius: 12px;
+
+    background:
+        #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 22px;
 
 }
 
 
-.privacidade strong {
+.privacidade-responsavel strong {
 
     display: block;
 
-    font-size: 13px;
+    margin-bottom: 6px;
 
-    margin-bottom: 5px;
+    color:
+        #3d4b63;
+
+    font-size: 13px;
 
 }
 
 
-.privacidade p {
+.privacidade-responsavel p {
 
     color:
         #657489;
 
     font-size: 12px;
 
-    line-height: 1.5;
+    line-height: 1.6;
+
+}
+
+
+.privacidade-responsavel small {
+
+    display: block;
+
+    margin-top: 8px;
+
+    color:
+        #7d8999;
+
+    font-size: 10px;
+
+    line-height: 1.55;
+
+}
+
+
+/* =========================================
+   RODAPÉ
+========================================= */
+
+footer {
+
+    padding:
+        30px
+        8%;
+
+    background:
+        #19184b;
+
+    color:
+        var(--branco);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+}
+
+
+footer > div {
+
+    min-width: 180px;
+
+}
+
+
+footer strong {
+
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 17px;
+
+}
+
+
+footer span {
+
+    display: block;
+
+    font-size: 11px;
+
+    opacity: 0.72;
+
+}
+
+
+footer p {
+
+    max-width: 560px;
+
+    text-align: right;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+
+    opacity: 0.74;
 
 }
 
@@ -2034,7 +2274,7 @@ body {
     .grade-conteudos-familia {
 
         grid-template-columns:
-            repeat(2, 1fr);
+            repeat(2, minmax(0, 1fr));
 
     }
 
@@ -2042,19 +2282,35 @@ body {
     .cards-acesso {
 
         grid-template-columns:
-            repeat(2, 1fr);
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+
+    .grade-orientacoes {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
 
     }
 
 }
 
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
 
     .apoio-grid {
 
         grid-template-columns:
             1fr;
+
+    }
+
+
+    .apoio-explicacao,
+    .formulario-apoio {
+
+        width: 100%;
 
     }
 
@@ -2095,6 +2351,10 @@ body {
 
         overflow-x: auto;
 
+        padding-bottom: 3px;
+
+        scrollbar-width: thin;
+
     }
 
 
@@ -2114,7 +2374,7 @@ body {
     }
 
 
-    .cards-sinais {
+    .grade-orientacoes {
 
         grid-template-columns:
             1fr;
@@ -2131,15 +2391,6 @@ body {
 
 
     .conversa {
-
-        flex-direction: column;
-
-        text-align: center;
-
-    }
-
-
-    .denuncia-conteudo {
 
         flex-direction: column;
 
@@ -2166,16 +2417,85 @@ body {
 
     }
 
+
+    .denuncia-familia {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        text-align: center;
+
+    }
+
+
+    .botao-denuncia {
+
+        width: 100%;
+
+        text-align: center;
+
+        white-space: normal;
+
+    }
+
+
+    .privacidade-responsavel {
+
+        align-items: flex-start;
+
+    }
+
+
+    footer {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+
+    footer p {
+
+        max-width: none;
+
+        text-align: left;
+
+    }
+
 }
 
 
 @media (max-width: 600px) {
+
+    .area-conteudo,
+    .orientacoes,
+    .area-apoio,
+    .conteudos-familia,
+    .solicitacoes {
+
+        padding:
+            58px
+            6%;
+
+    }
+
 
     .cards-acesso,
     .grade-conteudos-familia {
 
         grid-template-columns:
             1fr;
+
+    }
+
+
+    .boas-vindas {
+
+        padding:
+            50px
+            6%;
 
     }
 
@@ -2194,11 +2514,35 @@ body {
     }
 
 
-    .botao-denuncia {
+    .formulario-apoio,
+    .apoio-explicacao {
 
-        width: 100%;
+        padding:
+            24px
+            20px;
 
-        text-align: center;
+    }
+
+
+    .formulario-apoio select {
+
+        min-height: 50px;
+
+    }
+
+
+    .formulario-apoio textarea {
+
+        min-height: 190px;
+
+    }
+
+
+    .campo-contador {
+
+        flex-direction: column;
+
+        gap: 4px;
 
     }
 
@@ -2208,6 +2552,41 @@ body {
         padding:
             27px
             21px;
+
+    }
+
+
+    .denuncia-familia,
+    .privacidade-responsavel {
+
+        margin-left: 6%;
+
+        margin-right: 6%;
+
+    }
+
+
+    .denuncia-familia {
+
+        padding:
+            28px
+            22px;
+
+    }
+
+
+    .privacidade-responsavel {
+
+        padding: 19px;
+
+    }
+
+
+    footer {
+
+        padding:
+            28px
+            6%;
 
     }
 
