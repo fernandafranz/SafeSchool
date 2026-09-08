@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Apoio Psicológico | SafeSchool
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../css/apoio-psicologico.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         CABEÇALHO
+    ========================================== -->
+
+    <header class="cabecalho">
+
+
+        <a
+            href="aluno.html"
+            class="logo"
+        >
+
+            <div class="logo-icone">
+                ♥
+            </div>
+
+
+            <div class="logo-texto">
+
+                <h1>
+                    SafeSchool
+                </h1>
+
+                <p>
+                    Escola Sem Bullying
+                </p>
+
+            </div>
+
+        </a>
+
+
+
+        <a
+            href="aluno.html"
+            class="voltar"
+        >
+
+            ← Voltar para minha área
+
+        </a>
+
+
+    </header>
+
+
+
+    <!-- =========================================
+         CONTEÚDO PRINCIPAL
+    ========================================== -->
+
+    <main>
+
+
+        <!-- =========================================
+             APRESENTAÇÃO
+        ========================================== -->
+
+        <section class="apresentacao">
+
+
+            <div class="apresentacao-texto">
+
+
+                <span class="etiqueta">
+
+                    APOIO PSICOLÓGICO
+
+                </span>
+
+
+                <h2>
+
+                    Você não precisa guardar
+                    tudo para você.
+
+                </h2>
+
+
+                <p>
+
+                    Se algo estiver incomodando,
+                    causando medo, tristeza ou ansiedade,
+                    você pode solicitar acolhimento com
+                    a equipe de Psicologia responsável
+                    pela sua escola.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div class="apresentacao-visual">
+
+                🧠💜
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             CONTATO RÁPIDO
+        ========================================== -->
+
+        <section class="contato">
+
+
+            <div class="contato-topo">
+
+
+                <span>
+
+                    CONTATO RÁPIDO
+
+                </span>
+
+
+                <h2>
+
+                    Como podemos ajudar agora?
+
+                </h2>
+
+
+                <p>
+
+                    Escolha a opção que melhor representa
+                    o que você precisa neste momento.
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- =========================================
+                 OPÇÕES
+            ========================================== -->
+
+            <div
+                class="opcoes-apoio"
+                id="opcoesApoio"
+            >
+
+
+                <button
+                    type="button"
+                    class="opcao-apoio"
+                    data-tipo="rapido"
+                >
+
+                    <div class="opcao-icone">
+                        💬
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+
+                            Quero conversar assim que possível
+
+                        </strong>
+
+
+                        <p>
+
+                            Solicite contato conforme
+                            a disponibilidade da equipe
+                            de Psicologia.
+
+                        </p>
+
+                    </div>
+
+                </button>
+
+
+
+                <button
+                    type="button"
+                    class="opcao-apoio"
+                    data-tipo="agendamento"
+                >
+
+                    <div class="opcao-icone">
+                        📅
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+
+                            Quero agendar uma conversa
+
+                        </strong>
+
+
+                        <p>
+
+                            Solicite um horário para conversar
+                            com mais calma.
+
+                        </p>
+
+                    </div>
+
+                </button>
+
+
+
+                <button
+                    type="button"
+                    class="opcao-apoio"
+                    data-tipo="orientacao"
+                >
+
+                    <div class="opcao-icone">
+                        💜
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+
+                            Preciso de orientação
+
+                        </strong>
+
+
+                        <p>
+
+                            Peça ajuda para entender
+                            qual caminho seguir.
+
+                        </p>
+
+                    </div>
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =========================================
+                 FORMULÁRIO
+            ========================================== -->
+
+            <form
+                id="formularioApoio"
+                class="formulario-apoio"
+                novalidate
+            >
+
+
+                <input
+                    type="hidden"
+                    id="tipoApoio"
+                    value=""
+                >
+
+
+
+                <div class="grupo-campo">
+
+
+                    <label for="periodo">
+
+                        Qual período seria melhor para você?
+
+                    </label>
+
+
+                    <select
+                        id="periodo"
+                        name="periodo"
+                    >
+
+                        <option value="">
+
+                            Selecione uma opção
+
+                        </option>
+
+                        <option value="manha">
+
+                            Manhã
+
+                        </option>
+
+                        <option value="tarde">
+
+                            Tarde
+
+                        </option>
+
+                        <option value="qualquer">
+
+                            Qualquer horário disponível
+
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+
+                <div class="grupo-campo">
+
+
+                    <label for="mensagem">
+
+                        Gostaria de deixar uma mensagem?
+
+                    </label>
+
+
+                    <textarea
+                        id="mensagem"
+                        name="mensagem"
+                        rows="5"
+                        maxlength="500"
+                        placeholder="Você pode escrever brevemente o motivo pelo qual gostaria de conversar. Este campo é opcional."
+                    ></textarea>
+
+
+                    <small>
+
+                        Evite colocar informações íntimas
+                        ou clínicas detalhadas neste espaço.
+                        Elas devem ser conversadas diretamente
+                        com a equipe de Psicologia responsável.
+
+                    </small>
+
+
+                </div>
+
+
+
+                <label class="confirmacao">
+
+
+                    <input
+                        type="checkbox"
+                        id="confirmacaoApoio"
+                    >
+
+
+                    <span>
+
+                        Desejo solicitar contato da equipe
+                        de apoio psicológico da escola.
+
+                    </span>
+
+
+                </label>
+
+
+
+                <button
+                    type="submit"
+                    class="botao-solicitar"
+                >
+
+                    Solicitar acolhimento
+
+                    <span>
+                        →
+                    </span>
+
+                </button>
+
+
+            </form>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             RESULTADO
+        ========================================== -->
+
+        <section
+            class="resultado"
+            id="resultadoApoio"
+            hidden
+        >
+
+
+            <div class="resultado-icone">
+
+                ✓
+
+            </div>
+
+
+            <div>
+
+
+                <span>
+
+                    SOLICITAÇÃO REGISTRADA
+
+                </span>
+
+
+                <h2>
+
+                    Seu pedido de acolhimento foi registrado.
+
+                </h2>
+
+
+                <p>
+
+                    Nesta versão demonstrativa,
+                    a solicitação fica armazenada apenas
+                    durante esta sessão do navegador.
+
+                </p>
+
+
+                <div class="protocolo-apoio">
+
+
+                    <span>
+
+                        Protocolo de apoio
+
+                    </span>
+
+
+                    <strong id="protocoloApoio">
+
+                        -
+
+                    </strong>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             PRIVACIDADE
+        ========================================== -->
+
+        <section class="privacidade">
+
+
+            <div class="privacidade-icone">
+
+                🔐
+
+            </div>
+
+
+            <div>
+
+
+                <strong>
+
+                    Este canal é diferente da denúncia anônima
+
+                </strong>
+
+
+                <p>
+
+                    Em uma versão real do SafeSchool,
+                    a solicitação de apoio psicológico seria
+                    vinculada à conta do aluno para permitir
+                    que a equipe de Psicologia pudesse realizar
+                    o contato.
+
+                    O conteúdo de eventual atendimento psicológico
+                    não deverá ficar disponível automaticamente
+                    para professores ou outros usuários da escola.
+
+                </p>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             URGÊNCIA
+        ========================================== -->
+
+        <section class="urgencia">
+
+
+            <div class="urgencia-icone">
+
+                ⚠️
+
+            </div>
+
+
+            <div>
+
+
+                <strong>
+
+                    Precisa de ajuda imediata?
+
+                </strong>
+
+
+                <p>
+
+                    O SafeSchool não substitui atendimento
+                    de urgência. Se você estiver em uma situação
+                    de perigo imediato, procure um adulto de confiança,
+                    responsável ou serviço de emergência.
+
+                </p>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             CANAL ANÔNIMO
+        ========================================== -->
+
+        <section class="canal-anonimo">
+
+
+            <div>
+
+
+                <span>
+
+                    PREFERE NÃO SE IDENTIFICAR?
+
+                </span>
+
+
+                <h2>
+
+                    O canal de denúncia anônima continua disponível.
+
+                </h2>
+
+
+                <p>
+
+                    Para relatar uma situação de bullying
+                    sem utilizar sua conta, acesse o canal anônimo.
+
+                </p>
+
+
+            </div>
+
+
+            <a
+                href="denuncia.html"
+                class="botao-anonimo"
+            >
+
+                Denúncia anônima →
+
+            </a>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             AVISO DO PROTÓTIPO
+        ========================================== -->
+
+        <section class="aviso-prototipo">
+
+
+            <strong>
+
+                Ambiente demonstrativo
+
+            </strong>
+
+
+            <p>
+
+                Nesta demonstração, nenhuma solicitação
+                é encaminhada à equipe de Psicologia
+                da instituição.
+
+                O recurso está sendo desenvolvido para demonstrar
+                como o SafeSchool poderá funcionar quando estiver
+                integrado à estrutura da escola.
+
+            </p>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         ESCOLA
+    ========================================== -->
+
+    <script src="../js/escola.js"></script>
+
+
+
+    <!-- =========================================
+         APOIO PSICOLÓGICO
+    ========================================== -->
+
+    <script src="../js/apoio-psicologico.js"></script>
+
+
+</body>
+
+</html>

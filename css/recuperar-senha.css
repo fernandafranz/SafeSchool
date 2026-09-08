@@ -1,0 +1,968 @@
+/* =========================================
+   SAFESCHOOL
+   RECUPERAÇÃO DE SENHA
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    font-size: 16px;
+}
+
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: #332b46;
+
+    background:
+        linear-gradient(
+            135deg,
+            #faf8ff,
+            #f3efff,
+            #ffffff
+        );
+
+}
+
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+
+.cabecalho {
+
+    width: 100%;
+    max-width: 1240px;
+
+    margin: 0 auto;
+
+    padding: 22px 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+}
+
+
+.logo {
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    color: #392f58;
+
+    text-decoration: none;
+
+}
+
+
+.logo-icone {
+
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7556d6,
+            #a579e8
+        );
+
+    font-size: 27px;
+
+    box-shadow:
+        0 9px 24px
+        rgba(102, 73, 173, 0.20);
+
+}
+
+
+.logo-texto h1 {
+
+    margin: 0;
+
+    font-size: 22px;
+
+}
+
+
+.logo-texto p {
+
+    margin: 4px 0 0;
+
+    color: #85799f;
+
+    font-size: 13px;
+
+}
+
+
+.voltar-login {
+
+    padding: 12px 17px;
+
+    border:
+        1px solid
+        #ded6ef;
+
+    border-radius: 12px;
+
+    color: #655984;
+
+    background: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 700;
+
+}
+
+
+/* =========================================
+   PÁGINA
+========================================= */
+
+.pagina-recuperacao {
+
+    width: 100%;
+    max-width: 1240px;
+
+    margin: 15px auto 55px;
+
+    padding: 0 28px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.05fr)
+        minmax(450px, 520px);
+
+    gap: 50px;
+
+    align-items: center;
+
+}
+
+
+/* =========================================
+   APRESENTAÇÃO
+========================================= */
+
+.apresentacao {
+
+    padding: 20px 0;
+
+}
+
+
+.etiqueta {
+
+    display: inline-block;
+
+    padding: 10px 15px;
+
+    border-radius: 999px;
+
+    color: #7255c3;
+
+    background: #eee8ff;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+
+}
+
+
+.apresentacao h2 {
+
+    max-width: 650px;
+
+    margin: 23px 0 20px;
+
+    color: #3b3059;
+
+    font-size:
+        clamp(
+            44px,
+            5vw,
+            64px
+        );
+
+    line-height: 1.04;
+
+    letter-spacing: -2px;
+
+}
+
+
+.apresentacao h2 span {
+
+    color: #7557d4;
+
+}
+
+
+.apresentacao > p {
+
+    max-width: 600px;
+
+    margin: 0;
+
+    color: #716985;
+
+    font-size: 17px;
+
+    line-height: 1.75;
+
+}
+
+
+/* =========================================
+   INFORMAÇÕES
+========================================= */
+
+.informacao-seguranca,
+.informacao-profissionais {
+
+    max-width: 600px;
+
+    margin-top: 25px;
+
+    padding: 20px;
+
+    display: flex;
+
+    gap: 15px;
+
+    border:
+        1px solid
+        #e5def4;
+
+    border-radius: 18px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.82
+        );
+
+}
+
+
+.informacao-icone {
+
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #f2edff;
+
+    font-size: 24px;
+
+}
+
+
+.informacao-seguranca strong,
+.informacao-profissionais strong {
+
+    color: #51436d;
+
+    font-size: 14px;
+
+}
+
+
+.informacao-seguranca p,
+.informacao-profissionais p {
+
+    margin: 6px 0 0;
+
+    color: #83798f;
+
+    font-size: 12px;
+
+    line-height: 1.65;
+
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.cartao-recuperacao {
+
+    width: 100%;
+
+    min-height: 510px;
+
+    padding: 38px;
+
+    border:
+        1px solid
+        #e7e0f2;
+
+    border-radius: 29px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 24px 70px
+        rgba(71, 49, 126, 0.13);
+
+}
+
+
+/* =========================================
+   CABEÇALHO FORMULÁRIO
+========================================= */
+
+.cabecalho-formulario {
+
+    margin-bottom: 29px;
+
+}
+
+
+.cabecalho-formulario > span {
+
+    color: #8064ca;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+}
+
+
+.cabecalho-formulario h2 {
+
+    margin: 9px 0 6px;
+
+    color: #3b3058;
+
+    font-size: 33px;
+
+}
+
+
+.cabecalho-formulario p {
+
+    margin: 0;
+
+    color: #8b8498;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+
+}
+
+
+/* =========================================
+   CAMPOS
+========================================= */
+
+.grupo-campo {
+
+    margin-bottom: 23px;
+
+}
+
+
+.grupo-campo > label {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #514766;
+
+    font-size: 14px;
+    font-weight: 800;
+
+}
+
+
+.grupo-campo > input,
+.campo-senha input {
+
+    width: 100%;
+    height: 54px;
+
+    padding: 0 16px;
+
+    outline: none;
+
+    border:
+        1px solid
+        #ded7e8;
+
+    border-radius: 13px;
+
+    color: #43394f;
+
+    background: #ffffff;
+
+    font-size: 15px;
+
+}
+
+
+.grupo-campo > input:focus,
+.campo-senha input:focus {
+
+    border-color: #9579db;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(149, 121, 219, 0.11);
+
+}
+
+
+/* =========================================
+   PERFIS
+========================================= */
+
+.grade-perfis {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 11px;
+
+}
+
+
+.cartao-perfil {
+
+    min-height: 86px;
+
+    padding: 14px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    border:
+        1px solid
+        #e0d9e9;
+
+    border-radius: 15px;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease;
+
+}
+
+
+.cartao-perfil:hover {
+
+    transform: translateY(-2px);
+
+    border-color: #baa9e4;
+
+}
+
+
+.cartao-perfil.selecionado {
+
+    border-color: #8063ce;
+
+    background: #f3efff;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(128, 99, 206, 0.10);
+
+}
+
+
+.icone-perfil {
+
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: #f4f0ff;
+
+    font-size: 25px;
+
+}
+
+
+.cartao-perfil strong {
+
+    display: block;
+
+    color: #4c4163;
+
+    font-size: 14px;
+
+}
+
+
+.cartao-perfil small {
+
+    display: block;
+
+    margin-top: 4px;
+
+    color: #978da4;
+
+    font-size: 10px;
+
+}
+
+
+/* =========================================
+   SENHA
+========================================= */
+
+.campo-senha {
+
+    position: relative;
+
+}
+
+
+.campo-senha input {
+
+    padding-right: 50px;
+
+}
+
+
+.mostrar-senha {
+
+    position: absolute;
+
+    top: 50%;
+    right: 9px;
+
+    width: 36px;
+    height: 36px;
+
+    transform: translateY(-50%);
+
+    border: 0;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+}
+
+
+/* =========================================
+   AJUDA / ERRO
+========================================= */
+
+.ajuda-campo {
+
+    margin: 7px 0 0;
+
+    color: #958c9f;
+
+    font-size: 10px;
+
+}
+
+
+.erro-campo {
+
+    margin: 7px 0 0;
+
+    color: #b74d63;
+
+    font-size: 11px;
+
+}
+
+
+.erro-campo[hidden] {
+
+    display: none;
+
+}
+
+
+/* =========================================
+   BOTÕES
+========================================= */
+
+.botao-principal {
+
+    width: 100%;
+    min-height: 54px;
+
+    padding: 0 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    border: 0;
+
+    border-radius: 14px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7253cf,
+            #9d72df
+        );
+
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    text-decoration: none;
+
+    box-shadow:
+        0 13px 27px
+        rgba(112, 79, 194, 0.24);
+
+}
+
+
+.botao-principal:hover {
+
+    transform: translateY(-1px);
+
+}
+
+
+.link-botao {
+
+    margin-top: 23px;
+
+}
+
+
+.botao-texto {
+
+    width: 100%;
+
+    margin-top: 15px;
+
+    padding: 10px;
+
+    border: 0;
+
+    color: #756686;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 700;
+
+}
+
+
+/* =========================================
+   MENSAGEM ENVIADA
+========================================= */
+
+.mensagem-enviada,
+.mensagem-sucesso {
+
+    padding-top: 20px;
+
+    text-align: center;
+
+}
+
+
+.mensagem-enviada-icone,
+.sucesso-icone {
+
+    width: 78px;
+    height: 78px;
+
+    margin: 0 auto 21px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 24px;
+
+    background: #f1ebff;
+
+    font-size: 38px;
+
+}
+
+
+.mensagem-enviada > span,
+.mensagem-sucesso > span {
+
+    color: #8064ca;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+}
+
+
+.mensagem-enviada h2,
+.mensagem-sucesso h2 {
+
+    margin: 9px 0 12px;
+
+    color: #403459;
+
+    font-size: 30px;
+
+}
+
+
+.mensagem-enviada > p,
+.mensagem-sucesso > p {
+
+    margin: 0;
+
+    color: #7f758c;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================================
+   DEMONSTRAÇÃO
+========================================= */
+
+.aviso-demonstracao {
+
+    margin: 24px 0;
+
+    padding: 18px;
+
+    border-radius: 15px;
+
+    background: #faf8ff;
+
+    border:
+        1px solid
+        #e8e0f6;
+
+    text-align: left;
+
+}
+
+
+.aviso-demonstracao strong {
+
+    color: #66517e;
+
+    font-size: 13px;
+
+}
+
+
+.aviso-demonstracao p {
+
+    margin: 7px 0 0;
+
+    color: #81768e;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================================
+   HIDDEN
+========================================= */
+
+[hidden] {
+
+    display: none !important;
+
+}
+
+
+/* =========================================
+   RODAPÉ
+========================================= */
+
+footer {
+
+    padding: 27px;
+
+    color: #9187a1;
+
+    text-align: center;
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================
+   RESPONSIVO
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .pagina-recuperacao {
+
+        max-width: 760px;
+
+        grid-template-columns: 1fr;
+
+        gap: 32px;
+
+    }
+
+
+    .apresentacao {
+
+        text-align: center;
+
+    }
+
+
+    .apresentacao > p,
+    .informacao-seguranca,
+    .informacao-profissionais {
+
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .cabecalho {
+
+        padding: 18px 16px;
+
+    }
+
+
+    .logo-texto p {
+
+        display: none;
+
+    }
+
+
+    .voltar-login {
+
+        padding: 10px 12px;
+
+        font-size: 10px;
+
+    }
+
+
+    .pagina-recuperacao {
+
+        padding: 0 16px;
+
+    }
+
+
+    .apresentacao h2 {
+
+        font-size: 41px;
+
+    }
+
+
+    .cartao-recuperacao {
+
+        min-height: auto;
+
+        padding: 28px 21px;
+
+    }
+
+
+    .grade-perfis {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}

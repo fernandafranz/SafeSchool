@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Formulário de Denúncia | SafeSchool
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../css/formulario-denuncia.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         CABEÇALHO
+    ========================================== -->
+
+    <header class="cabecalho">
+
+
+        <a
+            href="../index.html"
+            class="logo"
+        >
+
+
+            <div class="logo-icone">
+
+                ♥
+
+            </div>
+
+
+            <div class="logo-texto">
+
+                <h1>
+                    SafeSchool
+                </h1>
+
+                <p>
+                    Escola Sem Bullying
+                </p>
+
+            </div>
+
+
+        </a>
+
+
+
+        <a
+            href="denuncia.html"
+            class="voltar"
+        >
+
+            ← Voltar
+
+        </a>
+
+
+    </header>
+
+
+
+    <!-- =========================================
+         CONTEÚDO
+    ========================================== -->
+
+    <main class="pagina-formulario">
+
+
+        <section class="formulario-container">
+
+
+            <!-- =========================================
+                 TOPO
+            ========================================== -->
+
+            <div class="topo-formulario">
+
+
+                <span class="etiqueta">
+
+                    DENÚNCIA ANÔNIMA
+
+                </span>
+
+
+                <h2>
+
+                    Conte o que aconteceu
+
+                </h2>
+
+
+                <p>
+
+                    Preencha apenas as informações que se sentir
+                    confortável em compartilhar.
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- =========================================
+                 AVISO DE AMBIENTE DEMONSTRATIVO
+            ========================================== -->
+
+            <div class="aviso-anonimato">
+
+
+                <div class="aviso-icone">
+
+                    🧪
+
+                </div>
+
+
+                <div>
+
+
+                    <strong>
+
+                        Ambiente demonstrativo
+
+                    </strong>
+
+
+                    <p>
+
+                        Este formulário faz parte de um protótipo
+                        do SafeSchool. As informações preenchidas
+                        não são enviadas a uma escola ou equipe real
+                        e permanecem apenas no navegador utilizado
+                        nesta demonstração.
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================================
+                 AVISO DE ANONIMATO
+            ========================================== -->
+
+            <div class="aviso-anonimato">
+
+
+                <div class="aviso-icone">
+
+                    🔒
+
+                </div>
+
+
+                <div>
+
+
+                    <strong>
+
+                        Sua denúncia pode permanecer anônima.
+
+                    </strong>
+
+
+                    <p>
+
+                        Evite informar seu nome, telefone,
+                        e-mail ou outros dados pessoais caso
+                        não queira ser identificado.
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================================
+                 FORMULÁRIO
+            ========================================== -->
+
+            <form
+                class="formulario"
+                id="formularioDenuncia"
+                novalidate
+            >
+
+
+                <!-- =========================================
+                     TIPO DE SITUAÇÃO
+                ========================================== -->
+
+                <div class="grupo-campo">
+
+
+                    <label for="tipo">
+
+                        Que tipo de situação aconteceu?
+
+                    </label>
+
+
+                    <select
+                        id="tipo"
+                        name="tipo"
+                    >
+
+
+                        <option value="">
+
+                            Selecione uma opção
+
+                        </option>
+
+
+                        <option value="verbal">
+
+                            Bullying verbal
+
+                        </option>
+
+
+                        <option value="fisico">
+
+                            Bullying físico
+
+                        </option>
+
+
+                        <option value="cyberbullying">
+
+                            Cyberbullying
+
+                        </option>
+
+
+                        <option value="exclusao">
+
+                            Exclusão ou isolamento
+
+                        </option>
+
+
+                        <option value="discriminacao">
+
+                            Discriminação
+
+                        </option>
+
+
+                        <option value="outro">
+
+                            Outro
+
+                        </option>
+
+
+                    </select>
+
+
+                </div>
+
+
+
+                <!-- =========================================
+                     LOCAL
+                ========================================== -->
+
+                <div class="grupo-campo">
+
+
+                    <label for="local">
+
+                        Onde aconteceu?
+
+                    </label>
+
+
+                    <select
+                        id="local"
+                        name="local"
+                    >
+
+
+                        <option value="">
+
+                            Selecione uma opção
+
+                        </option>
+
+
+                        <option value="sala">
+
+                            Sala de aula
+
+                        </option>
+
+
+                        <option value="patio">
+
+                            Pátio ou intervalo
+
+                        </option>
+
+
+                        <option value="corredor">
+
+                            Corredor
+
+                        </option>
+
+
+                        <option value="banheiro">
+
+                            Banheiro
+
+                        </option>
+
+
+                        <option value="transporte">
+
+                            Transporte escolar
+
+                        </option>
+
+
+                        <option value="internet">
+
+                            Redes sociais ou internet
+
+                        </option>
+
+
+                        <option value="outro">
+
+                            Outro local
+
+                        </option>
+
+
+                    </select>
+
+
+                </div>
+
+
+
+                <!-- =========================================
+                     DATA
+                ========================================== -->
+
+                <div class="grupo-campo">
+
+
+                    <label for="data">
+
+                        Quando aconteceu?
+
+                    </label>
+
+
+                    <input
+                        type="date"
+                        id="data"
+                        name="data"
+                    >
+
+
+                </div>
+
+
+
+                <!-- =========================================
+                     RELATO
+                ========================================== -->
+
+                <div class="grupo-campo">
+
+
+                    <label for="relato">
+
+                        Conte o que aconteceu
+
+                    </label>
+
+
+                    <textarea
+                        id="relato"
+                        name="relato"
+                        rows="8"
+                        placeholder="Descreva a situação com suas palavras. Você pode contar o que aconteceu, onde foi e outras informações que considere importantes para compreender a situação."
+                    ></textarea>
+
+
+                    <small>
+
+                        Não inclua informações pessoais se quiser
+                        permanecer anônimo.
+
+                    </small>
+
+
+                </div>
+
+
+
+                <!-- =========================================
+                     EVIDÊNCIA
+                ========================================== -->
+
+                <div class="grupo-campo">
+
+
+                    <label for="evidencia">
+
+                        Deseja anexar alguma evidência?
+
+                    </label>
+
+
+                    <input
+                        type="file"
+                        id="evidencia"
+                        name="evidencia"
+                        accept="image/*,.pdf"
+                    >
+
+
+                    <small>
+
+                        Opcional. Você poderá anexar imagem,
+                        captura de tela ou documento.
+
+                    </small>
+
+
+                </div>
+
+
+
+                <!-- =========================================
+                     URGÊNCIA
+                ========================================== -->
+
+                <div class="grupo-campo">
+
+
+                    <label for="urgencia">
+
+                        Como você considera essa situação?
+
+                    </label>
+
+
+                    <select
+                        id="urgencia"
+                        name="urgencia"
+                    >
+
+
+                        <option value="">
+
+                            Selecione uma opção
+
+                        </option>
+
+
+                        <option value="baixa">
+
+                            Precisa de atenção
+
+                        </option>
+
+
+                        <option value="media">
+
+                            Está acontecendo com frequência
+
+                        </option>
+
+
+                        <option value="alta">
+
+                            Estou com medo ou me sinto ameaçado
+
+                        </option>
+
+
+                    </select>
+
+
+                </div>
+
+
+
+                <!-- =========================================
+                     CONFIRMAÇÃO
+                ========================================== -->
+
+                <label class="confirmacao">
+
+
+                    <input
+                        type="checkbox"
+                        id="confirmacao"
+                    >
+
+
+                    <span>
+
+                        Confirmo que as informações enviadas
+                        correspondem ao que presenciei ou vivi.
+
+                    </span>
+
+
+                </label>
+
+
+
+                <!-- =========================================
+                     BOTÕES
+                ========================================== -->
+
+                <div class="acoes-formulario">
+
+
+                    <a
+                        href="denuncia.html"
+                        class="botao-cancelar"
+                    >
+
+                        Voltar
+
+                    </a>
+
+
+                    <button
+                        type="submit"
+                        class="botao-enviar"
+                    >
+
+
+                        Enviar denúncia
+
+
+                        <span>
+
+                            →
+
+                        </span>
+
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         IDENTIFICAÇÃO DA ESCOLA
+    ========================================== -->
+
+    <script src="../js/escola.js"></script>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT DO FORMULÁRIO
+    ========================================== -->
+
+    <script src="../js/formulario-denuncia.js"></script>
+
+
+</body>
+
+</html>

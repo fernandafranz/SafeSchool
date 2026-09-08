@@ -1,0 +1,1959 @@
+/* =========================================
+   CONFIGURAÇÕES GERAIS
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+:root {
+    --roxo-principal: #6c4ce5;
+    --roxo-escuro: #4f35b8;
+    --roxo-claro: #eeeaff;
+
+    --azul-escuro: #20205f;
+
+    --branco: #ffffff;
+
+    --cinza-claro: #f7f7fc;
+    --cinza-texto: #6f6f8d;
+    --cinza-borda: #e6e6ef;
+}
+
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background-color:
+        var(--cinza-claro);
+
+    color:
+        var(--azul-escuro);
+}
+
+
+#inicio,
+#sobre,
+#apoio,
+#para-escolas {
+    scroll-margin-top: 100px;
+}
+
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+
+.cabecalho {
+    width: 100%;
+    height: 90px;
+
+    padding:
+        0
+        7%;
+
+    background:
+        var(--branco);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content:
+        space-between;
+
+    box-shadow:
+        0
+        3px
+        20px
+        rgba(0, 0, 0, 0.06);
+
+    position: relative;
+
+    z-index: 20;
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    text-decoration: none;
+
+    color:
+        var(--azul-escuro);
+}
+
+
+.logo-icone {
+    width: 50px;
+    height: 50px;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7b5bea,
+            #5434c9
+        );
+
+    color:
+        var(--branco);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
+
+    box-shadow:
+        0
+        5px
+        15px
+        rgba(108, 76, 229, 0.25);
+}
+
+
+.logo-texto h1 {
+    font-size: 24px;
+
+    color:
+        var(--azul-escuro);
+
+    margin-bottom: 2px;
+}
+
+
+.logo-texto p {
+    font-size: 12px;
+
+    color:
+        var(--cinza-texto);
+}
+
+
+/* =========================================
+   MENU
+========================================= */
+
+.menu {
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+}
+
+
+.menu a {
+    text-decoration: none;
+
+    color:
+        var(--azul-escuro);
+
+    font-size: 15px;
+
+    font-weight: 500;
+
+    transition: 0.2s;
+}
+
+
+.menu a:hover {
+    color:
+        var(--roxo-principal);
+}
+
+
+.menu .ativo {
+    color:
+        var(--roxo-principal);
+
+    font-weight: bold;
+}
+
+
+/* =========================================
+   BOTÃO ENTRAR
+========================================= */
+
+.menu .botao-entrar {
+    background:
+        var(--roxo-principal);
+
+    color:
+        var(--branco);
+
+    padding:
+        12px
+        23px;
+
+    border-radius:
+        9px;
+
+    font-weight:
+        bold;
+}
+
+
+.menu .botao-entrar:hover {
+    background:
+        var(--roxo-escuro);
+
+    color:
+        var(--branco);
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+    min-height:
+        calc(100vh - 90px);
+
+    padding:
+        60px
+        8%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 50px;
+
+    background:
+        linear-gradient(
+            120deg,
+            #ffffff 0%,
+            #f5f2ff 100%
+        );
+}
+
+
+/* =========================================
+   TEXTO PRINCIPAL
+========================================= */
+
+.hero-texto {
+    width: 52%;
+}
+
+
+.etiqueta {
+    display: inline-block;
+
+    background:
+        var(--roxo-claro);
+
+    color:
+        var(--roxo-principal);
+
+    padding:
+        10px
+        18px;
+
+    border-radius:
+        25px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    margin-bottom:
+        22px;
+
+    letter-spacing:
+        0.5px;
+}
+
+
+.hero-texto h2 {
+    font-size:
+        58px;
+
+    line-height:
+        1.05;
+
+    color:
+        var(--azul-escuro);
+
+    margin-bottom:
+        22px;
+}
+
+
+.descricao {
+    font-size:
+        19px;
+
+    line-height:
+        1.6;
+
+    color:
+        var(--cinza-texto);
+
+    max-width:
+        520px;
+
+    margin-bottom:
+        28px;
+}
+
+
+/* =========================================
+   DENÚNCIA ANÔNIMA
+========================================= */
+
+.denuncia-destaque {
+    max-width:
+        520px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap:
+        16px;
+
+    padding:
+        18px;
+
+    border-radius:
+        16px;
+
+    text-decoration:
+        none;
+
+    color:
+        var(--branco);
+
+    background:
+        linear-gradient(
+            135deg,
+            #7a53ec,
+            #5632ca
+        );
+
+    box-shadow:
+        0
+        12px
+        30px
+        rgba(93, 57, 207, 0.25);
+
+    transition:
+        0.25s;
+
+    margin-bottom:
+        25px;
+}
+
+
+.denuncia-destaque:hover {
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0
+        16px
+        36px
+        rgba(93, 57, 207, 0.32);
+}
+
+
+.denuncia-icone {
+    font-size:
+        34px;
+}
+
+
+.denuncia-texto {
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        3px;
+}
+
+
+.denuncia-texto strong {
+    font-size:
+        18px;
+}
+
+
+.denuncia-texto span {
+    font-size:
+        14px;
+}
+
+
+.denuncia-texto small {
+    font-size:
+        12px;
+
+    opacity:
+        0.85;
+}
+
+
+.seta {
+    margin-left:
+        auto;
+
+    font-size:
+        25px;
+}
+
+
+/* =========================================
+   BOTÕES DO HERO
+========================================= */
+
+.botoes-hero {
+    display:
+        flex;
+
+    gap:
+        14px;
+
+    flex-wrap: wrap;
+}
+
+
+.botao-principal,
+.botao-secundario {
+    text-decoration:
+        none;
+
+    padding:
+        13px
+        22px;
+
+    border-radius:
+        9px;
+
+    font-weight:
+        bold;
+
+    transition:
+        0.2s;
+}
+
+
+.botao-principal {
+    background:
+        var(--roxo-principal);
+
+    color:
+        var(--branco);
+}
+
+
+.botao-principal:hover {
+    background:
+        var(--roxo-escuro);
+}
+
+
+.botao-secundario {
+    border:
+        1px
+        solid
+        var(--roxo-principal);
+
+    color:
+        var(--roxo-principal);
+
+    background:
+        var(--branco);
+}
+
+
+.botao-secundario:hover {
+    background:
+        var(--roxo-claro);
+}
+
+
+/* =========================================
+   ÁREA VISUAL
+========================================= */
+
+.hero-visual {
+    width:
+        42%;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+}
+
+
+.circulo-visual {
+    width:
+        420px;
+
+    height:
+        420px;
+
+    border-radius:
+        50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #eee9ff,
+            #dcd4ff
+        );
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    text-align:
+        center;
+
+    box-shadow:
+        0
+        20px
+        50px
+        rgba(108, 76, 229, 0.15);
+}
+
+
+.grupo-estudantes {
+    font-size:
+        72px;
+
+    margin-bottom:
+        25px;
+}
+
+
+.circulo-visual p {
+    max-width:
+        260px;
+
+    font-size:
+        17px;
+
+    line-height:
+        1.5;
+
+    color:
+        var(--azul-escuro);
+
+    font-weight:
+        bold;
+}
+
+
+/* =========================================
+   BENEFÍCIOS
+========================================= */
+
+.beneficios {
+    padding:
+        65px
+        8%
+        80px;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        22px;
+
+    background:
+        var(--cinza-claro);
+}
+
+
+.card-beneficio {
+    background:
+        var(--branco);
+
+    padding:
+        30px
+        24px;
+
+    border-radius:
+        18px;
+
+    text-align:
+        center;
+
+    box-shadow:
+        0
+        8px
+        30px
+        rgba(50, 40, 100, 0.08);
+
+    transition:
+        0.25s;
+}
+
+
+.card-beneficio:hover {
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0
+        14px
+        35px
+        rgba(50, 40, 100, 0.13);
+}
+
+
+.icone-card {
+    width:
+        58px;
+
+    height:
+        58px;
+
+    margin:
+        0
+        auto
+        18px;
+
+    border-radius:
+        16px;
+
+    background:
+        var(--roxo-claro);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        28px;
+}
+
+
+.card-beneficio h3 {
+    font-size:
+        19px;
+
+    color:
+        var(--azul-escuro);
+
+    margin-bottom:
+        12px;
+}
+
+
+.card-beneficio p {
+    color:
+        var(--cinza-texto);
+
+    font-size:
+        14px;
+
+    line-height:
+        1.6;
+}
+
+
+/* =========================================
+   SOBRE O SAFESCHOOL
+========================================= */
+
+.sobre {
+    padding:
+        90px
+        8%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f1edff,
+            #faf9ff
+        );
+}
+
+
+.sobre-conteudo {
+    max-width:
+        1100px;
+
+    margin:
+        0
+        auto;
+
+    text-align:
+        center;
+}
+
+
+.sobre-etiqueta {
+    display:
+        inline-block;
+
+    padding:
+        9px
+        16px;
+
+    border-radius:
+        25px;
+
+    background:
+        var(--branco);
+
+    color:
+        var(--roxo-principal);
+
+    font-size:
+        12px;
+
+    font-weight:
+        bold;
+
+    margin-bottom:
+        18px;
+
+    letter-spacing:
+        0.5px;
+}
+
+
+.sobre h2 {
+    font-size:
+        42px;
+
+    color:
+        var(--azul-escuro);
+
+    margin-bottom:
+        20px;
+}
+
+
+.sobre-descricao {
+    max-width:
+        760px;
+
+    margin:
+        0
+        auto
+        45px;
+
+    font-size:
+        18px;
+
+    line-height:
+        1.8;
+
+    color:
+        var(--cinza-texto);
+}
+
+
+.sobre-recursos {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:
+        24px;
+}
+
+
+.recurso {
+    background:
+        var(--branco);
+
+    padding:
+        30px
+        24px;
+
+    border-radius:
+        18px;
+
+    box-shadow:
+        0
+        10px
+        30px
+        rgba(50, 40, 100, 0.07);
+
+    transition:
+        0.25s;
+}
+
+
+.recurso:hover {
+    transform:
+        translateY(-4px);
+}
+
+
+.recurso-icone {
+    font-size:
+        34px;
+
+    margin-bottom:
+        16px;
+}
+
+
+.recurso h3 {
+    font-size:
+        19px;
+
+    margin-bottom:
+        10px;
+
+    color:
+        var(--azul-escuro);
+}
+
+
+.recurso p {
+    font-size:
+        14px;
+
+    line-height:
+        1.6;
+
+    color:
+        var(--cinza-texto);
+}
+
+
+/* =========================================
+   APOIO - HOME
+========================================= */
+
+.apoio-home {
+    padding:
+        95px
+        8%;
+
+    background:
+        var(--branco);
+}
+
+
+.apoio-home-conteudo {
+    max-width:
+        1180px;
+
+    margin:
+        0
+        auto;
+}
+
+
+.apoio-home-titulo {
+    max-width:
+        760px;
+
+    margin:
+        0
+        auto
+        45px;
+
+    text-align:
+        center;
+}
+
+
+.apoio-home-titulo .sobre-etiqueta {
+    background:
+        var(--roxo-claro);
+}
+
+
+.apoio-home-titulo h2 {
+    margin-bottom:
+        16px;
+
+    font-size:
+        40px;
+
+    line-height:
+        1.2;
+
+    color:
+        var(--azul-escuro);
+}
+
+
+.apoio-home-titulo p {
+    color:
+        var(--cinza-texto);
+
+    font-size:
+        16px;
+
+    line-height:
+        1.75;
+}
+
+
+.apoio-home-cards {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:
+        24px;
+}
+
+
+.apoio-home-card {
+    min-height:
+        295px;
+
+    padding:
+        30px;
+
+    border:
+        1px
+        solid
+        var(--cinza-borda);
+
+    border-radius:
+        20px;
+
+    background:
+        var(--cinza-claro);
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    transition:
+        0.25s;
+}
+
+
+.apoio-home-card:hover {
+    transform:
+        translateY(-5px);
+
+    border-color:
+        #d3c8f4;
+
+    box-shadow:
+        0
+        14px
+        36px
+        rgba(50, 40, 100, 0.09);
+}
+
+
+.apoio-home-icone {
+    width:
+        58px;
+
+    height:
+        58px;
+
+    margin-bottom:
+        20px;
+
+    border-radius:
+        17px;
+
+    background:
+        var(--roxo-claro);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        28px;
+}
+
+
+.apoio-home-card h3 {
+    margin-bottom:
+        12px;
+
+    font-size:
+        19px;
+
+    color:
+        var(--azul-escuro);
+}
+
+
+.apoio-home-card p {
+    margin-bottom:
+        22px;
+
+    color:
+        var(--cinza-texto);
+
+    font-size:
+        14px;
+
+    line-height:
+        1.65;
+}
+
+
+.apoio-home-card a {
+    margin-top:
+        auto;
+
+    color:
+        var(--roxo-principal);
+
+    text-decoration:
+        none;
+
+    font-size:
+        13px;
+
+    font-weight:
+        bold;
+}
+
+
+.apoio-home-card a:hover {
+    color:
+        var(--roxo-escuro);
+}
+
+
+/* =========================================
+   PARA ESCOLAS
+========================================= */
+
+.para-escolas {
+    padding:
+        95px
+        8%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eee9ff,
+            #faf9ff
+        );
+}
+
+
+.para-escolas-conteudo {
+    max-width:
+        1180px;
+
+    margin:
+        0
+        auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        minmax(0, 0.8fr)
+        minmax(0, 1.2fr);
+
+    gap:
+        65px;
+
+    align-items:
+        center;
+}
+
+
+.para-escolas-texto .sobre-etiqueta {
+    background:
+        var(--branco);
+}
+
+
+.para-escolas-texto h2 {
+    margin-bottom:
+        18px;
+
+    font-size:
+        42px;
+
+    line-height:
+        1.15;
+
+    color:
+        var(--azul-escuro);
+}
+
+
+.para-escolas-texto p {
+    color:
+        var(--cinza-texto);
+
+    font-size:
+        16px;
+
+    line-height:
+        1.75;
+}
+
+
+.recursos-escola {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap:
+        17px;
+}
+
+
+.recurso-escola {
+    min-height:
+        190px;
+
+    padding:
+        23px;
+
+    border-radius:
+        18px;
+
+    background:
+        var(--branco);
+
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    gap:
+        15px;
+
+    box-shadow:
+        0
+        9px
+        28px
+        rgba(50, 40, 100, 0.07);
+
+    transition:
+        0.25s;
+}
+
+
+.recurso-escola:hover {
+    transform:
+        translateY(-4px);
+}
+
+
+.recurso-escola-icone {
+    width:
+        48px;
+
+    height:
+        48px;
+
+    min-width:
+        48px;
+
+    border-radius:
+        14px;
+
+    background:
+        var(--roxo-claro);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        23px;
+}
+
+
+.recurso-escola h3 {
+    margin:
+        3px
+        0
+        8px;
+
+    font-size:
+        16px;
+
+    color:
+        var(--azul-escuro);
+}
+
+
+.recurso-escola p {
+    color:
+        var(--cinza-texto);
+
+    font-size:
+        12px;
+
+    line-height:
+        1.65;
+}
+
+
+/* =========================================
+   CHAMADA FINAL
+========================================= */
+
+.chamada-final {
+    padding:
+        80px
+        8%;
+
+    background:
+        var(--branco);
+}
+
+
+.chamada-final-conteudo {
+    max-width:
+        1180px;
+
+    margin:
+        0
+        auto;
+
+    padding:
+        45px;
+
+    border-radius:
+        26px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7650e8,
+            #5030bd
+        );
+
+    color:
+        var(--branco);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        25px;
+
+    box-shadow:
+        0
+        18px
+        45px
+        rgba(86, 50, 200, 0.22);
+}
+
+
+.chamada-final-icone {
+    width:
+        76px;
+
+    height:
+        76px;
+
+    min-width:
+        76px;
+
+    border-radius:
+        21px;
+
+    background:
+        rgba(255, 255, 255, 0.14);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        34px;
+}
+
+
+.chamada-final-texto {
+    flex:
+        1;
+}
+
+
+.chamada-final-texto > span {
+    display:
+        block;
+
+    margin-bottom:
+        8px;
+
+    font-size:
+        10px;
+
+    font-weight:
+        bold;
+
+    letter-spacing:
+        1px;
+
+    opacity:
+        0.82;
+}
+
+
+.chamada-final-texto h2 {
+    max-width:
+        650px;
+
+    margin-bottom:
+        9px;
+
+    font-size:
+        28px;
+
+    line-height:
+        1.2;
+}
+
+
+.chamada-final-texto p {
+    max-width:
+        680px;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.65;
+
+    opacity:
+        0.88;
+}
+
+
+.chamada-final-botoes {
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        10px;
+
+    min-width:
+        170px;
+}
+
+
+.botao-final-principal,
+.botao-final-secundario {
+    padding:
+        13px
+        18px;
+
+    border-radius:
+        10px;
+
+    text-align:
+        center;
+
+    text-decoration:
+        none;
+
+    font-size:
+        12px;
+
+    font-weight:
+        bold;
+
+    transition:
+        0.2s;
+}
+
+
+.botao-final-principal {
+    background:
+        var(--branco);
+
+    color:
+        var(--roxo-escuro);
+}
+
+
+.botao-final-principal:hover {
+    transform:
+        translateY(-2px);
+}
+
+
+.botao-final-secundario {
+    border:
+        1px
+        solid
+        rgba(255, 255, 255, 0.55);
+
+    color:
+        var(--branco);
+
+    background:
+        rgba(255, 255, 255, 0.08);
+}
+
+
+.botao-final-secundario:hover {
+    background:
+        rgba(255, 255, 255, 0.16);
+}
+
+
+/* =========================================
+   RODAPÉ
+========================================= */
+
+.rodape {
+    padding:
+        35px
+        8%;
+
+    background:
+        #19184b;
+
+    color:
+        var(--branco);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        35px;
+}
+
+
+.rodape-marca {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+    min-width:
+        210px;
+}
+
+
+.rodape .logo-icone {
+    width:
+        44px;
+
+    height:
+        44px;
+
+    border-radius:
+        13px;
+
+    font-size:
+        22px;
+
+    box-shadow:
+        none;
+}
+
+
+.rodape-marca strong {
+    display:
+        block;
+
+    margin-bottom:
+        3px;
+
+    font-size:
+        17px;
+}
+
+
+.rodape-marca p {
+    font-size:
+        11px;
+
+    opacity:
+        0.7;
+}
+
+
+.rodape-texto {
+    max-width:
+        520px;
+
+    text-align:
+        right;
+
+    font-size:
+        11px;
+
+    line-height:
+        1.6;
+
+    opacity:
+        0.72;
+}
+
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 1050px) {
+
+    .menu {
+        gap:
+            18px;
+    }
+
+
+    .menu a {
+        font-size:
+            13px;
+    }
+
+
+    .circulo-visual {
+        width:
+            360px;
+
+        height:
+            360px;
+    }
+
+
+    .grupo-estudantes {
+        font-size:
+            61px;
+    }
+
+
+    .para-escolas-conteudo {
+        gap:
+            35px;
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .menu {
+        display:
+            none;
+    }
+
+
+    .hero {
+        flex-direction:
+            column;
+
+        text-align:
+            center;
+    }
+
+
+    .hero-texto {
+        width:
+            100%;
+    }
+
+
+    .hero-texto h2 {
+        font-size:
+            44px;
+    }
+
+
+    .descricao {
+        margin-left:
+            auto;
+
+        margin-right:
+            auto;
+    }
+
+
+    .denuncia-destaque {
+        margin-left:
+            auto;
+
+        margin-right:
+            auto;
+
+        text-align:
+            left;
+    }
+
+
+    .botoes-hero {
+        justify-content:
+            center;
+    }
+
+
+    .hero-visual {
+        width:
+            100%;
+    }
+
+
+    .circulo-visual {
+        width:
+            330px;
+
+        height:
+            330px;
+    }
+
+
+    .beneficios {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .sobre-recursos {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .apoio-home-cards {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .apoio-home-card {
+        min-height:
+            auto;
+    }
+
+
+    .para-escolas-conteudo {
+        grid-template-columns:
+            1fr;
+
+        text-align:
+            center;
+    }
+
+
+    .para-escolas-texto {
+        max-width:
+            720px;
+
+        margin:
+            0
+            auto;
+    }
+
+
+    .recurso-escola {
+        text-align:
+            left;
+    }
+
+
+    .chamada-final-conteudo {
+        flex-direction:
+            column;
+
+        text-align:
+            center;
+    }
+
+
+    .chamada-final-texto h2,
+    .chamada-final-texto p {
+        margin-left:
+            auto;
+
+        margin-right:
+            auto;
+    }
+
+
+    .chamada-final-botoes {
+        width:
+            100%;
+
+        max-width:
+            350px;
+
+        flex-direction:
+            row;
+    }
+
+
+    .botao-final-principal,
+    .botao-final-secundario {
+        flex:
+            1;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .cabecalho {
+        height:
+            82px;
+
+        padding:
+            0
+            6%;
+    }
+
+
+    .logo-icone {
+        width:
+            45px;
+
+        height:
+            45px;
+    }
+
+
+    .logo-texto h1 {
+        font-size:
+            21px;
+    }
+
+
+    .hero {
+        min-height:
+            auto;
+
+        padding:
+            55px
+            6%;
+    }
+
+
+    .hero-texto h2 {
+        font-size:
+            39px;
+    }
+
+
+    .descricao {
+        font-size:
+            17px;
+    }
+
+
+    .botoes-hero {
+        flex-direction:
+            column;
+    }
+
+
+    .botao-principal,
+    .botao-secundario {
+        width:
+            100%;
+
+        text-align:
+            center;
+    }
+
+
+    .circulo-visual {
+        width:
+            280px;
+
+        height:
+            280px;
+    }
+
+
+    .grupo-estudantes {
+        font-size:
+            48px;
+    }
+
+
+    .circulo-visual p {
+        font-size:
+            15px;
+    }
+
+
+    .beneficios {
+        padding:
+            55px
+            6%;
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .sobre,
+    .apoio-home,
+    .para-escolas {
+        padding:
+            70px
+            6%;
+    }
+
+
+    .sobre h2,
+    .apoio-home-titulo h2,
+    .para-escolas-texto h2 {
+        font-size:
+            32px;
+    }
+
+
+    .sobre-descricao {
+        font-size:
+            16px;
+    }
+
+
+    .recursos-escola {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .chamada-final {
+        padding:
+            60px
+            6%;
+    }
+
+
+    .chamada-final-conteudo {
+        padding:
+            32px
+            23px;
+    }
+
+
+    .chamada-final-texto h2 {
+        font-size:
+            24px;
+    }
+
+
+    .chamada-final-botoes {
+        flex-direction:
+            column;
+    }
+
+
+    .rodape {
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+        padding:
+            30px
+            6%;
+    }
+
+
+    .rodape-texto {
+        max-width:
+            none;
+
+        text-align:
+            left;
+    }
+
+}

@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Aprender e refletir | SafeSchool
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../css/conteudos.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         CABEÇALHO
+    ========================================== -->
+
+    <header class="cabecalho">
+
+
+        <a
+            href="../index.html"
+            class="logo"
+        >
+
+            <div class="logo-icone">
+                ♥
+            </div>
+
+
+            <div class="logo-texto">
+
+                <h1>
+                    SafeSchool
+                </h1>
+
+                <p>
+                    Escola Sem Bullying
+                </p>
+
+            </div>
+
+        </a>
+
+
+
+        <nav class="menu">
+
+
+            <a
+                href="../index.html"
+                id="menuInicioConteudos"
+            >
+                Início
+            </a>
+
+
+            <a
+                href="conteudos.html"
+                class="ativo"
+            >
+                Conteúdos
+            </a>
+
+
+            <a
+                href="login.html?origem=desafios"
+                id="menuDesafiosConteudos"
+            >
+                Desafios 🔒
+            </a>
+
+
+            <a
+                href="../index.html#apoio"
+                id="menuApoioConteudos"
+            >
+                Apoio
+            </a>
+
+
+            <a
+                href="login.html"
+                id="menuContaConteudos"
+            >
+                Entrar
+            </a>
+
+
+        </nav>
+
+
+    </header>
+
+
+
+    <!-- =========================================
+         CONTEÚDO
+    ========================================== -->
+
+    <main>
+
+
+        <!-- =========================================
+             APRESENTAÇÃO
+        ========================================== -->
+
+        <section class="hero-conteudos">
+
+
+            <div class="hero-texto">
+
+
+                <span class="etiqueta">
+                    📚 APRENDER E REFLETIR
+                </span>
+
+
+                <h2>
+                    Informação também é uma forma de proteção.
+                </h2>
+
+
+                <p>
+
+                    Entender melhor o bullying, reconhecer situações
+                    que causam sofrimento e refletir sobre nossas
+                    atitudes pode ajudar a construir uma convivência
+                    mais respeitosa dentro e fora da escola.
+
+                </p>
+
+
+
+                <div
+                    class="aviso-pontos"
+                    id="avisoModoConteudos"
+                >
+
+                    🔓
+
+                    <strong>
+                        Conteúdos públicos.
+                    </strong>
+
+                    Leia e explore os materiais livremente,
+                    sem cadastro. Desafios e progresso fazem
+                    parte da jornada do aluno.
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="hero-visual">
+
+                📚
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             PROGRESSO DO ALUNO
+        ========================================== -->
+
+        <section
+            class="resumo-progresso"
+            id="resumoProgressoConteudos"
+            hidden
+        >
+
+
+            <div>
+
+                <span>
+                    SEU PROGRESSO
+                </span>
+
+                <h2>
+                    Continue aprendendo
+                </h2>
+
+            </div>
+
+
+
+            <div class="resumo-numeros">
+
+
+                <div class="resumo-item">
+
+                    <strong
+                        id="numeroConcluidosConteudos"
+                    >
+                        0
+                    </strong>
+
+                    <span>
+                        concluídos
+                    </span>
+
+                </div>
+
+
+                <div class="divisor">
+                    /
+                </div>
+
+
+                <div class="resumo-item">
+
+                    <strong
+                        id="numeroTotalConteudos"
+                    >
+                        0
+                    </strong>
+
+                    <span>
+                        conteúdos
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             LISTA DE CONTEÚDOS
+        ========================================== -->
+
+        <section class="area-conteudos">
+
+
+            <div class="titulo-secao">
+
+                <span>
+                    ESCOLHA UM TEMA
+                </span>
+
+                <h2>
+                    Um conteúdo de cada vez
+                </h2>
+
+                <p>
+
+                    Leia no seu ritmo e aproveite cada tema
+                    como um momento para compreender,
+                    refletir e pensar sobre situações
+                    que podem acontecer no cotidiano.
+
+                </p>
+
+            </div>
+
+
+
+            <div
+                class="grade-conteudos"
+                id="gradeConteudos"
+            >
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             ÁREA DE LEITURA
+        ========================================== -->
+
+        <section
+            class="area-leitura"
+            id="areaLeitura"
+            hidden
+        >
+
+
+            <button
+                type="button"
+                class="fechar-leitura"
+                id="fecharLeitura"
+            >
+                ← Voltar aos conteúdos
+            </button>
+
+
+
+            <article class="leitura-card">
+
+
+                <div
+                    class="leitura-icone"
+                    id="leituraIcone"
+                >
+                    📚
+                </div>
+
+
+                <span
+                    class="leitura-categoria"
+                    id="leituraCategoria"
+                >
+                </span>
+
+
+                <h2
+                    id="leituraTitulo"
+                >
+                </h2>
+
+
+
+                <div
+                    class="leitura-texto"
+                    id="leituraTexto"
+                >
+                </div>
+
+
+
+                <div
+                    class="leitura-reflexao"
+                    id="leituraReflexao"
+                >
+                </div>
+
+
+
+                <button
+                    type="button"
+                    class="botao-concluir"
+                    id="botaoConcluirConteudo"
+                    hidden
+                >
+                    ✓ Marcar como concluído
+                </button>
+
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             MENSAGEM DE APOIO
+        ========================================== -->
+
+        <section class="mensagem-apoio">
+
+
+            <div class="mensagem-icone">
+                💜
+            </div>
+
+
+            <div>
+
+
+                <span>
+                    PRECISA DE AJUDA?
+                </span>
+
+
+                <h2 id="tituloApoioConteudos">
+
+                    Informação é importante,
+                    mas você não precisa lidar
+                    com tudo sozinho.
+
+                </h2>
+
+
+                <p id="textoApoioConteudos">
+
+                    Se algum desses conteúdos lembrar você
+                    de uma situação que está vivendo ou presenciando,
+                    conheça os caminhos de apoio disponíveis
+                    no SafeSchool.
+
+                </p>
+
+
+                <a
+                    href="../index.html#apoio"
+                    class="botao-painel"
+                    id="botaoPainelConteudos"
+                >
+                    Conhecer formas de apoio →
+                </a>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         RODAPÉ
+    ========================================== -->
+
+    <footer>
+
+        SafeSchool — Escola Sem Bullying
+
+    </footer>
+
+
+
+    <!-- =========================================
+         SCRIPTS PRINCIPAIS
+    ========================================== -->
+
+    <script src="../js/escola.js"></script>
+
+    <script src="../js/biblioteca-conteudos.js"></script>
+
+    <script src="../js/conteudos.js"></script>
+
+
+
+    <!-- =========================================
+         ADAPTAR A PÁGINA AO PERFIL
+    ========================================== -->
+
+    <script>
+
+        (function () {
+
+            "use strict";
+
+
+            const perfil =
+
+                (
+                    sessionStorage.getItem(
+                        "perfilSafeSchool"
+                    ) || ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+
+            const paineis = {
+
+                aluno:
+                    "aluno.html",
+
+                professor:
+                    "professor.html",
+
+                responsavel:
+                    "responsavel.html",
+
+                psicologia:
+                    "psicologia.html"
+
+            };
+
+
+            const estaLogado =
+                Boolean(
+                    paineis[perfil]
+                );
+
+
+            const ehAluno =
+                perfil ===
+                "aluno";
+
+
+
+            const menuInicio =
+                document.getElementById(
+                    "menuInicioConteudos"
+                );
+
+
+            const menuDesafios =
+                document.getElementById(
+                    "menuDesafiosConteudos"
+                );
+
+
+            const menuApoio =
+                document.getElementById(
+                    "menuApoioConteudos"
+                );
+
+
+            const menuConta =
+                document.getElementById(
+                    "menuContaConteudos"
+                );
+
+
+            const avisoModo =
+                document.getElementById(
+                    "avisoModoConteudos"
+                );
+
+
+            const resumoProgresso =
+                document.getElementById(
+                    "resumoProgressoConteudos"
+                );
+
+
+            const botaoConcluir =
+                document.getElementById(
+                    "botaoConcluirConteudo"
+                );
+
+
+            const tituloApoio =
+                document.getElementById(
+                    "tituloApoioConteudos"
+                );
+
+
+            const textoApoio =
+                document.getElementById(
+                    "textoApoioConteudos"
+                );
+
+
+            const botaoPainel =
+                document.getElementById(
+                    "botaoPainelConteudos"
+                );
+
+
+
+            /* =====================================
+               ALUNO LOGADO
+            ====================================== */
+
+            if (
+                ehAluno
+            ) {
+
+
+                menuInicio.href =
+                    "aluno.html";
+
+
+                menuInicio.textContent =
+                    "Início";
+
+
+
+                menuDesafios.href =
+                    "desafios.html";
+
+
+                menuDesafios.textContent =
+                    "Desafios";
+
+
+
+                menuApoio.href =
+                    "apoio-psicologico.html";
+
+
+                menuApoio.textContent =
+                    "Apoio";
+
+
+
+                menuConta.href =
+                    "../index.html";
+
+
+                menuConta.textContent =
+                    "Sair";
+
+
+
+                avisoModo.innerHTML = `
+
+                    ⭐ Cada conteúdo concluído vale
+
+                    <strong>
+                        10 pontos
+                    </strong>
+
+                `;
+
+
+
+                resumoProgresso.hidden =
+                    false;
+
+
+
+                botaoConcluir.hidden =
+                    false;
+
+
+
+                tituloApoio.textContent =
+
+                    "Aprender é importante, mas você não precisa lidar com tudo sozinho.";
+
+
+
+                textoApoio.textContent =
+
+                    "Se algum desses conteúdos lembrar você de uma situação que está vivendo ou presenciando, existem diferentes formas de pedir ajuda dentro do SafeSchool.";
+
+
+
+                botaoPainel.href =
+                    "aluno.html";
+
+
+                botaoPainel.textContent =
+                    "Voltar ao meu painel →";
+
+
+                return;
+
+            }
+
+
+
+            /* =====================================
+               OUTRO PERFIL LOGADO
+            ====================================== */
+
+            if (
+                estaLogado
+            ) {
+
+
+                menuInicio.href =
+                    paineis[perfil];
+
+
+                menuInicio.textContent =
+                    "Meu painel";
+
+
+
+                menuDesafios.hidden =
+                    true;
+
+
+
+                if (
+                    perfil ===
+                    "responsavel"
+                ) {
+
+                    menuApoio.href =
+                        "responsavel.html#apoio";
+
+                }
+
+                else {
+
+                    menuApoio.href =
+                        paineis[perfil];
+
+                }
+
+
+
+                menuConta.href =
+                    "../index.html";
+
+
+                menuConta.textContent =
+                    "Sair";
+
+
+
+                avisoModo.innerHTML = `
+
+                    📚 Biblioteca educativa.
+
+                    <strong>
+                        Os conteúdos podem ser consultados livremente.
+                    </strong>
+
+                    Pontuação, progresso e desafios
+                    são recursos exclusivos do perfil Aluno.
+
+                `;
+
+
+
+                resumoProgresso.hidden =
+                    true;
+
+
+                botaoConcluir.hidden =
+                    true;
+
+
+
+                tituloApoio.textContent =
+
+                    "Informação também fortalece a convivência escolar.";
+
+
+
+                textoApoio.textContent =
+
+                    "Utilize os conteúdos como apoio para compreender melhor os temas trabalhados pelo SafeSchool.";
+
+
+
+                botaoPainel.href =
+                    paineis[perfil];
+
+
+                botaoPainel.textContent =
+                    "Voltar ao meu painel →";
+
+
+                return;
+
+            }
+
+
+
+            /* =====================================
+               VISITANTE PÚBLICO
+            ====================================== */
+
+            menuInicio.href =
+                "../index.html";
+
+
+            menuInicio.textContent =
+                "Início";
+
+
+
+            menuDesafios.href =
+                "login.html?origem=desafios";
+
+
+            menuDesafios.textContent =
+                "Desafios 🔒";
+
+
+
+            menuApoio.href =
+                "../index.html#apoio";
+
+
+            menuApoio.textContent =
+                "Apoio";
+
+
+
+            menuConta.href =
+                "login.html";
+
+
+            menuConta.textContent =
+                "Entrar";
+
+
+
+            resumoProgresso.hidden =
+                true;
+
+
+            botaoConcluir.hidden =
+                true;
+
+
+        })();
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Painel da Equipe Escolar | SafeSchool
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../css/professor.css"
+    >
+
+
+    <!-- =========================================
+         MODO DEMONSTRAÇÃO
+         ESTILO LOCAL PARA NÃO ALTERAR O CSS
+         PRINCIPAL DO PAINEL
+    ========================================== -->
+
+    <style>
+
+        .modo-demonstracao {
+
+            margin-top: 38px;
+
+            padding: 30px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 25px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f4efff,
+                    #ffffff
+                );
+
+            border:
+                1px solid
+                #ded4f5;
+
+        }
+
+
+        .modo-demo-conteudo {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 18px;
+
+        }
+
+
+        .modo-demo-icone {
+
+            width: 58px;
+
+            height: 58px;
+
+            flex:
+                0
+                0
+                58px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 17px;
+
+            background: #ffffff;
+
+            font-size: 28px;
+
+            box-shadow:
+                0 8px 22px
+                rgba(
+                    83,
+                    57,
+                    145,
+                    0.08
+                );
+
+        }
+
+
+        .modo-demo-texto span {
+
+            display: block;
+
+            margin-bottom: 6px;
+
+            color: #7455cd;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.9px;
+
+        }
+
+
+        .modo-demo-texto h2 {
+
+            margin: 0;
+
+            color: #40345a;
+
+            font-size: 21px;
+
+        }
+
+
+        .modo-demo-texto p {
+
+            max-width: 620px;
+
+            margin:
+                9px
+                0
+                0;
+
+            color: #7a7189;
+
+            font-size: 12px;
+
+            line-height: 1.65;
+
+        }
+
+
+        .modo-demo-status {
+
+            display: inline-block;
+
+            margin-top: 11px;
+
+            padding:
+                7px
+                10px;
+
+            border-radius: 999px;
+
+            background: #ffffff;
+
+            color: #7058b7;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+        }
+
+
+        .modo-demo-status.ativo {
+
+            color: #4f3a9f;
+
+            background: #e8e0ff;
+
+        }
+
+
+        .modo-demo-acoes {
+
+            min-width: 205px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 9px;
+
+        }
+
+
+        .modo-demo-acoes button {
+
+            width: 100%;
+
+            min-height: 43px;
+
+            padding:
+                9px
+                14px;
+
+            border-radius: 11px;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition:
+                transform
+                0.15s ease;
+
+        }
+
+
+        .modo-demo-acoes button:hover {
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        .botao-carregar-demo {
+
+            border: 0;
+
+            color: #ffffff;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7253cf,
+                    #9970dd
+                );
+
+        }
+
+
+        .botao-remover-demo {
+
+            border:
+                1px solid
+                #ddd4ef;
+
+            color: #745f8c;
+
+            background: #ffffff;
+
+        }
+
+
+        .botao-remover-demo:disabled {
+
+            opacity: 0.45;
+
+            cursor: not-allowed;
+
+            transform: none;
+
+        }
+
+
+        @media (max-width: 760px) {
+
+            .modo-demonstracao {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+            }
+
+
+            .modo-demo-acoes {
+
+                width: 100%;
+
+                min-width: 0;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         CABEÇALHO
+    ========================================== -->
+
+    <header class="cabecalho">
+
+
+        <a
+            href="../index.html"
+            class="logo"
+        >
+
+            <div class="logo-icone">
+                ♥
+            </div>
+
+
+            <div class="logo-texto">
+
+                <h1>
+                    SafeSchool
+                </h1>
+
+                <p>
+                    Escola Sem Bullying
+                </p>
+
+            </div>
+
+        </a>
+
+
+
+        <nav class="menu">
+
+            <a
+                href="professor.html"
+                class="ativo"
+            >
+                Painel
+            </a>
+
+            <a href="#relatos">
+                Relatos
+            </a>
+
+            <a
+                href="#relatos"
+                data-abrir-acompanhamentos
+            >
+                Acompanhamentos
+            </a>
+
+            <a href="indicadores.html">
+                Indicadores
+            </a>
+
+            <a href="materiais-professor.html">
+                Conteúdos
+            </a>
+
+            <a href="../index.html">
+                Sair
+            </a>
+
+        </nav>
+
+
+    </header>
+
+
+
+    <!-- =========================================
+         CONTEÚDO PRINCIPAL
+    ========================================== -->
+
+    <main>
+
+
+        <!-- =========================================
+             BOAS-VINDAS
+        ========================================== -->
+
+        <section class="boas-vindas">
+
+
+            <div class="boas-vindas-texto">
+
+
+                <span class="etiqueta">
+
+                    ÁREA DA EQUIPE ESCOLAR
+
+                </span>
+
+
+                <h2>
+
+                    Painel SafeSchool
+
+                </h2>
+
+
+                <p>
+
+                    Acompanhe situações relatadas,
+                    identifique casos que precisam
+                    de maior atenção e organize
+                    ações de acolhimento da
+                    comunidade escolar.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div class="boas-vindas-icone">
+
+                🛡️
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             RESUMO
+        ========================================== -->
+
+        <section class="resumo">
+
+
+            <div class="titulo-secao">
+
+                <span>
+
+                    VISÃO GERAL
+
+                </span>
+
+
+                <h2>
+
+                    Situação atual
+
+                </h2>
+
+
+            </div>
+
+
+
+            <div class="cards-resumo">
+
+
+                <!-- NOVOS RELATOS -->
+
+                <div class="card-resumo">
+
+
+                    <div class="card-topo">
+
+                        <div class="icone-card">
+
+                            📩
+
+                        </div>
+
+
+                        <span class="status neutro">
+
+                            Recebidos
+
+                        </span>
+
+                    </div>
+
+
+                    <strong
+                        class="numero"
+                        id="numeroNovos"
+                    >
+
+                        0
+
+                    </strong>
+
+
+                    <h3>
+
+                        Novos relatos
+
+                    </h3>
+
+
+                    <p>
+
+                        Relatos recebidos e ainda
+                        não analisados pela equipe.
+
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- PRIORIDADE -->
+
+                <div class="card-resumo">
+
+
+                    <div class="card-topo">
+
+                        <div class="icone-card">
+
+                            ⚠️
+
+                        </div>
+
+
+                        <span class="status urgente">
+
+                            Atenção
+
+                        </span>
+
+                    </div>
+
+
+                    <strong
+                        class="numero"
+                        id="numeroAltaPrioridade"
+                    >
+
+                        0
+
+                    </strong>
+
+
+                    <h3>
+
+                        Alta prioridade
+
+                    </h3>
+
+
+                    <p>
+
+                        Situações que indicam medo,
+                        ameaça ou maior necessidade
+                        de atenção.
+
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- ACOMPANHAMENTO -->
+
+                <div class="card-resumo">
+
+
+                    <div class="card-topo">
+
+                        <div class="icone-card">
+
+                            🔄
+
+                        </div>
+
+
+                        <span class="status acompanhamento">
+
+                            Em andamento
+
+                        </span>
+
+                    </div>
+
+
+                    <strong
+                        class="numero"
+                        id="numeroAcompanhamento"
+                    >
+
+                        0
+
+                    </strong>
+
+
+                    <h3>
+
+                        Em acompanhamento
+
+                    </h3>
+
+
+                    <p>
+
+                        Casos que já estão sendo
+                        acompanhados pela equipe escolar.
+
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- CONCLUÍDOS -->
+
+                <div class="card-resumo">
+
+
+                    <div class="card-topo">
+
+                        <div class="icone-card">
+
+                            ✓
+
+                        </div>
+
+
+                        <span class="status concluido">
+
+                            Finalizados
+
+                        </span>
+
+                    </div>
+
+
+                    <strong
+                        class="numero"
+                        id="numeroConcluidos"
+                    >
+
+                        0
+
+                    </strong>
+
+
+                    <h3>
+
+                        Acompanhamentos concluídos
+
+                    </h3>
+
+
+                    <p>
+
+                        Fluxos de acompanhamento
+                        encerrados pela equipe responsável.
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             RELATOS RECENTES
+        ========================================== -->
+
+        <section
+            class="relatos"
+            id="relatos"
+        >
+
+
+            <div class="cabecalho-secao">
+
+
+                <div class="titulo-secao">
+
+                    <span>
+
+                        RELATOS
+
+                    </span>
+
+
+                    <h2>
+
+                        Relatos recentes
+
+                    </h2>
+
+                </div>
+
+
+                <div
+                    class="total-relatos"
+                    id="totalRelatos"
+                >
+
+                    0 relatos
+
+                </div>
+
+
+            </div>
+
+
+
+            <div
+                class="lista-relatos"
+                id="listaRelatos"
+            >
+            </div>
+
+
+
+            <div
+                class="sem-relatos"
+                id="semRelatos"
+            >
+
+
+                <div class="sem-relatos-icone">
+
+                    📭
+
+                </div>
+
+
+                <h3>
+
+                    Nenhum relato recebido
+
+                </h3>
+
+
+                <p>
+
+                    Quando uma denúncia vinculada
+                    a esta escola for registrada,
+                    ela aparecerá aqui.
+
+                </p>
+
+
+                <small>
+
+                    Nesta versão, os dados permanecem
+                    apenas durante a sessão do navegador.
+
+                </small>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             FERRAMENTAS
+        ========================================== -->
+
+        <section class="ferramentas">
+
+
+            <div class="titulo-secao">
+
+                <span>
+
+                    FERRAMENTAS
+
+                </span>
+
+
+                <h2>
+
+                    Gestão e prevenção
+
+                </h2>
+
+            </div>
+
+
+
+            <div class="cards-ferramentas">
+
+
+                <a
+                    href="#relatos"
+                    class="card-ferramenta"
+                    data-abrir-acompanhamentos
+                >
+
+                    <div class="ferramenta-icone">
+
+                        📋
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+
+                            Acompanhamento de casos
+
+                        </h3>
+
+
+                        <p>
+
+                            Registre ações realizadas
+                            e acompanhe a evolução
+                            de cada situação.
+
+                        </p>
+
+
+                        <span>
+
+                            Acessar →
+
+                        </span>
+
+                    </div>
+
+
+                </a>
+
+
+
+                <a
+                    href="indicadores.html"
+                    class="card-ferramenta"
+                >
+
+                    <div class="ferramenta-icone">
+
+                        📊
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+
+                            Indicadores da escola
+
+                        </h3>
+
+
+                        <p>
+
+                            Observe tipos de ocorrência,
+                            locais mais citados e evolução
+                            dos registros.
+
+                        </p>
+
+
+                        <span>
+
+                            Ver indicadores →
+
+                        </span>
+
+                    </div>
+
+
+                </a>
+
+
+
+                <a
+                    href="materiais-professor.html"
+                    class="card-ferramenta"
+                >
+
+                    <div class="ferramenta-icone">
+
+                        📚
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+
+                            Conteúdos educativos
+
+                        </h3>
+
+
+                        <p>
+
+                            Disponibilize materiais
+                            e ações de conscientização
+                            para os estudantes.
+
+                        </p>
+
+
+                        <span>
+
+                            Gerenciar →
+
+                        </span>
+
+                    </div>
+
+
+                </a>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             TRIAGEM ASSISTIDA
+        ========================================== -->
+
+        <section class="inteligencia">
+
+
+            <div class="inteligencia-icone">
+
+                ✨
+
+            </div>
+
+
+            <div class="inteligencia-texto">
+
+
+                <span>
+
+                    TRIAGEM ASSISTIDA
+
+                </span>
+
+
+                <h2>
+
+                    Priorização de situações
+
+                </h2>
+
+
+                <p>
+
+                    O SafeSchool utiliza critérios de triagem assistida
+                    para organizar e destacar situações que podem exigir
+                    atenção mais rápida, considerando as informações
+                    registradas no relato e no acompanhamento do caso.
+
+                </p>
+
+
+                <small>
+
+                    A triagem auxilia na organização e priorização
+                    das informações, mas não realiza diagnóstico
+                    e nunca substitui a avaliação ou a decisão
+                    da equipe escolar.
+
+                </small>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             MODO DEMONSTRAÇÃO
+        ========================================== -->
+
+        <section class="modo-demonstracao">
+
+
+            <div class="modo-demo-conteudo">
+
+
+                <div class="modo-demo-icone">
+
+                    🧪
+
+                </div>
+
+
+                <div class="modo-demo-texto">
+
+
+                    <span>
+
+                        AMBIENTE DE APRESENTAÇÃO
+
+                    </span>
+
+
+                    <h2>
+
+                        Modo demonstração
+
+                    </h2>
+
+
+                    <p>
+
+                        Carregue um cenário fictício para visualizar
+                        relatos, prioridades, acompanhamentos,
+                        indicadores, encaminhamentos à Psicologia
+                        e sugestões pedagógicas funcionando
+                        de forma integrada.
+
+                    </p>
+
+
+                    <div
+                        class="modo-demo-status"
+                        id="statusDadosDemo"
+                    >
+
+                        Nenhum cenário carregado
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="modo-demo-acoes">
+
+
+                <button
+                    type="button"
+                    class="botao-carregar-demo"
+                    id="botaoCarregarDadosDemo"
+                >
+
+                    🧪 Carregar cenário
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="botao-remover-demo"
+                    id="botaoRemoverDadosDemo"
+                >
+
+                    🗑️ Remover dados demonstrativos
+
+                </button>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             AVISO
+        ========================================== -->
+
+        <section class="aviso-prototipo">
+
+
+            <strong>
+
+                Ambiente demonstrativo
+
+            </strong>
+
+
+            <p>
+
+                Os relatos exibidos neste painel são armazenados
+                apenas temporariamente no navegador para demonstrar
+                o funcionamento do SafeSchool.
+
+                Uma versão real exigirá autenticação segura,
+                servidor, banco de dados e controles de acesso.
+
+            </p>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         ESCOLA
+    ========================================== -->
+
+    <script src="../js/escola.js"></script>
+
+
+
+    <!-- =========================================
+         DADOS DE DEMONSTRAÇÃO
+    ========================================== -->
+
+    <script src="../js/dados-demo.js"></script>
+
+
+
+    <!-- =========================================
+         PAINEL DO PROFESSOR
+    ========================================== -->
+
+    <script src="../js/professor.js"></script>
+
+
+
+    <!-- =========================================
+         CONTROLES DO MODO DEMONSTRAÇÃO
+    ========================================== -->
+
+    <script>
+
+        (function () {
+
+            "use strict";
+
+
+            const botaoCarregar =
+                document.getElementById(
+                    "botaoCarregarDadosDemo"
+                );
+
+
+            const botaoRemover =
+                document.getElementById(
+                    "botaoRemoverDadosDemo"
+                );
+
+
+            const statusDemo =
+                document.getElementById(
+                    "statusDadosDemo"
+                );
+
+
+            function atualizarEstadoDemo() {
+
+
+                if (
+                    !window.SafeSchoolDadosDemo
+                ) {
+
+                    if (
+                        statusDemo
+                    ) {
+
+                        statusDemo.textContent =
+                            "Módulo de demonstração indisponível";
+
+                    }
+
+
+                    return;
+
+                }
+
+
+                const contagem =
+                    window.SafeSchoolDadosDemo
+                        .contar();
+
+
+                const ativo =
+                    window.SafeSchoolDadosDemo
+                        .estaAtivo();
+
+
+                if (
+                    ativo
+                ) {
+
+                    statusDemo.textContent =
+
+                        contagem.relatos
+
+                        +
+
+                        " relatos e "
+
+                        +
+
+                        contagem.psicologia
+
+                        +
+
+                        " encaminhamentos demonstrativos";
+
+
+                    statusDemo.classList.add(
+                        "ativo"
+                    );
+
+
+                    botaoCarregar.textContent =
+                        "↻ Recarregar cenário";
+
+
+                    botaoRemover.disabled =
+                        false;
+
+                }
+
+                else {
+
+                    statusDemo.textContent =
+                        "Nenhum cenário carregado";
+
+
+                    statusDemo.classList.remove(
+                        "ativo"
+                    );
+
+
+                    botaoCarregar.textContent =
+                        "🧪 Carregar cenário";
+
+
+                    botaoRemover.disabled =
+                        true;
+
+                }
+
+            }
+
+
+            if (
+                botaoCarregar
+            ) {
+
+                botaoCarregar.addEventListener(
+
+                    "click",
+
+                    function () {
+
+
+                        if (
+                            !window.SafeSchoolDadosDemo
+                        ) {
+
+                            alert(
+                                "O módulo de demonstração não foi carregado."
+                            );
+
+                            return;
+
+                        }
+
+
+                        const jaAtivo =
+                            window.SafeSchoolDadosDemo
+                                .estaAtivo();
+
+
+                        if (
+                            jaAtivo
+                        ) {
+
+                            const confirmar =
+                                confirm(
+
+                                    "O cenário demonstrativo já está carregado.\n\n" +
+
+                                    "Deseja recriá-lo? Os dados demonstrativos atuais serão substituídos, mas relatos cadastrados manualmente serão preservados."
+
+                                );
+
+
+                            if (
+                                !confirmar
+                            ) {
+
+                                return;
+
+                            }
+
+                        }
+
+
+                        const resultado =
+                            window.SafeSchoolDadosDemo
+                                .carregar();
+
+
+                        if (
+                            !resultado.sucesso
+                        ) {
+
+                            alert(
+                                resultado.mensagem
+                            );
+
+                            return;
+
+                        }
+
+
+                        alert(
+
+                            "Cenário demonstrativo carregado! 🧪\n\n"
+
+                            +
+
+                            resultado.relatos
+
+                            +
+
+                            " relatos fictícios\n"
+
+                            +
+
+                            resultado.psicologia
+
+                            +
+
+                            " encaminhamentos à Psicologia\n\n"
+
+                            +
+
+                            "Agora o painel será atualizado."
+
+                        );
+
+
+                        window.location.reload();
+
+                    }
+
+                );
+
+            }
+
+
+            if (
+                botaoRemover
+            ) {
+
+                botaoRemover.addEventListener(
+
+                    "click",
+
+                    function () {
+
+
+                        if (
+                            !window.SafeSchoolDadosDemo
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        const confirmar =
+                            confirm(
+
+                                "Deseja remover os dados demonstrativos?\n\n" +
+
+                                "Relatos criados manualmente não serão apagados."
+
+                            );
+
+
+                        if (
+                            !confirmar
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        const resultado =
+                            window.SafeSchoolDadosDemo
+                                .remover();
+
+
+                        if (
+                            !resultado.sucesso
+                        ) {
+
+                            alert(
+                                resultado.mensagem
+                            );
+
+                            return;
+
+                        }
+
+
+                        alert(
+
+                            "Dados demonstrativos removidos. 🗑️\n\n"
+
+                            +
+
+                            resultado.relatos
+
+                            +
+
+                            " relatos demonstrativos removidos\n"
+
+                            +
+
+                            resultado.psicologia
+
+                            +
+
+                            " encaminhamentos demonstrativos removidos"
+
+                        );
+
+
+                        window.location.reload();
+
+                    }
+
+                );
+
+            }
+
+
+            atualizarEstadoDemo();
+
+        })();
+
+    </script>
+
+
+
+    <!-- =========================================
+         ATALHOS DE ACOMPANHAMENTO
+    ========================================== -->
+
+    <script>
+
+        (function () {
+
+            "use strict";
+
+
+            function abrirAcompanhamentos() {
+
+
+                if (
+                    typeof selecionarFiltro ===
+                    "function"
+                ) {
+
+                    selecionarFiltro(
+                        "acompanhamento"
+                    );
+
+                }
+
+
+                const areaFiltros =
+                    document.getElementById(
+                        "areaFiltrosProfessor"
+                    );
+
+
+                const areaRelatos =
+                    document.getElementById(
+                        "relatos"
+                    );
+
+
+                const destino =
+                    areaFiltros ||
+                    areaRelatos;
+
+
+                if (
+                    destino
+                ) {
+
+                    destino.scrollIntoView({
+
+                        behavior:
+                            "smooth",
+
+                        block:
+                            "start"
+
+                    });
+
+                }
+
+            }
+
+
+            document
+                .querySelectorAll(
+                    "[data-abrir-acompanhamentos]"
+                )
+                .forEach(
+
+                    function (atalho) {
+
+                        atalho.addEventListener(
+
+                            "click",
+
+                            function (evento) {
+
+                                evento.preventDefault();
+
+                                abrirAcompanhamentos();
+
+                            }
+
+                        );
+
+                    }
+
+                );
+
+        })();
+
+    </script>
+
+
+</body>
+
+</html>

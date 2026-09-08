@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Entrar | SafeSchool
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/login.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         CABEÇALHO
+    ========================================== -->
+
+    <header class="cabecalho-login">
+
+
+        <a
+            href="../index.html"
+            class="marca-login"
+        >
+
+            <div class="marca-icone">
+                ♥
+            </div>
+
+
+            <div>
+
+                <strong>
+                    SafeSchool
+                </strong>
+
+                <span>
+                    Escola Sem Bullying
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <a
+            href="../index.html"
+            class="voltar-inicio"
+        >
+            ← Voltar ao início
+        </a>
+
+
+    </header>
+
+
+
+    <!-- =========================================
+         CONTEÚDO
+    ========================================== -->
+
+    <main class="pagina-login">
+
+
+        <!-- =========================================
+             APRESENTAÇÃO
+        ========================================== -->
+
+        <section class="apresentacao-login">
+
+
+            <span class="etiqueta-login">
+                💜 ESPAÇO SEGURO
+            </span>
+
+
+            <h1>
+
+                Um espaço de
+                <span>escuta, respeito e proteção.</span>
+
+            </h1>
+
+
+            <p>
+
+                Entre no SafeSchool de acordo com o seu perfil
+                para acessar os recursos disponíveis para
+                estudantes, profissionais da escola e famílias.
+
+            </p>
+
+
+
+            <div class="mensagem-login">
+
+
+                <span class="mensagem-icone">
+                    🫶🏻
+                </span>
+
+
+                <div>
+
+                    <strong>
+                        Você não precisa enfrentar tudo sozinho.
+                    </strong>
+
+
+                    <p>
+
+                        O SafeSchool foi pensado para ajudar
+                        a fortalecer o diálogo, o acolhimento
+                        e a convivência dentro da comunidade escolar.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             CARD LOGIN
+        ========================================== -->
+
+        <section class="cartao-login">
+
+
+            <!-- =========================================
+                 AVISO DE ACESSO
+            ========================================== -->
+
+            <div
+                id="avisoRestrito"
+                class="aviso-restrito"
+                hidden
+            >
+
+                <strong id="tituloAvisoRestrito">
+
+                    🔐 Acesso restrito
+
+                </strong>
+
+
+                <p id="textoAvisoRestrito">
+
+                    Entre com o perfil correspondente
+                    para continuar.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- =========================================
+                 CABEÇALHO
+            ========================================== -->
+
+            <div class="cabecalho-formulario">
+
+                <span>
+                    ACESSO SAFESCHOOL
+                </span>
+
+
+                <h2>
+                    Entrar
+                </h2>
+
+
+                <p>
+                    Selecione o seu perfil para continuar.
+                </p>
+
+            </div>
+
+
+
+            <form
+                id="formLogin"
+                novalidate
+            >
+
+
+                <!-- =========================================
+                     PERFIL
+                ========================================== -->
+
+                <div class="grupo-campo">
+
+                    <label>
+                        Qual é o seu perfil?
+                    </label>
+
+
+                    <div class="grade-perfis">
+
+
+                        <!-- ALUNO -->
+
+                        <button
+                            type="button"
+                            class="cartao-perfil"
+                            data-perfil="aluno"
+                            aria-pressed="false"
+                        >
+
+                            <span class="icone-perfil">
+                                🎓
+                            </span>
+
+
+                            <span class="texto-perfil">
+
+                                <strong>
+                                    Aluno
+                                </strong>
+
+                                <small>
+                                    Meu espaço
+                                </small>
+
+                            </span>
+
+                        </button>
+
+
+
+                        <!-- PROFESSOR -->
+
+                        <button
+                            type="button"
+                            class="cartao-perfil"
+                            data-perfil="professor"
+                            aria-pressed="false"
+                        >
+
+                            <span class="icone-perfil">
+                                👨🏻‍🏫
+                            </span>
+
+
+                            <span class="texto-perfil">
+
+                                <strong>
+                                    Professor
+                                </strong>
+
+                                <small>
+                                    Equipe escolar
+                                </small>
+
+                            </span>
+
+                        </button>
+
+
+
+                        <!-- RESPONSÁVEL -->
+
+                        <button
+                            type="button"
+                            class="cartao-perfil"
+                            data-perfil="responsavel"
+                            aria-pressed="false"
+                        >
+
+                            <span class="icone-perfil">
+                                👨🏻‍👩🏻‍👧🏻‍👦🏻
+                            </span>
+
+
+                            <span class="texto-perfil">
+
+                                <strong>
+                                    Responsável
+                                </strong>
+
+                                <small>
+                                    Família
+                                </small>
+
+                            </span>
+
+                        </button>
+
+
+
+                        <!-- PSICOLOGIA -->
+
+                        <button
+                            type="button"
+                            class="cartao-perfil"
+                            data-perfil="psicologia"
+                            aria-pressed="false"
+                        >
+
+                            <span class="icone-perfil">
+                                🧠
+                            </span>
+
+
+                            <span class="texto-perfil">
+
+                                <strong>
+                                    Psicologia
+                                </strong>
+
+                                <small>
+                                    Apoio psicológico
+                                </small>
+
+                            </span>
+
+                        </button>
+
+
+                    </div>
+
+
+                    <input
+                        type="hidden"
+                        id="perfil"
+                        name="perfil"
+                        value=""
+                    >
+
+
+                    <p
+                        id="erroPerfil"
+                        class="erro-campo"
+                        hidden
+                    >
+                        Selecione um perfil.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     ACESSO INSTITUCIONAL DEMONSTRATIVO
+                ========================================== -->
+
+                <div
+                    id="acessoInstitucionalDemo"
+                    hidden
+                    style="
+                        margin-bottom: 23px;
+                        padding: 17px;
+                        border: 1px solid #ddd3f2;
+                        border-radius: 15px;
+                        background: #f8f5ff;
+                    "
+                >
+
+                    <strong
+                        style="
+                            display: block;
+                            color: #5d4a7a;
+                            font-size: 13px;
+                            margin-bottom: 7px;
+                        "
+                    >
+                        🏫 Acesso institucional de demonstração
+                    </strong>
+
+
+                    <p
+                        style="
+                            margin: 0 0 12px;
+                            color: #7d728b;
+                            font-size: 11px;
+                            line-height: 1.6;
+                        "
+                    >
+
+                        Na aplicação real, este acesso será
+                        fornecido e autorizado pela instituição.
+
+                    </p>
+
+
+                    <div
+                        style="
+                            padding: 12px;
+                            border-radius: 11px;
+                            background: #ffffff;
+                            color: #665a75;
+                            font-size: 11px;
+                            line-height: 1.7;
+                        "
+                    >
+
+                        <div>
+                            <strong>E-mail:</strong>
+                            <span id="emailDemoProfissional"></span>
+                        </div>
+
+
+                        <div>
+                            <strong>Senha:</strong>
+                            <span id="senhaDemoProfissional"></span>
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="preencherAcessoDemo"
+                        style="
+                            width: 100%;
+                            min-height: 39px;
+                            margin-top: 11px;
+                            border: 0;
+                            border-radius: 10px;
+                            background: #ebe4fb;
+                            color: #634d93;
+                            cursor: pointer;
+                            font-size: 11px;
+                            font-weight: 800;
+                        "
+                    >
+                        Usar acesso demonstrativo
+                    </button>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     E-MAIL
+                ========================================== -->
+
+                <div class="grupo-campo">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="seunome@email.com"
+                        autocomplete="email"
+                    >
+
+
+                    <p
+                        id="erroEmail"
+                        class="erro-campo"
+                        hidden
+                    >
+                        Digite um e-mail válido.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     SENHA
+                ========================================== -->
+
+                <div class="grupo-campo">
+
+                    <label for="senha">
+                        Senha
+                    </label>
+
+
+                    <div class="campo-senha">
+
+
+                        <input
+                            type="password"
+                            id="senha"
+                            name="senha"
+                            placeholder="Digite sua senha"
+                            autocomplete="current-password"
+                        >
+
+
+                        <button
+                            type="button"
+                            id="botaoMostrarSenha"
+                            class="botao-mostrar-senha"
+                            aria-label="Mostrar senha"
+                        >
+                            👁️
+                        </button>
+
+
+                    </div>
+
+
+                    <p
+                        id="erroSenha"
+                        class="erro-campo"
+                        hidden
+                    >
+                        Digite sua senha.
+                    </p>
+
+
+
+                    <!-- =====================================
+                         RECUPERAÇÃO
+                    ====================================== -->
+
+                    <div
+                        id="blocoRecuperarSenha"
+                        style="
+                            margin-top: 10px;
+                            text-align: right;
+                        "
+                    >
+
+                        <a
+                            href="recuperar-senha.html"
+                            id="linkRecuperarSenha"
+                            style="
+                                color: #7355ca;
+                                font-size: 12px;
+                                font-weight: 700;
+                                text-decoration: none;
+                            "
+                        >
+                            Esqueci minha senha
+                        </a>
+
+                    </div>
+
+
+
+                    <!-- =====================================
+                         AVISO PROFISSIONAL
+                    ====================================== -->
+
+                    <p
+                        id="avisoRecuperacaoProfissional"
+                        hidden
+                        style="
+                            margin: 10px 0 0;
+                            color: #8a8194;
+                            font-size: 10px;
+                            text-align: right;
+                        "
+                    >
+
+                        🔐 A recuperação do acesso profissional
+                        é realizada pela instituição.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     ENTRAR
+                ========================================== -->
+
+                <button
+                    type="submit"
+                    class="botao-entrar"
+                >
+
+                    Entrar no SafeSchool
+
+                    <span>
+                        →
+                    </span>
+
+                </button>
+
+
+
+                <!-- =========================================
+                     CADASTRO PÚBLICO
+                ========================================== -->
+
+                <div
+                    id="blocoCadastroPublico"
+                    style="
+                        margin-top: 22px;
+                        padding-top: 20px;
+                        border-top: 1px solid #ebe5f3;
+                        text-align: center;
+                    "
+                >
+
+                    <p
+                        style="
+                            margin: 0 0 10px;
+                            color: #7f758d;
+                            font-size: 13px;
+                        "
+                    >
+                        Ainda não tem uma conta?
+                    </p>
+
+
+                    <a
+                        href="cadastro.html"
+                        id="linkCriarConta"
+                        style="
+                            display: inline-block;
+                            color: #7355ca;
+                            font-size: 13px;
+                            font-weight: 800;
+                            text-decoration: none;
+                        "
+                    >
+                        Criar minha conta →
+                    </a>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     AVISO CONTA PROFISSIONAL
+                ========================================== -->
+
+                <div
+                    id="blocoContaProfissional"
+                    hidden
+                    style="
+                        margin-top: 22px;
+                        padding-top: 20px;
+                        border-top: 1px solid #ebe5f3;
+                        text-align: center;
+                    "
+                >
+
+                    <p
+                        style="
+                            margin: 0;
+                            color: #81778f;
+                            font-size: 11px;
+                            line-height: 1.6;
+                        "
+                    >
+
+                        🏫 Contas profissionais são criadas
+                        e autorizadas pela instituição.
+
+                    </p>
+
+                </div>
+
+
+
+                <p class="nota-login">
+
+                    🔒 Esta é uma demonstração do sistema SafeSchool.
+
+                </p>
+
+
+            </form>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         RODAPÉ
+    ========================================== -->
+
+    <footer class="rodape-login">
+
+        SafeSchool — Escola Sem Bullying
+
+    </footer>
+
+
+
+    <!-- =========================================
+         SCRIPTS PRINCIPAIS
+    ========================================== -->
+
+    <script src="../js/escola.js"></script>
+
+    <script src="../js/login.js"></script>
+
+
+
+    <!-- =========================================
+         MENSAGEM DE ORIGEM DO ACESSO
+    ========================================== -->
+
+    <script>
+
+        (function () {
+
+            "use strict";
+
+
+            const parametros =
+                new URLSearchParams(
+                    window.location.search
+                );
+
+
+            const origem =
+                (
+                    parametros.get(
+                        "origem"
+                    ) || ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            const acesso =
+                (
+                    parametros.get(
+                        "acesso"
+                    ) || ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            const aviso =
+                document.getElementById(
+                    "avisoRestrito"
+                );
+
+
+            const titulo =
+                document.getElementById(
+                    "tituloAvisoRestrito"
+                );
+
+
+            const texto =
+                document.getElementById(
+                    "textoAvisoRestrito"
+                );
+
+
+            if (
+                !aviso ||
+                !titulo ||
+                !texto
+            ) {
+
+                return;
+
+            }
+
+
+
+            /* =====================================
+               TENTATIVA DE ACESSAR DESAFIOS
+            ====================================== */
+
+            if (
+                origem ===
+                "desafios"
+            ) {
+
+                aviso.hidden =
+                    false;
+
+
+                titulo.textContent =
+
+                    "🔒 Desafios fazem parte da jornada do aluno";
+
+
+                texto.textContent =
+
+                    "Para participar dos desafios, acumular pontos e conquistar selos, entre com uma conta de Aluno. Os conteúdos educativos continuam disponíveis publicamente.";
+
+
+                return;
+
+            }
+
+
+
+            /* =====================================
+               ACESSO A PÁGINA PROTEGIDA
+            ====================================== */
+
+            if (
+                acesso ===
+                "restrito"
+            ) {
+
+                aviso.hidden =
+                    false;
+
+
+                titulo.textContent =
+
+                    "🔐 Acesso restrito";
+
+
+                texto.textContent =
+
+                    "Entre com o perfil correspondente para continuar.";
+
+            }
+
+
+        })();
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Criar conta | SafeSchool
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../css/cadastro.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         CABEÇALHO
+    ========================================== -->
+
+    <header class="cabecalho">
+
+
+        <a
+            href="../index.html"
+            class="logo"
+        >
+
+            <div class="logo-icone">
+                ♥
+            </div>
+
+
+            <div class="logo-texto">
+
+                <h1>
+                    SafeSchool
+                </h1>
+
+                <p>
+                    Escola Sem Bullying
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <a
+            href="login.html"
+            class="voltar-login"
+        >
+            ← Já tenho uma conta
+        </a>
+
+
+    </header>
+
+
+
+    <!-- =========================================
+         CONTEÚDO
+    ========================================== -->
+
+    <main class="pagina-cadastro">
+
+
+        <!-- =========================================
+             APRESENTAÇÃO
+        ========================================== -->
+
+        <section class="apresentacao-cadastro">
+
+
+            <span class="etiqueta">
+                💜 BEM-VINDO AO SAFESCHOOL
+            </span>
+
+
+            <h2>
+
+                Crie seu espaço
+                <span>com segurança e respeito.</span>
+
+            </h2>
+
+
+            <p>
+
+                O cadastro permite que estudantes e responsáveis
+                tenham acesso aos recursos personalizados do SafeSchool,
+                sempre vinculados à instituição de ensino.
+
+            </p>
+
+
+            <div class="informacao-importante">
+
+                <div class="informacao-icone">
+                    🏫
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Seu cadastro precisa estar vinculado a uma escola.
+                    </strong>
+
+                    <p>
+
+                        No protótipo, utilizaremos o código
+                        <strong>ESC001</strong>,
+                        referente à Escola Demonstrativa SafeSchool.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="informacao-profissionais">
+
+                <div class="informacao-icone">
+                    🔐
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Professor e Psicologia
+                    </strong>
+
+                    <p>
+
+                        Esses perfis não possuem cadastro público.
+                        O acesso profissional deverá ser autorizado
+                        pela própria instituição.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             FORMULÁRIO
+        ========================================== -->
+
+        <section class="cartao-cadastro">
+
+
+            <div class="cabecalho-formulario">
+
+                <span>
+                    CRIAR CONTA
+                </span>
+
+
+                <h2>
+                    Vamos começar
+                </h2>
+
+
+                <p>
+                    Preencha seus dados para criar seu acesso.
+                </p>
+
+            </div>
+
+
+
+            <form
+                id="formCadastro"
+                novalidate
+            >
+
+
+                <!-- =========================================
+                     PERFIL
+                ========================================== -->
+
+                <div class="grupo-campo">
+
+                    <label>
+                        Qual é o seu perfil?
+                    </label>
+
+
+                    <div class="grade-perfis">
+
+
+                        <button
+                            type="button"
+                            class="cartao-perfil"
+                            data-perfil="aluno"
+                            aria-pressed="false"
+                        >
+
+                            <span class="icone-perfil">
+                                🎓
+                            </span>
+
+
+                            <span>
+
+                                <strong>
+                                    Aluno
+                                </strong>
+
+                                <small>
+                                    Criar meu espaço
+                                </small>
+
+                            </span>
+
+                        </button>
+
+
+
+                        <button
+                            type="button"
+                            class="cartao-perfil"
+                            data-perfil="responsavel"
+                            aria-pressed="false"
+                        >
+
+                            <span class="icone-perfil">
+                                👨🏻‍👩🏻‍👧🏻‍👦🏻
+                            </span>
+
+
+                            <span>
+
+                                <strong>
+                                    Responsável
+                                </strong>
+
+                                <small>
+                                    Acesso da família
+                                </small>
+
+                            </span>
+
+                        </button>
+
+
+                    </div>
+
+
+                    <input
+                        type="hidden"
+                        id="perfilCadastro"
+                        value=""
+                    >
+
+
+                    <p
+                        class="erro-campo"
+                        id="erroPerfilCadastro"
+                        hidden
+                    >
+                        Selecione seu perfil.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     NOME
+                ========================================== -->
+
+                <div class="grupo-campo">
+
+                    <label for="nomeCadastro">
+                        Nome
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="nomeCadastro"
+                        placeholder="Digite seu nome"
+                        autocomplete="name"
+                    >
+
+
+                    <p
+                        class="erro-campo"
+                        id="erroNomeCadastro"
+                        hidden
+                    >
+                        Digite seu nome.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     E-MAIL
+                ========================================== -->
+
+                <div class="grupo-campo">
+
+                    <label for="emailCadastro">
+                        E-mail
+                    </label>
+
+
+                    <input
+                        type="email"
+                        id="emailCadastro"
+                        placeholder="seunome@email.com"
+                        autocomplete="email"
+                    >
+
+
+                    <p
+                        class="erro-campo"
+                        id="erroEmailCadastro"
+                        hidden
+                    >
+                        Digite um e-mail válido.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     ESCOLA
+                ========================================== -->
+
+                <div class="grupo-campo">
+
+                    <label for="codigoEscolaCadastro">
+                        Código da escola
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="codigoEscolaCadastro"
+                        placeholder="Ex.: ESC001"
+                        maxlength="20"
+                    >
+
+
+                    <p class="ajuda-campo">
+
+                        Para testar o protótipo, utilize:
+                        <strong>ESC001</strong>
+
+                    </p>
+
+
+                    <p
+                        class="erro-campo"
+                        id="erroEscolaCadastro"
+                        hidden
+                    >
+                        Código de escola não reconhecido.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     SENHA
+                ========================================== -->
+
+                <div class="grupo-campo">
+
+                    <label for="senhaCadastro">
+                        Senha
+                    </label>
+
+
+                    <div class="campo-senha">
+
+                        <input
+                            type="password"
+                            id="senhaCadastro"
+                            placeholder="Crie uma senha"
+                            autocomplete="new-password"
+                        >
+
+
+                        <button
+                            type="button"
+                            class="mostrar-senha"
+                            id="mostrarSenhaCadastro"
+                            aria-label="Mostrar senha"
+                        >
+                            👁️
+                        </button>
+
+                    </div>
+
+
+                    <p class="ajuda-campo">
+
+                        Utilize pelo menos 6 caracteres.
+
+                    </p>
+
+
+                    <p
+                        class="erro-campo"
+                        id="erroSenhaCadastro"
+                        hidden
+                    >
+                        A senha precisa ter pelo menos 6 caracteres.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     CONFIRMAR SENHA
+                ========================================== -->
+
+                <div class="grupo-campo">
+
+                    <label for="confirmarSenhaCadastro">
+                        Confirmar senha
+                    </label>
+
+
+                    <input
+                        type="password"
+                        id="confirmarSenhaCadastro"
+                        placeholder="Digite a senha novamente"
+                        autocomplete="new-password"
+                    >
+
+
+                    <p
+                        class="erro-campo"
+                        id="erroConfirmarSenha"
+                        hidden
+                    >
+                        As senhas não coincidem.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     CONFIRMAÇÃO
+                ========================================== -->
+
+                <label class="confirmacao">
+
+                    <input
+                        type="checkbox"
+                        id="confirmacaoCadastro"
+                    >
+
+
+                    <span>
+
+                        Confirmo que as informações fornecidas
+                        são verdadeiras e compreendo que este cadastro
+                        faz parte da demonstração do SafeSchool.
+
+                    </span>
+
+                </label>
+
+
+                <p
+                    class="erro-campo"
+                    id="erroConfirmacaoCadastro"
+                    hidden
+                >
+                    Confirme para continuar.
+                </p>
+
+
+
+                <!-- =========================================
+                     BOTÃO
+                ========================================== -->
+
+                <button
+                    type="submit"
+                    class="botao-cadastrar"
+                >
+
+                    Criar minha conta
+
+                    <span>
+                        →
+                    </span>
+
+                </button>
+
+
+
+                <p class="nota-prototipo">
+
+                    🔒 Nesta versão demonstrativa,
+                    os dados permanecem somente no navegador.
+
+                </p>
+
+
+            </form>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <footer>
+
+        SafeSchool — Escola Sem Bullying
+
+    </footer>
+
+
+
+    <script src="../js/escola.js"></script>
+
+    <script src="../js/cadastro.js"></script>
+
+
+</body>
+
+</html>

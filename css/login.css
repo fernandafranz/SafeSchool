@@ -1,0 +1,950 @@
+/* =========================================
+   SAFESCHOOL
+   LOGIN
+   ESCALA VISUAL AJUSTADA
+========================================= */
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    font-size: 16px;
+}
+
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: #302943;
+
+    background:
+        linear-gradient(
+            135deg,
+            #faf8ff,
+            #f3efff,
+            #ffffff
+        );
+
+}
+
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+
+.cabecalho-login {
+
+    width: 100%;
+    max-width: 1240px;
+
+    margin: 0 auto;
+
+    padding: 22px 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+}
+
+
+.marca-login {
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    text-decoration: none;
+
+    color: #382d61;
+
+}
+
+
+.marca-icone {
+
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    font-size: 27px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7556d6,
+            #a579e8
+        );
+
+    box-shadow:
+        0 9px 24px
+        rgba(102, 73, 173, 0.20);
+
+}
+
+
+.marca-login strong {
+
+    display: block;
+
+    font-size: 22px;
+
+}
+
+
+.marca-login span {
+
+    display: block;
+
+    margin-top: 4px;
+
+    color: #85799f;
+
+    font-size: 13px;
+
+}
+
+
+.voltar-inicio {
+
+    padding: 12px 17px;
+
+    border:
+        1px solid
+        #ded6ef;
+
+    border-radius: 12px;
+
+    color: #655984;
+
+    background: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease;
+
+}
+
+
+.voltar-inicio:hover {
+
+    transform: translateY(-1px);
+
+    border-color: #b7a6e1;
+
+}
+
+
+/* =========================================
+   PÁGINA
+========================================= */
+
+.pagina-login {
+
+    width: 100%;
+    max-width: 1240px;
+
+    margin: 8px auto 45px;
+
+    padding: 0 28px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.05fr)
+        minmax(470px, 520px);
+
+    gap: 48px;
+
+    align-items: center;
+
+}
+
+
+/* =========================================
+   APRESENTAÇÃO
+========================================= */
+
+.apresentacao-login {
+
+    padding: 18px 0;
+
+}
+
+
+.etiqueta-login {
+
+    display: inline-block;
+
+    padding: 10px 15px;
+
+    border-radius: 999px;
+
+    color: #7255c3;
+
+    background: #eee8ff;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+
+}
+
+
+.apresentacao-login h1 {
+
+    max-width: 650px;
+
+    margin: 23px 0 20px;
+
+    font-size:
+        clamp(
+            46px,
+            5.5vw,
+            68px
+        );
+
+    line-height: 1.03;
+
+    letter-spacing: -2.2px;
+
+}
+
+
+.apresentacao-login h1 span {
+
+    color: #7557d4;
+
+}
+
+
+.apresentacao-login > p {
+
+    max-width: 610px;
+
+    margin: 0;
+
+    color: #716985;
+
+    font-size: 18px;
+
+    line-height: 1.72;
+
+}
+
+
+/* =========================================
+   MENSAGEM
+========================================= */
+
+.mensagem-login {
+
+    max-width: 610px;
+
+    margin-top: 29px;
+
+    padding: 23px;
+
+    display: flex;
+
+    gap: 16px;
+
+    border:
+        1px solid
+        #e5def4;
+
+    border-radius: 19px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.82
+        );
+
+    box-shadow:
+        0 12px 30px
+        rgba(75, 53, 130, 0.06);
+
+}
+
+
+.mensagem-icone {
+
+    font-size: 31px;
+
+}
+
+
+.mensagem-login strong {
+
+    color: #504373;
+
+    font-size: 16px;
+
+}
+
+
+.mensagem-login p {
+
+    margin: 8px 0 0;
+
+    color: #847b94;
+
+    font-size: 14px;
+
+    line-height: 1.65;
+
+}
+
+
+/* =========================================
+   CARD DO LOGIN
+========================================= */
+
+.cartao-login {
+
+    width: 100%;
+
+    padding: 38px;
+
+    border:
+        1px solid
+        #e7e0f2;
+
+    border-radius: 29px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.97
+        );
+
+    box-shadow:
+        0 24px 70px
+        rgba(71, 49, 126, 0.13);
+
+}
+
+
+/* =========================================
+   CABEÇALHO DO FORMULÁRIO
+========================================= */
+
+.cabecalho-formulario {
+
+    margin-bottom: 30px;
+
+}
+
+
+.cabecalho-formulario > span {
+
+    color: #8064ca;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+}
+
+
+.cabecalho-formulario h2 {
+
+    margin: 9px 0 6px;
+
+    color: #3b3058;
+
+    font-size: 35px;
+
+}
+
+
+.cabecalho-formulario p {
+
+    margin: 0;
+
+    color: #8b8498;
+
+    font-size: 15px;
+
+}
+
+
+/* =========================================
+   GRUPOS DOS CAMPOS
+========================================= */
+
+.grupo-campo {
+
+    margin-bottom: 24px;
+
+}
+
+
+.grupo-campo > label {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #514766;
+
+    font-size: 14px;
+    font-weight: 800;
+
+}
+
+
+/* =========================================
+   PERFIS
+========================================= */
+
+.grade-perfis {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
+
+}
+
+
+.cartao-perfil {
+
+    min-height: 90px;
+
+    padding: 14px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    border:
+        1px solid
+        #e0d9e9;
+
+    border-radius: 16px;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease,
+        box-shadow 0.18s ease;
+
+}
+
+
+.cartao-perfil:hover {
+
+    transform: translateY(-2px);
+
+    border-color: #baa9e4;
+
+    box-shadow:
+        0 8px 20px
+        rgba(92, 67, 145, 0.08);
+
+}
+
+
+.cartao-perfil.selecionado {
+
+    border-color: #8063ce;
+
+    background: #f3efff;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(128, 99, 206, 0.10);
+
+}
+
+
+.icone-perfil {
+
+    width: 46px;
+    height: 46px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: #f4f0ff;
+
+    font-size: 26px;
+
+}
+
+
+.texto-perfil strong {
+
+    display: block;
+
+    color: #4c4163;
+
+    font-size: 14px;
+
+}
+
+
+.texto-perfil small {
+
+    display: block;
+
+    margin-top: 4px;
+
+    color: #978da4;
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================
+   INPUTS
+========================================= */
+
+.grupo-campo > input,
+.campo-senha input {
+
+    width: 100%;
+    height: 54px;
+
+    padding: 0 16px;
+
+    outline: none;
+
+    border:
+        1px solid
+        #ded7e8;
+
+    border-radius: 13px;
+
+    background: #ffffff;
+
+    color: #43394f;
+
+    font-size: 15px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.grupo-campo > input:focus,
+.campo-senha input:focus {
+
+    border-color: #9579db;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(149, 121, 219, 0.11);
+
+}
+
+
+/* =========================================
+   SENHA
+========================================= */
+
+.campo-senha {
+
+    position: relative;
+
+}
+
+
+.campo-senha input {
+
+    padding-right: 52px;
+
+}
+
+
+.botao-mostrar-senha {
+
+    position: absolute;
+
+    top: 50%;
+    right: 10px;
+
+    width: 36px;
+    height: 36px;
+
+    transform: translateY(-50%);
+
+    border: 0;
+
+    border-radius: 9px;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+}
+
+
+.botao-mostrar-senha:hover {
+
+    background: #f4f0fa;
+
+}
+
+
+/* =========================================
+   ERROS
+========================================= */
+
+.erro-campo {
+
+    margin: 7px 0 0;
+
+    color: #b94f65;
+
+    font-size: 12px;
+
+}
+
+
+.erro-campo[hidden] {
+
+    display: none;
+
+}
+
+
+/* =========================================
+   BOTÃO ENTRAR
+========================================= */
+
+.botao-entrar {
+
+    width: 100%;
+    min-height: 56px;
+
+    margin-top: 5px;
+
+    padding: 0 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    border: 0;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7253cf,
+            #9d72df
+        );
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    box-shadow:
+        0 14px 29px
+        rgba(112, 79, 194, 0.25);
+
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+
+}
+
+
+.botao-entrar:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 17px 34px
+        rgba(112, 79, 194, 0.30);
+
+}
+
+
+.botao-entrar span {
+
+    font-size: 21px;
+
+}
+
+
+/* =========================================
+   NOTA
+========================================= */
+
+.nota-login {
+
+    margin: 19px 0 0;
+
+    color: #9b93a7;
+
+    text-align: center;
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================
+   AVISO DE ACESSO
+========================================= */
+
+.aviso-restrito {
+
+    margin-bottom: 25px;
+
+    padding: 18px 19px;
+
+    border:
+        1px solid
+        #ddd2f4;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5f1ff,
+            #fbf9ff
+        );
+
+    color: #5d4a7a;
+
+    box-shadow:
+        0 8px 22px
+        rgba(91, 67, 145, 0.06);
+
+}
+
+
+.aviso-restrito[hidden] {
+
+    display: none;
+
+}
+
+
+.aviso-restrito strong {
+
+    display: block;
+
+    color: #6246aa;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+
+}
+
+
+.aviso-restrito p {
+
+    margin: 7px 0 0;
+
+    color: #776b88;
+
+    font-size: 12px;
+
+    line-height: 1.65;
+
+}
+
+
+/* =========================================
+   RODAPÉ
+========================================= */
+
+.rodape-login {
+
+    padding: 22px;
+
+    color: #9187a1;
+
+    text-align: center;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================
+   RESPONSIVO
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .pagina-login {
+
+        max-width: 760px;
+
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+
+    }
+
+
+    .apresentacao-login {
+
+        text-align: center;
+
+    }
+
+
+    .apresentacao-login > p,
+    .mensagem-login {
+
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .cabecalho-login {
+
+        padding: 18px 16px;
+
+    }
+
+
+    .marca-icone {
+
+        width: 46px;
+        height: 46px;
+
+    }
+
+
+    .marca-login span {
+
+        display: none;
+
+    }
+
+
+    .voltar-inicio {
+
+        padding: 10px 12px;
+
+        font-size: 11px;
+
+    }
+
+
+    .pagina-login {
+
+        margin-top: 4px;
+
+        padding: 0 16px;
+
+    }
+
+
+    .apresentacao-login h1 {
+
+        font-size: 42px;
+
+    }
+
+
+    .apresentacao-login > p {
+
+        font-size: 16px;
+
+    }
+
+
+    .cartao-login {
+
+        padding: 28px 22px;
+
+        border-radius: 23px;
+
+    }
+
+
+    .grade-perfis {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .cartao-perfil {
+
+        min-height: 78px;
+
+    }
+
+
+    .aviso-restrito {
+
+        padding: 16px;
+
+    }
+
+}

@@ -1,0 +1,2214 @@
+/* =========================================
+   CONFIGURAÇÕES GERAIS
+========================================= */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+:root {
+
+    --roxo-principal: #6c4ce5;
+
+    --roxo-escuro: #4f35b8;
+
+    --roxo-claro: #eeeaff;
+
+    --azul-escuro: #20205f;
+
+    --branco: #ffffff;
+
+    --cinza-fundo: #f7f7fc;
+
+    --cinza-texto: #6f6f8d;
+
+    --cinza-borda: #e6e6ef;
+
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        var(--cinza-fundo);
+
+    color:
+        var(--azul-escuro);
+
+}
+
+
+/* =========================================
+   ÂNCORAS
+========================================= */
+
+#inicio,
+#orientacoes,
+#apoio,
+#conteudos,
+#solicitacoes {
+
+    scroll-margin-top: 105px;
+
+}
+
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+
+.cabecalho {
+
+    width: 100%;
+
+    min-height: 90px;
+
+    padding:
+        0
+        7%;
+
+    background:
+        var(--branco);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    box-shadow:
+        0
+        3px
+        20px
+        rgba(0, 0, 0, 0.06);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 50;
+
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    text-decoration: none;
+
+}
+
+
+.logo-icone {
+
+    width: 50px;
+
+    height: 50px;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7b5bea,
+            #5434c9
+        );
+
+    color:
+        var(--branco);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
+
+    box-shadow:
+        0
+        5px
+        15px
+        rgba(108, 76, 229, 0.25);
+
+}
+
+
+.logo-texto h1 {
+
+    font-size: 24px;
+
+    color:
+        var(--azul-escuro);
+
+    margin-bottom: 2px;
+
+}
+
+
+.logo-texto p {
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================
+   MENU
+========================================= */
+
+.menu {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+
+}
+
+
+.menu a {
+
+    text-decoration: none;
+
+    color:
+        var(--azul-escuro);
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    transition: 0.2s;
+
+    white-space: nowrap;
+
+    flex-shrink: 0;
+
+}
+
+
+.menu a:hover,
+.menu .ativo {
+
+    color:
+        var(--roxo-principal);
+
+}
+
+
+/* =========================================
+   BOAS-VINDAS
+========================================= */
+
+.boas-vindas {
+
+    padding:
+        60px
+        8%;
+
+    background:
+        linear-gradient(
+            120deg,
+            #ffffff,
+            #f0ecff
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 50px;
+
+}
+
+
+.boas-vindas-texto {
+
+    max-width: 690px;
+
+}
+
+
+.etiqueta {
+
+    display: inline-block;
+
+    padding:
+        9px
+        17px;
+
+    border-radius: 25px;
+
+    background:
+        var(--roxo-claro);
+
+    color:
+        var(--roxo-principal);
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.boas-vindas h2 {
+
+    max-width: 650px;
+
+    font-size: 42px;
+
+    line-height: 1.15;
+
+    margin-bottom: 16px;
+
+}
+
+
+.boas-vindas p {
+
+    max-width: 650px;
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+}
+
+
+.escola-vinculada {
+
+    display: inline-flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+    margin-top: 20px;
+
+    padding:
+        10px
+        14px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255, 255, 255, 0.82);
+
+    border:
+        1px solid
+        #e5def5;
+
+}
+
+
+.escola-vinculada span {
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+
+}
+
+
+.escola-vinculada strong {
+
+    color:
+        var(--roxo-escuro);
+
+    font-size: 12px;
+
+}
+
+
+.boas-vindas-visual {
+
+    width: 270px;
+
+    height: 190px;
+
+    border-radius: 30px;
+
+    background:
+        var(--branco);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 70px;
+
+    box-shadow:
+        0
+        16px
+        40px
+        rgba(70, 50, 150, 0.12);
+
+}
+
+
+/* =========================================
+   ÁREAS GERAIS
+========================================= */
+
+.area-conteudo,
+.orientacoes,
+.area-apoio,
+.conteudos-familia,
+.solicitacoes {
+
+    padding:
+        70px
+        8%;
+
+}
+
+
+.titulo-secao {
+
+    margin-bottom: 30px;
+
+}
+
+
+.titulo-secao span {
+
+    display: block;
+
+    color:
+        var(--roxo-principal);
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.titulo-secao h2 {
+
+    font-size: 30px;
+
+}
+
+
+.descricao-secao {
+
+    max-width: 760px;
+
+    margin-top: 10px;
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================================
+   CARDS DE ACESSO
+========================================= */
+
+.cards-acesso {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+
+}
+
+
+.card-acesso {
+
+    min-height: 255px;
+
+    padding: 26px;
+
+    border-radius: 18px;
+
+    background:
+        var(--branco);
+
+    text-decoration: none;
+
+    color:
+        var(--azul-escuro);
+
+    display: flex;
+
+    flex-direction: column;
+
+    box-shadow:
+        0
+        8px
+        30px
+        rgba(50, 40, 100, 0.07);
+
+    transition: 0.25s;
+
+}
+
+
+.card-acesso:hover {
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0
+        14px
+        35px
+        rgba(50, 40, 100, 0.12);
+
+}
+
+
+.card-icone {
+
+    width: 56px;
+
+    height: 56px;
+
+    border-radius: 15px;
+
+    background:
+        var(--roxo-claro);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 27px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.card-acesso h3 {
+
+    font-size: 17px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.card-acesso p {
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    margin-bottom: 17px;
+
+}
+
+
+.card-acesso span {
+
+    margin-top: auto;
+
+    color:
+        var(--roxo-principal);
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+}
+
+
+/* =========================================
+   ORIENTAÇÕES
+========================================= */
+
+.orientacoes {
+
+    background:
+        #f1eeff;
+
+}
+
+
+.cards-sinais {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+}
+
+
+.card-sinal {
+
+    padding: 27px;
+
+    background:
+        var(--branco);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0
+        8px
+        28px
+        rgba(50, 40, 100, 0.06);
+
+}
+
+
+.sinal-icone {
+
+    font-size: 36px;
+
+    margin-bottom: 16px;
+
+}
+
+
+.card-sinal h3 {
+
+    font-size: 17px;
+
+    margin-bottom: 9px;
+
+}
+
+
+.card-sinal p {
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    color:
+        var(--cinza-texto);
+
+}
+
+
+.passos-familia {
+
+    margin-top: 27px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 16px;
+
+}
+
+
+.passo-familia {
+
+    padding: 22px;
+
+    display: flex;
+
+    gap: 16px;
+
+    background:
+        rgba(255, 255, 255, 0.76);
+
+    border:
+        1px solid
+        #e1d9f5;
+
+    border-radius: 16px;
+
+}
+
+
+.passo-familia > span {
+
+    width: 38px;
+
+    height: 38px;
+
+    flex:
+        0
+        0
+        38px;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        var(--roxo-principal);
+
+    color:
+        var(--branco);
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+}
+
+
+.passo-familia h3 {
+
+    margin-bottom: 7px;
+
+    font-size: 15px;
+
+}
+
+
+.passo-familia p {
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 12px;
+
+    line-height: 1.65;
+
+}
+
+
+/* =========================================
+   CONVERSA
+========================================= */
+
+.conversa {
+
+    margin:
+        65px
+        8%;
+
+    padding: 35px;
+
+    border-radius: 22px;
+
+    background:
+        var(--branco);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    box-shadow:
+        0
+        10px
+        35px
+        rgba(50, 40, 100, 0.08);
+
+}
+
+
+.conversa-icone {
+
+    width: 75px;
+
+    height: 75px;
+
+    min-width: 75px;
+
+    border-radius: 19px;
+
+    background:
+        var(--roxo-claro);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 33px;
+
+}
+
+
+.conversa-texto span {
+
+    display: block;
+
+    color:
+        var(--roxo-principal);
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 6px;
+
+}
+
+
+.conversa h2 {
+
+    font-size: 24px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.conversa p {
+
+    max-width: 800px;
+
+    font-size: 13px;
+
+    color:
+        var(--cinza-texto);
+
+    line-height: 1.65;
+
+}
+
+
+/* =========================================
+   APOIO
+========================================= */
+
+.area-apoio {
+
+    background:
+        var(--branco);
+
+}
+
+
+.apoio-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.35fr)
+        minmax(260px, 0.65fr);
+
+    gap: 25px;
+
+    align-items: start;
+
+}
+
+
+.formulario-apoio {
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    background:
+        var(--cinza-fundo);
+
+    border:
+        1px solid
+        var(--cinza-borda);
+
+}
+
+
+.campo-formulario {
+
+    margin-bottom: 20px;
+
+}
+
+
+.campo-formulario label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+}
+
+
+.campo-formulario select,
+.campo-formulario textarea {
+
+    width: 100%;
+
+    border:
+        1px solid
+        #ddd9e9;
+
+    border-radius: 11px;
+
+    background:
+        var(--branco);
+
+    color:
+        #363050;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    outline: none;
+
+}
+
+
+.campo-formulario select {
+
+    min-height: 46px;
+
+    padding:
+        0
+        13px;
+
+}
+
+
+.campo-formulario textarea {
+
+    min-height: 165px;
+
+    padding: 14px;
+
+    resize: vertical;
+
+    line-height: 1.55;
+
+}
+
+
+.campo-formulario select:focus,
+.campo-formulario textarea:focus {
+
+    border-color:
+        var(--roxo-principal);
+
+    box-shadow:
+        0
+        0
+        0
+        3px
+        rgba(108, 76, 229, 0.08);
+
+}
+
+
+.campo-formulario small {
+
+    display: block;
+
+    margin-top: 7px;
+
+    color:
+        #928a9f;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+
+}
+
+
+.confirmacao-formulario {
+
+    margin-bottom: 20px;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+}
+
+
+.confirmacao-formulario input {
+
+    margin-top: 2px;
+
+}
+
+
+.botao-enviar-apoio {
+
+    width: 100%;
+
+    min-height: 48px;
+
+    border: 0;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7253cf,
+            #9970dd
+        );
+
+    color:
+        var(--branco);
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+}
+
+
+.botao-enviar-apoio:hover {
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+.mensagem-formulario {
+
+    margin-top: 15px;
+
+    padding: 13px;
+
+    border-radius: 11px;
+
+    background:
+        #ecf8ef;
+
+    border:
+        1px solid
+        #cce8d2;
+
+    color:
+        #42704a;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+}
+
+
+.mensagem-formulario[hidden] {
+
+    display: none;
+
+}
+
+
+.apoio-explicacao {
+
+    padding: 28px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f0ebff,
+            #faf8ff
+        );
+
+    border:
+        1px solid
+        #e2daf4;
+
+}
+
+
+.apoio-explicacao-icone {
+
+    margin-bottom: 15px;
+
+    font-size: 36px;
+
+}
+
+
+.apoio-explicacao h3 {
+
+    margin-bottom: 10px;
+
+    font-size: 18px;
+
+}
+
+
+.apoio-explicacao > p {
+
+    margin-bottom: 12px;
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 12px;
+
+    line-height: 1.65;
+
+}
+
+
+.apoio-alerta {
+
+    margin-top: 19px;
+
+    padding: 16px;
+
+    border-radius: 12px;
+
+    background:
+        var(--branco);
+
+}
+
+
+.apoio-alerta strong {
+
+    font-size: 12px;
+
+}
+
+
+.apoio-alerta p {
+
+    margin-top: 5px;
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 11px;
+
+    line-height: 1.55;
+
+}
+
+
+/* =========================================
+   CONTEÚDOS
+========================================= */
+
+.conteudos-familia {
+
+    background:
+        #f5f2ff;
+
+}
+
+
+.grade-conteudos-familia {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+
+}
+
+
+.card-conteudo-familia {
+
+    min-height: 265px;
+
+    padding: 23px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    border-radius: 18px;
+
+    background:
+        var(--branco);
+
+    border:
+        1px solid
+        #e4def0;
+
+    box-shadow:
+        0
+        8px
+        27px
+        rgba(50, 40, 100, 0.06);
+
+}
+
+
+.card-conteudo-familia.recomendado {
+
+    border-color:
+        #c9b8f2;
+
+}
+
+
+.card-conteudo-familia.campanha {
+
+    border-color:
+        #e3ca78;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fffdf5,
+            #ffffff
+        );
+
+}
+
+
+.conteudo-familia-icone {
+
+    width: 52px;
+
+    height: 52px;
+
+    margin-bottom: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background:
+        var(--roxo-claro);
+
+    font-size: 26px;
+
+}
+
+
+.conteudo-familia-etiquetas {
+
+    min-height: 23px;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 5px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.etiqueta-conteudo-familia {
+
+    padding:
+        5px
+        8px;
+
+    border-radius: 999px;
+
+    font-size: 8px;
+
+    font-weight: bold;
+
+}
+
+
+.etiqueta-conteudo-familia.recomendado {
+
+    color:
+        #6349bb;
+
+    background:
+        #eee8ff;
+
+}
+
+
+.etiqueta-conteudo-familia.campanha {
+
+    color:
+        #866114;
+
+    background:
+        #fff0bd;
+
+}
+
+
+.card-conteudo-familia > span {
+
+    color:
+        var(--roxo-principal);
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.6px;
+
+}
+
+
+.card-conteudo-familia h3 {
+
+    margin:
+        7px
+        0
+        8px;
+
+    font-size: 16px;
+
+    line-height: 1.3;
+
+}
+
+
+.card-conteudo-familia p {
+
+    margin-bottom: 18px;
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 11px;
+
+    line-height: 1.6;
+
+}
+
+
+.botao-ler-familia {
+
+    width: 100%;
+
+    min-height: 41px;
+
+    margin-top: auto;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background:
+        var(--roxo-principal);
+
+    color:
+        var(--branco);
+
+    cursor: pointer;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+}
+
+
+/* =========================================
+   LEITURA DA FAMÍLIA
+========================================= */
+
+.leitura-familia {
+
+    margin-top: 30px;
+
+}
+
+
+.leitura-familia[hidden] {
+
+    display: none;
+
+}
+
+
+.botao-voltar-conteudos {
+
+    margin-bottom: 14px;
+
+    padding:
+        10px
+        13px;
+
+    border:
+        1px solid
+        #dcd5ed;
+
+    border-radius: 10px;
+
+    background:
+        var(--branco);
+
+    color:
+        var(--roxo-escuro);
+
+    cursor: pointer;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+}
+
+
+.card-leitura-familia {
+
+    max-width: 850px;
+
+    margin: 0 auto;
+
+    padding: 38px;
+
+    border-radius: 23px;
+
+    background:
+        var(--branco);
+
+    border:
+        1px solid
+        #e1daef;
+
+    box-shadow:
+        0
+        13px
+        38px
+        rgba(50, 40, 100, 0.07);
+
+}
+
+
+.leitura-familia-icone {
+
+    width: 62px;
+
+    height: 62px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 17px;
+
+    background:
+        var(--roxo-claro);
+
+    font-size: 32px;
+
+}
+
+
+.leitura-familia-categoria {
+
+    display: block;
+
+    margin-top: 18px;
+
+    color:
+        var(--roxo-principal);
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+
+}
+
+
+.card-leitura-familia h2 {
+
+    margin:
+        7px
+        0
+        20px;
+
+    font-size: 28px;
+
+}
+
+
+.leitura-familia-texto {
+
+    color:
+        #655d73;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+}
+
+
+.leitura-familia-texto p {
+
+    margin-bottom: 16px;
+
+}
+
+
+.reflexao-familia {
+
+    margin-top: 24px;
+
+    padding: 19px;
+
+    border-radius: 14px;
+
+    background:
+        #f2edff;
+
+    color:
+        #675978;
+
+    font-size: 12px;
+
+    line-height: 1.65;
+
+}
+
+
+.reflexao-familia strong {
+
+    display: block;
+
+    margin-bottom: 6px;
+
+    color:
+        #5c4797;
+
+}
+
+
+/* =========================================
+   SOLICITAÇÕES
+========================================= */
+
+.solicitacoes {
+
+    background:
+        var(--branco);
+
+}
+
+
+.cabecalho-solicitacoes {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+}
+
+
+.contador-solicitacoes {
+
+    margin-bottom: 30px;
+
+    padding:
+        8px
+        11px;
+
+    border-radius: 999px;
+
+    background:
+        var(--roxo-claro);
+
+    color:
+        var(--roxo-principal);
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+}
+
+
+.lista-solicitacoes {
+
+    display: grid;
+
+    gap: 14px;
+
+}
+
+
+.card-solicitacao {
+
+    padding: 22px;
+
+    border:
+        1px solid
+        var(--cinza-borda);
+
+    border-radius: 16px;
+
+    background:
+        var(--cinza-fundo);
+
+}
+
+
+.solicitacao-topo {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+}
+
+
+.solicitacao-protocolo {
+
+    color:
+        var(--roxo-principal);
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+}
+
+
+.solicitacao-status {
+
+    padding:
+        6px
+        9px;
+
+    border-radius: 999px;
+
+    background:
+        #e9e3ff;
+
+    color:
+        #6248b7;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+}
+
+
+.card-solicitacao h3 {
+
+    margin:
+        9px
+        0
+        8px;
+
+    font-size: 15px;
+
+}
+
+
+.card-solicitacao p {
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+}
+
+
+.solicitacao-data {
+
+    display: block;
+
+    margin-top: 12px;
+
+    color:
+        #9992a4;
+
+    font-size: 9px;
+
+}
+
+
+.sem-solicitacoes {
+
+    padding: 38px;
+
+    border:
+        1px dashed
+        #d7d1e2;
+
+    border-radius: 17px;
+
+    background:
+        var(--cinza-fundo);
+
+    text-align: center;
+
+}
+
+
+.sem-solicitacoes > div {
+
+    font-size: 36px;
+
+}
+
+
+.sem-solicitacoes h3 {
+
+    margin-top: 9px;
+
+    font-size: 16px;
+
+}
+
+
+.sem-solicitacoes p {
+
+    margin-top: 6px;
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================
+   DENÚNCIA
+========================================= */
+
+.area-denuncia {
+
+    padding:
+        0
+        8%
+        65px;
+
+}
+
+
+.denuncia-conteudo {
+
+    padding: 32px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7650e8,
+            #5430c5
+        );
+
+    color:
+        var(--branco);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+
+    box-shadow:
+        0
+        15px
+        40px
+        rgba(86, 50, 200, 0.22);
+
+}
+
+
+.denuncia-icone {
+
+    width: 65px;
+
+    height: 65px;
+
+    min-width: 65px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(255, 255, 255, 0.14);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 30px;
+
+}
+
+
+.denuncia-texto {
+
+    flex: 1;
+
+}
+
+
+.denuncia-texto > span {
+
+    display: block;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    font-weight: bold;
+
+    opacity: 0.8;
+
+    margin-bottom: 7px;
+
+}
+
+
+.denuncia-texto h2 {
+
+    font-size: 22px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.denuncia-texto p {
+
+    max-width: 650px;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    opacity: 0.9;
+
+}
+
+
+.botao-denuncia {
+
+    padding:
+        14px
+        19px;
+
+    border-radius: 10px;
+
+    background:
+        var(--branco);
+
+    color:
+        var(--roxo-escuro);
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+
+}
+
+
+/* =========================================
+   PRIVACIDADE
+========================================= */
+
+.privacidade {
+
+    margin:
+        0
+        8%
+        25px;
+
+    padding: 20px;
+
+    border-radius: 14px;
+
+    background:
+        #f0f7ff;
+
+    border:
+        1px
+        solid
+        #d8e8fa;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 14px;
+
+}
+
+
+.privacidade-icone {
+
+    font-size: 23px;
+
+}
+
+
+.privacidade strong {
+
+    display: block;
+
+    font-size: 13px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.privacidade p {
+
+    color:
+        #657489;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================
+   AVISO
+========================================= */
+
+.aviso-prototipo {
+
+    margin:
+        0
+        8%
+        70px;
+
+    padding: 20px;
+
+    background:
+        #fff9e8;
+
+    border:
+        1px
+        solid
+        #f1dfab;
+
+    border-radius: 13px;
+
+}
+
+
+.aviso-prototipo strong {
+
+    display: block;
+
+    font-size: 13px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.aviso-prototipo p {
+
+    color:
+        #7e7155;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .grade-conteudos-familia {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .cards-acesso {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .apoio-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    #inicio,
+    #orientacoes,
+    #apoio,
+    #conteudos,
+    #solicitacoes {
+
+        scroll-margin-top: 145px;
+
+    }
+
+
+    .cabecalho {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        padding:
+            18px
+            7%;
+
+    }
+
+
+    .menu {
+
+        width: 100%;
+
+        gap: 14px;
+
+        overflow-x: auto;
+
+    }
+
+
+    .boas-vindas {
+
+        flex-direction: column;
+
+        text-align: center;
+
+    }
+
+
+    .escola-vinculada {
+
+        text-align: left;
+
+    }
+
+
+    .cards-sinais {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .passos-familia {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .conversa {
+
+        flex-direction: column;
+
+        text-align: center;
+
+    }
+
+
+    .denuncia-conteudo {
+
+        flex-direction: column;
+
+        text-align: center;
+
+    }
+
+
+    .cabecalho-solicitacoes {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+
+    .contador-solicitacoes {
+
+        margin:
+            -15px
+            0
+            25px;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .cards-acesso,
+    .grade-conteudos-familia {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .boas-vindas h2 {
+
+        font-size: 34px;
+
+    }
+
+
+    .boas-vindas-visual {
+
+        width: 100%;
+
+    }
+
+
+    .botao-denuncia {
+
+        width: 100%;
+
+        text-align: center;
+
+    }
+
+
+    .card-leitura-familia {
+
+        padding:
+            27px
+            21px;
+
+    }
+
+}

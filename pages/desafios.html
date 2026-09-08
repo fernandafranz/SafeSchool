@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Jogos e desafios | SafeSchool
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../css/desafios.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         CABEÇALHO
+    ========================================== -->
+
+    <header class="cabecalho">
+
+
+        <a
+            href="../index.html"
+            class="logo"
+        >
+
+            <div class="logo-icone">
+                ♥
+            </div>
+
+
+            <div class="logo-texto">
+
+                <h1>
+                    SafeSchool
+                </h1>
+
+                <p>
+                    Escola Sem Bullying
+                </p>
+
+            </div>
+
+        </a>
+
+
+
+        <nav class="menu">
+
+            <a href="aluno.html">
+                Início
+            </a>
+
+            <a href="conteudos.html">
+                Conteúdos
+            </a>
+
+            <a
+                href="desafios.html"
+                class="ativo"
+            >
+                Desafios
+            </a>
+
+            <a href="apoio-psicologico.html">
+                Apoio
+            </a>
+
+            <a href="../index.html">
+                Sair
+            </a>
+
+        </nav>
+
+
+    </header>
+
+
+
+    <main>
+
+
+        <!-- =========================================
+             APRESENTAÇÃO
+        ========================================== -->
+
+        <section class="hero-desafios">
+
+
+            <div class="hero-texto">
+
+                <span class="etiqueta">
+                    🎯 JOGOS E DESAFIOS
+                </span>
+
+
+                <h2>
+                    Pequenas escolhas também podem transformar a convivência.
+                </h2>
+
+
+                <p>
+
+                    Aqui você encontrará situações que podem acontecer
+                    no dia a dia. Leia com calma, escolha como agiria
+                    e descubra diferentes maneiras de construir
+                    relações mais respeitosas.
+
+                </p>
+
+
+                <div class="aviso-pontos">
+
+                    ⭐ Cada desafio concluído vale
+
+                    <strong>
+                        20 pontos
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-visual">
+
+                🎯
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             PROGRESSO
+        ========================================== -->
+
+        <section class="resumo-progresso">
+
+
+            <div>
+
+                <span>
+                    SEU PROGRESSO
+                </span>
+
+                <h2>
+                    Continue avançando
+                </h2>
+
+            </div>
+
+
+            <div class="resumo-numeros">
+
+
+                <div class="resumo-item">
+
+                    <strong
+                        id="numeroDesafiosConcluidos"
+                    >
+                        0
+                    </strong>
+
+                    <span>
+                        concluídos
+                    </span>
+
+                </div>
+
+
+                <div class="divisor">
+                    /
+                </div>
+
+
+                <div class="resumo-item">
+
+                    <strong
+                        id="numeroTotalDesafios"
+                    >
+                        0
+                    </strong>
+
+                    <span>
+                        desafios
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             LISTA DE DESAFIOS
+        ========================================== -->
+
+        <section class="area-desafios">
+
+
+            <div class="titulo-secao">
+
+                <span>
+                    ESCOLHA UM DESAFIO
+                </span>
+
+                <h2>
+                    O que você faria?
+                </h2>
+
+                <p>
+
+                    Não se preocupe em acertar de primeira.
+                    O objetivo é refletir, aprender
+                    e tentar novamente quando for necessário.
+
+                </p>
+
+            </div>
+
+
+            <div
+                class="grade-desafios"
+                id="gradeDesafios"
+            >
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             ÁREA DO DESAFIO
+        ========================================== -->
+
+        <section
+            class="area-jogo"
+            id="areaJogo"
+            hidden
+        >
+
+
+            <button
+                type="button"
+                class="fechar-jogo"
+                id="fecharJogo"
+            >
+                ← Voltar aos desafios
+            </button>
+
+
+            <div class="jogo-conteudo">
+
+
+                <div
+                    class="jogo-icone"
+                    id="jogoIcone"
+                >
+                    🎯
+                </div>
+
+
+                <span
+                    class="jogo-categoria"
+                    id="jogoCategoria"
+                >
+                </span>
+
+
+                <h2
+                    id="jogoTitulo"
+                >
+                </h2>
+
+
+                <div
+                    class="jogo-situacao"
+                    id="jogoSituacao"
+                >
+                </div>
+
+
+                <div
+                    class="alternativas"
+                    id="alternativas"
+                >
+                </div>
+
+
+                <div
+                    class="feedback"
+                    id="feedback"
+                    hidden
+                >
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             MENSAGEM
+        ========================================== -->
+
+        <section class="mensagem-final">
+
+            <div class="mensagem-icone">
+                💜
+            </div>
+
+
+            <div>
+
+                <span>
+                    LEMBRE-SE
+                </span>
+
+                <h2>
+                    Nem sempre precisamos resolver tudo sozinhos.
+                </h2>
+
+                <p>
+
+                    Quando uma situação causar medo, sofrimento
+                    ou insegurança, procurar um adulto de confiança
+                    também é uma forma de cuidado.
+
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <footer>
+
+        SafeSchool — Escola Sem Bullying
+
+    </footer>
+
+
+
+    <script src="../js/escola.js"></script>
+
+    <script src="../js/desafios.js"></script>
+
+
+</body>
+
+</html>

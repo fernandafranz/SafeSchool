@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Recuperar acesso | SafeSchool
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../css/recuperar-senha.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         CABEÇALHO
+    ========================================== -->
+
+    <header class="cabecalho">
+
+
+        <a
+            href="../index.html"
+            class="logo"
+        >
+
+            <div class="logo-icone">
+                ♥
+            </div>
+
+
+            <div class="logo-texto">
+
+                <h1>
+                    SafeSchool
+                </h1>
+
+                <p>
+                    Escola Sem Bullying
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <a
+            href="login.html"
+            class="voltar-login"
+        >
+            ← Voltar ao login
+        </a>
+
+
+    </header>
+
+
+
+    <!-- =========================================
+         CONTEÚDO
+    ========================================== -->
+
+    <main class="pagina-recuperacao">
+
+
+        <!-- =========================================
+             APRESENTAÇÃO
+        ========================================== -->
+
+        <section class="apresentacao">
+
+
+            <span class="etiqueta">
+                🔑 RECUPERAÇÃO DE ACESSO
+            </span>
+
+
+            <h2>
+
+                Esquecer a senha
+                <span>não precisa ser um problema.</span>
+
+            </h2>
+
+
+            <p>
+
+                Informe os dados utilizados no cadastro.
+                Em uma versão real do SafeSchool, um link seguro
+                de recuperação seria enviado para o e-mail
+                vinculado à conta.
+
+            </p>
+
+
+
+            <div class="informacao-seguranca">
+
+
+                <div class="informacao-icone">
+                    🔒
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Proteção das informações
+                    </strong>
+
+
+                    <p>
+
+                        Por segurança, o SafeSchool não informa
+                        se determinado endereço de e-mail possui
+                        ou não uma conta cadastrada.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="informacao-profissionais">
+
+
+                <div class="informacao-icone">
+                    🏫
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Professor ou Psicologia?
+                    </strong>
+
+
+                    <p>
+
+                        A recuperação desses perfis deve ser
+                        realizada pela própria instituição,
+                        já que são acessos profissionais
+                        com permissões específicas.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             CARD
+        ========================================== -->
+
+        <section class="cartao-recuperacao">
+
+
+            <!-- =========================================
+                 ETAPA 1
+            ========================================== -->
+
+            <div
+                id="etapaSolicitacao"
+            >
+
+
+                <div class="cabecalho-formulario">
+
+                    <span>
+                        ETAPA 1
+                    </span>
+
+
+                    <h2>
+                        Recuperar minha senha
+                    </h2>
+
+
+                    <p>
+                        Informe seus dados para continuar.
+                    </p>
+
+                </div>
+
+
+
+                <form
+                    id="formRecuperacao"
+                    novalidate
+                >
+
+
+                    <!-- =================================
+                         PERFIL
+                    ================================== -->
+
+                    <div class="grupo-campo">
+
+                        <label>
+                            Qual é o seu perfil?
+                        </label>
+
+
+                        <div class="grade-perfis">
+
+
+                            <button
+                                type="button"
+                                class="cartao-perfil"
+                                data-perfil="aluno"
+                                aria-pressed="false"
+                            >
+
+                                <span class="icone-perfil">
+                                    🎓
+                                </span>
+
+
+                                <span>
+
+                                    <strong>
+                                        Aluno
+                                    </strong>
+
+                                    <small>
+                                        Meu acesso
+                                    </small>
+
+                                </span>
+
+                            </button>
+
+
+
+                            <button
+                                type="button"
+                                class="cartao-perfil"
+                                data-perfil="responsavel"
+                                aria-pressed="false"
+                            >
+
+                                <span class="icone-perfil">
+                                    👨🏻‍👩🏻‍👧🏻‍👦🏻
+                                </span>
+
+
+                                <span>
+
+                                    <strong>
+                                        Responsável
+                                    </strong>
+
+                                    <small>
+                                        Acesso da família
+                                    </small>
+
+                                </span>
+
+                            </button>
+
+
+                        </div>
+
+
+                        <input
+                            type="hidden"
+                            id="perfilRecuperacao"
+                            value=""
+                        >
+
+
+                        <p
+                            class="erro-campo"
+                            id="erroPerfilRecuperacao"
+                            hidden
+                        >
+                            Selecione um perfil.
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         E-MAIL
+                    ================================== -->
+
+                    <div class="grupo-campo">
+
+                        <label for="emailRecuperacao">
+                            E-mail
+                        </label>
+
+
+                        <input
+                            type="email"
+                            id="emailRecuperacao"
+                            placeholder="seunome@email.com"
+                            autocomplete="email"
+                        >
+
+
+                        <p
+                            class="erro-campo"
+                            id="erroEmailRecuperacao"
+                            hidden
+                        >
+                            Digite um e-mail válido.
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         ESCOLA
+                    ================================== -->
+
+                    <div class="grupo-campo">
+
+                        <label for="codigoEscolaRecuperacao">
+                            Código da escola
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="codigoEscolaRecuperacao"
+                            placeholder="Ex.: ESC001"
+                            maxlength="20"
+                        >
+
+
+                        <p class="ajuda-campo">
+
+                            Para o protótipo:
+                            <strong>ESC001</strong>
+
+                        </p>
+
+
+                        <p
+                            class="erro-campo"
+                            id="erroEscolaRecuperacao"
+                            hidden
+                        >
+                            Informe o código da escola.
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         BOTÃO
+                    ================================== -->
+
+                    <button
+                        type="submit"
+                        class="botao-principal"
+                    >
+
+                        Enviar instruções
+
+                        <span>
+                            →
+                        </span>
+
+                    </button>
+
+
+                </form>
+
+
+            </div>
+
+
+
+            <!-- =========================================
+                 ETAPA 2
+            ========================================== -->
+
+            <div
+                id="etapaMensagem"
+                hidden
+            >
+
+
+                <div class="mensagem-enviada">
+
+
+                    <div class="mensagem-enviada-icone">
+                        ✉️
+                    </div>
+
+
+                    <span>
+                        SOLICITAÇÃO RECEBIDA
+                    </span>
+
+
+                    <h2>
+                        Verifique seu e-mail
+                    </h2>
+
+
+                    <p>
+
+                        Se existir uma conta vinculada
+                        aos dados informados, as instruções
+                        de recuperação serão enviadas.
+
+                    </p>
+
+
+                    <div class="aviso-demonstracao">
+
+                        <strong>
+                            🧪 Demonstração do protótipo
+                        </strong>
+
+
+                        <p>
+
+                            Como esta versão ainda não possui
+                            servidor de e-mail, o botão abaixo
+                            simula a abertura do link seguro
+                            que seria recebido pelo usuário.
+
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="botao-principal"
+                        id="continuarDemonstracao"
+                    >
+
+                        Continuar demonstração
+
+                        <span>
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="botao-texto"
+                        id="voltarSolicitacao"
+                    >
+                        ← Informar outros dados
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================================
+                 ETAPA 3
+            ========================================== -->
+
+            <div
+                id="etapaNovaSenha"
+                hidden
+            >
+
+
+                <div class="cabecalho-formulario">
+
+                    <span>
+                        ETAPA 2
+                    </span>
+
+
+                    <h2>
+                        Crie uma nova senha
+                    </h2>
+
+
+                    <p>
+
+                        Escolha uma senha diferente
+                        e fácil de lembrar apenas para você.
+
+                    </p>
+
+                </div>
+
+
+
+                <form
+                    id="formNovaSenha"
+                    novalidate
+                >
+
+
+                    <div class="grupo-campo">
+
+                        <label for="novaSenha">
+                            Nova senha
+                        </label>
+
+
+                        <div class="campo-senha">
+
+                            <input
+                                type="password"
+                                id="novaSenha"
+                                placeholder="Digite sua nova senha"
+                                autocomplete="new-password"
+                            >
+
+
+                            <button
+                                type="button"
+                                id="mostrarNovaSenha"
+                                class="mostrar-senha"
+                                aria-label="Mostrar senha"
+                            >
+                                👁️
+                            </button>
+
+                        </div>
+
+
+                        <p class="ajuda-campo">
+                            Utilize pelo menos 6 caracteres.
+                        </p>
+
+
+                        <p
+                            class="erro-campo"
+                            id="erroNovaSenha"
+                            hidden
+                        >
+                            A senha precisa ter pelo menos 6 caracteres.
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="grupo-campo">
+
+                        <label for="confirmarNovaSenha">
+                            Confirmar nova senha
+                        </label>
+
+
+                        <input
+                            type="password"
+                            id="confirmarNovaSenha"
+                            placeholder="Digite novamente"
+                            autocomplete="new-password"
+                        >
+
+
+                        <p
+                            class="erro-campo"
+                            id="erroConfirmarNovaSenha"
+                            hidden
+                        >
+                            As senhas não coincidem.
+                        </p>
+
+                    </div>
+
+
+
+                    <button
+                        type="submit"
+                        class="botao-principal"
+                    >
+
+                        Salvar nova senha
+
+                        <span>
+                            ✓
+                        </span>
+
+                    </button>
+
+
+                </form>
+
+
+            </div>
+
+
+
+            <!-- =========================================
+                 SUCESSO
+            ========================================== -->
+
+            <div
+                id="etapaSucesso"
+                hidden
+            >
+
+
+                <div class="mensagem-sucesso">
+
+
+                    <div class="sucesso-icone">
+                        ✓
+                    </div>
+
+
+                    <span>
+                        RECUPERAÇÃO CONCLUÍDA
+                    </span>
+
+
+                    <h2>
+                        Sua senha foi atualizada.
+                    </h2>
+
+
+                    <p>
+
+                        Agora você pode voltar ao login
+                        e entrar no SafeSchool utilizando
+                        sua nova senha.
+
+                    </p>
+
+
+                    <a
+                        href="login.html"
+                        class="botao-principal link-botao"
+                        id="irParaLogin"
+                    >
+                        Voltar ao login →
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         RODAPÉ
+    ========================================== -->
+
+    <footer>
+
+        SafeSchool — Escola Sem Bullying
+
+    </footer>
+
+
+
+    <!-- =========================================
+         SCRIPTS
+    ========================================== -->
+
+    <script src="../js/escola.js"></script>
+
+    <script src="../js/recuperar-senha.js"></script>
+
+
+</body>
+
+</html>

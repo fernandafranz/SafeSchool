@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Relato Identificado | SafeSchool
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../css/relato-identificado.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         CABEÇALHO
+    ========================================== -->
+
+    <header class="cabecalho">
+
+
+        <a
+            href="aluno.html"
+            class="logo"
+        >
+
+            <div class="logo-icone">
+                ♥
+            </div>
+
+
+            <div class="logo-texto">
+
+                <h1>
+                    SafeSchool
+                </h1>
+
+                <p>
+                    Escola Sem Bullying
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <a
+            href="aluno.html"
+            class="voltar"
+        >
+            ← Voltar para minha área
+        </a>
+
+
+    </header>
+
+
+
+    <main>
+
+
+        <!-- =========================================
+             APRESENTAÇÃO
+        ========================================== -->
+
+        <section class="apresentacao">
+
+
+            <div class="apresentacao-texto">
+
+
+                <span class="etiqueta">
+
+                    RELATO IDENTIFICADO
+
+                </span>
+
+
+                <h2>
+
+                    Conte o que aconteceu
+                    e permita que a escola acompanhe você.
+
+                </h2>
+
+
+                <p>
+
+                    Neste canal, sua identidade ficará disponível
+                    para a equipe escolar responsável pelo caso,
+                    permitindo acolhimento, contato e acompanhamento.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div class="apresentacao-visual">
+
+                👤💜
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             IDENTIFICAÇÃO
+        ========================================== -->
+
+        <section class="identificacao">
+
+
+            <div class="identificacao-icone">
+
+                👤
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    CONTA IDENTIFICADA
+                </span>
+
+
+                <h3 id="contaAluno">
+                    Carregando sua conta...
+                </h3>
+
+
+                <p>
+
+                    A equipe escolar poderá saber quem enviou
+                    este relato e entrar em contato para oferecer
+                    apoio e acompanhar a situação.
+
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             FORMULÁRIO
+        ========================================== -->
+
+        <section class="area-formulario">
+
+
+            <div class="titulo-formulario">
+
+                <span>
+                    RELATAR SITUAÇÃO
+                </span>
+
+                <h2>
+                    O que aconteceu?
+                </h2>
+
+                <p>
+
+                    Preencha somente as informações
+                    que conseguir fornecer.
+
+                </p>
+
+            </div>
+
+
+
+            <form
+                id="formularioRelatoIdentificado"
+                class="formulario"
+                novalidate
+            >
+
+
+                <!-- =========================================
+                     ENVOLVIMENTO
+                ========================================== -->
+
+                <div class="grupo-campo">
+
+
+                    <label for="envolvimento">
+
+                        Você está relatando uma situação que:
+
+                    </label>
+
+
+                    <select id="envolvimento">
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option value="comigo">
+                            Aconteceu comigo
+                        </option>
+
+                        <option value="presenciei">
+                            Eu presenciei com outra pessoa
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+
+                <!-- =========================================
+                     TIPO
+                ========================================== -->
+
+                <div class="grupo-campo">
+
+
+                    <label for="tipo">
+
+                        Tipo de situação
+
+                    </label>
+
+
+                    <select id="tipo">
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option value="verbal">
+                            Bullying verbal
+                        </option>
+
+                        <option value="fisico">
+                            Bullying físico
+                        </option>
+
+                        <option value="cyberbullying">
+                            Cyberbullying
+                        </option>
+
+                        <option value="exclusao">
+                            Exclusão social
+                        </option>
+
+                        <option value="discriminacao">
+                            Discriminação
+                        </option>
+
+                        <option value="outro">
+                            Outra situação
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+
+                <!-- =========================================
+                     LOCAL
+                ========================================== -->
+
+                <div class="grupo-campo">
+
+
+                    <label for="local">
+
+                        Onde aconteceu?
+
+                    </label>
+
+
+                    <select id="local">
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option value="sala">
+                            Sala de aula
+                        </option>
+
+                        <option value="patio">
+                            Pátio
+                        </option>
+
+                        <option value="corredor">
+                            Corredor
+                        </option>
+
+                        <option value="banheiro">
+                            Banheiro
+                        </option>
+
+                        <option value="transporte">
+                            Transporte escolar
+                        </option>
+
+                        <option value="internet">
+                            Internet / redes sociais
+                        </option>
+
+                        <option value="outro">
+                            Outro local
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+
+                <!-- =========================================
+                     DATA
+                ========================================== -->
+
+                <div class="grupo-campo">
+
+
+                    <label for="dataOcorrencia">
+
+                        Data aproximada da ocorrência
+
+                    </label>
+
+
+                    <input
+                        type="date"
+                        id="dataOcorrencia"
+                    >
+
+
+                </div>
+
+
+
+                <!-- =========================================
+                     RELATO
+                ========================================== -->
+
+                <div class="grupo-campo">
+
+
+                    <label for="relato">
+
+                        Conte o que aconteceu
+
+                    </label>
+
+
+                    <textarea
+                        id="relato"
+                        rows="7"
+                        maxlength="1500"
+                        placeholder="Explique com suas palavras o que aconteceu, quem estava envolvido e qualquer informação que considere importante."
+                    ></textarea>
+
+
+                    <small>
+
+                        Escreva pelo menos 20 caracteres.
+                        Você não precisa saber todos os detalhes.
+
+                    </small>
+
+
+                </div>
+
+
+
+                <!-- =========================================
+                     EVIDÊNCIA
+                ========================================== -->
+
+                <div class="grupo-campo">
+
+
+                    <label for="evidencia">
+
+                        Evidência ou arquivo
+                        <span class="opcional">
+                            (opcional)
+                        </span>
+
+                    </label>
+
+
+                    <input
+                        type="file"
+                        id="evidencia"
+                        accept="image/*,.pdf"
+                    >
+
+
+                    <small>
+
+                        Nesta versão demonstrativa,
+                        apenas o nome do arquivo será registrado.
+                        O arquivo não será enviado.
+
+                    </small>
+
+
+                </div>
+
+
+
+                <!-- =========================================
+                     URGÊNCIA
+                ========================================== -->
+
+                <div class="grupo-campo">
+
+
+                    <label for="urgencia">
+
+                        Como você considera a urgência desta situação?
+
+                    </label>
+
+
+                    <select id="urgencia">
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option value="baixa">
+                            Baixa
+                        </option>
+
+                        <option value="media">
+                            Média
+                        </option>
+
+                        <option value="alta">
+                            Alta
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+
+                <!-- =========================================
+                     CONTATO
+                ========================================== -->
+
+                <div class="bloco-contato">
+
+
+                    <div class="bloco-contato-icone">
+                        💬
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Posso ser procurado pela equipe escolar
+                        </strong>
+
+                        <p>
+
+                            Ao enviar este relato identificado,
+                            você permite que a equipe responsável
+                            utilize os dados da sua conta para
+                            entrar em contato e acompanhar a situação.
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =========================================
+                     CONFIRMAÇÃO
+                ========================================== -->
+
+                <label class="confirmacao">
+
+
+                    <input
+                        type="checkbox"
+                        id="confirmacao"
+                    >
+
+
+                    <span>
+
+                        Entendo que este relato é identificado
+                        e poderá ser visualizado pela equipe
+                        responsável da minha escola.
+
+                    </span>
+
+
+                </label>
+
+
+
+                <button
+                    type="submit"
+                    class="botao-enviar"
+                >
+
+                    Enviar relato identificado
+
+                    <span>
+                        →
+                    </span>
+
+                </button>
+
+
+            </form>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             SUCESSO
+        ========================================== -->
+
+        <section
+            class="resultado"
+            id="resultadoRelato"
+            hidden
+        >
+
+
+            <div class="resultado-icone">
+
+                ✓
+
+            </div>
+
+
+            <div>
+
+
+                <span>
+                    RELATO REGISTRADO
+                </span>
+
+
+                <h2>
+                    Seu relato identificado foi registrado nesta demonstração.
+                </h2>
+
+
+                <p>
+
+                    A equipe escolar poderá acompanhar
+                    esta situação e entrar em contato com você.
+
+                </p>
+
+
+                <div class="protocolo">
+
+
+                    <small>
+                        Protocolo do relato
+                    </small>
+
+
+                    <strong id="protocoloRelato">
+                        -
+                    </strong>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             DIFERENÇA PARA O ANÔNIMO
+        ========================================== -->
+
+        <section class="anonimo">
+
+
+            <div>
+
+                <span>
+                    PREFERE NÃO SE IDENTIFICAR?
+                </span>
+
+
+                <h2>
+                    O canal anônimo continua disponível.
+                </h2>
+
+
+                <p>
+
+                    Se você não quiser que sua identidade
+                    seja informada, utilize o canal de denúncia anônima.
+
+                </p>
+
+            </div>
+
+
+            <a
+                href="denuncia.html"
+                class="botao-anonimo"
+            >
+
+                🔒 Denúncia anônima
+
+            </a>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             URGÊNCIA
+        ========================================== -->
+
+        <section class="aviso">
+
+
+            <strong>
+                ⚠️ Situação de perigo imediato
+            </strong>
+
+
+            <p>
+
+                O SafeSchool não substitui serviços de emergência.
+                Se houver risco imediato à segurança de alguém,
+                procure um adulto responsável ou serviço de emergência.
+
+            </p>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             PROTÓTIPO
+        ========================================== -->
+
+        <section class="prototipo">
+
+
+            <strong>
+                Ambiente demonstrativo
+            </strong>
+
+
+            <p>
+
+                Nesta versão, os dados ficam temporariamente
+                armazenados na sessão do navegador.
+                Em uma implementação real, autenticação,
+                proteção de dados e controle de acesso
+                dependerão de infraestrutura segura no servidor.
+
+            </p>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <script src="../js/escola.js"></script>
+
+    <script src="../js/relato-identificado.js"></script>
+
+
+</body>
+
+</html>

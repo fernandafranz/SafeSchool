@@ -1,0 +1,588 @@
+/* =========================================
+   CONFIGURAÇÕES GERAIS
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+
+    --roxo-principal: #6c4ce5;
+    --roxo-escuro: #4f35b8;
+    --roxo-claro: #eeeaff;
+
+    --azul-escuro: #20205f;
+
+    --branco: #ffffff;
+
+    --cinza-texto: #6f6f8d;
+
+    --verde: #36a269;
+    --verde-claro: #eaf8f0;
+
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #faf9ff,
+            #efebff
+        );
+
+    color:
+        var(--azul-escuro);
+
+}
+
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+
+.cabecalho {
+
+    width: 100%;
+
+    height: 90px;
+
+    padding:
+        0
+        7%;
+
+    background:
+        var(--branco);
+
+    display: flex;
+
+    align-items: center;
+
+    box-shadow:
+        0
+        3px
+        20px
+        rgba(0, 0, 0, 0.06);
+
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    text-decoration: none;
+
+}
+
+
+.logo-icone {
+
+    width: 50px;
+
+    height: 50px;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7b5bea,
+            #5434c9
+        );
+
+    color:
+        var(--branco);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
+
+}
+
+
+.logo-texto h1 {
+
+    font-size: 24px;
+
+    color:
+        var(--azul-escuro);
+
+    margin-bottom: 2px;
+
+}
+
+
+.logo-texto p {
+
+    font-size: 12px;
+
+    color:
+        var(--cinza-texto);
+
+}
+
+
+/* =========================================
+   PÁGINA
+========================================= */
+
+.pagina-sucesso {
+
+    min-height:
+        calc(100vh - 90px);
+
+    padding:
+        60px
+        20px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+}
+
+
+/* =========================================
+   CARTÃO PRINCIPAL
+========================================= */
+
+.cartao-sucesso {
+
+    width: 100%;
+
+    max-width: 720px;
+
+    background:
+        var(--branco);
+
+    padding:
+        46px;
+
+    border-radius:
+        24px;
+
+    text-align: center;
+
+    box-shadow:
+        0
+        18px
+        50px
+        rgba(50, 40, 100, 0.11);
+
+}
+
+
+/* =========================================
+   ÍCONE DE SUCESSO
+========================================= */
+
+.icone-sucesso {
+
+    width: 82px;
+
+    height: 82px;
+
+    margin:
+        0
+        auto
+        20px;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--verde-claro);
+
+    color:
+        var(--verde);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 42px;
+
+    font-weight: bold;
+
+}
+
+
+/* =========================================
+   TÍTULOS
+========================================= */
+
+.etiqueta {
+
+    display: inline-block;
+
+    padding:
+        8px
+        15px;
+
+    border-radius:
+        30px;
+
+    background:
+        var(--roxo-claro);
+
+    color:
+        var(--roxo-principal);
+
+    font-size:
+        11px;
+
+    font-weight: bold;
+
+    letter-spacing:
+        1px;
+
+    margin-bottom: 16px;
+
+}
+
+
+.cartao-sucesso h2 {
+
+    font-size: 38px;
+
+    margin-bottom: 14px;
+
+}
+
+
+.mensagem-principal {
+
+    font-size: 17px;
+
+    color:
+        var(--cinza-texto);
+
+    margin-bottom: 8px;
+
+}
+
+
+.mensagem-apoio {
+
+    max-width: 560px;
+
+    margin:
+        0
+        auto
+        32px;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    color:
+        var(--cinza-texto);
+
+}
+
+
+/* =========================================
+   PROTOCOLO
+========================================= */
+
+.area-protocolo {
+
+    padding:
+        25px;
+
+    background:
+        #f8f7ff;
+
+    border-radius:
+        18px;
+
+    margin-bottom: 24px;
+
+}
+
+
+.titulo-protocolo {
+
+    display: block;
+
+    font-size: 13px;
+
+    color:
+        var(--cinza-texto);
+
+    margin-bottom: 12px;
+
+}
+
+
+.protocolo-box {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.protocolo-box strong {
+
+    font-size: 23px;
+
+    color:
+        var(--roxo-escuro);
+
+    letter-spacing:
+        1px;
+
+}
+
+
+.botao-copiar {
+
+    border: none;
+
+    padding:
+        9px
+        15px;
+
+    border-radius:
+        8px;
+
+    background:
+        var(--roxo-claro);
+
+    color:
+        var(--roxo-principal);
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+.botao-copiar:hover {
+
+    background:
+        #e0d9ff;
+
+}
+
+
+.mensagem-copia {
+
+    margin-top: 12px;
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================
+   AVISO DE PRIVACIDADE
+========================================= */
+
+.privacidade {
+
+    display: flex;
+
+    gap: 14px;
+
+    text-align: left;
+
+    padding: 18px;
+
+    border-radius: 14px;
+
+    background:
+        #fffdf3;
+
+    margin-bottom: 28px;
+
+}
+
+
+.privacidade-icone {
+
+    font-size: 23px;
+
+}
+
+
+.privacidade strong {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 14px;
+
+}
+
+
+.privacidade p {
+
+    color: #696146;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================================
+   BOTÕES
+========================================= */
+
+.acoes {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.botao-principal,
+.botao-secundario {
+
+    min-width: 185px;
+
+    padding:
+        14px
+        20px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+}
+
+
+.botao-principal {
+
+    background:
+        var(--roxo-principal);
+
+    color:
+        var(--branco);
+
+}
+
+
+.botao-principal:hover {
+
+    background:
+        var(--roxo-escuro);
+
+}
+
+
+.botao-secundario {
+
+    border:
+        1px
+        solid
+        var(--roxo-principal);
+
+    color:
+        var(--roxo-principal);
+
+    background:
+        var(--branco);
+
+}
+
+
+.botao-secundario:hover {
+
+    background:
+        var(--roxo-claro);
+
+}
+
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .cartao-sucesso {
+
+        padding:
+            34px
+            20px;
+
+    }
+
+
+    .cartao-sucesso h2 {
+
+        font-size: 31px;
+
+    }
+
+
+    .acoes {
+
+        flex-direction: column;
+
+    }
+
+
+    .botao-principal,
+    .botao-secundario {
+
+        width: 100%;
+
+    }
+
+}

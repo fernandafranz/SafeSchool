@@ -1,0 +1,1226 @@
+/* =========================================
+   SAFESCHOOL
+   PAINEL DE INDICADORES
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    font-size: 16px;
+}
+
+
+body {
+
+    margin: 0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: #332b46;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fbf9ff,
+            #f6f2ff,
+            #ffffff
+        );
+
+}
+
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+
+.cabecalho {
+
+    width: 100%;
+    max-width: 1240px;
+
+    margin: 0 auto;
+
+    padding: 22px 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+}
+
+
+.logo {
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    color: #392f58;
+
+    text-decoration: none;
+
+}
+
+
+.logo-icone {
+
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7556d6,
+            #a579e8
+        );
+
+    font-size: 26px;
+
+    box-shadow:
+        0 9px 24px
+        rgba(102, 73, 173, 0.20);
+
+}
+
+
+.logo-texto h1 {
+
+    margin: 0;
+
+    font-size: 21px;
+
+}
+
+
+.logo-texto p {
+
+    margin: 3px 0 0;
+
+    color: #85799f;
+
+    font-size: 12px;
+
+}
+
+
+.menu {
+
+    display: flex;
+
+    gap: 6px;
+
+    align-items: center;
+
+}
+
+
+.menu a {
+
+    padding: 10px 13px;
+
+    border-radius: 10px;
+
+    color: #706681;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 700;
+
+}
+
+
+.menu a:hover,
+.menu a.ativo {
+
+    color: #6f50c7;
+
+    background: #f0eaff;
+
+}
+
+
+/* =========================================
+   PRINCIPAL
+========================================= */
+
+main {
+
+    width: 100%;
+    max-width: 1180px;
+
+    margin: 18px auto 70px;
+
+    padding: 0 30px;
+
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero-indicadores {
+
+    min-height: 330px;
+
+    padding: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 40px;
+
+    border:
+        1px solid
+        #e4dcf6;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ede6ff,
+            #f8f4ff,
+            #ffffff
+        );
+
+    box-shadow:
+        0 18px 55px
+        rgba(77, 54, 132, 0.08);
+
+}
+
+
+.hero-texto {
+
+    max-width: 750px;
+
+}
+
+
+.etiqueta {
+
+    display: inline-block;
+
+    padding: 9px 14px;
+
+    border-radius: 999px;
+
+    color: #7355c5;
+
+    background: #e5dcff;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+
+}
+
+
+.hero-texto h2 {
+
+    margin: 20px 0 16px;
+
+    color: #392d5b;
+
+    font-size:
+        clamp(
+            35px,
+            4vw,
+            50px
+        );
+
+    line-height: 1.1;
+
+    letter-spacing: -1.4px;
+
+}
+
+
+.hero-texto > p {
+
+    margin: 0;
+
+    color: #756c84;
+
+    font-size: 16px;
+
+    line-height: 1.75;
+
+}
+
+
+.hero-visual {
+
+    width: 155px;
+    height: 155px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 38px;
+
+    background: #ffffff;
+
+    font-size: 72px;
+
+    box-shadow:
+        0 18px 45px
+        rgba(90, 64, 151, 0.10);
+
+}
+
+
+.aviso-analise {
+
+    max-width: 690px;
+
+    margin-top: 24px;
+
+    padding: 14px 16px;
+
+    border:
+        1px solid
+        #dfd6f3;
+
+    border-radius: 13px;
+
+    color: #695b7d;
+
+    background: #ffffff;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================================
+   ESCOLA
+========================================= */
+
+.faixa-escola {
+
+    margin-top: 25px;
+
+    padding: 21px 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    border:
+        1px solid
+        #e6deef;
+
+    border-radius: 18px;
+
+    background: #ffffff;
+
+}
+
+
+.faixa-escola span {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #8a70ca;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+
+}
+
+
+.faixa-escola strong {
+
+    color: #4a3d64;
+
+    font-size: 15px;
+
+}
+
+
+.atualizacao {
+
+    text-align: right;
+
+}
+
+
+/* =========================================
+   SEÇÕES
+========================================= */
+
+.area-secao {
+
+    margin-top: 53px;
+
+}
+
+
+.titulo-secao {
+
+    max-width: 760px;
+
+}
+
+
+.titulo-secao > span {
+
+    color: #8567ce;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 0.9px;
+
+}
+
+
+.titulo-secao h2 {
+
+    margin: 7px 0 8px;
+
+    color: #40345a;
+
+    font-size: 30px;
+
+}
+
+
+.titulo-secao p {
+
+    margin: 0;
+
+    color: #82798f;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================================
+   RESUMO
+========================================= */
+
+.grade-resumo {
+
+    margin-top: 25px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 16px;
+
+}
+
+
+.card-resumo {
+
+    min-height: 190px;
+
+    padding: 22px;
+
+    border:
+        1px solid
+        #e6dff0;
+
+    border-radius: 20px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 11px 30px
+        rgba(74, 52, 125, 0.05);
+
+}
+
+
+.resumo-icone {
+
+    width: 47px;
+    height: 47px;
+
+    margin-bottom: 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #f2edff;
+
+    font-size: 24px;
+
+}
+
+
+.card-resumo span {
+
+    color: #8972c3;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 0.7px;
+
+}
+
+
+.card-resumo strong {
+
+    display: block;
+
+    margin: 6px 0;
+
+    color: #674bb9;
+
+    font-size: 32px;
+
+}
+
+
+.card-resumo p {
+
+    margin: 0;
+
+    color: #887f93;
+
+    font-size: 11px;
+
+    line-height: 1.55;
+
+}
+
+
+/* =========================================
+   PAINÉIS
+========================================= */
+
+.grade-acompanhamento {
+
+    margin-top: 25px;
+
+    display: grid;
+
+    grid-template-columns:
+        1.45fr
+        0.8fr;
+
+    gap: 20px;
+
+}
+
+
+.grade-dupla {
+
+    margin-top: 25px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+
+}
+
+
+.painel {
+
+    padding: 27px;
+
+    border:
+        1px solid
+        #e5deef;
+
+    border-radius: 22px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 12px 32px
+        rgba(77, 55, 125, 0.05);
+
+}
+
+
+.painel-cabecalho {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+}
+
+
+.painel-cabecalho span,
+.painel-taxa > span {
+
+    color: #8567ca;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+
+}
+
+
+.painel-cabecalho h3,
+.painel-taxa h3 {
+
+    margin: 6px 0 0;
+
+    color: #4a3e62;
+
+    font-size: 21px;
+
+}
+
+
+.painel-icone {
+
+    width: 46px;
+    height: 46px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #f3effc;
+
+    font-size: 23px;
+
+}
+
+
+/* =========================================
+   BARRAS
+========================================= */
+
+.lista-barras {
+
+    margin-top: 27px;
+
+    display: grid;
+
+    gap: 17px;
+
+}
+
+
+.item-barra {
+
+    display: grid;
+
+    gap: 7px;
+
+}
+
+
+.barra-cabecalho {
+
+    display: flex;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    color: #756b82;
+
+    font-size: 12px;
+
+}
+
+
+.barra-cabecalho strong {
+
+    color: #57486f;
+
+}
+
+
+.barra-fundo {
+
+    width: 100%;
+    height: 9px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: #eee9f3;
+
+}
+
+
+.barra-preenchimento {
+
+    min-width: 0;
+    height: 100%;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #7556ce,
+            #a379e1
+        );
+
+}
+
+
+/* =========================================
+   TAXA
+========================================= */
+
+.painel-taxa {
+
+    text-align: center;
+
+}
+
+
+.circulo-taxa {
+
+    width: 155px;
+    height: 155px;
+
+    margin: 28px auto 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            #7b5ad2 0deg,
+            #ece6f5 0deg
+        );
+
+    position: relative;
+
+}
+
+
+.circulo-taxa::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 116px;
+    height: 116px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+}
+
+
+.circulo-taxa strong {
+
+    position: relative;
+
+    z-index: 1;
+
+    color: #6548b4;
+
+    font-size: 28px;
+
+}
+
+
+.painel-taxa > p {
+
+    color: #81778d;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+}
+
+
+.observacao {
+
+    margin-top: 16px;
+
+    padding: 14px;
+
+    border-radius: 13px;
+
+    background: #faf8ff;
+
+    color: #81758d;
+
+    font-size: 10px;
+
+    line-height: 1.6;
+
+    text-align: left;
+
+}
+
+
+.observacao strong {
+
+    color: #625278;
+
+}
+
+
+/* =========================================
+   PSICOLOGIA
+========================================= */
+
+.grade-psicologia {
+
+    margin-top: 25px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+
+}
+
+
+.card-psicologia {
+
+    padding: 25px;
+
+    text-align: center;
+
+    border:
+        1px solid
+        #e5deef;
+
+    border-radius: 20px;
+
+    background: #ffffff;
+
+}
+
+
+.psico-icone {
+
+    width: 53px;
+    height: 53px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background: #f2edff;
+
+    font-size: 27px;
+
+}
+
+
+.card-psicologia strong {
+
+    display: block;
+
+    color: #6d4fc1;
+
+    font-size: 31px;
+
+}
+
+
+.card-psicologia span {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color: #847b90;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================
+   MESES
+========================================= */
+
+.grafico-meses {
+
+    min-height: 240px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+
+    gap: 15px;
+
+}
+
+
+.mes-item {
+
+    flex: 1;
+
+    min-width: 55px;
+
+    text-align: center;
+
+}
+
+
+.mes-valor {
+
+    margin-bottom: 8px;
+
+    color: #6953a1;
+
+    font-size: 11px;
+    font-weight: 800;
+
+}
+
+
+.mes-coluna-area {
+
+    height: 160px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+}
+
+
+.mes-coluna {
+
+    width: 38px;
+
+    min-height: 4px;
+
+    border-radius: 9px 9px 3px 3px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #9d76df,
+            #7051c8
+        );
+
+}
+
+
+.mes-nome {
+
+    margin-top: 9px;
+
+    color: #81768d;
+
+    font-size: 10px;
+    font-weight: 700;
+
+}
+
+
+/* =========================================
+   LEITURA PEDAGÓGICA
+========================================= */
+
+.leitura-pedagogica {
+
+    margin-top: 55px;
+
+    padding: 30px;
+
+    display: flex;
+
+    gap: 20px;
+
+    align-items: flex-start;
+
+    border:
+        1px solid
+        #dfd5f2;
+
+    border-radius: 23px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eee7ff,
+            #faf8ff
+        );
+
+}
+
+
+.leitura-icone {
+
+    width: 58px;
+    height: 58px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 17px;
+
+    background: #ffffff;
+
+    font-size: 29px;
+
+}
+
+
+.leitura-pedagogica span {
+
+    color: #8467ca;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+
+}
+
+
+.leitura-pedagogica h2 {
+
+    margin: 6px 0 8px;
+
+    color: #4b3d68;
+
+    font-size: 23px;
+
+}
+
+
+.leitura-pedagogica p {
+
+    margin: 7px 0 0;
+
+    color: #7d738c;
+
+    font-size: 13px;
+
+    line-height: 1.65;
+
+}
+
+
+/* =========================================
+   VAZIO
+========================================= */
+
+.sem-dados {
+
+    padding: 18px;
+
+    border-radius: 13px;
+
+    color: #8a8194;
+
+    background: #faf8fc;
+
+    font-size: 12px;
+
+    text-align: center;
+
+}
+
+
+/* =========================================
+   RODAPÉ
+========================================= */
+
+footer {
+
+    padding: 30px;
+
+    color: #92879f;
+
+    text-align: center;
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================
+   RESPONSIVO
+========================================= */
+
+@media (max-width: 950px) {
+
+    .grade-resumo {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .grade-acompanhamento,
+    .grade-dupla {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .cabecalho {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+
+    .menu {
+
+        width: 100%;
+
+        overflow-x: auto;
+
+    }
+
+
+    main {
+
+        padding: 0 16px;
+
+    }
+
+
+    .hero-indicadores {
+
+        padding: 29px 23px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+
+    .hero-visual {
+
+        width: 100px;
+        height: 100px;
+
+        font-size: 48px;
+
+    }
+
+
+    .faixa-escola {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+
+    .atualizacao {
+
+        text-align: left;
+
+    }
+
+
+    .grade-psicologia {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .grade-resumo {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .grafico-meses {
+
+        overflow-x: auto;
+
+        justify-content: flex-start;
+
+    }
+
+
+    .mes-item {
+
+        min-width: 65px;
+
+    }
+
+}

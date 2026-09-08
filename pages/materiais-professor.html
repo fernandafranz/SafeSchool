@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Materiais Educativos | SafeSchool
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../css/materiais-professor.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         CABEÇALHO
+    ========================================== -->
+
+    <header class="cabecalho">
+
+
+        <a
+            href="../index.html"
+            class="logo"
+        >
+
+            <div class="logo-icone">
+                ♥
+            </div>
+
+
+            <div class="logo-texto">
+
+                <h1>
+                    SafeSchool
+                </h1>
+
+                <p>
+                    Escola Sem Bullying
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <nav class="menu">
+
+            <a href="professor.html">
+                Painel
+            </a>
+
+            <a href="professor.html#relatos">
+                Relatos
+            </a>
+
+            <a href="professor.html#relatos">
+                Acompanhamentos
+            </a>
+
+            <a href="indicadores.html">
+                Indicadores
+            </a>
+
+            <a
+                href="materiais-professor.html"
+                class="ativo"
+            >
+                Conteúdos
+            </a>
+
+            <a href="../index.html">
+                Sair
+            </a>
+
+        </nav>
+
+
+    </header>
+
+
+
+    <!-- =========================================
+         CONTEÚDO PRINCIPAL
+    ========================================== -->
+
+    <main>
+
+
+        <!-- =========================================
+             HERO
+        ========================================== -->
+
+        <section class="hero-materiais">
+
+
+            <div class="hero-texto">
+
+
+                <span class="etiqueta">
+                    📚 GESTÃO PEDAGÓGICA
+                </span>
+
+
+                <h2>
+                    Materiais educativos
+                </h2>
+
+
+                <p>
+
+                    Consulte os conteúdos disponíveis
+                    aos estudantes, organize recomendações
+                    e destaque temas que podem apoiar
+                    ações de prevenção e convivência
+                    dentro da escola.
+
+                </p>
+
+
+                <div class="escola-atual">
+
+                    <span>
+                        Instituição
+                    </span>
+
+                    <strong id="nomeEscolaMateriais">
+                        Escola
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="hero-visual">
+                👩🏻‍🏫
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             RESUMO
+        ========================================== -->
+
+        <section class="resumo-materiais">
+
+
+            <div class="titulo-secao">
+
+                <span>
+                    VISÃO GERAL
+                </span>
+
+                <h2>
+                    Biblioteca da escola
+                </h2>
+
+            </div>
+
+
+            <div class="cards-resumo">
+
+
+                <article class="card-resumo">
+
+                    <div class="icone-resumo">
+                        📚
+                    </div>
+
+                    <strong id="numeroTotalMateriais">
+                        0
+                    </strong>
+
+                    <h3>
+                        Materiais disponíveis
+                    </h3>
+
+                    <p>
+                        Conteúdos educativos disponíveis
+                        na biblioteca SafeSchool.
+                    </p>
+
+                </article>
+
+
+                <article class="card-resumo destaque">
+
+                    <div class="icone-resumo">
+                        ⭐
+                    </div>
+
+                    <strong id="numeroRecomendados">
+                        0
+                    </strong>
+
+                    <h3>
+                        Recomendados
+                    </h3>
+
+                    <p>
+                        Conteúdos indicados pela equipe
+                        para atenção dos estudantes.
+                    </p>
+
+                </article>
+
+
+                <article class="card-resumo campanha">
+
+                    <div class="icone-resumo">
+                        📢
+                    </div>
+
+                    <strong id="numeroCampanha">
+                        0
+                    </strong>
+
+                    <h3>
+                        Destaque da campanha
+                    </h3>
+
+                    <p>
+                        Tema escolhido para receber
+                        maior destaque na ação atual.
+                    </p>
+
+                </article>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             SUGESTÃO PEDAGÓGICA
+        ========================================== -->
+
+        <section class="sugestao-pedagogica">
+
+
+            <div class="sugestao-icone">
+                ✨
+            </div>
+
+
+            <div class="sugestao-conteudo">
+
+                <span>
+                    APOIO À PREVENÇÃO
+                </span>
+
+                <h2>
+                    Sugestão a partir dos registros
+                </h2>
+
+                <p id="textoSugestaoPedagogica">
+
+                    Aguardando dados da escola.
+
+                </p>
+
+
+                <button
+                    type="button"
+                    class="botao-sugestao"
+                    id="botaoAplicarSugestao"
+                    hidden
+                >
+                    ⭐ Recomendar conteúdo sugerido
+                </button>
+
+
+                <small>
+
+                    Esta sugestão considera apenas
+                    a frequência das categorias registradas
+                    nesta demonstração. Ela não substitui
+                    a análise pedagógica da equipe escolar.
+
+                </small>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             BUSCA E FILTROS
+        ========================================== -->
+
+        <section class="controle-materiais">
+
+
+            <div class="controle-topo">
+
+                <div>
+
+                    <span>
+                        BIBLIOTECA
+                    </span>
+
+                    <h2>
+                        Escolha um material
+                    </h2>
+
+                </div>
+
+
+                <span
+                    class="resultado-materiais"
+                    id="resultadoMateriais"
+                >
+                    0 materiais
+                </span>
+
+            </div>
+
+
+            <div class="busca-materiais">
+
+                <input
+                    type="search"
+                    id="buscaMateriais"
+                    placeholder="Buscar por título, categoria ou finalidade..."
+                    autocomplete="off"
+                >
+
+                <button
+                    type="button"
+                    id="limparBuscaMateriais"
+                >
+                    Limpar
+                </button>
+
+            </div>
+
+
+            <div class="filtros-materiais">
+
+                <button
+                    type="button"
+                    class="filtro-material ativo"
+                    data-filtro-material="todos"
+                >
+                    Todos
+                </button>
+
+                <button
+                    type="button"
+                    class="filtro-material"
+                    data-filtro-material="recomendados"
+                >
+                    ⭐ Recomendados
+                </button>
+
+                <button
+                    type="button"
+                    class="filtro-material"
+                    data-filtro-material="campanha"
+                >
+                    📢 Campanha
+                </button>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             LISTA DE MATERIAIS
+        ========================================== -->
+
+        <section class="area-materiais">
+
+
+            <div
+                class="grade-materiais"
+                id="gradeMateriais"
+            >
+            </div>
+
+
+            <div
+                class="sem-materiais"
+                id="semMateriais"
+                hidden
+            >
+
+                <div>
+                    📭
+                </div>
+
+                <h3>
+                    Nenhum material encontrado
+                </h3>
+
+                <p>
+                    Não existem conteúdos que correspondam
+                    ao filtro ou à busca selecionada.
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             VISUALIZAÇÃO DO MATERIAL
+        ========================================== -->
+
+        <section
+            class="area-leitura"
+            id="areaLeituraMaterial"
+            hidden
+        >
+
+
+            <button
+                type="button"
+                class="fechar-leitura"
+                id="fecharLeituraMaterial"
+            >
+                ← Voltar à biblioteca
+            </button>
+
+
+            <article class="leitura-card">
+
+
+                <div class="leitura-cabecalho">
+
+                    <div
+                        class="leitura-icone"
+                        id="leituraMaterialIcone"
+                    >
+                        📚
+                    </div>
+
+
+                    <div>
+
+                        <span
+                            class="leitura-categoria"
+                            id="leituraMaterialCategoria"
+                        >
+                        </span>
+
+                        <h2 id="leituraMaterialTitulo">
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="leitura-finalidade"
+                    id="leituraMaterialFinalidade"
+                >
+                </div>
+
+
+                <div
+                    class="leitura-texto"
+                    id="leituraMaterialTexto"
+                >
+                </div>
+
+
+                <div class="bloco-reflexao">
+
+                    <strong>
+                        💭 Para refletir com os estudantes
+                    </strong>
+
+                    <p id="leituraMaterialReflexao">
+                    </p>
+
+                </div>
+
+
+                <div class="bloco-uso">
+
+                    <strong>
+                        👩🏻‍🏫 Sugestão de uso pedagógico
+                    </strong>
+
+                    <p id="leituraMaterialUso">
+                    </p>
+
+                </div>
+
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             ORIENTAÇÃO
+        ========================================== -->
+
+        <section class="orientacao-final">
+
+
+            <div class="orientacao-icone">
+                💜
+            </div>
+
+
+            <div>
+
+                <span>
+                    PREVENÇÃO COM INTENCIONALIDADE
+                </span>
+
+                <h2>
+                    Os dados ajudam a escolher caminhos, mas a decisão continua humana.
+                </h2>
+
+                <p>
+
+                    Recomendações e indicadores podem apoiar
+                    o planejamento da equipe. Entretanto,
+                    cada turma e cada situação possuem
+                    contextos próprios que devem ser considerados
+                    pela escola.
+
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         RODAPÉ
+    ========================================== -->
+
+    <footer>
+
+        SafeSchool — Escola Sem Bullying
+
+    </footer>
+
+
+
+    <!-- =========================================
+         SCRIPTS
+    ========================================== -->
+
+    <script src="../js/escola.js"></script>
+
+    <script src="../js/biblioteca-conteudos.js"></script>
+
+    <script src="../js/materiais-professor.js"></script>
+
+
+</body>
+
+</html>

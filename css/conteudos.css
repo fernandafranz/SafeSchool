@@ -1,0 +1,1487 @@
+/* =========================================
+   SAFESCHOOL
+   APRENDER E REFLETIR
+========================================= */
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    font-size: 16px;
+}
+
+
+body {
+
+    margin: 0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: #332b46;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fbf9ff,
+            #f6f2ff,
+            #ffffff
+        );
+
+}
+
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+
+.cabecalho {
+
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 22px 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+}
+
+
+.logo {
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    text-decoration: none;
+
+    color: #392f58;
+
+}
+
+
+.logo-icone {
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7655d6,
+            #a779e7
+        );
+
+    font-size: 25px;
+
+    box-shadow:
+        0 8px 22px
+        rgba(100, 72, 174, 0.20);
+
+}
+
+
+.logo-texto h1 {
+
+    margin: 0;
+
+    font-size: 20px;
+
+}
+
+
+.logo-texto p {
+
+    margin: 3px 0 0;
+
+    color: #877c9e;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================
+   MENU
+========================================= */
+
+.menu {
+
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+}
+
+
+.menu a {
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+
+    color: #706681;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 700;
+
+}
+
+
+.menu a:hover,
+.menu a.ativo {
+
+    color: #6f50c7;
+
+    background: #f0eaff;
+
+}
+
+
+/* =========================================
+   PRINCIPAL
+========================================= */
+
+main {
+
+    width: 100%;
+    max-width: 1160px;
+
+    margin: 18px auto 70px;
+
+    padding: 0 30px;
+
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero-conteudos {
+
+    min-height: 330px;
+
+    padding: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 40px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ede6ff,
+            #f8f4ff,
+            #ffffff
+        );
+
+    border:
+        1px solid
+        #e4dcf6;
+
+    box-shadow:
+        0 18px 55px
+        rgba(77, 54, 132, 0.08);
+
+}
+
+
+.hero-texto {
+
+    max-width: 720px;
+
+}
+
+
+.etiqueta {
+
+    display: inline-block;
+
+    padding: 9px 14px;
+
+    border-radius: 999px;
+
+    color: #7355c5;
+
+    background: #e5dcff;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+
+}
+
+
+.hero-texto h2 {
+
+    margin: 20px 0 16px;
+
+    color: #392d5b;
+
+    font-size:
+        clamp(
+            34px,
+            4vw,
+            49px
+        );
+
+    line-height: 1.12;
+
+    letter-spacing: -1.4px;
+
+}
+
+
+.hero-texto > p {
+
+    margin: 0;
+
+    max-width: 690px;
+
+    color: #756c84;
+
+    font-size: 16px;
+
+    line-height: 1.75;
+
+}
+
+
+.hero-visual {
+
+    width: 160px;
+    height: 160px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 38px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.78
+        );
+
+    font-size: 78px;
+
+    box-shadow:
+        0 18px 45px
+        rgba(90, 64, 151, 0.10);
+
+}
+
+
+.aviso-pontos {
+
+    display: inline-flex;
+
+    margin-top: 24px;
+
+    padding: 12px 15px;
+
+    border-radius: 12px;
+
+    color: #675386;
+
+    background: #ffffff;
+
+    border:
+        1px solid
+        #dfd6f3;
+
+    font-size: 13px;
+
+}
+
+
+.aviso-pontos strong {
+
+    margin-left: 4px;
+
+    color: #7454ca;
+
+}
+
+
+/* =========================================
+   DESTAQUE DA ESCOLA
+========================================= */
+
+.destaque-escola {
+
+    margin-top: 28px;
+
+    padding: 27px 30px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 22px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff8de,
+            #fffdf4,
+            #ffffff
+        );
+
+    border:
+        1px solid
+        #ead798;
+
+    box-shadow:
+        0 12px 32px
+        rgba(118, 89, 24, 0.07);
+
+}
+
+
+.destaque-escola[hidden] {
+
+    display: none;
+
+}
+
+
+.destaque-escola-icone {
+
+    width: 66px;
+    height: 66px;
+
+    flex:
+        0
+        0
+        66px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    font-size: 32px;
+
+    box-shadow:
+        0 8px 20px
+        rgba(133, 100, 27, 0.09);
+
+}
+
+
+.destaque-escola-conteudo {
+
+    flex: 1;
+
+}
+
+
+.destaque-escola-conteudo > span {
+
+    color: #98701b;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.9px;
+
+}
+
+
+.destaque-escola-conteudo h2 {
+
+    margin:
+        6px
+        0
+        7px;
+
+    color: #544123;
+
+    font-size: 21px;
+
+}
+
+
+.destaque-escola-conteudo > p {
+
+    margin: 0;
+
+    color: #796d57;
+
+    font-size: 13px;
+
+    line-height: 1.65;
+
+}
+
+
+.destaque-escola-rodape {
+
+    margin-top: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+}
+
+
+.destaque-escola-rodape small {
+
+    color: #9a8a6b;
+
+    font-size: 10px;
+
+}
+
+
+.destaque-escola-rodape button {
+
+    padding:
+        10px
+        14px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #8b681d;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    font-size: 11px;
+    font-weight: 800;
+
+}
+
+
+.destaque-escola-rodape button:hover {
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+/* =========================================
+   RESUMO DO PROGRESSO
+========================================= */
+
+.resumo-progresso {
+
+    margin-top: 28px;
+
+    padding: 25px 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    border-radius: 20px;
+
+    background: #ffffff;
+
+    border:
+        1px solid
+        #e8e1f3;
+
+    box-shadow:
+        0 12px 34px
+        rgba(77, 54, 132, 0.05);
+
+}
+
+
+.resumo-progresso > div > span {
+
+    color: #8669ce;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 0.9px;
+
+}
+
+
+.resumo-progresso h2 {
+
+    margin: 6px 0 0;
+
+    color: #45385f;
+
+    font-size: 22px;
+
+}
+
+
+.resumo-numeros {
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+}
+
+
+.resumo-item {
+
+    text-align: center;
+
+}
+
+
+.resumo-item strong {
+
+    display: block;
+
+    color: #7253c9;
+
+    font-size: 31px;
+
+}
+
+
+.resumo-item span {
+
+    color: #948ba2;
+
+    font-size: 11px;
+
+}
+
+
+.divisor {
+
+    color: #c6bbd9;
+
+    font-size: 26px;
+
+}
+
+
+/* =========================================
+   ÁREA DOS CONTEÚDOS
+========================================= */
+
+.area-conteudos {
+
+    margin-top: 52px;
+
+}
+
+
+.titulo-secao {
+
+    max-width: 700px;
+
+}
+
+
+.titulo-secao > span {
+
+    color: #8567ce;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 0.9px;
+
+}
+
+
+.titulo-secao h2 {
+
+    margin: 8px 0;
+
+    color: #40345a;
+
+    font-size: 30px;
+
+}
+
+
+.titulo-secao p {
+
+    margin: 0;
+
+    color: #82798f;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================================
+   GRADE
+========================================= */
+
+.grade-conteudos {
+
+    margin-top: 27px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+}
+
+
+/* =========================================
+   CARD DE CONTEÚDO
+========================================= */
+
+.card-conteudo {
+
+    position: relative;
+
+    min-height: 285px;
+
+    padding: 25px;
+
+    display: flex;
+    flex-direction: column;
+
+    border:
+        1px solid
+        #e5def0;
+
+    border-radius: 21px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 12px 32px
+        rgba(77, 55, 125, 0.05);
+
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+
+}
+
+
+.card-conteudo:hover {
+
+    transform: translateY(-3px);
+
+    border-color: #bdaae8;
+
+    box-shadow:
+        0 16px 38px
+        rgba(77, 55, 125, 0.09);
+
+}
+
+
+.card-conteudo.concluido {
+
+    border-color: #c7b3ed;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #faf8ff
+        );
+
+}
+
+
+.card-conteudo.recomendado-escola {
+
+    border-color: #cdbff2;
+
+}
+
+
+.card-conteudo.campanha-escola {
+
+    border-color: #e0c66f;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fffdf6,
+            #ffffff
+        );
+
+}
+
+
+.card-conteudo-icone {
+
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background: #f2edff;
+
+    font-size: 27px;
+
+}
+
+
+.card-conteudo > span:not(.selo-concluido) {
+
+    display: block;
+
+    margin-top: 17px;
+
+    color: #8c71cf;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.7px;
+
+    text-transform: uppercase;
+
+}
+
+
+.card-conteudo h3 {
+
+    margin: 8px 0 9px;
+
+    color: #493d61;
+
+    font-size: 19px;
+
+    line-height: 1.3;
+
+}
+
+
+.card-conteudo p {
+
+    margin: 0 0 21px;
+
+    color: #877f92;
+
+    font-size: 13px;
+
+    line-height: 1.65;
+
+}
+
+
+.botao-abrir-conteudo {
+
+    margin-top: auto;
+
+    width: 100%;
+    min-height: 44px;
+
+    padding: 0 14px;
+
+    border: 0;
+
+    border-radius: 11px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7455ce,
+            #9970dd
+        );
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 800;
+
+}
+
+
+.botao-abrir-conteudo:hover {
+
+    transform: translateY(-1px);
+
+}
+
+
+.selo-concluido {
+
+    position: absolute;
+
+    top: 18px;
+    right: 18px;
+
+    padding: 7px 10px;
+
+    border-radius: 999px;
+
+    color: #655184;
+
+    background: #eee8fc;
+
+    font-size: 10px;
+    font-weight: 800;
+
+}
+
+
+/* =========================================
+   MARCADORES DA ESCOLA
+========================================= */
+
+.marcadores-escola {
+
+    margin-top: 10px;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+}
+
+
+.marcador-escola {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    width: fit-content;
+
+    padding:
+        6px
+        9px;
+
+    border-radius: 999px;
+
+    font-size: 9px;
+    font-weight: 800;
+
+}
+
+
+.marcador-escola.recomendado {
+
+    color: #6449c0;
+
+    background: #eee8ff;
+
+    border:
+        1px solid
+        #ded3fb;
+
+}
+
+
+.marcador-escola.campanha {
+
+    color: #886315;
+
+    background: #fff2c7;
+
+    border:
+        1px solid
+        #ecd995;
+
+}
+
+
+/* =========================================
+   ÁREA DE LEITURA
+========================================= */
+
+.area-leitura {
+
+    margin-top: 45px;
+
+    scroll-margin-top: 20px;
+
+}
+
+
+.area-leitura[hidden] {
+
+    display: none;
+
+}
+
+
+.fechar-leitura {
+
+    margin-bottom: 15px;
+
+    padding: 10px 13px;
+
+    border:
+        1px solid
+        #ddd4ef;
+
+    border-radius: 10px;
+
+    color: #695786;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 700;
+
+}
+
+
+.fechar-leitura:hover {
+
+    background: #faf8ff;
+
+}
+
+
+/* =========================================
+   CARD DE LEITURA
+========================================= */
+
+.leitura-card {
+
+    max-width: 840px;
+
+    margin: 0 auto;
+
+    padding: 42px;
+
+    border-radius: 27px;
+
+    background: #ffffff;
+
+    border:
+        1px solid
+        #e4dcf2;
+
+    box-shadow:
+        0 18px 52px
+        rgba(69, 47, 120, 0.09);
+
+}
+
+
+.leitura-icone {
+
+    width: 64px;
+    height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background: #f1ecff;
+
+    font-size: 34px;
+
+}
+
+
+.sinalizacao-leitura {
+
+    margin-top: 18px;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+}
+
+
+.sinalizacao-leitura[hidden] {
+
+    display: none;
+
+}
+
+
+.leitura-categoria {
+
+    display: block;
+
+    margin-top: 20px;
+
+    color: #8467cb;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+
+    text-transform: uppercase;
+
+}
+
+
+.leitura-card > h2 {
+
+    margin: 8px 0 22px;
+
+    color: #403357;
+
+    font-size: 31px;
+
+}
+
+
+/* =========================================
+   TEXTO
+========================================= */
+
+.leitura-texto {
+
+    color: #665d73;
+
+    font-size: 15px;
+
+    line-height: 1.85;
+
+}
+
+
+.leitura-texto p {
+
+    margin:
+        0 0
+        18px;
+
+}
+
+
+.leitura-texto strong {
+
+    color: #55476f;
+
+}
+
+
+/* =========================================
+   REFLEXÃO
+========================================= */
+
+.leitura-reflexao {
+
+    margin-top: 28px;
+
+    padding: 21px;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4efff,
+            #faf8ff
+        );
+
+    border:
+        1px solid
+        #e5dbf8;
+
+    color: #695b7c;
+
+    font-size: 14px;
+
+    line-height: 1.75;
+
+}
+
+
+.leitura-reflexao strong {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #684fa5;
+
+    font-size: 14px;
+
+}
+
+
+.leitura-reflexao p {
+
+    margin: 0;
+
+}
+
+
+/* =========================================
+   BOTÃO CONCLUIR
+========================================= */
+
+.botao-concluir {
+
+    width: 100%;
+    min-height: 50px;
+
+    margin-top: 26px;
+
+    padding: 0 18px;
+
+    border: 0;
+
+    border-radius: 13px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7253cf,
+            #9d72df
+        );
+
+    cursor: pointer;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    box-shadow:
+        0 12px 25px
+        rgba(111, 80, 190, 0.18);
+
+}
+
+
+.botao-concluir:hover {
+
+    transform: translateY(-1px);
+
+}
+
+
+.botao-concluir.concluido {
+
+    color: #5d4a79;
+
+    background: #eee7fb;
+
+    box-shadow: none;
+
+}
+
+
+/* =========================================
+   APOIO
+========================================= */
+
+.mensagem-apoio {
+
+    margin-top: 55px;
+
+    padding: 30px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eee7ff,
+            #faf8ff
+        );
+
+    border:
+        1px solid
+        #e2d9f5;
+
+}
+
+
+.mensagem-icone {
+
+    width: 58px;
+    height: 58px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 17px;
+
+    background: #ffffff;
+
+    font-size: 29px;
+
+}
+
+
+.mensagem-apoio span {
+
+    color: #8467ca;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+
+}
+
+
+.mensagem-apoio h2 {
+
+    margin: 6px 0 7px;
+
+    color: #4b3d68;
+
+    font-size: 23px;
+
+}
+
+
+.mensagem-apoio p {
+
+    margin: 0;
+
+    color: #7d738c;
+
+    font-size: 13px;
+
+    line-height: 1.65;
+
+}
+
+
+.botao-painel {
+
+    display: inline-block;
+
+    margin-top: 15px;
+
+    padding: 10px 14px;
+
+    border-radius: 11px;
+
+    color: #ffffff;
+
+    background: #7456cb;
+
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 800;
+
+}
+
+
+/* =========================================
+   RODAPÉ
+========================================= */
+
+footer {
+
+    padding: 30px;
+
+    color: #92879f;
+
+    text-align: center;
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================
+   RESPONSIVO
+========================================= */
+
+@media (max-width: 900px) {
+
+    .grade-conteudos {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .hero-conteudos {
+
+        padding: 36px;
+
+    }
+
+
+    .hero-visual {
+
+        width: 125px;
+        height: 125px;
+
+        font-size: 62px;
+
+    }
+
+}
+
+
+@media (max-width: 680px) {
+
+    .cabecalho {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+
+    .menu {
+
+        width: 100%;
+
+        overflow-x: auto;
+
+    }
+
+
+    main {
+
+        padding: 0 16px;
+
+    }
+
+
+    .hero-conteudos {
+
+        padding: 29px 23px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+
+    .hero-visual {
+
+        width: 95px;
+        height: 95px;
+
+        font-size: 47px;
+
+    }
+
+
+    .destaque-escola {
+
+        padding: 23px;
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+
+    .destaque-escola-rodape {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+
+    .resumo-progresso {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+
+    .grade-conteudos {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .leitura-card {
+
+        padding: 28px 21px;
+
+    }
+
+
+    .mensagem-apoio {
+
+        align-items: flex-start;
+
+    }
+
+}

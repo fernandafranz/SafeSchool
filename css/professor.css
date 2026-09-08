@@ -1,0 +1,1509 @@
+/* =========================================
+   CONFIGURAÇÕES GERAIS
+========================================= */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+:root {
+
+    --roxo-principal: #6c4ce5;
+
+    --roxo-escuro: #4f35b8;
+
+    --roxo-claro: #eeeaff;
+
+    --azul-escuro: #20205f;
+
+    --branco: #ffffff;
+
+    --cinza-fundo: #f7f7fc;
+
+    --cinza-texto: #6f6f8d;
+
+    --cinza-borda: #e5e5ef;
+
+    --vermelho-claro: #fff0f2;
+
+    --vermelho: #d84b60;
+
+    --amarelo-claro: #fff8df;
+
+    --amarelo: #a77b18;
+
+    --verde-claro: #ecf9f1;
+
+    --verde: #329263;
+
+    --azul-claro: #edf5ff;
+
+    --azul: #4a79c9;
+
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        var(--cinza-fundo);
+
+    color:
+        var(--azul-escuro);
+
+}
+
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+
+.cabecalho {
+
+    width: 100%;
+
+    height: 90px;
+
+    padding:
+        0
+        7%;
+
+    background:
+        var(--branco);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    box-shadow:
+        0
+        3px
+        20px
+        rgba(0, 0, 0, 0.06);
+
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    text-decoration: none;
+
+}
+
+
+.logo-icone {
+
+    width: 50px;
+
+    height: 50px;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7b5bea,
+            #5434c9
+        );
+
+    color:
+        var(--branco);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
+
+}
+
+
+.logo-texto h1 {
+
+    color:
+        var(--azul-escuro);
+
+    font-size: 24px;
+
+}
+
+
+.logo-texto p {
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================
+   MENU
+========================================= */
+
+.menu {
+
+    display: flex;
+
+    gap: 24px;
+
+    align-items: center;
+
+}
+
+
+.menu a {
+
+    text-decoration: none;
+
+    color:
+        var(--azul-escuro);
+
+    font-size: 13px;
+
+    white-space: nowrap;
+
+}
+
+
+.menu a:hover,
+.menu .ativo {
+
+    color:
+        var(--roxo-principal);
+
+}
+
+
+/* =========================================
+   BOAS-VINDAS
+========================================= */
+
+.boas-vindas {
+
+    padding:
+        55px
+        8%;
+
+    background:
+        linear-gradient(
+            120deg,
+            #ffffff,
+            #eeeaff
+        );
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 50px;
+
+}
+
+
+.boas-vindas-texto {
+
+    max-width: 700px;
+
+}
+
+
+.etiqueta {
+
+    display: inline-block;
+
+    padding:
+        9px
+        17px;
+
+    border-radius: 25px;
+
+    background:
+        var(--roxo-claro);
+
+    color:
+        var(--roxo-principal);
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.boas-vindas h2 {
+
+    font-size: 40px;
+
+    margin-bottom: 14px;
+
+}
+
+
+.boas-vindas p {
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+}
+
+
+.boas-vindas-icone {
+
+    width: 150px;
+
+    height: 150px;
+
+    border-radius: 35px;
+
+    background:
+        var(--branco);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 65px;
+
+}
+
+
+/* =========================================
+   SEÇÕES
+========================================= */
+
+.resumo,
+.relatos,
+.ferramentas {
+
+    padding:
+        65px
+        8%;
+
+}
+
+
+.relatos {
+
+    scroll-margin-top: 120px;
+
+}
+
+
+.titulo-secao {
+
+    margin-bottom: 28px;
+
+}
+
+
+.titulo-secao span {
+
+    display: block;
+
+    color:
+        var(--roxo-principal);
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.titulo-secao h2 {
+
+    font-size: 29px;
+
+}
+
+
+/* =========================================
+   CARDS RESUMO
+========================================= */
+
+.cards-resumo {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+
+}
+
+
+.card-resumo {
+
+    padding: 24px;
+
+    border-radius: 18px;
+
+    background:
+        var(--branco);
+
+    box-shadow:
+        0
+        8px
+        28px
+        rgba(50, 40, 100, 0.07);
+
+}
+
+
+.card-topo {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+
+}
+
+
+.icone-card {
+
+    width: 48px;
+
+    height: 48px;
+
+    border-radius: 13px;
+
+    background:
+        var(--roxo-claro);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 23px;
+
+}
+
+
+.status {
+
+    padding:
+        6px
+        9px;
+
+    border-radius: 20px;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+}
+
+
+.neutro {
+
+    background:
+        var(--roxo-claro);
+
+    color:
+        var(--roxo-principal);
+
+}
+
+
+.urgente {
+
+    background:
+        var(--vermelho-claro);
+
+    color:
+        var(--vermelho);
+
+}
+
+
+.acompanhamento {
+
+    background:
+        var(--azul-claro);
+
+    color:
+        var(--azul);
+
+}
+
+
+.concluido {
+
+    background:
+        var(--verde-claro);
+
+    color:
+        var(--verde);
+
+}
+
+
+.numero {
+
+    display: block;
+
+    font-size: 38px;
+
+    color:
+        var(--roxo-principal);
+
+    margin-bottom: 7px;
+
+}
+
+
+.card-resumo h3 {
+
+    font-size: 16px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.card-resumo p {
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================
+   RELATOS
+========================================= */
+
+.relatos {
+
+    padding-top: 15px;
+
+}
+
+
+.cabecalho-secao {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+
+.total-relatos {
+
+    padding:
+        9px
+        14px;
+
+    background:
+        var(--roxo-claro);
+
+    color:
+        var(--roxo-principal);
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+}
+
+
+.lista-relatos {
+
+    display: grid;
+
+    gap: 18px;
+
+}
+
+
+/* =========================================
+   CARD DO RELATO
+========================================= */
+
+.card-relato {
+
+    padding: 25px;
+
+    background:
+        var(--branco);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0
+        8px
+        28px
+        rgba(50, 40, 100, 0.07);
+
+}
+
+
+.relato-topo {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    align-items: flex-start;
+
+    margin-bottom: 15px;
+
+}
+
+
+.protocolo-relato {
+
+    display: block;
+
+    color:
+        var(--roxo-principal);
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    margin-bottom: 6px;
+
+}
+
+
+.relato-topo h3 {
+
+    font-size: 18px;
+
+}
+
+
+.prioridade-relato {
+
+    padding:
+        7px
+        11px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+
+}
+
+
+.prioridade-normal {
+
+    background:
+        var(--verde-claro);
+
+    color:
+        var(--verde);
+
+}
+
+
+.prioridade-media {
+
+    background:
+        var(--amarelo-claro);
+
+    color:
+        var(--amarelo);
+
+}
+
+
+.prioridade-alta {
+
+    background:
+        var(--vermelho-claro);
+
+    color:
+        var(--vermelho);
+
+}
+
+
+/* =========================================
+   INFORMAÇÕES DO RELATO
+========================================= */
+
+.relato-informacoes {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.relato-informacoes span {
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 11px;
+
+}
+
+
+.relato-resumo {
+
+    color:
+        #52526d;
+
+    font-size: 13px;
+
+    line-height: 1.65;
+
+    margin-bottom: 18px;
+
+}
+
+
+/* =========================================
+   DETALHES
+========================================= */
+
+.relato-detalhes {
+
+    margin:
+        5px
+        0
+        20px;
+
+    padding: 20px;
+
+    border-radius: 13px;
+
+    background:
+        #faf9ff;
+
+    border:
+        1px
+        solid
+        #eeeaff;
+
+}
+
+
+.relato-detalhes[hidden] {
+
+    display: none;
+
+}
+
+
+.detalhe-bloco {
+
+    margin-bottom: 18px;
+
+}
+
+
+.detalhe-bloco strong {
+
+    display: block;
+
+    font-size: 12px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.detalhe-bloco p {
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+}
+
+
+.detalhe-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+}
+
+
+.detalhe-grid div {
+
+    padding: 12px;
+
+    background:
+        var(--branco);
+
+    border-radius: 10px;
+
+}
+
+
+.detalhe-grid span {
+
+    display: block;
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 9px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.detalhe-grid strong {
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================
+   RODAPÉ DO RELATO
+========================================= */
+
+.relato-rodape {
+
+    padding-top: 15px;
+
+    border-top:
+        1px
+        solid
+        var(--cinza-borda);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+}
+
+
+.acoes-relato {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+/* =========================================
+   STATUS DO CASO
+========================================= */
+
+.status-relato {
+
+    padding:
+        7px
+        11px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+}
+
+
+.status-novo {
+
+    background:
+        var(--roxo-claro);
+
+    color:
+        var(--roxo-principal);
+
+}
+
+
+.status-acompanhamento {
+
+    background:
+        var(--azul-claro);
+
+    color:
+        var(--azul);
+
+}
+
+
+.status-concluido {
+
+    background:
+        var(--verde-claro);
+
+    color:
+        var(--verde);
+
+}
+
+
+/* =========================================
+   BOTÕES DO RELATO
+========================================= */
+
+.botao-detalhes {
+
+    border: none;
+
+    background:
+        transparent;
+
+    color:
+        var(--roxo-principal);
+
+    padding:
+        9px
+        10px;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+.botao-status {
+
+    border: none;
+
+    border-radius: 9px;
+
+    background:
+        var(--roxo-principal);
+
+    color:
+        var(--branco);
+
+    padding:
+        10px
+        14px;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.botao-status:hover {
+
+    background:
+        var(--roxo-escuro);
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+.botao-status.desativado {
+
+    background:
+        #d7d7e1;
+
+    color:
+        #858598;
+
+    cursor:
+        not-allowed;
+
+}
+
+
+.botao-status.desativado:hover {
+
+    transform: none;
+
+}
+
+
+/* =========================================
+   SEM RELATOS
+========================================= */
+
+.sem-relatos {
+
+    padding:
+        45px
+        25px;
+
+    background:
+        var(--branco);
+
+    border:
+        1px
+        dashed
+        #d8d2f3;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+}
+
+
+.sem-relatos-icone {
+
+    font-size: 45px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.sem-relatos h3 {
+
+    font-size: 19px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.sem-relatos p {
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 13px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.sem-relatos small {
+
+    color:
+        #9898ac;
+
+}
+
+
+/* =========================================
+   FERRAMENTAS
+========================================= */
+
+.ferramentas {
+
+    background:
+        #f1eeff;
+
+}
+
+
+.cards-ferramentas {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+}
+
+
+.card-ferramenta {
+
+    display: flex;
+
+    gap: 18px;
+
+    background:
+        var(--branco);
+
+    padding: 25px;
+
+    border-radius: 17px;
+
+    text-decoration: none;
+
+    color:
+        var(--azul-escuro);
+
+}
+
+
+.ferramenta-icone {
+
+    width: 50px;
+
+    height: 50px;
+
+    min-width: 50px;
+
+    border-radius: 13px;
+
+    background:
+        var(--roxo-claro);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 24px;
+
+}
+
+
+.card-ferramenta h3 {
+
+    font-size: 16px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.card-ferramenta p {
+
+    color:
+        var(--cinza-texto);
+
+    font-size: 12px;
+
+    line-height: 1.55;
+
+    margin-bottom: 12px;
+
+}
+
+
+.card-ferramenta span {
+
+    color:
+        var(--roxo-principal);
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+}
+
+
+/* =========================================
+   TRIAGEM ASSISTIDA
+========================================= */
+
+.inteligencia {
+
+    margin:
+        65px
+        8%;
+
+    padding: 35px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c4ce5,
+            #4f35b8
+        );
+
+    color:
+        var(--branco);
+
+    display: flex;
+
+    gap: 25px;
+
+    align-items: center;
+
+}
+
+
+.inteligencia-icone {
+
+    width: 70px;
+
+    height: 70px;
+
+    min-width: 70px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(255, 255, 255, 0.15);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 31px;
+
+}
+
+
+.inteligencia-texto span {
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+}
+
+
+.inteligencia h2 {
+
+    font-size: 24px;
+
+    margin:
+        7px
+        0;
+
+}
+
+
+.inteligencia p {
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    margin-bottom: 8px;
+
+}
+
+
+/* =========================================
+   AVISO
+========================================= */
+
+.aviso-prototipo {
+
+    margin:
+        0
+        8%
+        70px;
+
+    padding: 20px;
+
+    border-radius: 13px;
+
+    background:
+        #fff9e8;
+
+    border:
+        1px
+        solid
+        #f1dfab;
+
+}
+
+
+.aviso-prototipo strong {
+
+    display: block;
+
+    font-size: 13px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.aviso-prototipo p {
+
+    color:
+        #7e7155;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 1050px) {
+
+    .cards-resumo {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .cards-ferramentas {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .cabecalho {
+
+        height: auto;
+
+        min-height: 90px;
+
+        padding-top: 18px;
+
+        padding-bottom: 14px;
+
+        flex-wrap: wrap;
+
+        gap: 14px;
+
+    }
+
+
+    .menu {
+
+        width: 100%;
+
+        display: flex;
+
+        gap: 20px;
+
+        overflow-x: auto;
+
+        padding:
+            4px
+            0
+            7px;
+
+        scrollbar-width: thin;
+
+    }
+
+
+    .menu::-webkit-scrollbar {
+
+        height: 4px;
+
+    }
+
+
+    .menu::-webkit-scrollbar-thumb {
+
+        background:
+            #d8d0f5;
+
+        border-radius: 20px;
+
+    }
+
+
+    .boas-vindas {
+
+        flex-direction: column;
+
+        text-align: center;
+
+    }
+
+
+    .inteligencia {
+
+        flex-direction: column;
+
+        text-align: center;
+
+    }
+
+
+    .detalhe-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .logo-texto p {
+
+        display: none;
+
+    }
+
+
+    .cabecalho {
+
+        padding-left:
+            20px;
+
+        padding-right:
+            20px;
+
+    }
+
+
+    .cards-resumo {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .cabecalho-secao {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 15px;
+
+    }
+
+
+    .relato-topo {
+
+        flex-direction: column;
+
+    }
+
+
+    .relato-rodape {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+
+    .acoes-relato {
+
+        width: 100%;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+
+    .botao-detalhes,
+    .botao-status {
+
+        width: 100%;
+
+        text-align: center;
+
+    }
+
+}

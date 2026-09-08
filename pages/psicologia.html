@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Área da Psicologia | SafeSchool
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../css/psicologia.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         CABEÇALHO
+    ========================================== -->
+
+    <header class="cabecalho">
+
+
+        <a
+            href="../index.html"
+            class="logo"
+        >
+
+            <div class="logo-icone">
+                ♥
+            </div>
+
+
+            <div class="logo-texto">
+
+                <h1>
+                    SafeSchool
+                </h1>
+
+                <p>
+                    Escola Sem Bullying
+                </p>
+
+            </div>
+
+        </a>
+
+
+
+        <nav class="menu">
+
+            <a
+                href="psicologia.html"
+                class="ativo"
+            >
+                Painel
+            </a>
+
+            <a href="#solicitacoes">
+                Solicitações
+            </a>
+
+            <a href="#agenda">
+                Agenda
+            </a>
+
+            <a href="#encaminhamentos">
+                Encaminhamentos
+            </a>
+
+            <a href="#acolhimentos">
+                Acolhimentos
+            </a>
+
+            <a href="../index.html">
+                Sair
+            </a>
+
+        </nav>
+
+
+    </header>
+
+
+
+    <!-- =========================================
+         CONTEÚDO PRINCIPAL
+    ========================================== -->
+
+    <main>
+
+
+        <!-- =========================================
+             APRESENTAÇÃO
+        ========================================== -->
+
+        <section class="boas-vindas">
+
+
+            <div class="boas-vindas-texto">
+
+
+                <span class="etiqueta">
+
+                    ÁREA DA PSICOLOGIA
+
+                </span>
+
+
+                <h2>
+
+                    Painel de acolhimento
+
+                </h2>
+
+
+                <p>
+
+                    Organize solicitações de apoio psicológico,
+                    contatos prioritários, agendamentos
+                    e encaminhamentos da comunidade escolar.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div class="boas-vindas-visual">
+
+                🧠💜
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             RESUMO
+        ========================================== -->
+
+        <section class="resumo">
+
+
+            <div class="titulo-secao">
+
+                <span>
+                    VISÃO GERAL
+                </span>
+
+                <h2>
+                    Situação dos acolhimentos
+                </h2>
+
+            </div>
+
+
+
+            <div class="cards-resumo">
+
+
+                <!-- NOVAS -->
+
+                <div class="card-resumo">
+
+                    <div class="card-topo">
+
+                        <div class="card-icone">
+                            💬
+                        </div>
+
+                        <span class="status novo">
+                            Novos
+                        </span>
+
+                    </div>
+
+
+                    <strong
+                        class="numero"
+                        id="numeroNovas"
+                    >
+                        0
+                    </strong>
+
+
+                    <h3>
+                        Novas solicitações
+                    </h3>
+
+
+                    <p>
+
+                        Pedidos e encaminhamentos
+                        que ainda aguardam análise.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- CONTATO RÁPIDO -->
+
+                <div class="card-resumo">
+
+                    <div class="card-topo">
+
+                        <div class="card-icone">
+                            ⚡
+                        </div>
+
+                        <span class="status prioridade">
+                            Prioridade
+                        </span>
+
+                    </div>
+
+
+                    <strong
+                        class="numero"
+                        id="numeroRapidos"
+                    >
+                        0
+                    </strong>
+
+
+                    <h3>
+                        Contato rápido
+                    </h3>
+
+
+                    <p>
+
+                        Estudantes que solicitaram
+                        conversa assim que possível.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- AGENDADOS -->
+
+                <div class="card-resumo">
+
+                    <div class="card-topo">
+
+                        <div class="card-icone">
+                            📅
+                        </div>
+
+                        <span class="status agendado">
+                            Agenda
+                        </span>
+
+                    </div>
+
+
+                    <strong
+                        class="numero"
+                        id="numeroAgendados"
+                    >
+                        0
+                    </strong>
+
+
+                    <h3>
+                        Agendamentos
+                    </h3>
+
+
+                    <p>
+
+                        Pedidos que já possuem
+                        acolhimento organizado.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- EM ACOLHIMENTO -->
+
+                <div class="card-resumo">
+
+                    <div class="card-topo">
+
+                        <div class="card-icone">
+                            💜
+                        </div>
+
+                        <span class="status andamento">
+                            Em andamento
+                        </span>
+
+                    </div>
+
+
+                    <strong
+                        class="numero"
+                        id="numeroAcolhimentos"
+                    >
+                        0
+                    </strong>
+
+
+                    <h3>
+                        Em acolhimento
+                    </h3>
+
+
+                    <p>
+
+                        Solicitações e casos
+                        que estão sendo acompanhados.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- CONCLUÍDOS -->
+
+                <div class="card-resumo">
+
+                    <div class="card-topo">
+
+                        <div class="card-icone">
+                            ✅
+                        </div>
+
+                        <span class="status finalizado">
+                            Concluídos
+                        </span>
+
+                    </div>
+
+
+                    <strong
+                        class="numero"
+                        id="numeroConcluidos"
+                    >
+                        0
+                    </strong>
+
+
+                    <h3>
+                        Acolhimentos concluídos
+                    </h3>
+
+
+                    <p>
+
+                        Fluxos de acolhimento
+                        que já foram encerrados.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             SOLICITAÇÕES DOS ALUNOS
+        ========================================== -->
+
+        <section
+            class="solicitacoes"
+            id="solicitacoes"
+        >
+
+
+            <div class="cabecalho-secao">
+
+
+                <div class="titulo-secao">
+
+                    <span>
+                        SOLICITAÇÕES DOS ALUNOS
+                    </span>
+
+                    <h2>
+                        Pedidos de acolhimento
+                    </h2>
+
+                </div>
+
+
+                <span
+                    class="contador"
+                    id="contadorSolicitacoes"
+                >
+
+                    0 solicitações
+
+                </span>
+
+
+            </div>
+
+
+
+            <div
+                class="lista-solicitacoes"
+                id="listaSolicitacoes"
+            >
+
+                <!-- Criada pelo JavaScript -->
+
+            </div>
+
+
+
+            <div
+                class="estado-vazio"
+                id="estadoVazio"
+            >
+
+
+                <div class="estado-vazio-icone">
+                    💌
+                </div>
+
+
+                <h3>
+                    Nenhuma solicitação recebida
+                </h3>
+
+
+                <p>
+
+                    Quando um aluno solicitar apoio psicológico
+                    utilizando sua conta, o pedido aparecerá aqui.
+
+                </p>
+
+
+                <small>
+
+                    Esta área é reservada ao perfil Psicologia.
+
+                </small>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             AGENDA
+        ========================================== -->
+
+        <section
+            class="agenda"
+            id="agenda"
+        >
+
+
+            <div class="titulo-secao">
+
+                <span>
+                    AGENDA
+                </span>
+
+                <h2>
+                    Próximos acolhimentos
+                </h2>
+
+            </div>
+
+
+
+            <div class="agenda-conteudo">
+
+
+                <div class="agenda-icone">
+                    📅
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Organização dos atendimentos
+                    </h3>
+
+
+                    <p>
+
+                        Solicitações marcadas como agendadas
+                        são contabilizadas nesta área.
+                        Em uma versão real, o SafeSchool poderá
+                        ser integrado à agenda da equipe de Psicologia.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             ENCAMINHAMENTOS
+        ========================================== -->
+
+        <section
+            class="encaminhamentos"
+            id="encaminhamentos"
+        >
+
+
+            <div class="cabecalho-secao">
+
+
+                <div class="titulo-secao">
+
+                    <span>
+                        ENCAMINHAMENTOS
+                    </span>
+
+                    <h2>
+                        Casos encaminhados pela equipe escolar
+                    </h2>
+
+                </div>
+
+
+                <span
+                    class="contador"
+                    id="contadorEncaminhamentos"
+                >
+
+                    0 encaminhamentos
+
+                </span>
+
+
+            </div>
+
+
+
+            <div
+                class="lista-solicitacoes"
+                id="listaEncaminhamentos"
+            >
+
+                <!-- Criada pelo JavaScript -->
+
+            </div>
+
+
+
+            <div
+                class="encaminhamento-vazio"
+                id="estadoEncaminhamentos"
+            >
+
+
+                <div class="encaminhamento-icone">
+                    🛡️
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Nenhum encaminhamento recebido
+                    </h3>
+
+
+                    <p>
+
+                        Quando a equipe escolar encaminhar
+                        um caso de bullying para apoio psicológico,
+                        ele aparecerá nesta área.
+
+                    </p>
+
+
+                    <small>
+
+                        A identidade do denunciante permanece
+                        anônima quando o relato foi realizado
+                        pelo canal anônimo.
+
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             FLUXO
+        ========================================== -->
+
+        <section
+            class="acolhimentos"
+            id="acolhimentos"
+        >
+
+
+            <div class="titulo-secao">
+
+                <span>
+                    ACOMPANHAMENTO
+                </span>
+
+                <h2>
+                    Fluxo de acolhimento
+                </h2>
+
+            </div>
+
+
+
+            <div class="fluxo">
+
+
+                <div class="etapa-fluxo">
+
+                    <div class="fluxo-numero">
+                        1
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Solicitação
+                        </h3>
+
+                        <p>
+
+                            O pedido chega à área
+                            reservada da Psicologia.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="linha-fluxo"></div>
+
+
+
+                <div class="etapa-fluxo">
+
+                    <div class="fluxo-numero">
+                        2
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Análise
+                        </h3>
+
+                        <p>
+
+                            A equipe de Psicologia analisa
+                            as informações disponíveis.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="linha-fluxo"></div>
+
+
+
+                <div class="etapa-fluxo">
+
+                    <div class="fluxo-numero">
+                        3
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Acolhimento
+                        </h3>
+
+                        <p>
+
+                            O acompanhamento é organizado
+                            conforme cada situação.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="linha-fluxo"></div>
+
+
+
+                <div class="etapa-fluxo">
+
+                    <div class="fluxo-numero">
+                        4
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Encerramento
+                        </h3>
+
+                        <p>
+
+                            O fluxo administrativo
+                            pode ser concluído quando apropriado.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             PRIVACIDADE
+        ========================================== -->
+
+        <section class="privacidade">
+
+
+            <div class="privacidade-icone">
+                🔐
+            </div>
+
+
+            <div>
+
+                <span>
+                    PRIVACIDADE
+                </span>
+
+
+                <h2>
+                    Acolhimento exige confidencialidade.
+                </h2>
+
+
+                <p>
+
+                    As informações desta área pertencem ao fluxo
+                    reservado de apoio psicológico. Professores
+                    poderão acompanhar apenas a situação geral
+                    de um encaminhamento, sem acesso automático
+                    às conversas particulares, registros clínicos
+                    ou informações confidenciais do acolhimento.
+
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             TECNOLOGIA
+        ========================================== -->
+
+        <section class="tecnologia">
+
+
+            <div class="tecnologia-icone">
+                ✨
+            </div>
+
+
+            <div>
+
+                <span>
+                    TECNOLOGIA COMO APOIO
+                </span>
+
+
+                <h2>
+                    A decisão continua sendo humana.
+                </h2>
+
+
+                <p>
+
+                    O SafeSchool pode organizar pedidos,
+                    encaminhamentos e prioridades,
+                    mas não realiza diagnóstico psicológico
+                    nem substitui a avaliação profissional
+                    qualificada.
+
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             AVISO
+        ========================================== -->
+
+        <section class="aviso-prototipo">
+
+
+            <strong>
+                Ambiente demonstrativo
+            </strong>
+
+
+            <p>
+
+                Os dados desta versão ficam somente durante
+                a sessão do navegador. Nenhum atendimento
+                psicológico é realizado nesta demonstração.
+
+            </p>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <script src="../js/escola.js"></script>
+
+    <script src="../js/psicologia.js"></script>
+
+
+</body>
+
+</html>

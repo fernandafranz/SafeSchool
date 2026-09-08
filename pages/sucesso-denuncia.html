@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Denúncia Concluída | SafeSchool
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../css/sucesso-denuncia.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         CABEÇALHO
+    ========================================== -->
+
+    <header class="cabecalho">
+
+
+        <a
+            href="../index.html"
+            class="logo"
+        >
+
+
+            <div class="logo-icone">
+
+                ♥
+
+            </div>
+
+
+            <div class="logo-texto">
+
+                <h1>
+                    SafeSchool
+                </h1>
+
+                <p>
+                    Escola Sem Bullying
+                </p>
+
+            </div>
+
+
+        </a>
+
+
+    </header>
+
+
+
+    <!-- =========================================
+         CONTEÚDO
+    ========================================== -->
+
+    <main class="pagina-sucesso">
+
+
+        <section class="cartao-sucesso">
+
+
+            <!-- =========================================
+                 ÍCONE
+            ========================================== -->
+
+            <div class="icone-sucesso">
+
+                ✓
+
+            </div>
+
+
+
+            <span class="etiqueta">
+
+                DENÚNCIA CONCLUÍDA
+
+            </span>
+
+
+
+            <h2>
+
+                Obrigado por falar.
+
+            </h2>
+
+
+
+            <p class="mensagem-principal">
+
+                Sua denúncia foi registrada com sucesso
+                nesta demonstração do SafeSchool.
+
+            </p>
+
+
+
+            <p class="mensagem-apoio">
+
+                Procurar ajuda é uma atitude importante
+                para contribuir com uma escola mais segura,
+                acolhedora e respeitosa.
+
+            </p>
+
+
+
+            <!-- =========================================
+                 ESCOLA
+            ========================================== -->
+
+            <div
+                class="area-protocolo"
+                id="areaEscola"
+            >
+
+
+                <span class="titulo-protocolo">
+
+                    Instituição vinculada
+
+                </span>
+
+
+                <strong id="nomeEscola">
+
+                    Carregando...
+
+                </strong>
+
+
+            </div>
+
+
+
+            <!-- =========================================
+                 PROTOCOLO
+            ========================================== -->
+
+            <div class="area-protocolo">
+
+
+                <span class="titulo-protocolo">
+
+                    Seu protocolo anônimo
+
+                </span>
+
+
+                <div class="protocolo-box">
+
+
+                    <strong id="numeroProtocolo">
+
+                        Carregando...
+
+                    </strong>
+
+
+                    <button
+                        type="button"
+                        id="botaoCopiar"
+                        class="botao-copiar"
+                    >
+
+                        Copiar
+
+                    </button>
+
+
+                </div>
+
+
+
+                <p
+                    id="mensagemCopia"
+                    class="mensagem-copia"
+                >
+
+                    Guarde este número como referência desta demonstração.
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- =========================================
+                 AVISO
+            ========================================== -->
+
+            <div class="privacidade">
+
+
+                <div class="privacidade-icone">
+
+                    🔒
+
+                </div>
+
+
+                <div>
+
+
+                    <strong>
+
+                        Sobre esta versão
+
+                    </strong>
+
+
+                    <p>
+
+                        Este é um protótipo demonstrativo.
+                        Nesta versão, os dados são mantidos
+                        apenas no navegador utilizado e não
+                        são enviados para um servidor.
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================================
+                 BOTÕES
+            ========================================== -->
+
+            <div class="acoes">
+
+
+                <a
+                    href="../index.html"
+                    class="botao-principal"
+                >
+
+                    Voltar ao início
+
+                </a>
+
+
+                <a
+                    href="formulario-denuncia.html"
+                    class="botao-secundario"
+                    id="novaDenuncia"
+                >
+
+                    Fazer outra denúncia
+
+                </a>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         IDENTIFICAÇÃO DA ESCOLA
+    ========================================== -->
+
+    <script src="../js/escola.js"></script>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT DA TELA
+    ========================================== -->
+
+    <script>
+
+
+        /* =========================================
+           RECUPERAR INFORMAÇÕES
+        ========================================== */
+
+
+        const protocolo =
+
+            sessionStorage.getItem(
+                "protocoloSafeSchool"
+            );
+
+
+
+        const nomeEscola =
+
+            sessionStorage.getItem(
+                "nomeEscolaDenuncia"
+            );
+
+
+
+        const codigoEscola =
+
+            sessionStorage.getItem(
+                "codigoEscolaDenuncia"
+            );
+
+
+
+        /* =========================================
+           ELEMENTOS
+        ========================================== */
+
+
+        const numeroProtocolo =
+
+            document.getElementById(
+                "numeroProtocolo"
+            );
+
+
+
+        const nomeEscolaElemento =
+
+            document.getElementById(
+                "nomeEscola"
+            );
+
+
+
+        const botaoCopiar =
+
+            document.getElementById(
+                "botaoCopiar"
+            );
+
+
+
+        const mensagemCopia =
+
+            document.getElementById(
+                "mensagemCopia"
+            );
+
+
+
+        const novaDenuncia =
+
+            document.getElementById(
+                "novaDenuncia"
+            );
+
+
+
+        /* =========================================
+           MOSTRAR ESCOLA
+        ========================================== */
+
+        if (
+            nomeEscola &&
+            codigoEscola
+        ) {
+
+
+            nomeEscolaElemento.textContent =
+
+                nomeEscola +
+                " — " +
+                codigoEscola;
+
+
+        } else {
+
+
+            nomeEscolaElemento.textContent =
+
+                "Instituição não identificada";
+
+
+        }
+
+
+
+        /* =========================================
+           MOSTRAR PROTOCOLO
+        ========================================== */
+
+        if (protocolo) {
+
+
+            numeroProtocolo.textContent =
+                protocolo;
+
+
+        } else {
+
+
+            numeroProtocolo.textContent =
+
+                "Protocolo não encontrado";
+
+
+            botaoCopiar.style.display =
+
+                "none";
+
+
+        }
+
+
+
+        /* =========================================
+           COPIAR PROTOCOLO
+        ========================================== */
+
+        botaoCopiar.addEventListener(
+
+            "click",
+
+            async function () {
+
+
+                if (!protocolo) {
+
+                    return;
+
+                }
+
+
+
+                try {
+
+
+                    await navigator
+                        .clipboard
+                        .writeText(
+                            protocolo
+                        );
+
+
+
+                    botaoCopiar.textContent =
+
+                        "Copiado ✓";
+
+
+
+                    mensagemCopia.textContent =
+
+                        "Protocolo copiado para a área de transferência.";
+
+
+                } catch (erro) {
+
+
+                    mensagemCopia.textContent =
+
+                        "Não foi possível copiar automaticamente. Selecione o protocolo e copie manualmente.";
+
+
+                }
+
+
+            }
+
+        );
+
+
+
+        /* =========================================
+           FAZER OUTRA DENÚNCIA
+        ========================================== */
+
+        novaDenuncia.addEventListener(
+
+            "click",
+
+            function () {
+
+
+                /*
+                   Removemos apenas os dados
+                   da denúncia anterior.
+
+                   A escola permanece vinculada.
+                */
+
+
+                sessionStorage.removeItem(
+                    "protocoloSafeSchool"
+                );
+
+
+                sessionStorage.removeItem(
+                    "codigoEscolaDenuncia"
+                );
+
+
+                sessionStorage.removeItem(
+                    "nomeEscolaDenuncia"
+                );
+
+
+            }
+
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>
