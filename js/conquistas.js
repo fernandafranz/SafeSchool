@@ -5,6 +5,43 @@
 
 
 /* =========================================
+   ESTADO REAL
+========================================= */
+
+let supabase =
+    null;
+
+
+let usuarioAtual =
+    null;
+
+
+let perfilAtual =
+    null;
+
+
+let autenticacaoVerificada =
+    false;
+
+
+let progressoAlunoAtual = {
+
+    conteudosConcluidos:
+        [],
+
+    desafiosConcluidos:
+        [],
+
+    pontos:
+        0,
+
+    selos:
+        []
+
+};
+
+
+/* =========================================
    IDS VÁLIDOS
 ========================================= */
 
@@ -69,116 +106,7 @@ const mensagemProximaConquista =
 
 
 /* =========================================
-   LOGIN
-========================================= */
-
-function alunoEstaLogado() {
-
-    const perfil =
-        (
-            sessionStorage.getItem(
-                "perfilSafeSchool"
-            ) || ""
-        )
-        .trim()
-        .toLowerCase();
-
-
-    const email =
-        sessionStorage.getItem(
-            "usuarioEmailSafeSchool"
-        );
-
-
-    return (
-        perfil === "aluno" &&
-        Boolean(email)
-    );
-
-}
-
-
-/* =========================================
-   CHAVE DO ALUNO
-========================================= */
-
-function obterChaveAluno() {
-
-    if (
-        !alunoEstaLogado()
-    ) {
-
-        return null;
-
-    }
-
-
-    let codigoEscola =
-        null;
-
-
-    if (
-        window.SafeSchoolEscola &&
-        typeof window.SafeSchoolEscola.obter === "function"
-    ) {
-
-        const escola =
-            window.SafeSchoolEscola.obter();
-
-
-        if (
-            escola &&
-            escola.codigo
-        ) {
-
-            codigoEscola =
-                escola.codigo;
-
-        }
-
-    }
-
-
-    if (!codigoEscola) {
-
-        codigoEscola =
-            sessionStorage.getItem(
-                "codigoEscolaSafeSchool"
-            );
-
-    }
-
-
-    const email =
-        sessionStorage.getItem(
-            "usuarioEmailSafeSchool"
-        );
-
-
-    return (
-
-        (
-            codigoEscola ||
-            "SEM-ESCOLA"
-        )
-
-        +
-
-        "::"
-
-        +
-
-        email
-            .trim()
-            .toLowerCase()
-
-    );
-
-}
-
-
-/* =========================================
-   PROGRESSO
+   PROGRESSO VAZIO
 ========================================= */
 
 function criarProgressoVazio() {
@@ -202,151 +130,288 @@ function criarProgressoVazio() {
 }
 
 
-function obterTodosProgressos() {
+/* =========================================
+   NORMALIZAR PROGRESSO DO BANCO
+========================================= */
 
-    const dados =
-        sessionStorage.getItem(
-            "progressoAlunoSafeSchool"
-        );
+function normalizarProgressoBanco(
+    progresso
+) {
 
-
-    if (!dados) {
-
-        return {};
-
-    }
-
-
-    try {
-
-        const resultado =
-            JSON.parse(
-                dados
-            );
-
-
-        return (
-            resultado &&
-            typeof resultado === "object"
-        )
-            ? resultado
-            : {};
-
-    }
-
-    catch (erro) {
-
-        return {};
-
-    }
-
-}
-
-
-function obterProgressoAluno() {
-
-    const chave =
-        obterChaveAluno();
-
-
-    if (!chave) {
+    if (
+        !progresso ||
+        typeof progresso !== "object"
+    ) {
 
         return criarProgressoVazio();
 
     }
 
 
-    const todos =
-        obterTodosProgressos();
+    return {
+
+        conteudosConcluidos:
+
+            Array.isArray(
+                progresso.conteudos_concluidos
+            )
+
+                ? progresso.conteudos_concluidos
+
+                : [],
 
 
-    const progresso =
-        todos[chave] ||
-        criarProgressoVazio();
+        desafiosConcluidos:
+
+            Array.isArray(
+                progresso.desafios_concluidos
+            )
+
+                ? progresso.desafios_concluidos
+
+                : [],
 
 
-    if (
-        !Array.isArray(
-            progresso.conteudosConcluidos
-        )
-    ) {
+        pontos:
 
-        progresso.conteudosConcluidos =
-            [];
-
-    }
+            Number(
+                progresso.pontos || 0
+            ),
 
 
-    if (
-        !Array.isArray(
-            progresso.desafiosConcluidos
-        )
-    ) {
+        selos:
 
-        progresso.desafiosConcluidos =
-            [];
+            Array.isArray(
+                progresso.selos
+            )
 
-    }
+                ? progresso.selos
 
+                : []
 
-    if (
-        !Array.isArray(
-            progresso.selos
-        )
-    ) {
-
-        progresso.selos =
-            [];
-
-    }
-
-
-    progresso.pontos =
-        Number(
-            progresso.pontos || 0
-        );
-
-
-    return progresso;
+    };
 
 }
 
 
-function salvarProgressoAluno(
-    progresso
-) {
+/* =========================================
+   ESCOLA ATUAL
+========================================= */
 
-    const chave =
-        obterChaveAluno();
+function obterEscolaAtual() {
 
+    if (
+        window.SafeSchoolEscola
 
-    if (!chave) {
+        &&
 
-        return false;
+        typeof
+        window.SafeSchoolEscola.obter
+        ===
+        "function"
+    ) {
+
+        return (
+            window.SafeSchoolEscola.obter()
+            || null
+        );
 
     }
 
 
-    const todos =
-        obterTodosProgressos();
+    return null;
+
+}
 
 
-    todos[chave] =
-        progresso;
+/* =========================================
+   LOGIN REAL
+========================================= */
 
+function alunoEstaLogado() {
 
-    sessionStorage.setItem(
+    return (
 
-        "progressoAlunoSafeSchool",
+        autenticacaoVerificada === true
 
-        JSON.stringify(
-            todos
-        )
+        &&
+
+        usuarioAtual !== null
+
+        &&
+
+        perfilAtual !== null
+
+        &&
+
+        perfilAtual.perfil === "aluno"
+
+        &&
+
+        perfilAtual.ativo === true
 
     );
 
+}
 
-    return true;
+
+/* =========================================
+   SUPABASE
+========================================= */
+
+async function obterSupabase() {
+
+    if (
+        !window.SafeSchoolSupabaseReady
+    ) {
+
+        throw new Error(
+            "Cliente Supabase não inicializado."
+        );
+
+    }
+
+
+    return await
+        window.SafeSchoolSupabaseReady;
+
+}
+
+
+/* =========================================
+   CARREGAR USUÁRIO
+========================================= */
+
+async function carregarUsuarioAtual() {
+
+    const {
+        data,
+        error
+    } =
+        await supabase.auth
+            .getUser();
+
+
+    if (
+        error
+    ) {
+
+        throw error;
+
+    }
+
+
+    usuarioAtual =
+        data &&
+        data.user
+
+            ? data.user
+
+            : null;
+
+
+    if (
+        !usuarioAtual
+    ) {
+
+        perfilAtual =
+            null;
+
+
+        return;
+
+    }
+
+
+    const {
+        data: perfil,
+        error: erroPerfil
+    } =
+        await supabase
+
+            .from(
+                "perfis"
+            )
+
+            .select(
+                "id,nome,perfil,escola_id,ativo"
+            )
+
+            .eq(
+                "id",
+                usuarioAtual.id
+            )
+
+            .maybeSingle();
+
+
+    if (
+        erroPerfil
+    ) {
+
+        throw erroPerfil;
+
+    }
+
+
+    perfilAtual =
+        perfil || null;
+
+}
+
+
+/* =========================================
+   CARREGAR PROGRESSO REAL
+========================================= */
+
+async function carregarProgressoAluno() {
+
+    if (
+        !alunoEstaLogado()
+    ) {
+
+        progressoAlunoAtual =
+            criarProgressoVazio();
+
+
+        return;
+
+    }
+
+
+    const {
+        data,
+        error
+    } =
+        await supabase.rpc(
+            "garantir_progresso_aluno"
+        );
+
+
+    if (
+        error
+    ) {
+
+        throw error;
+
+    }
+
+
+    progressoAlunoAtual =
+        normalizarProgressoBanco(
+            data
+        );
+
+}
+
+
+/* =========================================
+   OBTER PROGRESSO
+========================================= */
+
+function obterProgressoAluno() {
+
+    return progressoAlunoAtual;
 
 }
 
@@ -453,15 +518,6 @@ const conquistas = [
         criterio:
             "Concluir pelo menos 1 conteúdo ou desafio.",
 
-        verificar:
-            function (metricas) {
-
-                return (
-                    metricas.atividades >= 1
-                );
-
-            },
-
         progresso:
             function (metricas) {
 
@@ -499,15 +555,6 @@ const conquistas = [
 
         criterio:
             "Concluir 4 conteúdos de Aprender e refletir.",
-
-        verificar:
-            function (metricas) {
-
-                return (
-                    metricas.conteudos >= 4
-                );
-
-            },
 
         progresso:
             function (metricas) {
@@ -547,15 +594,6 @@ const conquistas = [
         criterio:
             "Concluir 3 jogos e desafios.",
 
-        verificar:
-            function (metricas) {
-
-                return (
-                    metricas.desafios >= 3
-                );
-
-            },
-
         progresso:
             function (metricas) {
 
@@ -593,15 +631,6 @@ const conquistas = [
 
         criterio:
             "Alcançar 100 pontos.",
-
-        verificar:
-            function (metricas) {
-
-                return (
-                    metricas.pontos >= 100
-                );
-
-            },
 
         progresso:
             function (metricas) {
@@ -641,15 +670,6 @@ const conquistas = [
         criterio:
             "Concluir os 6 jogos e desafios.",
 
-        verificar:
-            function (metricas) {
-
-                return (
-                    metricas.desafios >= 6
-                );
-
-            },
-
         progresso:
             function (metricas) {
 
@@ -688,21 +708,6 @@ const conquistas = [
         criterio:
             "Concluir os 8 conteúdos e os 6 desafios.",
 
-        verificar:
-            function (metricas) {
-
-                return (
-
-                    metricas.conteudos >= 8
-
-                    &&
-
-                    metricas.desafios >= 6
-
-                );
-
-            },
-
         progresso:
             function (metricas) {
 
@@ -727,12 +732,11 @@ const conquistas = [
 
 
 /* =========================================
-   ATUALIZAR SELOS
+   SELOS OFICIAIS DO BANCO
 ========================================= */
 
-function atualizarSelos(
-    progresso,
-    metricas
+function obterSelosOficiais(
+    progresso
 ) {
 
     const idsConhecidos =
@@ -747,72 +751,27 @@ function atualizarSelos(
         );
 
 
-    const desbloqueados =
-        conquistas
-            .filter(
-
-                function (conquista) {
-
-                    return conquista.verificar(
-                        metricas
-                    );
-
-                }
-
-            )
-            .map(
-
-                function (conquista) {
-
-                    return conquista.id;
-
-                }
-
-            );
-
-
-    /*
-        Preserva eventuais selos futuros
-        que ainda não pertençam a esta coleção.
-    */
-
-    const outrosSelos =
-        progresso.selos.filter(
-
-            function (id) {
-
-                return (
-                    !idsConhecidos.includes(
-                        id
-                    )
-                );
-
-            }
-
-        );
-
-
-    progresso.selos =
+    const selosUnicos =
         Array.from(
 
             new Set(
-
-                [
-                    ...outrosSelos,
-                    ...desbloqueados
-                ]
-
+                progresso.selos
             )
 
         );
 
 
-    salvarProgressoAluno(
-        progresso
+    return selosUnicos.filter(
+
+        function (id) {
+
+            return idsConhecidos.includes(
+                id
+            );
+
+        }
+
     );
-
-
-    return desbloqueados;
 
 }
 
@@ -833,23 +792,57 @@ function renderizarConquistas() {
         );
 
 
+    /*
+        Os selos desbloqueados agora vêm
+        diretamente do Supabase.
+
+        O navegador não concede nem remove
+        selos por conta própria.
+    */
+
     const desbloqueados =
-        atualizarSelos(
-            progresso,
-            metricas
+        obterSelosOficiais(
+            progresso
         );
 
 
-    numeroPontosConquistas.textContent =
-        metricas.pontos;
+    if (
+        numeroPontosConquistas
+    ) {
+
+        numeroPontosConquistas.textContent =
+            metricas.pontos;
+
+    }
 
 
-    numeroAtividadesConquistas.textContent =
-        metricas.atividades;
+    if (
+        numeroAtividadesConquistas
+    ) {
+
+        numeroAtividadesConquistas.textContent =
+            metricas.atividades;
+
+    }
 
 
-    numeroSelosConquistas.textContent =
-        desbloqueados.length;
+    if (
+        numeroSelosConquistas
+    ) {
+
+        numeroSelosConquistas.textContent =
+            desbloqueados.length;
+
+    }
+
+
+    if (
+        !gradeConquistas
+    ) {
+
+        return;
+
+    }
 
 
     gradeConquistas.innerHTML =
@@ -873,25 +866,30 @@ function renderizarConquistas() {
 
 
             const percentual =
-                Math.min(
 
-                    100,
+                dadosProgresso.meta > 0
 
-                    Math.round(
+                    ? Math.min(
 
-                        (
-                            dadosProgresso.atual
-                            /
-                            dadosProgresso.meta
+                        100,
+
+                        Math.round(
+
+                            (
+                                dadosProgresso.atual
+                                /
+                                dadosProgresso.meta
+                            )
+
+                            *
+
+                            100
+
                         )
-
-                        *
-
-                        100
 
                     )
 
-                );
+                    : 0;
 
 
             const card =
@@ -1029,6 +1027,15 @@ function atualizarProximaConquista(
     metricas
 ) {
 
+    if (
+        !mensagemProximaConquista
+    ) {
+
+        return;
+
+    }
+
+
     const proxima =
         conquistas.find(
 
@@ -1045,7 +1052,9 @@ function atualizarProximaConquista(
         );
 
 
-    if (!proxima) {
+    if (
+        !proxima
+    ) {
 
         mensagemProximaConquista.textContent =
 
@@ -1118,27 +1127,45 @@ function escaparHTML(
 
 
 /* =========================================
-   VERIFICAR ACESSO
+   REDIRECIONAR PARA LOGIN
 ========================================= */
 
-function verificarAcessoAluno() {
+function redirecionarLoginRestrito() {
+
+    let codigoEscola =
+        null;
+
+
+    const escola =
+        obterEscolaAtual();
+
 
     if (
-        alunoEstaLogado()
+        escola &&
+        escola.codigo
     ) {
 
-        return true;
+        codigoEscola =
+            escola.codigo;
 
     }
 
 
-    let codigoEscola =
-        sessionStorage.getItem(
-            "codigoEscolaSafeSchool"
-        );
+    if (
+        !codigoEscola
+    ) {
+
+        codigoEscola =
+            sessionStorage.getItem(
+                "codigoEscolaSafeSchool"
+            );
+
+    }
 
 
-    if (!codigoEscola) {
+    if (
+        !codigoEscola
+    ) {
 
         const parametros =
             new URLSearchParams(
@@ -1173,8 +1200,68 @@ function verificarAcessoAluno() {
                 : ""
         );
 
+}
 
-    return false;
+
+/* =========================================
+   INICIALIZAR
+========================================= */
+
+async function inicializarConquistas() {
+
+    try {
+
+        supabase =
+            await obterSupabase();
+
+
+        await carregarUsuarioAtual();
+
+
+        autenticacaoVerificada =
+            true;
+
+
+        if (
+            !alunoEstaLogado()
+        ) {
+
+            redirecionarLoginRestrito();
+
+            return;
+
+        }
+
+
+        await carregarProgressoAluno();
+
+
+        renderizarConquistas();
+
+
+        console.log(
+            "SafeSchool: conquistas integradas ao progresso real."
+        );
+
+    }
+
+    catch (erro) {
+
+        autenticacaoVerificada =
+            true;
+
+
+        console.error(
+            "SafeSchool: falha ao carregar as conquistas.",
+            erro
+        );
+
+
+        alert(
+            "Não foi possível carregar suas conquistas agora."
+        );
+
+    }
 
 }
 
@@ -1183,10 +1270,4 @@ function verificarAcessoAluno() {
    INICIAR
 ========================================= */
 
-if (
-    verificarAcessoAluno()
-) {
-
-    renderizarConquistas();
-
-}
+inicializarConquistas();

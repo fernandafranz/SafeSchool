@@ -19,6 +19,925 @@
         href="../css/aluno.css"
     >
 
+
+    <style>
+
+        /* =========================================
+           CENTRAL DO ALUNO
+        ========================================== */
+
+        .central-aluno {
+
+            margin:
+                28px 0 34px;
+
+            padding:
+                28px;
+
+            border:
+                1px solid #e4def2;
+
+            border-radius:
+                22px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff 0%,
+                    #fcfbff 100%
+                );
+
+            box-shadow:
+                0 12px 32px
+                rgba(
+                    64,
+                    44,
+                    152,
+                    0.07
+                );
+
+        }
+
+
+        .central-aluno-cabecalho {
+
+            margin-bottom:
+                22px;
+
+        }
+
+
+        .central-aluno-cabecalho span {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                6px;
+
+            margin-bottom:
+                7px;
+
+            color:
+                #6c4ce5;
+
+            font-size:
+                12px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                0.09em;
+
+        }
+
+
+        .central-aluno-cabecalho h2 {
+
+            margin:
+                0 0 9px;
+
+            color:
+                #27214d;
+
+            font-size:
+                27px;
+
+            line-height:
+                1.2;
+
+        }
+
+
+        .central-aluno-cabecalho p {
+
+            max-width:
+                820px;
+
+            margin:
+                0;
+
+            color:
+                #6f6980;
+
+            font-size:
+                15px;
+
+            line-height:
+                1.65;
+
+        }
+
+
+        /* =========================================
+           BUSCA
+        ========================================== */
+
+        .central-aluno-busca {
+
+            display:
+                flex;
+
+            gap:
+                10px;
+
+            margin:
+                22px 0;
+
+            padding:
+                12px;
+
+            border:
+                1px solid #ece7f5;
+
+            border-radius:
+                15px;
+
+            background:
+                #faf9fd;
+
+        }
+
+
+        .central-aluno-busca input {
+
+            flex:
+                1;
+
+            min-width:
+                0;
+
+            height:
+                46px;
+
+            padding:
+                0 15px;
+
+            border:
+                1px solid #ddd6ed;
+
+            border-radius:
+                11px;
+
+            background:
+                #ffffff;
+
+            color:
+                #2d2740;
+
+            font:
+                inherit;
+
+            outline:
+                none;
+
+        }
+
+
+        .central-aluno-busca input::placeholder {
+
+            color:
+                #96909f;
+
+        }
+
+
+        .central-aluno-busca input:focus {
+
+            border-color:
+                #6c4ce5;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(
+                    108,
+                    76,
+                    229,
+                    0.10
+                );
+
+        }
+
+
+        .central-aluno-busca button,
+        .central-aluno-todos {
+
+            min-height:
+                46px;
+
+            padding:
+                0 17px;
+
+            border:
+                1px solid #d8d0ea;
+
+            border-radius:
+                11px;
+
+            background:
+                #ffffff;
+
+            color:
+                #4f35b8;
+
+            font:
+                inherit;
+
+            font-weight:
+                700;
+
+            cursor:
+                pointer;
+
+            transition:
+                0.18s ease;
+
+        }
+
+
+        .central-aluno-busca button:hover,
+        .central-aluno-todos:hover {
+
+            background:
+                #f5f2ff;
+
+            border-color:
+                #bfb2e7;
+
+        }
+
+
+        /* =========================================
+           CARDS DA CENTRAL
+        ========================================== */
+
+        .central-aluno-grade {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    5,
+                    minmax(
+                        0,
+                        1fr
+                    )
+                );
+
+            gap:
+                14px;
+
+        }
+
+
+        .atalho-central-aluno {
+
+            --card-fundo:
+                #fbfaff;
+
+            --card-borda:
+                #e6e0f2;
+
+            --card-icone:
+                #f3efff;
+
+            --card-destaque:
+                #5f46bd;
+
+
+            position:
+                relative;
+
+            min-height:
+                180px;
+
+            padding:
+                18px;
+
+            overflow:
+                hidden;
+
+            border:
+                1px solid
+                var(
+                    --card-borda
+                );
+
+            border-radius:
+                18px;
+
+            background:
+                var(
+                    --card-fundo
+                );
+
+            color:
+                #2b2540;
+
+            text-align:
+                left;
+
+            cursor:
+                pointer;
+
+            transition:
+                transform 0.18s ease,
+                border-color 0.18s ease,
+                box-shadow 0.18s ease,
+                background 0.18s ease;
+
+        }
+
+
+        .atalho-central-aluno::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            right:
+                -28px;
+
+            bottom:
+                -35px;
+
+            width:
+                90px;
+
+            height:
+                90px;
+
+            border-radius:
+                999px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.55
+                );
+
+            pointer-events:
+                none;
+
+        }
+
+
+        /* RELATOS */
+
+        .atalho-central-aluno[
+            data-filtro-central-aluno="relatos"
+        ] {
+
+            --card-fundo:
+                #f8f7ff;
+
+            --card-borda:
+                #ded8f5;
+
+            --card-icone:
+                #ebe7ff;
+
+            --card-destaque:
+                #5842b3;
+
+        }
+
+
+        /* PSICOLOGIA */
+
+        .atalho-central-aluno[
+            data-filtro-central-aluno="apoio"
+        ] {
+
+            --card-fundo:
+                #fdf8ff;
+
+            --card-borda:
+                #eadbf1;
+
+            --card-icone:
+                #f5e8fa;
+
+            --card-destaque:
+                #8a4a9c;
+
+        }
+
+
+        /* EM ACOMPANHAMENTO */
+
+        .atalho-central-aluno[
+            data-filtro-central-aluno="acompanhamento"
+        ] {
+
+            --card-fundo:
+                #fffbf2;
+
+            --card-borda:
+                #f0e1b6;
+
+            --card-icone:
+                #fff0c8;
+
+            --card-destaque:
+                #8b6815;
+
+        }
+
+
+        /* CONCLUÍDOS */
+
+        .atalho-central-aluno[
+            data-filtro-central-aluno="concluidos"
+        ] {
+
+            --card-fundo:
+                #f6fbf7;
+
+            --card-borda:
+                #d8ebdc;
+
+            --card-icone:
+                #e4f5e8;
+
+            --card-destaque:
+                #447952;
+
+        }
+
+
+        /* JORNADA */
+
+        #atalhoJornadaAluno {
+
+            --card-fundo:
+                #f7fbff;
+
+            --card-borda:
+                #d8e8f4;
+
+            --card-icone:
+                #e7f3fb;
+
+            --card-destaque:
+                #326d91;
+
+        }
+
+
+        .atalho-central-aluno:hover {
+
+            transform:
+                translateY(-3px);
+
+            border-color:
+                var(
+                    --card-destaque
+                );
+
+            box-shadow:
+                0 10px 24px
+                rgba(
+                    54,
+                    43,
+                    89,
+                    0.10
+                );
+
+        }
+
+
+        .atalho-central-aluno.ativo {
+
+            border-color:
+                var(
+                    --card-destaque
+                );
+
+            box-shadow:
+                0 0 0 3px
+                rgba(
+                    108,
+                    76,
+                    229,
+                    0.08
+                ),
+                0 10px 24px
+                rgba(
+                    54,
+                    43,
+                    89,
+                    0.08
+                );
+
+        }
+
+
+        .atalho-central-aluno-topo {
+
+            position:
+                relative;
+
+            z-index:
+                1;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                12px;
+
+            margin-bottom:
+                17px;
+
+        }
+
+
+        .atalho-central-aluno-icone {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            width:
+                45px;
+
+            height:
+                45px;
+
+            flex-shrink:
+                0;
+
+            border-radius:
+                14px;
+
+            background:
+                var(
+                    --card-icone
+                );
+
+            font-size:
+                23px;
+
+            line-height:
+                1;
+
+        }
+
+
+        .atalho-central-aluno-numero {
+
+            display:
+                inline-flex;
+
+            min-width:
+                36px;
+
+            min-height:
+                34px;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            padding:
+                5px 10px;
+
+            border:
+                1px solid
+                var(
+                    --card-borda
+                );
+
+            border-radius:
+                999px;
+
+            background:
+                #ffffff;
+
+            color:
+                var(
+                    --card-destaque
+                );
+
+            font-size:
+                14px;
+
+            font-weight:
+                800;
+
+            line-height:
+                1.2;
+
+            white-space:
+                nowrap;
+
+            box-shadow:
+                0 3px 10px
+                rgba(
+                    54,
+                    43,
+                    89,
+                    0.05
+                );
+
+        }
+
+
+        #atalhoJornadaAluno
+        .atalho-central-aluno-numero {
+
+            font-size:
+                12px;
+
+        }
+
+
+        .atalho-central-aluno strong {
+
+            position:
+                relative;
+
+            z-index:
+                1;
+
+            display:
+                block;
+
+            margin-bottom:
+                8px;
+
+            color:
+                #33285d;
+
+            font-size:
+                16px;
+
+            line-height:
+                1.35;
+
+        }
+
+
+        .atalho-central-aluno small {
+
+            position:
+                relative;
+
+            z-index:
+                1;
+
+            display:
+                block;
+
+            color:
+                #746e80;
+
+            font-size:
+                13px;
+
+            line-height:
+                1.55;
+
+        }
+
+
+        /* =========================================
+           RODAPÉ DA CENTRAL
+        ========================================== */
+
+        .central-aluno-rodape {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                16px;
+
+            margin-top:
+                20px;
+
+            padding-top:
+                19px;
+
+            border-top:
+                1px solid #eee9f5;
+
+        }
+
+
+        .central-aluno-todos.ativo {
+
+            border-color:
+                #6c4ce5;
+
+            background:
+                #6c4ce5;
+
+            color:
+                #ffffff;
+
+            box-shadow:
+                0 6px 16px
+                rgba(
+                    108,
+                    76,
+                    229,
+                    0.18
+                );
+
+        }
+
+
+        #resumoFiltroCentralAluno {
+
+            color:
+                #716a7d;
+
+            font-size:
+                14px;
+
+            font-weight:
+                600;
+
+            text-align:
+                right;
+
+        }
+
+
+        /* =========================================
+           SEM RESULTADOS
+        ========================================== */
+
+        .estado-central-aluno {
+
+            display:
+                none;
+
+            margin-top:
+                20px;
+
+            padding:
+                24px;
+
+            border:
+                1px dashed #d8d0ea;
+
+            border-radius:
+                15px;
+
+            background:
+                #fbfaff;
+
+            text-align:
+                center;
+
+        }
+
+
+        .estado-central-aluno strong {
+
+            display:
+                block;
+
+            margin-bottom:
+                6px;
+
+            color:
+                #3e315f;
+
+        }
+
+
+        .estado-central-aluno p {
+
+            margin:
+                0;
+
+            color:
+                #777084;
+
+            line-height:
+                1.55;
+
+        }
+
+
+        /* =========================================
+           RESPONSIVO
+        ========================================== */
+
+        @media (
+            max-width: 1180px
+        ) {
+
+            .central-aluno-grade {
+
+                grid-template-columns:
+                    repeat(
+                        3,
+                        minmax(
+                            0,
+                            1fr
+                        )
+                    );
+
+            }
+
+        }
+
+
+        @media (
+            max-width: 760px
+        ) {
+
+            .central-aluno {
+
+                padding:
+                    19px;
+
+                border-radius:
+                    17px;
+
+            }
+
+
+            .central-aluno-cabecalho h2 {
+
+                font-size:
+                    23px;
+
+            }
+
+
+            .central-aluno-busca,
+            .central-aluno-rodape {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    stretch;
+
+            }
+
+
+            .central-aluno-grade {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .atalho-central-aluno {
+
+                min-height:
+                    auto;
+
+            }
+
+
+            #resumoFiltroCentralAluno {
+
+                text-align:
+                    left;
+
+            }
+
+        }
+
+    </style>
+
 </head>
 
 
@@ -31,7 +950,6 @@
 
     <header class="cabecalho">
 
-
         <a
             href="../index.html"
             class="logo"
@@ -40,7 +958,6 @@
             <div class="logo-icone">
                 ♥
             </div>
-
 
             <div class="logo-texto">
 
@@ -57,7 +974,6 @@
         </a>
 
 
-
         <nav class="menu">
 
             <a
@@ -65,6 +981,18 @@
                 class="ativo"
             >
                 Início
+            </a>
+
+            <a href="#meus-relatos">
+                Meus relatos
+            </a>
+
+            <a href="#meu-apoio">
+                Meu apoio
+            </a>
+
+            <a href="#meu-progresso">
+                Meu progresso
             </a>
 
             <a href="conteudos.html">
@@ -79,24 +1007,14 @@
                 Conquistas
             </a>
 
-            <a href="apoio-psicologico.html">
-                Apoio
-            </a>
-
             <a href="../index.html">
                 Sair
             </a>
 
         </nav>
 
-
     </header>
 
-
-
-    <!-- =========================================
-         CONTEÚDO PRINCIPAL
-    ========================================== -->
 
     <main>
 
@@ -107,62 +1025,333 @@
 
         <section class="boas-vindas">
 
-
             <div class="boas-vindas-texto">
-
 
                 <span class="etiqueta">
                     ÁREA DO ALUNO
                 </span>
 
-
                 <h2>
                     Olá! Que bom ter você aqui.
                 </h2>
 
-
                 <p>
 
                     Este é o seu espaço no SafeSchool.
-                    Aqui você encontra apoio, informação
-                    e diferentes maneiras de pedir ajuda
-                    ou relatar uma situação de bullying.
+                    Acompanhe seus relatos, seus pedidos
+                    de apoio, participe dos desafios,
+                    aprenda mais e encontre ajuda
+                    sempre que precisar.
 
                 </p>
 
-
             </div>
-
 
 
             <div class="boas-vindas-visual">
-
                 👨🏻‍🎓 👩🏻‍🎓 🧑🏿‍🎓
-
             </div>
-
 
         </section>
 
 
+        <!-- =========================================
+             CENTRAL DO ALUNO
+        ========================================== -->
+
+        <section
+            class="central-aluno"
+            id="centralAluno"
+        >
+
+            <div class="central-aluno-cabecalho">
+
+                <span>
+                    ✦ MEU ESPAÇO
+                </span>
+
+                <h2>
+                    Central do aluno
+                </h2>
+
+                <p>
+
+                    Encontre rapidamente seus relatos,
+                    pedidos enviados à Psicologia,
+                    acompanhamentos em andamento
+                    e atividades do SafeSchool.
+
+                </p>
+
+            </div>
+
+
+            <div class="central-aluno-busca">
+
+                <input
+                    type="search"
+                    id="buscaCentralAluno"
+                    placeholder="Buscar por protocolo, tipo de relato ou pedido..."
+                    autocomplete="off"
+                    aria-label="Buscar no meu acompanhamento"
+                >
+
+                <button
+                    type="button"
+                    id="limparBuscaCentralAluno"
+                >
+                    Limpar busca
+                </button>
+
+            </div>
+
+
+            <div class="central-aluno-grade">
+
+
+                <!-- MEUS RELATOS -->
+
+                <button
+                    type="button"
+                    class="atalho-central-aluno"
+                    data-filtro-central-aluno="relatos"
+                >
+
+                    <span class="atalho-central-aluno-topo">
+
+                        <span class="atalho-central-aluno-icone">
+                            📋
+                        </span>
+
+                        <span
+                            class="atalho-central-aluno-numero"
+                            data-contador-central-aluno="relatos"
+                        >
+                            0
+                        </span>
+
+                    </span>
+
+                    <strong>
+                        Meus relatos
+                    </strong>
+
+                    <small>
+
+                        Acompanhe os relatos identificados
+                        enviados pela sua conta.
+
+                    </small>
+
+                </button>
+
+
+                <!-- PEDIDOS À PSICOLOGIA -->
+
+                <button
+                    type="button"
+                    class="atalho-central-aluno"
+                    data-filtro-central-aluno="apoio"
+                >
+
+                    <span class="atalho-central-aluno-topo">
+
+                        <span class="atalho-central-aluno-icone">
+                            💜
+                        </span>
+
+                        <span
+                            class="atalho-central-aluno-numero"
+                            data-contador-central-aluno="apoio"
+                        >
+                            0
+                        </span>
+
+                    </span>
+
+                    <strong>
+                        Pedidos à Psicologia
+                    </strong>
+
+                    <small>
+
+                        Veja pedidos de conversa,
+                        orientação ou acompanhamento
+                        enviados à Psicologia.
+
+                    </small>
+
+                </button>
+
+
+                <!-- EM ACOMPANHAMENTO -->
+
+                <button
+                    type="button"
+                    class="atalho-central-aluno"
+                    data-filtro-central-aluno="acompanhamento"
+                >
+
+                    <span class="atalho-central-aluno-topo">
+
+                        <span class="atalho-central-aluno-icone">
+                            🟡
+                        </span>
+
+                        <span
+                            class="atalho-central-aluno-numero"
+                            data-contador-central-aluno="acompanhamento"
+                        >
+                            0
+                        </span>
+
+                    </span>
+
+                    <strong>
+                        Em acompanhamento
+                    </strong>
+
+                    <small>
+
+                        Situações que já estão
+                        sendo acompanhadas pelas equipes.
+
+                    </small>
+
+                </button>
+
+
+                <!-- CONCLUÍDOS -->
+
+                <button
+                    type="button"
+                    class="atalho-central-aluno"
+                    data-filtro-central-aluno="concluidos"
+                >
+
+                    <span class="atalho-central-aluno-topo">
+
+                        <span class="atalho-central-aluno-icone">
+                            ✅
+                        </span>
+
+                        <span
+                            class="atalho-central-aluno-numero"
+                            data-contador-central-aluno="concluidos"
+                        >
+                            0
+                        </span>
+
+                    </span>
+
+                    <strong>
+                        Concluídos
+                    </strong>
+
+                    <small>
+
+                        Relatos e pedidos cujo fluxo
+                        já foi encerrado.
+
+                    </small>
+
+                </button>
+
+
+                <!-- JORNADA -->
+
+                <button
+                    type="button"
+                    class="atalho-central-aluno"
+                    id="atalhoJornadaAluno"
+                >
+
+                    <span class="atalho-central-aluno-topo">
+
+                        <span class="atalho-central-aluno-icone">
+                            ✨
+                        </span>
+
+                        <span
+                            class="atalho-central-aluno-numero"
+                            data-contador-central-aluno="jornada"
+                        >
+                            0 desafios
+                        </span>
+
+                    </span>
+
+                    <strong>
+                        Minha jornada
+                    </strong>
+
+                    <small>
+
+                        Veja seus desafios,
+                        pontos e selos conquistados.
+
+                    </small>
+
+                </button>
+
+            </div>
+
+
+            <div class="central-aluno-rodape">
+
+                <button
+                    type="button"
+                    class="central-aluno-todos ativo"
+                    data-filtro-central-aluno="todos"
+                    aria-pressed="true"
+                >
+                    Mostrar todos
+                </button>
+
+                <span id="resumoFiltroCentralAluno">
+                    Carregando seus dados...
+                </span>
+
+            </div>
+
+
+            <div
+                class="estado-central-aluno"
+                id="estadoCentralAluno"
+            >
+
+                <strong>
+                    Nenhum resultado encontrado
+                </strong>
+
+                <p>
+
+                    Não encontramos itens que correspondam
+                    ao filtro ou à busca informada.
+
+                </p>
+
+            </div>
+
+        </section>
+
 
         <!-- =========================================
-             CANAIS DE AJUDA
+             ACESSOS PRINCIPAIS
         ========================================== -->
 
         <section class="area-conteudo">
-
 
             <div class="titulo-secao">
 
                 <div>
 
                     <span>
-                        PRECISA CONTAR ALGUMA COISA?
+                        ACESSOS PRINCIPAIS
                     </span>
 
                     <h2>
-                        Escolha como prefere pedir ajuda
+                        O que você gostaria de fazer?
                     </h2>
 
                 </div>
@@ -170,142 +1359,134 @@
             </div>
 
 
-
             <div class="cards-acesso">
 
 
-                <!-- =========================================
-                     RELATO IDENTIFICADO
-                ========================================== -->
-
                 <a
-                    href="relato-identificado.html"
+                    href="#meus-relatos"
                     class="card-acesso"
                 >
 
                     <div class="card-icone">
-                        👤
+                        📋
                     </div>
 
+                    <div
+                        class="resumo-card-aluno"
+                        id="resumoRelatosAluno"
+                    >
+                        —
+                    </div>
 
                     <h3>
-                        Quero contar e receber acompanhamento
+                        Acompanhar meus relatos
                     </h3>
-
 
                     <p>
 
-                        Faça um relato identificado.
-                        A equipe escolar saberá quem você é
-                        e poderá entrar em contato para acompanhar
-                        a situação.
+                        Consulte os relatos identificados
+                        que você já enviou e acompanhe
+                        a situação de cada um.
 
                     </p>
 
-
                     <span class="card-link">
-                        Fazer relato identificado →
+                        Ver meus relatos →
                     </span>
 
                 </a>
 
 
-
-                <!-- =========================================
-                     DENÚNCIA ANÔNIMA
-                ========================================== -->
-
                 <a
-                    href="denuncia.html"
+                    href="#meu-apoio"
                     class="card-acesso"
                 >
 
                     <div class="card-icone">
-                        🔒
+                        💜
                     </div>
 
+                    <div
+                        class="resumo-card-aluno"
+                        id="resumoApoiosAluno"
+                    >
+                        —
+                    </div>
 
                     <h3>
-                        Prefiro não me identificar
+                        Meu apoio
                     </h3>
-
 
                     <p>
 
-                        Utilize o canal anônimo.
-                        Sua identidade não será informada
-                        junto ao relato enviado à equipe escolar.
+                        Acompanhe os pedidos enviados
+                        à equipe de Psicologia
+                        e veja a situação de cada solicitação.
 
                     </p>
 
-
                     <span class="card-link">
-                        Fazer denúncia anônima →
+                        Ver meus pedidos →
                     </span>
 
                 </a>
 
 
-
-                <!-- =========================================
-                     APOIO PSICOLÓGICO
-                ========================================== -->
-
                 <a
-                    href="apoio-psicologico.html"
+                    href="#meu-progresso"
                     class="card-acesso"
                 >
 
                     <div class="card-icone">
-                        🧠
+                        ✨
                     </div>
 
+                    <div
+                        class="resumo-card-aluno"
+                        id="resumoJornadaAluno"
+                    >
+                        Carregando...
+                    </div>
 
                     <h3>
-                        Quero conversar com a equipe de Psicologia
+                        Minha jornada
                     </h3>
-
 
                     <p>
 
-                        Solicite acolhimento, orientação
-                        ou uma conversa com a equipe de Psicologia
-                        responsável pela sua escola.
+                        Veja seus desafios concluídos,
+                        pontos conquistados e selos
+                        recebidos no SafeSchool.
 
                     </p>
 
-
                     <span class="card-link">
-                        Solicitar apoio →
+                        Ver meu progresso →
                     </span>
 
                 </a>
-
 
             </div>
-
 
         </section>
 
 
-
         <!-- =========================================
-             OUTROS RECURSOS
+             CONTINUE SUA JORNADA
         ========================================== -->
 
         <section class="area-conteudo">
-
 
             <div class="titulo-secao">
 
                 <div>
 
                     <span>
-                        APRENDER E PARTICIPAR
+                        CONTINUE SUA JORNADA
                     </span>
 
                     <h2>
-                        Outros recursos do SafeSchool
+                        Aprenda, participe e conquiste
                     </h2>
 
                 </div>
@@ -313,13 +1494,8 @@
             </div>
 
 
-
             <div class="cards-acesso">
 
-
-                <!-- =========================================
-                     CONTEÚDOS
-                ========================================== -->
 
                 <a
                     href="conteudos.html"
@@ -330,19 +1506,17 @@
                         📚
                     </div>
 
-
                     <h3>
                         Aprender e refletir
                     </h3>
 
-
                     <p>
 
-                        Veja conteúdos sobre bullying,
-                        respeito, empatia e convivência.
+                        Encontre conteúdos sobre bullying,
+                        cyberbullying, respeito,
+                        empatia e convivência.
 
                     </p>
-
 
                     <span class="card-link">
                         Ver conteúdos →
@@ -350,11 +1524,6 @@
 
                 </a>
 
-
-
-                <!-- =========================================
-                     DESAFIOS
-                ========================================== -->
 
                 <a
                     href="desafios.html"
@@ -365,19 +1534,17 @@
                         🎯
                     </div>
 
-
                     <h3>
                         Jogos e desafios
                     </h3>
 
-
                     <p>
 
-                        Participe de atividades educativas
+                        Participe de situações educativas,
+                        reflita sobre suas escolhas
                         e desenvolva atitudes positivas.
 
                     </p>
-
 
                     <span class="card-link">
                         Participar →
@@ -385,11 +1552,6 @@
 
                 </a>
 
-
-
-                <!-- =========================================
-                     CONQUISTAS
-                ========================================== -->
 
                 <a
                     href="conquistas.html"
@@ -400,19 +1562,17 @@
                         🏆
                     </div>
 
-
                     <h3>
                         Minhas conquistas
                     </h3>
 
-
                     <p>
 
-                        Acompanhe pontos, desafios concluídos
+                        Veja seus pontos,
+                        desafios concluídos
                         e selos conquistados.
 
                     </p>
-
 
                     <span class="card-link">
                         Ver conquistas →
@@ -420,20 +1580,310 @@
 
                 </a>
 
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             CANAIS DE APOIO
+        ========================================== -->
+
+        <section class="area-conteudo">
+
+            <div class="titulo-secao">
+
+                <div>
+
+                    <span>
+                        QUANDO PRECISAR
+                    </span>
+
+                    <h2>
+                        Você pode contar com o SafeSchool
+                    </h2>
+
+                </div>
 
             </div>
 
 
+            <p>
+
+                Se alguma situação estiver incomodando você
+                ou alguém da sua escola, escolha o caminho
+                com o qual se sentir mais confortável.
+
+            </p>
+
+
+            <div class="cards-acesso">
+
+
+                <a
+                    href="relato-identificado.html"
+                    class="card-acesso"
+                >
+
+                    <div class="card-icone">
+                        👤
+                    </div>
+
+                    <h3>
+                        Quero contar e receber acompanhamento
+                    </h3>
+
+                    <p>
+
+                        Faça um relato identificado.
+                        A equipe escolar saberá quem você é
+                        e poderá entrar em contato
+                        para acompanhar a situação.
+
+                    </p>
+
+                    <span class="card-link">
+                        Fazer relato identificado →
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="denuncia.html"
+                    class="card-acesso"
+                >
+
+                    <div class="card-icone">
+                        🔒
+                    </div>
+
+                    <h3>
+                        Prefiro não me identificar
+                    </h3>
+
+                    <p>
+
+                        Utilize o canal anônimo.
+                        Sua identidade não será informada
+                        junto ao relato enviado
+                        à equipe escolar.
+
+                    </p>
+
+                    <span class="card-link">
+                        Fazer relato anônimo →
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="apoio-psicologico.html"
+                    class="card-acesso"
+                >
+
+                    <div class="card-icone">
+                        🧠
+                    </div>
+
+                    <h3>
+                        Quero conversar com a equipe de Psicologia
+                    </h3>
+
+                    <p>
+
+                        Solicite acompanhamento,
+                        orientação ou uma conversa
+                        com a equipe de Psicologia
+                        responsável pela sua escola.
+
+                    </p>
+
+                    <span class="card-link">
+                        Solicitar apoio →
+                    </span>
+
+                </a>
+
+            </div>
+
         </section>
 
+
+        <!-- =========================================
+             MEUS RELATOS
+        ========================================== -->
+
+        <section
+            class="area-conteudo"
+            id="meus-relatos"
+        >
+
+            <div class="titulo-secao">
+
+                <div>
+
+                    <span>
+                        ACOMPANHAMENTO
+                    </span>
+
+                    <h2>
+                        Meus relatos identificados
+                    </h2>
+
+                </div>
+
+                <span id="contadorRelatosAluno">
+                    —
+                </span>
+
+            </div>
+
+
+            <p>
+
+                Aqui você pode acompanhar
+                os relatos identificados enviados
+                pela sua conta e consultar
+                a situação geral de cada atendimento.
+
+            </p>
+
+
+            <div
+                id="listaRelatosAluno"
+                class="lista-relatos-aluno"
+                hidden
+            >
+            </div>
+
+
+            <div
+                id="estadoVazioRelatosAluno"
+                class="estado-vazio-relatos-aluno"
+                hidden
+            >
+
+                <div class="card-icone">
+                    📭
+                </div>
+
+                <h3>
+                    Você ainda não possui relatos identificados
+                </h3>
+
+                <p>
+
+                    Quando você enviar um relato identificado,
+                    poderá acompanhar aqui o protocolo,
+                    a data e a situação geral
+                    do acompanhamento.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             MEU APOIO
+        ========================================== -->
+
+        <section
+            class="area-conteudo"
+            id="meu-apoio"
+        >
+
+            <div class="titulo-secao">
+
+                <div>
+
+                    <span>
+                        APOIO E ACOMPANHAMENTO
+                    </span>
+
+                    <h2>
+                        Meus pedidos de apoio
+                    </h2>
+
+                </div>
+
+                <span id="contadorApoiosAluno">
+                    —
+                </span>
+
+            </div>
+
+
+            <p>
+
+                Acompanhe aqui os pedidos
+                que você enviou à equipe de Psicologia.
+                Esta área mostra apenas informações
+                gerais sobre o andamento
+                da solicitação.
+
+            </p>
+
+
+            <div
+                id="listaApoiosAluno"
+                class="lista-apoios-aluno"
+                hidden
+            >
+            </div>
+
+
+            <div
+                id="estadoVazioApoiosAluno"
+                class="estado-vazio-apoios-aluno"
+                hidden
+            >
+
+                <div class="card-icone">
+                    💜
+                </div>
+
+                <h3>
+                    Você ainda não possui pedidos de apoio
+                </h3>
+
+                <p>
+
+                    Quando você solicitar uma conversa,
+                    orientação ou acompanhamento,
+                    poderá consultar aqui
+                    a situação geral do pedido.
+
+                </p>
+
+            </div>
+
+
+            <div style="margin-top: 20px;">
+
+                <a
+                    href="apoio-psicologico.html"
+                    class="card-link"
+                >
+                    + Fazer novo pedido de apoio →
+                </a>
+
+            </div>
+
+        </section>
 
 
         <!-- =========================================
              PROGRESSO
         ========================================== -->
 
-        <section class="progresso">
-
+        <section
+            class="progresso"
+            id="meu-progresso"
+        >
 
             <div class="titulo-secao">
 
@@ -450,7 +1900,6 @@
                 </div>
 
             </div>
-
 
 
             <div class="cards-progresso">
@@ -472,7 +1921,6 @@
                 </div>
 
 
-
                 <div class="card-progresso">
 
                     <div
@@ -487,7 +1935,6 @@
                     </p>
 
                 </div>
-
 
 
                 <div class="card-progresso">
@@ -505,33 +1952,1231 @@
 
                 </div>
 
-
             </div>
-
 
 
             <p class="aviso-prototipo">
 
-                Seu progresso é atualizado conforme
-                você participa das atividades do SafeSchool.
+                Seu progresso é atualizado
+                conforme você participa
+                das atividades do SafeSchool.
 
             </p>
 
-
         </section>
-
 
     </main>
 
 
-
     <!-- =========================================
-         SCRIPTS
+         SCRIPTS DO SAFESCHOOL
     ========================================== -->
+
+    <script src="../js/supabase.js"></script>
 
     <script src="../js/escola.js"></script>
 
     <script src="../js/aluno.js"></script>
+
+
+    <!-- =========================================
+         CENTRAL DO ALUNO
+    ========================================== -->
+
+    <script>
+
+        (function () {
+
+            "use strict";
+
+
+            let filtroCentralAluno =
+                "todos";
+
+
+            let buscaCentralAluno =
+                "";
+
+
+            /* =========================================
+               NORMALIZAR TEXTO
+            ========================================== */
+
+            function normalizarTexto(
+                valor
+            ) {
+
+                return String(
+                    valor || ""
+                )
+                    .normalize(
+                        "NFD"
+                    )
+                    .replace(
+                        /[\u0300-\u036f]/g,
+                        ""
+                    )
+                    .toLowerCase()
+                    .trim();
+
+            }
+
+
+            /* =========================================
+               TERMINOLOGIA
+            ========================================== */
+
+            function padronizarTerminologiaAluno() {
+
+                document
+                    .querySelectorAll(
+                        ".apoio-aluno-status"
+                    )
+                    .forEach(
+
+                        function (
+                            elemento
+                        ) {
+
+                            const texto =
+                                normalizarTexto(
+                                    elemento.textContent
+                                );
+
+
+                            if (
+                                texto ===
+                                "em acolhimento"
+                            ) {
+
+                                elemento.textContent =
+                                    "Em acompanhamento";
+
+                            }
+
+                        }
+
+                    );
+
+
+                document
+                    .querySelectorAll(
+                        ".apoio-aluno-mensagem-status"
+                    )
+                    .forEach(
+
+                        function (
+                            elemento
+                        ) {
+
+                            let texto =
+                                elemento.textContent ||
+                                "";
+
+
+                            texto =
+                                texto
+                                    .replace(
+                                        /aguarda acolhimento/gi,
+                                        "aguarda acompanhamento"
+                                    )
+                                    .replace(
+                                        /em acolhimento/gi,
+                                        "em acompanhamento"
+                                    )
+                                    .replace(
+                                        /acolhimento/gi,
+                                        "acompanhamento"
+                                    );
+
+
+                            elemento.textContent =
+                                texto;
+
+                        }
+
+                    );
+
+            }
+
+
+            /* =========================================
+               CARDS
+            ========================================== */
+
+            function obterCardsAluno() {
+
+                return {
+
+                    relatos:
+                        Array.from(
+                            document.querySelectorAll(
+                                "#listaRelatosAluno .relato-aluno-card"
+                            )
+                        ),
+
+                    apoios:
+                        Array.from(
+                            document.querySelectorAll(
+                                "#listaApoiosAluno .apoio-aluno-card"
+                            )
+                        )
+
+                };
+
+            }
+
+
+            /* =========================================
+               STATUS
+            ========================================== */
+
+            function cardEmAcompanhamento(
+                card
+            ) {
+
+                return Boolean(
+
+                    card.querySelector(
+                        ".relato-aluno-status.acompanhamento, .apoio-aluno-status.acompanhamento"
+                    )
+
+                );
+
+            }
+
+
+            function cardConcluido(
+                card
+            ) {
+
+                return Boolean(
+
+                    card.querySelector(
+                        ".relato-aluno-status.concluido, .apoio-aluno-status.concluido"
+                    )
+
+                );
+
+            }
+
+
+            /* =========================================
+               BUSCA
+            ========================================== */
+
+            function cardCorrespondeBusca(
+                card
+            ) {
+
+                if (
+                    !buscaCentralAluno
+                ) {
+
+                    return true;
+
+                }
+
+
+                return normalizarTexto(
+                    card.textContent
+                ).includes(
+                    buscaCentralAluno
+                );
+
+            }
+
+
+            /* =========================================
+               FILTROS
+            ========================================== */
+
+            function cardCorrespondeFiltro(
+                card,
+                origem
+            ) {
+
+                let corresponde =
+                    true;
+
+
+                if (
+                    filtroCentralAluno ===
+                    "relatos"
+                ) {
+
+                    corresponde =
+                        origem ===
+                        "relato";
+
+                }
+
+
+                else if (
+                    filtroCentralAluno ===
+                    "apoio"
+                ) {
+
+                    corresponde =
+                        origem ===
+                        "apoio";
+
+                }
+
+
+                else if (
+                    filtroCentralAluno ===
+                    "acompanhamento"
+                ) {
+
+                    corresponde =
+                        cardEmAcompanhamento(
+                            card
+                        );
+
+                }
+
+
+                else if (
+                    filtroCentralAluno ===
+                    "concluidos"
+                ) {
+
+                    corresponde =
+                        cardConcluido(
+                            card
+                        );
+
+                }
+
+
+                return (
+
+                    corresponde
+
+                    &&
+
+                    cardCorrespondeBusca(
+                        card
+                    )
+
+                );
+
+            }
+
+
+            /* =========================================
+               CONTADORES
+            ========================================== */
+
+            function atualizarContadoresCentralAluno() {
+
+                const dados =
+                    obterCardsAluno();
+
+
+                const todos = [
+
+                    ...dados.relatos,
+
+                    ...dados.apoios
+
+                ];
+
+
+                const contagens = {
+
+                    relatos:
+                        dados.relatos.length,
+
+                    apoio:
+                        dados.apoios.length,
+
+                    acompanhamento:
+                        todos.filter(
+                            cardEmAcompanhamento
+                        ).length,
+
+                    concluidos:
+                        todos.filter(
+                            cardConcluido
+                        ).length
+
+                };
+
+
+                Object.entries(
+                    contagens
+                )
+                    .forEach(
+
+                        function (
+                            [
+                                chave,
+                                valor
+                            ]
+                        ) {
+
+                            const elemento =
+                                document.querySelector(
+
+                                    `[data-contador-central-aluno="${chave}"]`
+
+                                );
+
+
+                            if (
+                                elemento
+                            ) {
+
+                                elemento.textContent =
+                                    String(
+                                        valor
+                                    );
+
+                            }
+
+                        }
+
+                    );
+
+
+                const contadorJornada =
+                    document.querySelector(
+                        '[data-contador-central-aluno="jornada"]'
+                    );
+
+
+                const numeroDesafios =
+                    document.getElementById(
+                        "numeroDesafiosAluno"
+                    );
+
+
+                if (
+                    contadorJornada
+                    &&
+                    numeroDesafios
+                ) {
+
+                    const quantidade =
+
+                        Number.parseInt(
+                            numeroDesafios.textContent,
+                            10
+                        )
+
+                        ||
+
+                        0;
+
+
+                    contadorJornada.textContent =
+
+                        quantidade
+
+                        +
+
+                        (
+                            quantidade === 1
+                                ? " desafio"
+                                : " desafios"
+                        );
+
+                }
+
+            }
+
+
+            /* =========================================
+               APLICAR FILTRO
+            ========================================== */
+
+            function aplicarFiltroCentralAluno() {
+
+                padronizarTerminologiaAluno();
+
+
+                const dados =
+                    obterCardsAluno();
+
+
+                const secaoRelatos =
+                    document.getElementById(
+                        "meus-relatos"
+                    );
+
+
+                const secaoApoio =
+                    document.getElementById(
+                        "meu-apoio"
+                    );
+
+
+                const listaRelatos =
+                    document.getElementById(
+                        "listaRelatosAluno"
+                    );
+
+
+                const listaApoios =
+                    document.getElementById(
+                        "listaApoiosAluno"
+                    );
+
+
+                const vazioRelatos =
+                    document.getElementById(
+                        "estadoVazioRelatosAluno"
+                    );
+
+
+                const vazioApoios =
+                    document.getElementById(
+                        "estadoVazioApoiosAluno"
+                    );
+
+
+                const estadoCentral =
+                    document.getElementById(
+                        "estadoCentralAluno"
+                    );
+
+
+                const mostrarRelatos =
+
+                    filtroCentralAluno !==
+                    "apoio";
+
+
+                const mostrarApoios =
+
+                    filtroCentralAluno !==
+                    "relatos";
+
+
+                if (
+                    secaoRelatos
+                ) {
+
+                    secaoRelatos.style.display =
+
+                        mostrarRelatos
+                            ? ""
+                            : "none";
+
+                }
+
+
+                if (
+                    secaoApoio
+                ) {
+
+                    secaoApoio.style.display =
+
+                        mostrarApoios
+                            ? ""
+                            : "none";
+
+                }
+
+
+                let relatosVisiveis =
+                    0;
+
+
+                let apoiosVisiveis =
+                    0;
+
+
+                dados.relatos.forEach(
+
+                    function (
+                        card
+                    ) {
+
+                        const visivel =
+
+                            mostrarRelatos
+
+                            &&
+
+                            cardCorrespondeFiltro(
+                                card,
+                                "relato"
+                            );
+
+
+                        card.style.display =
+
+                            visivel
+                                ? ""
+                                : "none";
+
+
+                        if (
+                            visivel
+                        ) {
+
+                            relatosVisiveis +=
+                                1;
+
+                        }
+
+                    }
+
+                );
+
+
+                dados.apoios.forEach(
+
+                    function (
+                        card
+                    ) {
+
+                        const visivel =
+
+                            mostrarApoios
+
+                            &&
+
+                            cardCorrespondeFiltro(
+                                card,
+                                "apoio"
+                            );
+
+
+                        card.style.display =
+
+                            visivel
+                                ? ""
+                                : "none";
+
+
+                        if (
+                            visivel
+                        ) {
+
+                            apoiosVisiveis +=
+                                1;
+
+                        }
+
+                    }
+
+                );
+
+
+                const filtroAtivo =
+
+                    filtroCentralAluno !==
+                    "todos"
+
+                    ||
+
+                    Boolean(
+                        buscaCentralAluno
+                    );
+
+
+                if (
+                    listaRelatos
+                    &&
+                    mostrarRelatos
+                    &&
+                    dados.relatos.length > 0
+                ) {
+
+                    listaRelatos.hidden =
+                        relatosVisiveis === 0;
+
+                }
+
+
+                if (
+                    listaApoios
+                    &&
+                    mostrarApoios
+                    &&
+                    dados.apoios.length > 0
+                ) {
+
+                    listaApoios.hidden =
+                        apoiosVisiveis === 0;
+
+                }
+
+
+                if (
+                    vazioRelatos
+                ) {
+
+                    vazioRelatos.style.display =
+
+                        filtroAtivo
+                            ? "none"
+                            : "";
+
+                }
+
+
+                if (
+                    vazioApoios
+                ) {
+
+                    vazioApoios.style.display =
+
+                        filtroAtivo
+                            ? "none"
+                            : "";
+
+                }
+
+
+                const totalVisivel =
+
+                    relatosVisiveis
+                    +
+                    apoiosVisiveis;
+
+
+                if (
+                    estadoCentral
+                ) {
+
+                    estadoCentral.style.display =
+
+                        filtroAtivo
+                        &&
+                        totalVisivel === 0
+
+                            ? "block"
+                            : "none";
+
+                }
+
+
+                const nomes = {
+
+                    todos:
+                        "Todos os registros",
+
+                    relatos:
+                        "Meus relatos",
+
+                    apoio:
+                        "Pedidos à Psicologia",
+
+                    acompanhamento:
+                        "Em acompanhamento",
+
+                    concluidos:
+                        "Concluídos"
+
+                };
+
+
+                const resumo =
+                    document.getElementById(
+                        "resumoFiltroCentralAluno"
+                    );
+
+
+                if (
+                    resumo
+                ) {
+
+                    resumo.textContent =
+
+                        (
+                            nomes[
+                                filtroCentralAluno
+                            ]
+                            ||
+                            "Filtro aplicado"
+                        )
+
+                        +
+
+                        (
+                            buscaCentralAluno
+                                ? " • busca ativa"
+                                : ""
+                        )
+
+                        +
+
+                        " — "
+
+                        +
+
+                        totalVisivel
+
+                        +
+
+                        (
+                            totalVisivel === 1
+
+                                ? " resultado"
+                                : " resultados"
+                        );
+
+                }
+
+
+                atualizarContadoresCentralAluno();
+
+            }
+
+
+            /* =========================================
+               SELECIONAR FILTRO
+            ========================================== */
+
+            function selecionarFiltroCentralAluno(
+                filtro,
+                rolar
+            ) {
+
+                const permitidos = [
+
+                    "todos",
+
+                    "relatos",
+
+                    "apoio",
+
+                    "acompanhamento",
+
+                    "concluidos"
+
+                ];
+
+
+                filtroCentralAluno =
+
+                    permitidos.includes(
+                        filtro
+                    )
+
+                        ? filtro
+                        : "todos";
+
+
+                document
+                    .querySelectorAll(
+                        "[data-filtro-central-aluno]"
+                    )
+                    .forEach(
+
+                        function (
+                            botao
+                        ) {
+
+                            const ativo =
+
+                                botao.getAttribute(
+                                    "data-filtro-central-aluno"
+                                )
+
+                                ===
+
+                                filtroCentralAluno;
+
+
+                            botao.classList.toggle(
+                                "ativo",
+                                ativo
+                            );
+
+
+                            botao.setAttribute(
+
+                                "aria-pressed",
+
+                                ativo
+                                    ? "true"
+                                    : "false"
+
+                            );
+
+                        }
+
+                    );
+
+
+                aplicarFiltroCentralAluno();
+
+
+                if (
+                    !rolar
+                ) {
+
+                    return;
+
+                }
+
+
+                let destino =
+                    null;
+
+
+                if (
+                    filtroCentralAluno ===
+                    "relatos"
+                ) {
+
+                    destino =
+                        document.getElementById(
+                            "meus-relatos"
+                        );
+
+                }
+
+
+                else if (
+                    filtroCentralAluno ===
+                    "apoio"
+                ) {
+
+                    destino =
+                        document.getElementById(
+                            "meu-apoio"
+                        );
+
+                }
+
+
+                else {
+
+                    const primeiroVisivel =
+
+                        [
+                            ...document.querySelectorAll(
+                                "#listaRelatosAluno .relato-aluno-card, #listaApoiosAluno .apoio-aluno-card"
+                            )
+                        ]
+                            .find(
+
+                                function (
+                                    card
+                                ) {
+
+                                    return (
+                                        card.style.display !==
+                                        "none"
+                                    );
+
+                                }
+
+                            );
+
+
+                    destino =
+                        primeiroVisivel;
+
+                }
+
+
+                if (
+                    destino
+                ) {
+
+                    destino.scrollIntoView({
+
+                        behavior:
+                            "smooth",
+
+                        block:
+                            "start"
+
+                    });
+
+                }
+
+            }
+
+
+            /* =========================================
+               EVENTOS
+            ========================================== */
+
+            function prepararEventosCentralAluno() {
+
+                document
+                    .querySelectorAll(
+                        "[data-filtro-central-aluno]"
+                    )
+                    .forEach(
+
+                        function (
+                            botao
+                        ) {
+
+                            botao.addEventListener(
+                                "click",
+
+                                function () {
+
+                                    selecionarFiltroCentralAluno(
+
+                                        botao.getAttribute(
+                                            "data-filtro-central-aluno"
+                                        ),
+
+                                        true
+
+                                    );
+
+                                }
+
+                            );
+
+                        }
+
+                    );
+
+
+                const busca =
+                    document.getElementById(
+                        "buscaCentralAluno"
+                    );
+
+
+                if (
+                    busca
+                ) {
+
+                    busca.addEventListener(
+                        "input",
+
+                        function () {
+
+                            buscaCentralAluno =
+                                normalizarTexto(
+                                    busca.value
+                                );
+
+
+                            aplicarFiltroCentralAluno();
+
+                        }
+
+                    );
+
+                }
+
+
+                const limpar =
+                    document.getElementById(
+                        "limparBuscaCentralAluno"
+                    );
+
+
+                if (
+                    limpar
+                ) {
+
+                    limpar.addEventListener(
+                        "click",
+
+                        function () {
+
+                            buscaCentralAluno =
+                                "";
+
+
+                            if (
+                                busca
+                            ) {
+
+                                busca.value =
+                                    "";
+
+                                busca.focus();
+
+                            }
+
+
+                            aplicarFiltroCentralAluno();
+
+                        }
+
+                    );
+
+                }
+
+
+                const jornada =
+                    document.getElementById(
+                        "atalhoJornadaAluno"
+                    );
+
+
+                if (
+                    jornada
+                ) {
+
+                    jornada.addEventListener(
+                        "click",
+
+                        function () {
+
+                            const destino =
+                                document.getElementById(
+                                    "meu-progresso"
+                                );
+
+
+                            if (
+                                destino
+                            ) {
+
+                                destino.scrollIntoView({
+
+                                    behavior:
+                                        "smooth",
+
+                                    block:
+                                        "start"
+
+                                });
+
+                            }
+
+                        }
+
+                    );
+
+                }
+
+            }
+
+
+            /* =========================================
+               OBSERVADOR
+            ========================================== */
+
+            function observarDadosAluno() {
+
+                const observador =
+                    new MutationObserver(
+
+                        function () {
+
+                            window.requestAnimationFrame(
+
+                                function () {
+
+                                    aplicarFiltroCentralAluno();
+
+                                }
+
+                            );
+
+                        }
+
+                    );
+
+
+                [
+                    "listaRelatosAluno",
+                    "listaApoiosAluno",
+                    "numeroDesafiosAluno"
+                ]
+                    .forEach(
+
+                        function (
+                            id
+                        ) {
+
+                            const elemento =
+                                document.getElementById(
+                                    id
+                                );
+
+
+                            if (
+                                elemento
+                            ) {
+
+                                observador.observe(
+
+                                    elemento,
+
+                                    {
+                                        childList:
+                                            true,
+
+                                        subtree:
+                                            true,
+
+                                        characterData:
+                                            true
+                                    }
+
+                                );
+
+                            }
+
+                        }
+
+                    );
+
+            }
+
+
+            /* =========================================
+               INICIAR
+            ========================================== */
+
+            function iniciarCentralAluno() {
+
+                prepararEventosCentralAluno();
+
+                observarDadosAluno();
+
+                padronizarTerminologiaAluno();
+
+                aplicarFiltroCentralAluno();
+
+
+                window.setTimeout(
+                    aplicarFiltroCentralAluno,
+                    300
+                );
+
+
+                window.setTimeout(
+                    aplicarFiltroCentralAluno,
+                    900
+                );
+
+            }
+
+
+            if (
+                document.readyState ===
+                "loading"
+            ) {
+
+                document.addEventListener(
+                    "DOMContentLoaded",
+                    iniciarCentralAluno
+                );
+
+            }
+
+            else {
+
+                iniciarCentralAluno();
+
+            }
+
+
+        })();
+
+    </script>
 
 
 </body>

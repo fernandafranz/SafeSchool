@@ -98,10 +98,9 @@
 
             <p>
 
-                Informe os dados utilizados no cadastro.
-                Em uma versão real do SafeSchool, um link seguro
-                de recuperação seria enviado para o e-mail
-                vinculado à conta.
+                Informe os dados vinculados à sua conta.
+                O SafeSchool enviará um link seguro de recuperação
+                para o endereço de e-mail cadastrado.
 
             </p>
 
@@ -154,10 +153,10 @@
 
                     <p>
 
-                        A recuperação desses perfis deve ser
-                        realizada pela própria instituição,
-                        já que são acessos profissionais
-                        com permissões específicas.
+                        Contas profissionais são criadas e autorizadas
+                        pela instituição. Porém, caso o profissional
+                        esqueça a senha, poderá redefini-la utilizando
+                        o próprio e-mail cadastrado.
 
                     </p>
 
@@ -227,6 +226,8 @@
                         <div class="grade-perfis">
 
 
+                            <!-- ALUNO -->
+
                             <button
                                 type="button"
                                 class="cartao-perfil"
@@ -254,6 +255,38 @@
                             </button>
 
 
+
+                            <!-- PROFESSOR -->
+
+                            <button
+                                type="button"
+                                class="cartao-perfil"
+                                data-perfil="professor"
+                                aria-pressed="false"
+                            >
+
+                                <span class="icone-perfil">
+                                    👨🏻‍🏫
+                                </span>
+
+
+                                <span>
+
+                                    <strong>
+                                        Professor
+                                    </strong>
+
+                                    <small>
+                                        Equipe escolar
+                                    </small>
+
+                                </span>
+
+                            </button>
+
+
+
+                            <!-- RESPONSÁVEL -->
 
                             <button
                                 type="button"
@@ -337,6 +370,36 @@
                             </button>
 
 
+
+                            <!-- PSICOLOGIA -->
+
+                            <button
+                                type="button"
+                                class="cartao-perfil"
+                                data-perfil="psicologia"
+                                aria-pressed="false"
+                            >
+
+                                <span class="icone-perfil">
+                                    🧠
+                                </span>
+
+
+                                <span>
+
+                                    <strong>
+                                        Psicologia
+                                    </strong>
+
+                                    <small>
+                                        Apoio psicológico
+                                    </small>
+
+                                </span>
+
+                            </button>
+
+
                         </div>
 
 
@@ -411,8 +474,8 @@
 
                         <p class="ajuda-campo">
 
-                            Para o protótipo:
-                            <strong>ESC001</strong>
+                            Informe o código da instituição
+                            vinculada à sua conta.
 
                         </p>
 
@@ -455,7 +518,7 @@
 
 
             <!-- =========================================
-                 ETAPA 2
+                 MENSAGEM DE ENVIO
             ========================================== -->
 
             <div
@@ -473,7 +536,7 @@
 
 
                     <span>
-                        SOLICITAÇÃO RECEBIDA
+                        INSTRUÇÕES ENVIADAS
                     </span>
 
 
@@ -485,44 +548,38 @@
                     <p>
 
                         Se existir uma conta vinculada
-                        aos dados informados, as instruções
-                        de recuperação serão enviadas.
+                        aos dados informados, você receberá
+                        um link seguro para criar uma nova senha.
 
                     </p>
 
 
-                    <div class="aviso-demonstracao">
+                    <div class="informacao-seguranca">
 
-                        <strong>
-                            🧪 Demonstração do protótipo
-                        </strong>
+                        <div class="informacao-icone">
+                            🔐
+                        </div>
 
 
-                        <p>
+                        <div>
 
-                            Como esta versão ainda não possui
-                            servidor de e-mail, o botão abaixo
-                            simula a abertura do link seguro
-                            que seria recebido pelo usuário.
+                            <strong>
+                                Link seguro de recuperação
+                            </strong>
 
-                        </p>
+
+                            <p>
+
+                                Abra o e-mail enviado pelo SafeSchool
+                                e utilize o link de recuperação para
+                                continuar. Por segurança, o link possui
+                                validade limitada.
+
+                            </p>
+
+                        </div>
 
                     </div>
-
-
-                    <button
-                        type="button"
-                        class="botao-principal"
-                        id="continuarDemonstracao"
-                    >
-
-                        Continuar demonstração
-
-                        <span>
-                            →
-                        </span>
-
-                    </button>
 
 
                     <button
@@ -542,7 +599,7 @@
 
 
             <!-- =========================================
-                 ETAPA 3
+                 NOVA SENHA
             ========================================== -->
 
             <div
@@ -554,7 +611,7 @@
                 <div class="cabecalho-formulario">
 
                     <span>
-                        ETAPA 2
+                        NOVA SENHA
                     </span>
 
 
@@ -565,8 +622,8 @@
 
                     <p>
 
-                        Escolha uma senha diferente
-                        e fácil de lembrar apenas para você.
+                        Escolha uma senha segura e diferente
+                        da anterior.
 
                     </p>
 
@@ -610,7 +667,11 @@
 
 
                         <p class="ajuda-campo">
-                            Utilize pelo menos 6 caracteres.
+
+                            Utilize pelo menos 8 caracteres,
+                            com letra maiúscula, letra minúscula
+                            e número.
+
                         </p>
 
 
@@ -619,7 +680,11 @@
                             id="erroNovaSenha"
                             hidden
                         >
-                            A senha precisa ter pelo menos 6 caracteres.
+
+                            A senha deve ter pelo menos 8 caracteres,
+                            com letra maiúscula, letra minúscula
+                            e número.
+
                         </p>
 
                     </div>
@@ -750,6 +815,8 @@
     ========================================== -->
 
     <script src="../js/escola.js"></script>
+
+    <script src="../js/supabase.js"></script>
 
     <script src="../js/recuperar-senha.js"></script>
 

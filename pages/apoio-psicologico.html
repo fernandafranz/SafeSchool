@@ -389,7 +389,7 @@
                     <span>
 
                         Desejo solicitar contato da equipe
-                        de apoio psicológico da escola.
+                        de Psicologia da escola.
 
                     </span>
 
@@ -456,9 +456,10 @@
 
                 <p>
 
-                    Nesta versão demonstrativa,
-                    a solicitação fica armazenada apenas
-                    durante esta sessão do navegador.
+                    A equipe de Psicologia da sua escola
+                    poderá visualizar a solicitação e realizar
+                    o acompanhamento conforme a disponibilidade
+                    e os procedimentos da instituição.
 
                 </p>
 
@@ -468,7 +469,7 @@
 
                     <span>
 
-                        Protocolo de apoio
+                        Referência da solicitação
 
                     </span>
 
@@ -516,15 +517,14 @@
 
                 <p>
 
-                    Em uma versão real do SafeSchool,
-                    a solicitação de apoio psicológico seria
+                    A solicitação de apoio psicológico é
                     vinculada à conta do aluno para permitir
-                    que a equipe de Psicologia pudesse realizar
-                    o contato.
+                    que a equipe de Psicologia responsável
+                    possa realizar o contato.
 
                     O conteúdo de eventual atendimento psicológico
-                    não deverá ficar disponível automaticamente
-                    para professores ou outros usuários da escola.
+                    não fica automaticamente disponível para
+                    professores ou outros usuários da escola.
 
                 </p>
 
@@ -627,7 +627,7 @@
 
 
         <!-- =========================================
-             AVISO DO PROTÓTIPO
+             AMBIENTE
         ========================================== -->
 
         <section class="aviso-prototipo">
@@ -642,13 +642,11 @@
 
             <p>
 
-                Nesta demonstração, nenhuma solicitação
-                é encaminhada à equipe de Psicologia
-                da instituição.
-
-                O recurso está sendo desenvolvido para demonstrar
-                como o SafeSchool poderá funcionar quando estiver
-                integrado à estrutura da escola.
+                Nesta etapa do SafeSchool, a autenticação
+                e o registro das solicitações já utilizam
+                a infraestrutura do Supabase.
+                Durante os testes, utilize apenas informações
+                fictícias e não inclua dados clínicos reais.
 
             </p>
 
@@ -661,16 +659,12 @@
 
 
     <!-- =========================================
-         ESCOLA
+         SCRIPTS
     ========================================== -->
+
+    <script src="../js/supabase.js"></script>
 
     <script src="../js/escola.js"></script>
-
-
-
-    <!-- =========================================
-         APOIO PSICOLÓGICO
-    ========================================== -->
 
     <script src="../js/apoio-psicologico.js"></script>
 

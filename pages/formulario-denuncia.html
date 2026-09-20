@@ -120,7 +120,7 @@
 
 
             <!-- =========================================
-                 AVISO DE AMBIENTE DEMONSTRATIVO
+                 AVISO DE AMBIENTE
             ========================================== -->
 
             <div class="aviso-anonimato">
@@ -138,18 +138,18 @@
 
                     <strong>
 
-                        Ambiente demonstrativo
+                        Ambiente demonstrativo do SafeSchool
 
                     </strong>
 
 
                     <p>
 
-                        Este formulário faz parte de um protótipo
-                        do SafeSchool. As informações preenchidas
-                        não são enviadas a uma escola ou equipe real
-                        e permanecem apenas no navegador utilizado
-                        nesta demonstração.
+                        Nesta etapa, as denúncias enviadas
+                        são registradas na infraestrutura
+                        de demonstração do SafeSchool.
+                        Durante os testes, não utilize nomes
+                        ou dados pessoais reais.
 
                     </p>
 
@@ -187,9 +187,10 @@
 
                     <p>
 
-                        Evite informar seu nome, telefone,
-                        e-mail ou outros dados pessoais caso
-                        não queira ser identificado.
+                        Não é necessário possuir conta ou fazer login.
+                        Para preservar o anonimato, evite informar
+                        seu nome, telefone, e-mail ou outros dados
+                        que possam identificá-lo no texto.
 
                     </p>
 
@@ -414,6 +415,7 @@
                         id="relato"
                         name="relato"
                         rows="8"
+                        maxlength="1500"
                         placeholder="Descreva a situação com suas palavras. Você pode contar o que aconteceu, onde foi e outras informações que considere importantes para compreender a situação."
                     ></textarea>
 
@@ -421,7 +423,8 @@
                     <small>
 
                         Não inclua informações pessoais se quiser
-                        permanecer anônimo.
+                        permanecer anônimo. Escreva pelo menos
+                        20 caracteres.
 
                     </small>
 
@@ -431,7 +434,7 @@
 
 
                 <!-- =========================================
-                     EVIDÊNCIA
+                     EVIDÊNCIAS
                 ========================================== -->
 
                 <div class="grupo-campo">
@@ -439,7 +442,10 @@
 
                     <label for="evidencia">
 
-                        Deseja anexar alguma evidência?
+                        Fotos ou imagens de evidência
+                        <span>
+                            (opcional)
+                        </span>
 
                     </label>
 
@@ -448,14 +454,31 @@
                         type="file"
                         id="evidencia"
                         name="evidencia"
-                        accept="image/*,.pdf"
+                        accept="image/jpeg,image/png"
+                        multiple
+                        disabled
                     >
+
+
+                    <small id="orientacaoEvidencia">
+
+                        Será possível anexar até 3 imagens
+                        nos formatos JPG ou PNG, com no máximo
+                        5 MB cada. O SafeSchool preparará
+                        as imagens antes do envio para reduzir
+                        metadados que possam comprometer
+                        o anonimato.
+
+                    </small>
 
 
                     <small>
 
-                        Opcional. Você poderá anexar imagem,
-                        captura de tela ou documento.
+                        Antes de anexar, verifique também
+                        se a própria imagem não mostra nomes,
+                        rostos, números de telefone, perfis,
+                        localização ou outras informações
+                        que você não deseja compartilhar.
 
                     </small>
 
@@ -594,16 +617,12 @@
 
 
     <!-- =========================================
-         IDENTIFICAÇÃO DA ESCOLA
+         SCRIPTS
     ========================================== -->
+
+    <script src="../js/supabase.js"></script>
 
     <script src="../js/escola.js"></script>
-
-
-
-    <!-- =========================================
-         JAVASCRIPT DO FORMULÁRIO
-    ========================================== -->
 
     <script src="../js/formulario-denuncia.js"></script>
 

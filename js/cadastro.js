@@ -9,21 +9,6 @@
 
 
     /* =========================================
-       ESCOLA DEMONSTRATIVA
-    ========================================= */
-
-    const ESCOLA_DEMO = {
-
-        codigo:
-            "ESC001",
-
-        nome:
-            "Escola Demonstrativa SafeSchool"
-
-    };
-
-
-    /* =========================================
        INICIAR APÓS CARREGAR A PÁGINA
     ========================================= */
 
@@ -96,6 +81,14 @@
                 document.getElementById(
                     "mostrarSenhaCadastro"
                 );
+
+
+            const botaoCadastrar =
+                formCadastro
+                    ? formCadastro.querySelector(
+                        ".botao-cadastrar"
+                    )
+                    : null;
 
 
             /* =========================================
@@ -174,15 +167,10 @@
 
 
             /* =========================================
-               ESCOLA VALIDADA
+               ESCOLA JÁ PRESENTE NA NAVEGAÇÃO
             ========================================= */
 
-            function obterEscolaAtual() {
-
-                /*
-                    A prioridade é sempre a escola
-                    já validada pelo escola.js.
-                */
+            function obterEscolaDaNavegacao() {
 
                 if (
                     window.SafeSchoolEscola
@@ -211,12 +199,6 @@
                 }
 
 
-                /*
-                    Fallback apenas para a escola
-                    demonstrativa já conhecida pelo
-                    protótipo e salva na sessão.
-                */
-
                 const codigo =
                     (
                         sessionStorage.getItem(
@@ -228,31 +210,30 @@
 
 
                 const nome =
-                    sessionStorage.getItem(
-                        "nomeEscolaSafeSchool"
-                    );
+                    (
+                        sessionStorage.getItem(
+                            "nomeEscolaSafeSchool"
+                        ) || ""
+                    )
+                    .trim();
 
 
-                if (
-                    codigo ===
-                    ESCOLA_DEMO.codigo
-                ) {
+                if (!codigo) {
 
-                    return {
-
-                        codigo:
-                            ESCOLA_DEMO.codigo,
-
-                        nome:
-                            nome ||
-                            ESCOLA_DEMO.nome
-
-                    };
+                    return null;
 
                 }
 
 
-                return null;
+                return {
+
+                    codigo:
+                        codigo,
+
+                    nome:
+                        nome
+
+                };
 
             }
 
@@ -264,16 +245,18 @@
             function preencherEscola() {
 
                 const escola =
-                    obterEscolaAtual();
+                    obterEscolaDaNavegacao();
 
 
-                codigoEscolaCadastro.value =
+                if (
+                    escola &&
+                    escola.codigo
+                ) {
 
-                    escola
+                    codigoEscolaCadastro.value =
+                        escola.codigo;
 
-                        ? escola.codigo
-
-                        : "";
+                }
 
             }
 
@@ -287,9 +270,8 @@
             ) {
 
                 /*
-                    O cadastro público do SafeSchool
-                    é permitido apenas para Aluno
-                    e Responsável.
+                    Cadastro público permitido
+                    somente para Aluno e Responsável.
                 */
 
                 if (
@@ -469,20 +451,15 @@
 
 
             /* =========================================
-               ESCOLA
+               SENHA
             ========================================= */
 
-            function escolaValida(
-                codigo
+            function senhaValida(
+                senha
             ) {
 
-                const escola =
-                    obterEscolaAtual();
-
-
                 if (
-                    !escola ||
-                    !escola.codigo
+                    typeof senha !== "string"
                 ) {
 
                     return false;
@@ -490,19 +467,43 @@
                 }
 
 
+                const possuiTamanho =
+                    senha.length >= 8;
+
+
+                const possuiMinuscula =
+                    /[a-z]/.test(
+                        senha
+                    );
+
+
+                const possuiMaiuscula =
+                    /[A-Z]/.test(
+                        senha
+                    );
+
+
+                const possuiNumero =
+                    /[0-9]/.test(
+                        senha
+                    );
+
+
                 return (
 
-                    (
-                        codigo || ""
-                    )
-                    .trim()
-                    .toUpperCase()
+                    possuiTamanho
 
-                    ===
+                    &&
 
-                    escola.codigo
-                        .trim()
-                        .toUpperCase()
+                    possuiMinuscula
+
+                    &&
+
+                    possuiMaiuscula
+
+                    &&
+
+                    possuiNumero
 
                 );
 
@@ -547,7 +548,7 @@
 
 
             /* =========================================
-               VALIDAR
+               VALIDAR FORMULÁRIO
             ========================================= */
 
             function validarCadastro() {
@@ -657,9 +658,9 @@
                 /* ESCOLA */
 
                 if (
-                    !escolaValida(
-                        codigoEscolaCadastro.value
-                    )
+                    codigoEscolaCadastro.value
+                        .trim()
+                        .length < 2
                 ) {
 
                     if (
@@ -674,7 +675,7 @@
 
                     primeiraMensagem =
                         primeiraMensagem ||
-                        "Este cadastro precisa estar vinculado a uma escola válida do SafeSchool.";
+                        "Digite o código da sua escola.";
 
 
                     valido =
@@ -686,7 +687,9 @@
                 /* SENHA */
 
                 if (
-                    senhaCadastro.value.length < 6
+                    !senhaValida(
+                        senhaCadastro.value
+                    )
                 ) {
 
                     if (
@@ -701,7 +704,7 @@
 
                     primeiraMensagem =
                         primeiraMensagem ||
-                        "A senha precisa ter pelo menos 6 caracteres.";
+                        "A senha deve ter pelo menos 8 caracteres, com letra maiúscula, letra minúscula e número.";
 
 
                     valido =
@@ -788,339 +791,500 @@
 
 
             /* =========================================
-               CONTAS
+               OBTER CLIENTE SUPABASE
             ========================================= */
 
-            function obterContas() {
-
-                const dados =
-                    localStorage.getItem(
-                        "contasSafeSchool"
-                    );
-
-
-                if (!dados) {
-
-                    return [];
-
-                }
-
-
-                try {
-
-                    const contas =
-                        JSON.parse(
-                            dados
-                        );
-
-
-                    return Array.isArray(
-                        contas
-                    )
-                        ? contas
-                        : [];
-
-                }
-
-                catch (erro) {
-
-                    return [];
-
-                }
-
-            }
-
-
-            /* =========================================
-               HASH DEMONSTRATIVO
-            ========================================= */
-
-            /*
-                Esta função NÃO representa segurança
-                adequada para uma aplicação real.
-
-                Serve apenas para evitar armazenar
-                diretamente a senha legível no protótipo.
-            */
-
-            function gerarHashDemonstrativo(
-                senha
-            ) {
-
-                let hash =
-                    2166136261;
-
-
-                for (
-                    let i = 0;
-                    i < senha.length;
-                    i++
-                ) {
-
-                    hash ^=
-                        senha.charCodeAt(
-                            i
-                        );
-
-
-                    hash +=
-
-                        (hash << 1)
-
-                        +
-
-                        (hash << 4)
-
-                        +
-
-                        (hash << 7)
-
-                        +
-
-                        (hash << 8)
-
-                        +
-
-                        (hash << 24);
-
-                }
-
-
-                return (
-
-                    "demo-"
-
-                    +
-
-                    (
-                        hash >>> 0
-                    )
-                    .toString(16)
-
-                );
-
-            }
-
-
-            /* =========================================
-               CADASTRAR
-            ========================================= */
-
-            function cadastrarConta() {
-
-                const escolaAtual =
-                    obterEscolaAtual();
-
+            async function obterSupabase() {
 
                 if (
-                    !escolaAtual ||
-                    !escolaAtual.codigo
+                    !window.SafeSchoolSupabaseReady
                 ) {
 
-                    alert(
-
-                        "Não foi possível identificar uma escola válida para este cadastro."
-
+                    throw new Error(
+                        "Cliente Supabase não foi inicializado."
                     );
-
-
-                    return;
 
                 }
 
 
-                const contas =
-                    obterContas();
+                return await
+                    window.SafeSchoolSupabaseReady;
+
+            }
 
 
-                const email =
+            /* =========================================
+               VALIDAR ESCOLA NO BANCO
+            ========================================= */
 
-                    emailCadastro.value
-                        .trim()
-                        .toLowerCase();
+            async function buscarEscola(
+                supabase,
+                codigo
+            ) {
+
+                const codigoNormalizado =
+                    (
+                        codigo || ""
+                    )
+                    .trim()
+                    .toUpperCase();
 
 
-                const perfil =
-                    perfilCadastro.value;
+                const {
+                    data,
+                    error
+                } =
+                    await supabase.rpc(
 
+                        "buscar_escola_por_codigo",
 
-                const codigoEscola =
+                        {
 
-                    codigoEscolaCadastro.value
-                        .trim()
-                        .toUpperCase();
-
-
-                /* =====================================
-                   VERIFICAR CONTA EXISTENTE
-                ====================================== */
-
-                const contaExistente =
-                    contas.some(
-
-                        function (conta) {
-
-                            return (
-
-                                conta.email ===
-                                email
-
-                                &&
-
-                                conta.perfil ===
-                                perfil
-
-                                &&
-
-                                conta.escolaCodigo ===
-                                codigoEscola
-
-                            );
+                            codigo_informado:
+                                codigoNormalizado
 
                         }
 
                     );
 
 
-                if (
-                    contaExistente
-                ) {
+                if (error) {
 
-                    alert(
-
-                        "Já existe uma conta com este e-mail e perfil nesta escola.\n\n" +
-
-                        "Se não lembrar sua senha, utilize a opção de recuperação de acesso na tela de login."
-
+                    console.error(
+                        "SafeSchool: erro ao validar escola.",
+                        error
                     );
 
+
+                    throw new Error(
+                        "Não foi possível validar a escola."
+                    );
+
+                }
+
+
+                if (
+                    !Array.isArray(data)
+
+                    ||
+
+                    data.length === 0
+                ) {
+
+                    return null;
+
+                }
+
+
+                return data[0];
+
+            }
+
+
+            /* =========================================
+               URL DE RETORNO DO E-MAIL
+            ========================================= */
+
+            function obterUrlRetornoEmail() {
+
+                return new URL(
+
+                    "login.html",
+
+                    window.location.href
+
+                ).href;
+
+            }
+
+
+            /* =========================================
+               ESTADO DO BOTÃO
+            ========================================= */
+
+            function definirProcessando(
+                processando
+            ) {
+
+                if (
+                    !botaoCadastrar
+                ) {
 
                     return;
 
                 }
 
 
-                /* =====================================
-                   NOVA CONTA
-                ====================================== */
-
-                const novaConta = {
-
-                    nome:
-                        nomeCadastro.value
-                            .trim(),
-
-                    email:
-                        email,
-
-                    perfil:
-                        perfil,
-
-                    escolaCodigo:
-                        escolaAtual.codigo,
-
-                    escolaNome:
-                        escolaAtual.nome,
-
-                    senhaHash:
-                        gerarHashDemonstrativo(
-                            senhaCadastro.value
-                        ),
-
-                    criadoEm:
-                        new Date()
-                            .toISOString()
-
-                };
+                botaoCadastrar.disabled =
+                    processando;
 
 
-                contas.push(
-                    novaConta
+                if (processando) {
+
+                    botaoCadastrar.dataset.textoOriginal =
+                        botaoCadastrar.innerHTML;
+
+
+                    botaoCadastrar.textContent =
+                        "Criando conta...";
+
+                }
+
+                else {
+
+                    if (
+                        botaoCadastrar.dataset.textoOriginal
+                    ) {
+
+                        botaoCadastrar.innerHTML =
+                            botaoCadastrar.dataset.textoOriginal;
+
+                    }
+
+
+                    delete
+                    botaoCadastrar.dataset.textoOriginal;
+
+                }
+
+            }
+
+
+            /* =========================================
+               MENSAGEM DE ERRO DO SUPABASE
+            ========================================= */
+
+            function mensagemErroCadastro(
+                erro
+            ) {
+
+                const mensagem =
+                    (
+                        erro &&
+                        erro.message
+                            ? erro.message
+                            : ""
+                    )
+                    .toLowerCase();
+
+
+                if (
+                    mensagem.includes(
+                        "password"
+                    )
+                ) {
+
+                    return (
+
+                        "A senha não atende aos requisitos de segurança.\n\n" +
+
+                        "Utilize pelo menos 8 caracteres, com letra maiúscula, letra minúscula e número."
+
+                    );
+
+                }
+
+
+                if (
+                    mensagem.includes(
+                        "email"
+                    )
+
+                    &&
+
+                    mensagem.includes(
+                        "invalid"
+                    )
+                ) {
+
+                    return (
+                        "O endereço de e-mail informado não é válido."
+                    );
+
+                }
+
+
+                if (
+                    mensagem.includes(
+                        "rate"
+                    )
+
+                    ||
+
+                    mensagem.includes(
+                        "too many"
+                    )
+                ) {
+
+                    return (
+
+                        "Foram realizadas muitas tentativas em pouco tempo.\n\n" +
+
+                        "Aguarde alguns minutos e tente novamente."
+
+                    );
+
+                }
+
+
+                if (
+                    mensagem.includes(
+                        "database"
+                    )
+                ) {
+
+                    return (
+
+                        "Não foi possível concluir o cadastro no momento.\n\n" +
+
+                        "Verifique os dados informados e tente novamente."
+
+                    );
+
+                }
+
+
+                return (
+
+                    "Não foi possível criar a conta no momento.\n\n" +
+
+                    "Verifique sua conexão e tente novamente."
+
+                );
+
+            }
+
+
+            /* =========================================
+               CADASTRAR NO SUPABASE
+            ========================================= */
+
+            async function cadastrarConta() {
+
+                definirProcessando(
+                    true
                 );
 
 
-                /* =====================================
-                   SALVAR
-                ====================================== */
-
                 try {
 
-                    localStorage.setItem(
+                    const supabase =
+                        await obterSupabase();
 
-                        "contasSafeSchool",
 
-                        JSON.stringify(
-                            contas
-                        )
+                    /* =================================
+                       VALIDAR ESCOLA REAL
+                    ================================= */
+
+                    const escola =
+                        await buscarEscola(
+
+                            supabase,
+
+                            codigoEscolaCadastro.value
+
+                        );
+
+
+                    if (!escola) {
+
+                        if (
+                            erroEscolaCadastro
+                        ) {
+
+                            erroEscolaCadastro.hidden =
+                                false;
+
+                        }
+
+
+                        alert(
+
+                            "Código de escola não reconhecido.\n\n" +
+
+                            "Confira o código fornecido pela instituição."
+
+                        );
+
+
+                        return;
+
+                    }
+
+
+                    /* =================================
+                       DADOS DO CADASTRO
+                    ================================= */
+
+                    const nome =
+                        nomeCadastro.value
+                            .trim();
+
+
+                    const email =
+                        emailCadastro.value
+                            .trim()
+                            .toLowerCase();
+
+
+                    const perfil =
+                        perfilCadastro.value;
+
+
+                    const senha =
+                        senhaCadastro.value;
+
+
+                    const urlRetorno =
+                        obterUrlRetornoEmail();
+
+
+                    /* =================================
+                       CRIAR USUÁRIO
+                    ================================= */
+
+                    const {
+                        data,
+                        error
+                    } =
+                        await supabase.auth.signUp(
+
+                            {
+
+                                email:
+                                    email,
+
+                                password:
+                                    senha,
+
+                                options: {
+
+                                    emailRedirectTo:
+                                        urlRetorno,
+
+                                    data: {
+
+                                        nome:
+                                            nome,
+
+                                        perfil:
+                                            perfil,
+
+                                        escola_id:
+                                            escola.id
+
+                                    }
+
+                                }
+
+                            }
+
+                        );
+
+
+                    if (error) {
+
+                        console.error(
+                            "SafeSchool: erro no cadastro.",
+                            error
+                        );
+
+
+                        throw error;
+
+                    }
+
+
+                    if (
+                        !data ||
+                        !data.user
+                    ) {
+
+                        throw new Error(
+                            "Usuário não retornado pelo serviço de autenticação."
+                        );
+
+                    }
+
+
+                    /* =================================
+                       GUARDAR ESCOLA NA SESSÃO
+                    ================================= */
+
+                    sessionStorage.setItem(
+
+                        "codigoEscolaSafeSchool",
+
+                        escola.codigo
 
                     );
+
+
+                    sessionStorage.setItem(
+
+                        "nomeEscolaSafeSchool",
+
+                        escola.nome
+
+                    );
+
+
+                    /* =================================
+                       SUCESSO
+                    ================================= */
+
+                    alert(
+
+                        "Cadastro realizado! 🎉\n\n" +
+
+                        "Enviamos uma mensagem para o seu e-mail.\n\n" +
+
+                        "Abra o e-mail e confirme seu cadastro antes de entrar no SafeSchool.\n\n" +
+
+                        "Se você já tiver uma conta com esse endereço, utilize a recuperação de senha na tela de login."
+
+                    );
+
+
+                    /* =================================
+                       IR PARA O LOGIN
+                    ================================= */
+
+                    window.location.href =
+
+                        "login.html?escola="
+
+                        +
+
+                        encodeURIComponent(
+                            escola.codigo
+                        );
 
                 }
 
                 catch (erro) {
 
-                    alert(
-
-                        "Não foi possível salvar a conta neste navegador.\n\n" +
-
-                        "Tente atualizar a página e realizar o cadastro novamente."
-
+                    console.error(
+                        "SafeSchool: falha ao criar conta.",
+                        erro
                     );
 
 
-                    return;
+                    alert(
+                        mensagemErroCadastro(
+                            erro
+                        )
+                    );
 
                 }
 
+                finally {
 
-                /* =====================================
-                   VINCULAR ESCOLA
-                ====================================== */
-
-                sessionStorage.setItem(
-
-                    "codigoEscolaSafeSchool",
-
-                    escolaAtual.codigo
-
-                );
-
-
-                sessionStorage.setItem(
-
-                    "nomeEscolaSafeSchool",
-
-                    escolaAtual.nome
-
-                );
-
-
-                /* =====================================
-                   SUCESSO
-                ====================================== */
-
-                alert(
-
-                    "Conta criada com sucesso! 🎉\n\n" +
-
-                    "Agora você pode entrar no SafeSchool."
-
-                );
-
-
-                /* =====================================
-                   VOLTAR AO LOGIN
-                ====================================== */
-
-                window.location.href =
-
-                    "login.html?escola="
-
-                    +
-
-                    encodeURIComponent(
-                        escolaAtual.codigo
+                    definirProcessando(
+                        false
                     );
+
+                }
 
             }
 
@@ -1133,7 +1297,7 @@
 
                 "submit",
 
-                function (evento) {
+                async function (evento) {
 
                     evento.preventDefault();
 
@@ -1147,7 +1311,7 @@
                     }
 
 
-                    cadastrarConta();
+                    await cadastrarConta();
 
                 }
 

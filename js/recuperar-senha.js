@@ -1,6 +1,6 @@
 /* =========================================
    SAFESCHOOL
-   RECUPERAÇÃO DE ACESSO
+   RECUPERAÇÃO REAL DE ACESSO
 ========================================= */
 
 (function () {
@@ -8,22 +8,11 @@
     "use strict";
 
 
-    const ESCOLA_DEMO = {
-
-        codigo:
-            "ESC001",
-
-        nome:
-            "Escola Demonstrativa SafeSchool"
-
-    };
-
-
     document.addEventListener(
 
         "DOMContentLoaded",
 
-        function () {
+        async function () {
 
 
             /* =========================================
@@ -161,130 +150,215 @@
 
 
             /* =========================================
-               DADOS TEMPORÁRIOS
+               VERIFICAÇÃO BÁSICA
             ========================================= */
 
-            let solicitacaoAtual = {
+            if (
+                !etapaSolicitacao ||
+                !etapaMensagem ||
+                !etapaNovaSenha ||
+                !etapaSucesso ||
+                !formRecuperacao ||
+                !formNovaSenha ||
+                !perfilRecuperacao ||
+                !emailRecuperacao ||
+                !codigoEscolaRecuperacao ||
+                !novaSenha ||
+                !confirmarNovaSenha
+            ) {
 
-                perfil:
-                    "",
+                console.error(
+                    "SafeSchool: a tela de recuperação não foi carregada corretamente."
+                );
 
-                email:
-                    "",
-
-                escola:
-                    "",
-
-                escolaNome:
-                    ""
-
-            };
-
-
-            /* =========================================
-               ESCOLA VALIDADA
-            ========================================= */
-
-            function obterEscolaAtual() {
-
-                /*
-                    A escola deve ser obtida
-                    preferencialmente pelo escola.js,
-                    responsável por validar o vínculo.
-                */
-
-                if (
-                    window.SafeSchoolEscola
-
-                    &&
-
-                    typeof
-                    window.SafeSchoolEscola.obter
-                    ===
-                    "function"
-                ) {
-
-                    const escola =
-                        window.SafeSchoolEscola.obter();
-
-
-                    if (
-                        escola &&
-                        escola.codigo
-                    ) {
-
-                        return escola;
-
-                    }
-
-                }
-
-
-                /*
-                    Fallback somente para a escola
-                    demonstrativa conhecida e já
-                    registrada corretamente na sessão.
-                */
-
-                const codigo =
-                    (
-                        sessionStorage.getItem(
-                            "codigoEscolaSafeSchool"
-                        ) || ""
-                    )
-                    .trim()
-                    .toUpperCase();
-
-
-                const nome =
-                    sessionStorage.getItem(
-                        "nomeEscolaSafeSchool"
-                    );
-
-
-                if (
-                    codigo ===
-                    ESCOLA_DEMO.codigo
-                ) {
-
-                    return {
-
-                        codigo:
-                            ESCOLA_DEMO.codigo,
-
-                        nome:
-                            nome ||
-                            ESCOLA_DEMO.nome
-
-                    };
-
-                }
-
-
-                return null;
+                return;
 
             }
 
 
             /* =========================================
-               PERFIL
+               SUPABASE
             ========================================= */
+
+            async function garantirSupabaseCarregado() {
+
+                if (
+                    window.SafeSchoolSupabaseReady
+                ) {
+
+                    return await
+                        window.SafeSchoolSupabaseReady;
+
+                }
+
+
+                await new Promise(
+
+                    function (
+                        resolver,
+                        rejeitar
+                    ) {
+
+                        const existente =
+                            document.querySelector(
+                                'script[src="../js/supabase.js"]'
+                            );
+
+
+                        if (existente) {
+
+                            const verificar =
+                                window.setInterval(
+
+                                    function () {
+
+                                        if (
+                                            window.SafeSchoolSupabaseReady
+                                        ) {
+
+                                            window.clearInterval(
+                                                verificar
+                                            );
+
+                                            resolver();
+
+                                        }
+
+                                    },
+
+                                    50
+
+                                );
+
+
+                            window.setTimeout(
+
+                                function () {
+
+                                    window.clearInterval(
+                                        verificar
+                                    );
+
+                                    if (
+                                        window.SafeSchoolSupabaseReady
+                                    ) {
+
+                                        resolver();
+
+                                    } else {
+
+                                        rejeitar(
+                                            new Error(
+                                                "Supabase não foi inicializado."
+                                            )
+                                        );
+
+                                    }
+
+                                },
+
+                                5000
+
+                            );
+
+
+                            return;
+
+                        }
+
+
+                        const script =
+                            document.createElement(
+                                "script"
+                            );
+
+
+                        script.src =
+                            "../js/supabase.js";
+
+
+                        script.onload =
+                            resolver;
+
+
+                        script.onerror =
+                            function () {
+
+                                rejeitar(
+                                    new Error(
+                                        "Não foi possível carregar o Supabase."
+                                    )
+                                );
+
+                            };
+
+
+                        document.head.appendChild(
+                            script
+                        );
+
+                    }
+
+                );
+
+
+                if (
+                    !window.SafeSchoolSupabaseReady
+                ) {
+
+                    throw new Error(
+                        "Cliente Supabase não foi inicializado."
+                    );
+
+                }
+
+
+                return await
+                    window.SafeSchoolSupabaseReady;
+
+            }
+
+
+            let supabase = null;
+
+
+            try {
+
+                supabase =
+                    await garantirSupabaseCarregado();
+
+            } catch (erro) {
+
+                console.error(
+                    "SafeSchool: erro ao carregar Supabase na recuperação.",
+                    erro
+                );
+
+            }
+
+
+            /* =========================================
+               PERFIS PERMITIDOS
+            ========================================= */
+
+            const perfisPermitidos = [
+
+                "aluno",
+                "professor",
+                "responsavel",
+                "psicologia"
+
+            ];
+
 
             function selecionarPerfil(
                 perfil
             ) {
 
-                /*
-                    A recuperação pública é destinada
-                    somente a Aluno e Responsável.
-                */
-
                 if (
-                    perfil !== "aluno"
-
-                    &&
-
-                    perfil !== "responsavel"
+                    !perfisPermitidos.includes(
+                        perfil
+                    )
                 ) {
 
                     return;
@@ -382,7 +456,8 @@
 
                     (
                         email || ""
-                    ).trim()
+                    )
+                    .trim()
 
                 );
 
@@ -390,69 +465,91 @@
 
 
             /* =========================================
-               PREENCHER ESCOLA
+               ESCOLA
             ========================================= */
 
-            function preencherEscola() {
+            function obterCodigoEscola() {
 
-                const escola =
-                    obterEscolaAtual();
-
-
-                codigoEscolaRecuperacao.value =
-
-                    escola
-
-                        ? escola.codigo
-
-                        : "";
-
-            }
+                const parametros =
+                    new URLSearchParams(
+                        window.location.search
+                    );
 
 
-            /* =========================================
-               VALIDAR ESCOLA
-            ========================================= */
+                const codigoURL =
+                    (
+                        parametros.get(
+                            "escola"
+                        ) || ""
+                    )
+                    .trim()
+                    .toUpperCase();
 
-            function escolaValida(
-                codigo
-            ) {
 
-                const escola =
-                    obterEscolaAtual();
+                if (codigoURL) {
+
+                    return codigoURL;
+
+                }
 
 
                 if (
-                    !escola ||
-                    !escola.codigo
+                    window.SafeSchoolEscola &&
+                    typeof
+                    window.SafeSchoolEscola.obter
+                    ===
+                    "function"
                 ) {
 
-                    return false;
+                    const escola =
+                        window.SafeSchoolEscola.obter();
+
+
+                    if (
+                        escola &&
+                        escola.codigo
+                    ) {
+
+                        return String(
+                            escola.codigo
+                        )
+                        .trim()
+                        .toUpperCase();
+
+                    }
 
                 }
 
 
                 return (
+                    sessionStorage.getItem(
+                        "codigoEscolaSafeSchool"
+                    ) || ""
+                )
+                .trim()
+                .toUpperCase();
 
-                    (
-                        codigo || ""
-                    )
-                    .trim()
-                    .toUpperCase()
+            }
 
-                    ===
 
-                    escola.codigo
-                        .trim()
-                        .toUpperCase()
+            function preencherEscola() {
 
-                );
+                const codigo =
+                    obterCodigoEscola();
+
+
+                if (codigo) {
+
+                    codigoEscolaRecuperacao.value =
+                        codigo;
+
+                }
 
             }
 
 
             /* =========================================
-               TROCAR ETAPA
+               ETAPAS
             ========================================= */
 
             function mostrarEtapa(
@@ -478,7 +575,7 @@
 
 
             /* =========================================
-               VALIDAR SOLICITAÇÃO
+               VALIDAÇÃO DA SOLICITAÇÃO
             ========================================= */
 
             function validarSolicitacao() {
@@ -487,45 +584,48 @@
                     true;
 
 
-                erroPerfil.hidden =
-                    true;
-
-
-                erroEmail.hidden =
-                    true;
-
-
-                erroEscola.hidden =
-                    true;
-
-
-                /*
-                    PERFIL
-                */
-
-                if (
-                    perfilRecuperacao.value !==
-                    "aluno"
-
-                    &&
-
-                    perfilRecuperacao.value !==
-                    "responsavel"
-                ) {
+                if (erroPerfil) {
 
                     erroPerfil.hidden =
-                        false;
+                        true;
 
+                }
+
+
+                if (erroEmail) {
+
+                    erroEmail.hidden =
+                        true;
+
+                }
+
+
+                if (erroEscola) {
+
+                    erroEscola.hidden =
+                        true;
+
+                }
+
+
+                if (
+                    !perfisPermitidos.includes(
+                        perfilRecuperacao.value
+                    )
+                ) {
+
+                    if (erroPerfil) {
+
+                        erroPerfil.hidden =
+                            false;
+
+                    }
 
                     valido =
                         false;
 
                 }
 
-
-                /*
-                    E-MAIL
-                */
 
                 if (
                     !emailValido(
@@ -533,9 +633,12 @@
                     )
                 ) {
 
-                    erroEmail.hidden =
-                        false;
+                    if (erroEmail) {
 
+                        erroEmail.hidden =
+                            false;
+
+                    }
 
                     valido =
                         false;
@@ -543,19 +646,17 @@
                 }
 
 
-                /*
-                    ESCOLA
-                */
-
                 if (
-                    !escolaValida(
-                        codigoEscolaRecuperacao.value
-                    )
+                    !codigoEscolaRecuperacao.value
+                        .trim()
                 ) {
 
-                    erroEscola.hidden =
-                        false;
+                    if (erroEscola) {
 
+                        erroEscola.hidden =
+                            false;
+
+                    }
 
                     valido =
                         false;
@@ -569,14 +670,61 @@
 
 
             /* =========================================
-               SOLICITAR
+               URL DE RETORNO
+            ========================================= */
+
+            function criarURLRetorno() {
+
+                const codigo =
+                    codigoEscolaRecuperacao.value
+                        .trim()
+                        .toUpperCase();
+
+
+                const url =
+                    new URL(
+                        window.location.href
+                    );
+
+
+                url.search = "";
+
+
+                url.hash = "";
+
+
+                url.searchParams.set(
+                    "modo",
+                    "redefinir"
+                );
+
+
+                if (codigo) {
+
+                    url.searchParams.set(
+                        "escola",
+                        codigo
+                    );
+
+                }
+
+
+                return url.toString();
+
+            }
+
+
+            /* =========================================
+               SOLICITAR RECUPERAÇÃO REAL
             ========================================= */
 
             formRecuperacao.addEventListener(
 
                 "submit",
 
-                function (evento) {
+                async function (
+                    evento
+                ) {
 
                     evento.preventDefault();
 
@@ -590,57 +738,109 @@
                     }
 
 
-                    const escolaAtual =
-                        obterEscolaAtual();
+                    if (!supabase) {
 
-
-                    if (
-                        !escolaAtual ||
-                        !escolaAtual.codigo
-                    ) {
-
-                        erroEscola.hidden =
-                            false;
-
+                        alert(
+                            "Não foi possível conectar ao serviço de recuperação. Atualize a página e tente novamente."
+                        );
 
                         return;
 
                     }
 
 
-                    solicitacaoAtual = {
-
-                        perfil:
-                            perfilRecuperacao.value,
-
-                        email:
-                            emailRecuperacao.value
-                                .trim()
-                                .toLowerCase(),
-
-                        escola:
-                            escolaAtual.codigo,
-
-                        escolaNome:
-                            escolaAtual.nome
-
-                    };
+                    const email =
+                        emailRecuperacao.value
+                            .trim()
+                            .toLowerCase();
 
 
-                    /*
-                        IMPORTANTE:
-
-                        Não verificamos publicamente
-                        se a conta existe nesta etapa.
-
-                        A mensagem apresentada será
-                        sempre a mesma.
-                    */
+                    const codigoEscola =
+                        codigoEscolaRecuperacao.value
+                            .trim()
+                            .toUpperCase();
 
 
-                    mostrarEtapa(
-                        "mensagem"
+                    sessionStorage.setItem(
+
+                        "codigoEscolaSafeSchool",
+
+                        codigoEscola
+
                     );
+
+
+                    sessionStorage.setItem(
+
+                        "perfilRecuperacaoSafeSchool",
+
+                        perfilRecuperacao.value
+
+                    );
+
+
+                    try {
+
+                        const {
+                            error
+                        } =
+                            await supabase.auth
+                                .resetPasswordForEmail(
+
+                                    email,
+
+                                    {
+
+                                        redirectTo:
+                                            criarURLRetorno()
+
+                                    }
+
+                                );
+
+
+                        if (error) {
+
+                            console.error(
+                                "SafeSchool: falha ao solicitar recuperação.",
+                                error
+                            );
+
+
+                            throw error;
+
+                        }
+
+
+                        /*
+                            A mensagem é propositalmente
+                            genérica para não revelar
+                            se determinado e-mail possui
+                            ou não uma conta cadastrada.
+                        */
+
+                        mostrarEtapa(
+                            "mensagem"
+                        );
+
+
+                    } catch (erro) {
+
+                        console.error(
+                            "SafeSchool: erro na recuperação de senha.",
+                            erro
+                        );
+
+
+                        alert(
+
+                            "Não foi possível enviar as instruções de recuperação neste momento.\n\n" +
+
+                            "Tente novamente em alguns instantes."
+
+                        );
+
+                    }
 
                 }
 
@@ -648,185 +848,39 @@
 
 
             /* =========================================
-               CONTINUAR DEMONSTRAÇÃO
+               BOTÃO ANTIGO DE DEMONSTRAÇÃO
+               DESATIVADO
             ========================================= */
 
-            continuarDemonstracao.addEventListener(
+            if (
+                continuarDemonstracao
+            ) {
 
-                "click",
+                continuarDemonstracao.hidden =
+                    true;
 
-                function () {
-
-                    mostrarEtapa(
-                        "novaSenha"
-                    );
-
-
-                    novaSenha.focus();
-
-                }
-
-            );
+            }
 
 
             /* =========================================
                VOLTAR
             ========================================= */
 
-            voltarSolicitacao.addEventListener(
-
-                "click",
-
-                function () {
-
-                    mostrarEtapa(
-                        "solicitacao"
-                    );
-
-                }
-
-            );
-
-
-            /* =========================================
-               MOSTRAR SENHA
-            ========================================= */
-
-            mostrarNovaSenha.addEventListener(
-
-                "click",
-
-                function () {
-
-                    const mostrando =
-                        novaSenha.type ===
-                        "text";
-
-
-                    novaSenha.type =
-                        mostrando
-                            ? "password"
-                            : "text";
-
-
-                    confirmarNovaSenha.type =
-                        mostrando
-                            ? "password"
-                            : "text";
-
-
-                    mostrarNovaSenha.textContent =
-                        mostrando
-                            ? "👁️"
-                            : "🙈";
-
-                }
-
-            );
-
-
-            /* =========================================
-               CONTAS
-            ========================================= */
-
-            function obterContas() {
-
-                const dados =
-                    localStorage.getItem(
-                        "contasSafeSchool"
-                    );
-
-
-                if (!dados) {
-
-                    return [];
-
-                }
-
-
-                try {
-
-                    const contas =
-                        JSON.parse(
-                            dados
-                        );
-
-
-                    return Array.isArray(
-                        contas
-                    )
-                        ? contas
-                        : [];
-
-                }
-
-                catch (erro) {
-
-                    return [];
-
-                }
-
-            }
-
-
-            /* =========================================
-               HASH
-               IGUAL AO CADASTRO E LOGIN
-            ========================================= */
-
-            function gerarHashDemonstrativo(
-                senha
+            if (
+                voltarSolicitacao
             ) {
 
-                let hash =
-                    2166136261;
+                voltarSolicitacao.addEventListener(
 
+                    "click",
 
-                for (
-                    let i = 0;
-                    i < senha.length;
-                    i++
-                ) {
+                    function () {
 
-                    hash ^=
-                        senha.charCodeAt(
-                            i
+                        mostrarEtapa(
+                            "solicitacao"
                         );
 
-
-                    hash +=
-
-                        (hash << 1)
-
-                        +
-
-                        (hash << 4)
-
-                        +
-
-                        (hash << 7)
-
-                        +
-
-                        (hash << 8)
-
-                        +
-
-                        (hash << 24);
-
-                }
-
-
-                return (
-
-                    "demo-"
-
-                    +
-
-                    (
-                        hash >>> 0
-                    )
-                    .toString(16)
+                    }
 
                 );
 
@@ -834,8 +888,123 @@
 
 
             /* =========================================
-               VALIDAR NOVA SENHA
+               MOSTRAR SENHA
             ========================================= */
+
+            if (
+                mostrarNovaSenha
+            ) {
+
+                mostrarNovaSenha.addEventListener(
+
+                    "click",
+
+                    function () {
+
+                        const mostrando =
+                            novaSenha.type ===
+                            "text";
+
+
+                        novaSenha.type =
+                            mostrando
+                                ? "password"
+                                : "text";
+
+
+                        confirmarNovaSenha.type =
+                            mostrando
+                                ? "password"
+                                : "text";
+
+
+                        mostrarNovaSenha.textContent =
+                            mostrando
+                                ? "👁️"
+                                : "🙈";
+
+
+                        mostrarNovaSenha.setAttribute(
+
+                            "aria-label",
+
+                            mostrando
+                                ? "Mostrar senha"
+                                : "Ocultar senha"
+
+                        );
+
+                    }
+
+                );
+
+            }
+
+
+            /* =========================================
+               SENHA SEGURA
+            ========================================= */
+
+            function senhaValida(
+                senha
+            ) {
+
+                if (
+                    typeof senha !==
+                    "string"
+                ) {
+
+                    return false;
+
+                }
+
+
+                if (
+                    senha.length < 8
+                ) {
+
+                    return false;
+
+                }
+
+
+                if (
+                    !/[a-z]/.test(
+                        senha
+                    )
+                ) {
+
+                    return false;
+
+                }
+
+
+                if (
+                    !/[A-Z]/.test(
+                        senha
+                    )
+                ) {
+
+                    return false;
+
+                }
+
+
+                if (
+                    !/[0-9]/.test(
+                        senha
+                    )
+                ) {
+
+                    return false;
+
+                }
+
+
+                return true;
+
+            }
+
 
             function validarNovaSenha() {
 
@@ -843,21 +1012,36 @@
                     true;
 
 
-                erroNovaSenha.hidden =
-                    true;
+                if (erroNovaSenha) {
 
+                    erroNovaSenha.hidden =
+                        true;
 
-                erroConfirmarNovaSenha.hidden =
-                    true;
+                }
 
 
                 if (
-                    novaSenha.value.length < 6
+                    erroConfirmarNovaSenha
                 ) {
 
-                    erroNovaSenha.hidden =
-                        false;
+                    erroConfirmarNovaSenha.hidden =
+                        true;
 
+                }
+
+
+                if (
+                    !senhaValida(
+                        novaSenha.value
+                    )
+                ) {
+
+                    if (erroNovaSenha) {
+
+                        erroNovaSenha.hidden =
+                            false;
+
+                    }
 
                     valido =
                         false;
@@ -866,18 +1050,18 @@
 
 
                 if (
-
-                    confirmarNovaSenha.value
-
-                    !==
-
+                    confirmarNovaSenha.value !==
                     novaSenha.value
-
                 ) {
 
-                    erroConfirmarNovaSenha.hidden =
-                        false;
+                    if (
+                        erroConfirmarNovaSenha
+                    ) {
 
+                        erroConfirmarNovaSenha.hidden =
+                            false;
+
+                    }
 
                     valido =
                         false;
@@ -891,14 +1075,16 @@
 
 
             /* =========================================
-               REDEFINIR SENHA
+               REDEFINIR SENHA NO SUPABASE
             ========================================= */
 
             formNovaSenha.addEventListener(
 
                 "submit",
 
-                function (evento) {
+                async function (
+                    evento
+                ) {
 
                     evento.preventDefault();
 
@@ -912,148 +1098,291 @@
                     }
 
 
-                    /*
-                        Utilizamos somente a escola
-                        que já foi validada durante
-                        a solicitação.
-                    */
+                    if (!supabase) {
 
-                    const codigoEscola =
-                        solicitacaoAtual.escola;
-
-
-                    const nomeEscola =
-                        solicitacaoAtual.escolaNome;
-
-
-                    if (
-                        !codigoEscola
-                    ) {
+                        alert(
+                            "Não foi possível conectar ao serviço de recuperação."
+                        );
 
                         return;
 
                     }
 
 
-                    const contas =
-                        obterContas();
+                    try {
+
+                        const {
+                            data: dadosSessao,
+                            error: erroSessao
+                        } =
+                            await supabase.auth
+                                .getSession();
 
 
-                    const indice =
-                        contas.findIndex(
+                        if (
+                            erroSessao ||
+                            !dadosSessao ||
+                            !dadosSessao.session
+                        ) {
 
-                            function (conta) {
+                            throw new Error(
+                                "Sessão de recuperação não encontrada."
+                            );
 
-                                return (
+                        }
 
-                                    conta.email ===
-                                    solicitacaoAtual.email
 
-                                    &&
+                        const {
+                            error
+                        } =
+                            await supabase.auth
+                                .updateUser({
 
-                                    conta.perfil ===
-                                    solicitacaoAtual.perfil
+                                    password:
+                                        novaSenha.value
 
-                                    &&
+                                });
 
-                                    conta.escolaCodigo ===
-                                    codigoEscola
+
+                        if (error) {
+
+                            throw error;
+
+                        }
+
+
+                        const codigoEscola =
+                            obterCodigoEscola();
+
+
+                        if (
+                            irParaLogin
+                        ) {
+
+                            irParaLogin.href =
+
+                                codigoEscola
+
+                                    ? (
+                                        "login.html?escola="
+
+                                        +
+
+                                        encodeURIComponent(
+                                            codigoEscola
+                                        )
+                                    )
+
+                                    : "login.html";
+
+                        }
+
+
+                        /*
+                            Após redefinir a senha,
+                            encerramos a sessão temporária
+                            de recuperação.
+
+                            O usuário deverá entrar
+                            novamente com a nova senha.
+                        */
+
+                        await supabase.auth
+                            .signOut();
+
+
+                        mostrarEtapa(
+                            "sucesso"
+                        );
+
+
+                    } catch (erro) {
+
+                        console.error(
+                            "SafeSchool: falha ao redefinir senha.",
+                            erro
+                        );
+
+
+                        alert(
+
+                            "O link de recuperação pode ter expirado ou não ser mais válido.\n\n" +
+
+                            "Solicite um novo link e tente novamente."
+
+                        );
+
+                    }
+
+                }
+
+            );
+
+
+            /* =========================================
+               DETECTAR RETORNO DO E-MAIL
+            ========================================= */
+
+            async function verificarModoRecuperacao() {
+
+                if (!supabase) {
+
+                    return;
+
+                }
+
+
+                const parametros =
+                    new URLSearchParams(
+                        window.location.search
+                    );
+
+
+                const modo =
+                    (
+                        parametros.get(
+                            "modo"
+                        ) || ""
+                    )
+                    .trim()
+                    .toLowerCase();
+
+
+                let retornoRecuperacao =
+                    modo ===
+                    "redefinir";
+
+
+                const hash =
+                    window.location.hash ||
+                    "";
+
+
+                if (
+                    hash.includes(
+                        "type=recovery"
+                    )
+                ) {
+
+                    retornoRecuperacao =
+                        true;
+
+                }
+
+
+                supabase.auth
+                    .onAuthStateChange(
+
+                        function (
+                            evento,
+                            sessao
+                        ) {
+
+                            if (
+                                evento ===
+                                "PASSWORD_RECOVERY"
+                                &&
+                                sessao
+                            ) {
+
+                                mostrarEtapa(
+                                    "novaSenha"
+                                );
+
+
+                                window.setTimeout(
+
+                                    function () {
+
+                                        novaSenha.focus();
+
+                                    },
+
+                                    100
 
                                 );
 
                             }
 
-                        );
-
-
-                    /*
-                        Se a conta existir no protótipo,
-                        atualizamos a senha.
-
-                        Se não existir, não revelamos isso.
-                    */
-
-                    if (
-                        indice !== -1
-                    ) {
-
-                        contas[indice].senhaHash =
-
-                            gerarHashDemonstrativo(
-                                novaSenha.value
-                            );
-
-
-                        contas[indice].senhaAtualizadaEm =
-
-                            new Date()
-                                .toISOString();
-
-
-                        localStorage.setItem(
-
-                            "contasSafeSchool",
-
-                            JSON.stringify(
-                                contas
-                            )
-
-                        );
-
-                    }
-
-
-                    /* =====================================
-                       PRESERVAR ESCOLA VALIDADA
-                    ====================================== */
-
-                    sessionStorage.setItem(
-
-                        "codigoEscolaSafeSchool",
-
-                        codigoEscola
+                        }
 
                     );
 
 
-                    sessionStorage.setItem(
+                if (
+                    !retornoRecuperacao
+                ) {
 
-                        "nomeEscolaSafeSchool",
+                    return;
 
-                        nomeEscola ||
-                        ESCOLA_DEMO.nome
-
-                    );
+                }
 
 
-                    /* =====================================
-                       RETORNO AO LOGIN
-                    ====================================== */
+                /*
+                    O Supabase pode precisar de alguns
+                    instantes para processar o código
+                    recebido na URL.
+                */
+
+                for (
+                    let tentativa = 0;
+                    tentativa < 20;
+                    tentativa++
+                ) {
+
+                    const {
+                        data
+                    } =
+                        await supabase.auth
+                            .getSession();
+
 
                     if (
-                        irParaLogin
+                        data &&
+                        data.session
                     ) {
 
-                        irParaLogin.href =
+                        mostrarEtapa(
+                            "novaSenha"
+                        );
 
-                            "login.html?escola="
 
-                            +
+                        window.setTimeout(
 
-                            encodeURIComponent(
-                                codigoEscola
-                            );
+                            function () {
+
+                                novaSenha.focus();
+
+                            },
+
+                            100
+
+                        );
+
+
+                        return;
 
                     }
 
 
-                    mostrarEtapa(
-                        "sucesso"
+                    await new Promise(
+
+                        function (
+                            resolver
+                        ) {
+
+                            window.setTimeout(
+                                resolver,
+                                150
+                            );
+
+                        }
+
                     );
 
                 }
 
-            );
+            }
 
 
             /* =========================================
@@ -1066,8 +1395,12 @@
 
                 function () {
 
-                    erroEmail.hidden =
-                        true;
+                    if (erroEmail) {
+
+                        erroEmail.hidden =
+                            true;
+
+                    }
 
                 }
 
@@ -1086,8 +1419,12 @@
                             .toUpperCase();
 
 
-                    erroEscola.hidden =
-                        true;
+                    if (erroEscola) {
+
+                        erroEscola.hidden =
+                            true;
+
+                    }
 
                 }
 
@@ -1100,12 +1437,22 @@
 
                 function () {
 
-                    erroNovaSenha.hidden =
-                        true;
+                    if (erroNovaSenha) {
+
+                        erroNovaSenha.hidden =
+                            true;
+
+                    }
 
 
-                    erroConfirmarNovaSenha.hidden =
-                        true;
+                    if (
+                        erroConfirmarNovaSenha
+                    ) {
+
+                        erroConfirmarNovaSenha.hidden =
+                            true;
+
+                    }
 
                 }
 
@@ -1118,8 +1465,14 @@
 
                 function () {
 
-                    erroConfirmarNovaSenha.hidden =
-                        true;
+                    if (
+                        erroConfirmarNovaSenha
+                    ) {
+
+                        erroConfirmarNovaSenha.hidden =
+                            true;
+
+                    }
 
                 }
 
@@ -1132,9 +1485,32 @@
 
             preencherEscola();
 
-            mostrarEtapa(
-                "solicitacao"
-            );
+
+            const parametros =
+                new URLSearchParams(
+                    window.location.search
+                );
+
+
+            if (
+                (
+                    parametros.get(
+                        "modo"
+                    ) || ""
+                )
+                .toLowerCase()
+                !==
+                "redefinir"
+            ) {
+
+                mostrarEtapa(
+                    "solicitacao"
+                );
+
+            }
+
+
+            await verificarModoRecuperacao();
 
         }
 

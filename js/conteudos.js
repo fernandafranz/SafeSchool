@@ -5,32 +5,48 @@
 
 
 /* =========================================
-   PERFIL ATUAL
+   ESTADO DA AUTENTICAÇÃO E PROGRESSO
 ========================================= */
 
-function alunoEstaLogado() {
-
-    const perfil =
-        (
-            sessionStorage.getItem(
-                "perfilSafeSchool"
-            ) || ""
-        )
-        .trim()
-        .toLowerCase();
+let supabase =
+    null;
 
 
-    const email =
-        sessionStorage.getItem(
-            "usuarioEmailSafeSchool"
-        );
+let usuarioAtual =
+    null;
 
 
-    return (
-        perfil === "aluno" &&
-        Boolean(email)
-    );
-}
+let perfilAtual =
+    null;
+
+
+let autenticacaoVerificada =
+    false;
+
+
+let carregandoProgresso =
+    false;
+
+
+let registrandoConclusao =
+    false;
+
+
+let progressoAlunoAtual = {
+
+    conteudosConcluidos:
+        [],
+
+    desafiosConcluidos:
+        [],
+
+    pontos:
+        0,
+
+    selos:
+        []
+
+};
 
 
 /* =========================================
@@ -243,7 +259,9 @@ function obterConfiguracaoPedagogica() {
 
 
         const configuracao =
-            todas[escola.codigo];
+            todas[
+                escola.codigo
+            ];
 
 
         if (
@@ -327,6 +345,12 @@ function obterConfiguracaoPedagogica() {
     }
 
     catch (erro) {
+
+        console.warn(
+            "SafeSchool: não foi possível ler as recomendações pedagógicas.",
+            erro
+        );
+
 
         return criarConfiguracaoPedagogicaVazia();
 
@@ -859,24 +883,124 @@ function criarMarcadoresEscola(
 
 
 /* =========================================
-   CHAVE DO ALUNO
+   ESTADO DO ALUNO
 ========================================= */
 
-function obterChaveAluno() {
+function alunoEstaLogado() {
 
-    const escola =
-        obterEscolaAtual();
+    return (
+
+        autenticacaoVerificada === true
+
+        &&
+
+        usuarioAtual !== null
+
+        &&
+
+        perfilAtual !== null
+
+        &&
+
+        perfilAtual.perfil === "aluno"
+
+        &&
+
+        perfilAtual.ativo === true
+
+    );
+
+}
 
 
-    const email =
-        sessionStorage.getItem(
-            "usuarioEmailSafeSchool"
-        );
+/* =========================================
+   NORMALIZAR PROGRESSO DO BANCO
+========================================= */
 
+function normalizarProgressoBanco(
+    progresso
+) {
 
     if (
-        !alunoEstaLogado() ||
-        !email
+        !progresso ||
+        typeof progresso !== "object"
+    ) {
+
+        return {
+
+            conteudosConcluidos:
+                [],
+
+            desafiosConcluidos:
+                [],
+
+            pontos:
+                0,
+
+            selos:
+                []
+
+        };
+
+    }
+
+
+    return {
+
+        conteudosConcluidos:
+
+            Array.isArray(
+                progresso.conteudos_concluidos
+            )
+
+                ? progresso.conteudos_concluidos
+
+                : [],
+
+
+        desafiosConcluidos:
+
+            Array.isArray(
+                progresso.desafios_concluidos
+            )
+
+                ? progresso.desafios_concluidos
+
+                : [],
+
+
+        pontos:
+
+            Number(
+                progresso.pontos || 0
+            ),
+
+
+        selos:
+
+            Array.isArray(
+                progresso.selos
+            )
+
+                ? progresso.selos
+
+                : []
+
+    };
+
+}
+
+
+/* =========================================
+   COMPATIBILIDADE TEMPORÁRIA
+   COM AS PÁGINAS AINDA NÃO MIGRADAS
+========================================= */
+
+function obterChaveCompatibilidadeLocal() {
+
+    if (
+        !usuarioAtual ||
+        !usuarioAtual.email
     ) {
 
         return null;
@@ -884,13 +1008,34 @@ function obterChaveAluno() {
     }
 
 
+    const escola =
+        obterEscolaAtual();
+
+
+    let codigoEscola =
+        escola &&
+        escola.codigo
+
+            ? escola.codigo
+
+            : sessionStorage.getItem(
+                "codigoEscolaSafeSchool"
+            );
+
+
+    if (
+        !codigoEscola
+    ) {
+
+        codigoEscola =
+            "SEM-ESCOLA";
+
+    }
+
+
     return (
 
-        (
-            escola
-                ? escola.codigo
-                : "SEM-ESCOLA"
-        )
+        codigoEscola
 
         +
 
@@ -898,7 +1043,7 @@ function obterChaveAluno() {
 
         +
 
-        email
+        usuarioAtual.email
             .trim()
             .toLowerCase()
 
@@ -907,170 +1052,135 @@ function obterChaveAluno() {
 }
 
 
-/* =========================================
-   PROGRESSO
-========================================= */
+function sincronizarCompatibilidadeLocal() {
 
-function criarProgressoVazio() {
+    if (
+        !alunoEstaLogado()
+    ) {
 
-    return {
+        return;
 
-        conteudosConcluidos:
-            [],
-
-        pontos:
-            0,
-
-        desafiosConcluidos:
-            [],
-
-        selos:
-            []
-
-    };
-
-}
+    }
 
 
-function obterTodosProgressos() {
+    if (
+        usuarioAtual &&
+        usuarioAtual.email
+    ) {
 
-    const dados =
+        sessionStorage.setItem(
+            "usuarioEmailSafeSchool",
+            usuarioAtual.email
+        );
+
+    }
+
+
+    sessionStorage.setItem(
+        "perfilSafeSchool",
+        "aluno"
+    );
+
+
+    const escola =
+        obterEscolaAtual();
+
+
+    if (
+        escola &&
+        escola.codigo
+    ) {
+
+        sessionStorage.setItem(
+            "codigoEscolaSafeSchool",
+            escola.codigo
+        );
+
+    }
+
+
+    const chave =
+        obterChaveCompatibilidadeLocal();
+
+
+    if (
+        !chave
+    ) {
+
+        return;
+
+    }
+
+
+    let todos =
+        {};
+
+
+    const dadosAtuais =
         sessionStorage.getItem(
             "progressoAlunoSafeSchool"
         );
 
 
-    if (!dados) {
-
-        return {};
-
-    }
-
-
-    try {
-
-        const resultado =
-            JSON.parse(
-                dados
-            );
-
-
-        return (
-            resultado &&
-            typeof resultado === "object"
-        )
-            ? resultado
-            : {};
-
-    }
-
-    catch (erro) {
-
-        return {};
-
-    }
-
-}
-
-
-function obterProgressoAluno() {
-
-    const chave =
-        obterChaveAluno();
-
-
-    if (!chave) {
-
-        return criarProgressoVazio();
-
-    }
-
-
-    const todos =
-        obterTodosProgressos();
-
-
     if (
-        !todos[chave]
+        dadosAtuais
     ) {
 
-        return criarProgressoVazio();
+        try {
+
+            const dadosConvertidos =
+                JSON.parse(
+                    dadosAtuais
+                );
+
+
+            if (
+                dadosConvertidos &&
+                typeof dadosConvertidos === "object"
+            ) {
+
+                todos =
+                    dadosConvertidos;
+
+            }
+
+        }
+
+        catch (erro) {
+
+            todos =
+                {};
+
+        }
 
     }
 
 
-    const progresso =
-        todos[chave];
+    todos[chave] = {
 
+        conteudosConcluidos:
+            [
+                ...progressoAlunoAtual
+                    .conteudosConcluidos
+            ],
 
-    if (
-        !Array.isArray(
-            progresso.conteudosConcluidos
-        )
-    ) {
+        desafiosConcluidos:
+            [
+                ...progressoAlunoAtual
+                    .desafiosConcluidos
+            ],
 
-        progresso.conteudosConcluidos =
-            [];
+        pontos:
+            progressoAlunoAtual
+                .pontos,
 
-    }
+        selos:
+            [
+                ...progressoAlunoAtual
+                    .selos
+            ]
 
-
-    if (
-        !Array.isArray(
-            progresso.desafiosConcluidos
-        )
-    ) {
-
-        progresso.desafiosConcluidos =
-            [];
-
-    }
-
-
-    if (
-        !Array.isArray(
-            progresso.selos
-        )
-    ) {
-
-        progresso.selos =
-            [];
-
-    }
-
-
-    progresso.pontos =
-        Number(
-            progresso.pontos || 0
-        );
-
-
-    return progresso;
-
-}
-
-
-function salvarProgressoAluno(
-    progresso
-) {
-
-    const chave =
-        obterChaveAluno();
-
-
-    if (!chave) {
-
-        return false;
-
-    }
-
-
-    const todos =
-        obterTodosProgressos();
-
-
-    todos[chave] =
-        progresso;
+    };
 
 
     sessionStorage.setItem(
@@ -1083,8 +1193,224 @@ function salvarProgressoAluno(
 
     );
 
+}
 
-    return true;
+
+/* =========================================
+   OBTER SUPABASE
+========================================= */
+
+async function obterSupabase() {
+
+    if (
+        !window.SafeSchoolSupabaseReady
+    ) {
+
+        throw new Error(
+            "Cliente Supabase não inicializado."
+        );
+
+    }
+
+
+    return await
+        window.SafeSchoolSupabaseReady;
+
+}
+
+
+/* =========================================
+   AUTENTICAÇÃO
+========================================= */
+
+async function carregarUsuarioAtual() {
+
+    const {
+        data,
+        error
+    } =
+        await supabase.auth
+            .getUser();
+
+
+    if (
+        error
+    ) {
+
+        console.warn(
+            "SafeSchool: não foi possível verificar a sessão.",
+            error
+        );
+
+
+        usuarioAtual =
+            null;
+
+
+        perfilAtual =
+            null;
+
+
+        return;
+
+    }
+
+
+    usuarioAtual =
+        data &&
+        data.user
+
+            ? data.user
+
+            : null;
+
+
+    if (
+        !usuarioAtual
+    ) {
+
+        perfilAtual =
+            null;
+
+
+        return;
+
+    }
+
+
+    const {
+        data: perfil,
+        error: erroPerfil
+    } =
+        await supabase
+            .from(
+                "perfis"
+            )
+            .select(
+                "id,nome,perfil,escola_id,ativo"
+            )
+            .eq(
+                "id",
+                usuarioAtual.id
+            )
+            .maybeSingle();
+
+
+    if (
+        erroPerfil
+    ) {
+
+        console.warn(
+            "SafeSchool: não foi possível carregar o perfil do usuário.",
+            erroPerfil
+        );
+
+
+        perfilAtual =
+            null;
+
+
+        return;
+
+    }
+
+
+    perfilAtual =
+        perfil || null;
+
+}
+
+
+/* =========================================
+   CARREGAR PROGRESSO REAL
+========================================= */
+
+async function carregarProgressoAluno() {
+
+    if (
+        !alunoEstaLogado()
+    ) {
+
+        progressoAlunoAtual =
+            normalizarProgressoBanco(
+                null
+            );
+
+
+        return;
+
+    }
+
+
+    carregandoProgresso =
+        true;
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabase.rpc(
+                "garantir_progresso_aluno"
+            );
+
+
+        if (
+            error
+        ) {
+
+            throw error;
+
+        }
+
+
+        progressoAlunoAtual =
+            normalizarProgressoBanco(
+                data
+            );
+
+
+        sincronizarCompatibilidadeLocal();
+
+    }
+
+    catch (erro) {
+
+        console.error(
+            "SafeSchool: não foi possível carregar o progresso real do aluno.",
+            erro
+        );
+
+
+        progressoAlunoAtual =
+            normalizarProgressoBanco(
+                null
+            );
+
+
+        throw erro;
+
+    }
+
+    finally {
+
+        carregandoProgresso =
+            false;
+
+    }
+
+}
+
+
+/* =========================================
+   OBTER PROGRESSO
+========================================= */
+
+function obterProgressoAluno() {
+
+    return progressoAlunoAtual;
 
 }
 
@@ -1117,7 +1443,8 @@ function renderizarConteudos() {
         function (conteudo) {
 
             const concluido =
-                progresso.conteudosConcluidos
+                progresso
+                    .conteudosConcluidos
                     .includes(
                         conteudo.id
                     );
@@ -1317,7 +1644,9 @@ function abrirConteudo(
         );
 
 
-    if (!conteudoAtual) {
+    if (
+        !conteudoAtual
+    ) {
 
         return;
 
@@ -1379,12 +1708,55 @@ function abrirConteudo(
 
 
 /* =========================================
+   IR PARA LOGIN
+========================================= */
+
+function irParaLoginAluno() {
+
+    const escola =
+        obterEscolaAtual();
+
+
+    window.location.href =
+
+        escola &&
+        escola.codigo
+
+            ? (
+                "login.html?escola=" +
+                encodeURIComponent(
+                    escola.codigo
+                )
+            )
+
+            : "login.html";
+
+}
+
+
+/* =========================================
    CONCLUIR CONTEÚDO
 ========================================= */
 
-function concluirConteudo() {
+async function concluirConteudo() {
 
-    if (!conteudoAtual) {
+    if (
+        !conteudoAtual
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        !autenticacaoVerificada
+    ) {
+
+        alert(
+            "Aguarde um instante enquanto o SafeSchool verifica seu acesso."
+        );
+
 
         return;
 
@@ -1407,27 +1779,24 @@ function concluirConteudo() {
             );
 
 
-        if (!confirmar) {
+        if (
+            confirmar
+        ) {
 
-            return;
+            irParaLoginAluno();
 
         }
 
 
-        const escola =
-            obterEscolaAtual();
+        return;
+
+    }
 
 
-        window.location.href =
-            escola
-                ? (
-                    "login.html?escola=" +
-                    encodeURIComponent(
-                        escola.codigo
-                    )
-                )
-                : "login.html";
-
+    if (
+        carregandoProgresso ||
+        registrandoConclusao
+    ) {
 
         return;
 
@@ -1439,66 +1808,135 @@ function concluirConteudo() {
 
 
     const jaConcluido =
-        progresso.conteudosConcluidos
+        progresso
+            .conteudosConcluidos
             .includes(
                 conteudoAtual.id
             );
 
 
-    if (jaConcluido) {
+    if (
+        jaConcluido
+    ) {
 
         alert(
             "Este conteúdo já foi concluído anteriormente."
         );
 
-        return;
-
-    }
-
-
-    progresso.conteudosConcluidos.push(
-        conteudoAtual.id
-    );
-
-
-    progresso.pontos =
-        Number(
-            progresso.pontos || 0
-        )
-        +
-        10;
-
-
-    const salvo =
-        salvarProgressoAluno(
-            progresso
-        );
-
-
-    if (!salvo) {
-
-        alert(
-            "Não foi possível registrar o progresso do aluno."
-        );
 
         return;
 
     }
 
 
-    alert(
-
-        "Conteúdo concluído! 🎉\n\n" +
-
-        "Você conquistou 10 pontos."
-
-    );
-
-
-    renderizarConteudos();
+    registrandoConclusao =
+        true;
 
 
     atualizarBotaoConclusao();
+
+
+    const pontosAntes =
+        Number(
+            progresso.pontos || 0
+        );
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabase.rpc(
+                "registrar_conclusao_conteudo",
+                {
+                    p_conteudo_id:
+                        conteudoAtual.id
+                }
+            );
+
+
+        if (
+            error
+        ) {
+
+            throw error;
+
+        }
+
+
+        const novoProgresso =
+            normalizarProgressoBanco(
+                data
+            );
+
+
+        progressoAlunoAtual =
+            novoProgresso;
+
+
+        sincronizarCompatibilidadeLocal();
+
+
+        const ganhouPontos =
+            novoProgresso.pontos >
+            pontosAntes;
+
+
+        if (
+            ganhouPontos
+        ) {
+
+            alert(
+
+                "Conteúdo concluído! 🎉\n\n" +
+
+                "Você conquistou 10 pontos."
+
+            );
+
+        }
+
+        else {
+
+            alert(
+                "Este conteúdo já havia sido concluído anteriormente."
+            );
+
+        }
+
+
+        renderizarConteudos();
+
+
+        atualizarBotaoConclusao();
+
+    }
+
+    catch (erro) {
+
+        console.error(
+            "SafeSchool: não foi possível registrar a conclusão do conteúdo.",
+            erro
+        );
+
+
+        alert(
+            "Não foi possível registrar seu progresso agora. Tente novamente."
+        );
+
+    }
+
+    finally {
+
+        registrandoConclusao =
+            false;
+
+
+        atualizarBotaoConclusao();
+
+    }
 
 }
 
@@ -1509,7 +1947,32 @@ function concluirConteudo() {
 
 function atualizarBotaoConclusao() {
 
-    if (!conteudoAtual) {
+    if (
+        !botaoConcluir ||
+        !conteudoAtual
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        !autenticacaoVerificada
+    ) {
+
+        botaoConcluir.textContent =
+            "Carregando...";
+
+
+        botaoConcluir.disabled =
+            true;
+
+
+        botaoConcluir.classList.remove(
+            "concluido"
+        );
+
 
         return;
 
@@ -1524,9 +1987,52 @@ function atualizarBotaoConclusao() {
             "🔐 Entrar para registrar progresso";
 
 
+        botaoConcluir.disabled =
+            false;
+
+
         botaoConcluir.classList.remove(
             "concluido"
         );
+
+
+        return;
+
+    }
+
+
+    if (
+        carregandoProgresso
+    ) {
+
+        botaoConcluir.textContent =
+            "Carregando seu progresso...";
+
+
+        botaoConcluir.disabled =
+            true;
+
+
+        botaoConcluir.classList.remove(
+            "concluido"
+        );
+
+
+        return;
+
+    }
+
+
+    if (
+        registrandoConclusao
+    ) {
+
+        botaoConcluir.textContent =
+            "Registrando...";
+
+
+        botaoConcluir.disabled =
+            true;
 
 
         return;
@@ -1539,13 +2045,20 @@ function atualizarBotaoConclusao() {
 
 
     const concluido =
-        progresso.conteudosConcluidos
+        progresso
+            .conteudosConcluidos
             .includes(
                 conteudoAtual.id
             );
 
 
-    if (concluido) {
+    botaoConcluir.disabled =
+        false;
+
+
+    if (
+        concluido
+    ) {
 
         botaoConcluir.textContent =
             "✓ Conteúdo concluído";
@@ -1583,7 +2096,8 @@ function atualizarResumo() {
 
 
     const concluidosValidos =
-        progresso.conteudosConcluidos
+        progresso
+            .conteudosConcluidos
             .filter(
 
                 function (id) {
@@ -1631,7 +2145,9 @@ function atualizarResumo() {
    FECHAR LEITURA
 ========================================= */
 
-if (fecharLeitura) {
+if (
+    fecharLeitura
+) {
 
     fecharLeitura.addEventListener(
 
@@ -1677,7 +2193,9 @@ if (fecharLeitura) {
    CONCLUIR
 ========================================= */
 
-if (botaoConcluir) {
+if (
+    botaoConcluir
+) {
 
     botaoConcluir.addEventListener(
 
@@ -1714,6 +2232,80 @@ function escaparHTML(
 
 
 /* =========================================
+   INICIALIZAR DADOS REAIS
+========================================= */
+
+async function inicializarDadosReais() {
+
+    try {
+
+        supabase =
+            await obterSupabase();
+
+
+        await carregarUsuarioAtual();
+
+
+        autenticacaoVerificada =
+            true;
+
+
+        if (
+            alunoEstaLogado()
+        ) {
+
+            await carregarProgressoAluno();
+
+        }
+
+
+        renderizarConteudos();
+
+
+        if (
+            conteudoAtual
+        ) {
+
+            atualizarBotaoConclusao();
+
+        }
+
+
+        console.log(
+            "SafeSchool: conteúdos integrados ao progresso real."
+        );
+
+    }
+
+    catch (erro) {
+
+        autenticacaoVerificada =
+            true;
+
+
+        console.error(
+            "SafeSchool: falha ao inicializar o progresso dos conteúdos.",
+            erro
+        );
+
+
+        renderizarConteudos();
+
+
+        if (
+            conteudoAtual
+        ) {
+
+            atualizarBotaoConclusao();
+
+        }
+
+    }
+
+}
+
+
+/* =========================================
    INICIAR
 ========================================= */
 
@@ -1724,3 +2316,5 @@ criarSinalizacaoLeitura();
 renderizarConteudos();
 
 atualizarDestaqueEscola();
+
+inicializarDadosReais();

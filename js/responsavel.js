@@ -10,130 +10,19 @@
 
 
     /* =========================================
-       CONSTANTES
+       CONFIGURAÇÕES
     ========================================== */
 
-    const CHAVE_SOLICITACOES =
-        "solicitacoesResponsavelSafeSchool";
+    const TAMANHO_MINIMO_MENSAGEM =
+        15;
+
+
+    const TAMANHO_MAXIMO_MENSAGEM =
+        1200;
 
 
     /* =========================================
-       PERFIL
-    ========================================== */
-
-    const perfilAtual =
-        (
-            sessionStorage.getItem(
-                "perfilSafeSchool"
-            ) || ""
-        )
-        .trim()
-        .toLowerCase();
-
-
-    const emailAtual =
-        (
-            sessionStorage.getItem(
-                "usuarioEmailSafeSchool"
-            ) || ""
-        )
-        .trim()
-        .toLowerCase();
-
-
-    /*
-        A proteção principal da página também
-        é realizada pelo escola.js.
-
-        Esta verificação adicional evita que
-        as funções específicas da família
-        sejam executadas em outro perfil.
-    */
-
-    if (
-        perfilAtual !==
-        "responsavel"
-    ) {
-
-        return;
-
-    }
-
-
-    /* =========================================
-       ESCOLA
-    ========================================== */
-
-    function obterEscola() {
-
-        if (
-            window.SafeSchoolEscola
-
-            &&
-
-            typeof
-            window.SafeSchoolEscola.obter
-            ===
-            "function"
-        ) {
-
-            const escola =
-                window.SafeSchoolEscola.obter();
-
-
-            if (
-                escola &&
-                escola.codigo
-            ) {
-
-                return escola;
-
-            }
-
-        }
-
-
-        const codigo =
-            sessionStorage.getItem(
-                "codigoEscolaSafeSchool"
-            );
-
-
-        const nome =
-            sessionStorage.getItem(
-                "nomeEscolaSafeSchool"
-            );
-
-
-        if (
-            !codigo
-        ) {
-
-            return null;
-
-        }
-
-
-        return {
-
-            codigo:
-                codigo,
-
-            nome:
-                nome ||
-                "Escola vinculada"
-
-        };
-
-    }
-
-
-    const escola =
-        obterEscola();
-
-
-    /* =========================================
-       ELEMENTOS
+       ELEMENTOS — ESCOLA
     ========================================== */
 
     const nomeEscola =
@@ -142,15 +31,19 @@
         );
 
 
+    /* =========================================
+       ELEMENTOS — APOIO À FAMÍLIA
+    ========================================== */
+
     const formulario =
         document.getElementById(
-            "formularioApoioResponsavel"
+            "formApoioResponsavel"
         );
 
 
-    const assunto =
+    const tipoApoio =
         document.getElementById(
-            "assuntoApoioResponsavel"
+            "tipoApoioResponsavel"
         );
 
 
@@ -160,15 +53,39 @@
         );
 
 
+    const contadorMensagem =
+        document.getElementById(
+            "contadorMensagemResponsavel"
+        );
+
+
     const confirmacao =
         document.getElementById(
             "confirmacaoApoioResponsavel"
         );
 
 
-    const mensagemFormulario =
+    const erroTipo =
         document.getElementById(
-            "mensagemFormularioResponsavel"
+            "erroTipoApoioResponsavel"
+        );
+
+
+    const erroMensagem =
+        document.getElementById(
+            "erroMensagemApoioResponsavel"
+        );
+
+
+    const erroConfirmacao =
+        document.getElementById(
+            "erroConfirmacaoApoioResponsavel"
+        );
+
+
+    const mensagemSucesso =
+        document.getElementById(
+            "mensagemSucessoApoioResponsavel"
         );
 
 
@@ -190,6 +107,84 @@
         );
 
 
+    const botaoEnviar =
+        formulario
+            ? formulario.querySelector(
+                'button[type="submit"]'
+            )
+            : null;
+
+
+    /* =========================================
+       ELEMENTOS — VÍNCULO COM ESTUDANTE
+    ========================================== */
+
+    const formularioVinculo =
+        document.getElementById(
+            "formVinculoResponsavel"
+        );
+
+
+    const emailAlunoVinculo =
+        document.getElementById(
+            "emailAlunoVinculoResponsavel"
+        );
+
+
+    const parentescoVinculo =
+        document.getElementById(
+            "parentescoVinculoResponsavel"
+        );
+
+
+    const erroEmailVinculo =
+        document.getElementById(
+            "erroEmailAlunoVinculoResponsavel"
+        );
+
+
+    const erroParentescoVinculo =
+        document.getElementById(
+            "erroParentescoVinculoResponsavel"
+        );
+
+
+    const mensagemVinculo =
+        document.getElementById(
+            "mensagemVinculoResponsavel"
+        );
+
+
+    const listaVinculos =
+        document.getElementById(
+            "listaVinculosResponsavel"
+        );
+
+
+    const semVinculos =
+        document.getElementById(
+            "semVinculosResponsavel"
+        );
+
+
+    const contadorVinculos =
+        document.getElementById(
+            "contadorVinculosResponsavel"
+        );
+
+
+    const botaoEnviarVinculo =
+        formularioVinculo
+            ? formularioVinculo.querySelector(
+                'button[type="submit"]'
+            )
+            : null;
+
+
+    /* =========================================
+       ELEMENTOS — CONTEÚDOS
+    ========================================== */
+
     const gradeConteudos =
         document.getElementById(
             "gradeConteudosResponsavel"
@@ -202,9 +197,9 @@
         );
 
 
-    const fecharConteudo =
+    const botaoVoltarConteudos =
         document.getElementById(
-            "fecharConteudoResponsavel"
+            "botaoVoltarConteudosResponsavel"
         );
 
 
@@ -238,14 +233,28 @@
         );
 
 
-    const botaoSair =
-        document.getElementById(
-            "botaoSairResponsavel"
-        );
+    /* =========================================
+       DADOS DA SESSÃO REAL
+    ========================================== */
+
+    let supabase =
+        null;
+
+
+    let usuarioAtual =
+        null;
+
+
+    let perfilAtual =
+        null;
+
+
+    let escolaAtual =
+        null;
 
 
     /* =========================================
-       BIBLIOTECA
+       BIBLIOTECA DE CONTEÚDOS
     ========================================== */
 
     const biblioteca =
@@ -253,6 +262,7 @@
 
 
     const conteudos =
+
         (
             biblioteca
 
@@ -265,25 +275,6 @@
             ? biblioteca.listar()
 
             : [];
-
-
-    /* =========================================
-       IDENTIFICAR ESCOLA
-    ========================================== */
-
-    if (
-        nomeEscola
-    ) {
-
-        nomeEscola.textContent =
-
-            escola
-
-                ? escola.nome
-
-                : "Escola não identificada";
-
-    }
 
 
     /* =========================================
@@ -355,101 +346,115 @@
     }
 
 
-    function gerarCodigoAleatorio() {
+    function gerarReferencia(
+        id
+    ) {
 
-        return Math.random()
-            .toString(36)
+        if (
+            !id
+        ) {
+
+            return "FAM";
+
+        }
+
+
+        const parte =
+            String(
+                id
+            )
+            .replace(
+                /-/g,
+                ""
+            )
             .substring(
-                2,
+                0,
                 8
             )
             .toUpperCase();
 
-    }
-
-
-    function gerarProtocolo() {
-
-        const codigoEscola =
-
-            escola &&
-            escola.codigo
-
-                ? escola.codigo
-
-                : "ESC";
-
-
-        const data =
-            new Date();
-
-
-        const ano =
-            data.getFullYear();
-
-
-        const mes =
-            String(
-                data.getMonth() + 1
-            )
-            .padStart(
-                2,
-                "0"
-            );
-
-
-        const dia =
-            String(
-                data.getDate()
-            )
-            .padStart(
-                2,
-                "0"
-            );
-
 
         return (
-
             "FAM-"
-
             +
-
-            codigoEscola
-
-            +
-
-            "-"
-
-            +
-
-            ano
-
-            +
-
-            mes
-
-            +
-
-            dia
-
-            +
-
-            "-"
-
-            +
-
-            gerarCodigoAleatorio()
-
+            parte
         );
 
     }
 
 
+    function gerarReferenciaVinculo(
+        id
+    ) {
+
+        if (
+            !id
+        ) {
+
+            return "VIN";
+
+        }
+
+
+        const parte =
+            String(
+                id
+            )
+            .replace(
+                /-/g,
+                ""
+            )
+            .substring(
+                0,
+                8
+            )
+            .toUpperCase();
+
+
+        return (
+            "VIN-"
+            +
+            parte
+        );
+
+    }
+
+
+    function emailValido(
+        valor
+    ) {
+
+        const email =
+            String(
+                valor || ""
+            )
+            .trim()
+            .toLowerCase();
+
+
+        if (
+            !email ||
+            email.length > 320
+        ) {
+
+            return false;
+
+        }
+
+
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            .test(
+                email
+            );
+
+    }
+
+
     /* =========================================
-       ASSUNTOS
+       ASSUNTOS DO FORMULÁRIO
     ========================================== */
 
-    const nomesAssuntos = {
+    const assuntos = {
 
         "orientacao":
             "Preciso de orientação",
@@ -457,70 +462,655 @@
         "relato-filho":
             "Recebi um relato de uma situação",
 
-        "mudanca-comportamento":
-            "Percebi mudanças de comportamento",
+        "convivencia":
+            "Tenho dúvidas sobre convivência",
 
         "internet":
-            "Situação relacionada à internet",
-
-        "conversar-equipe":
-            "Quero conversar com a equipe escolar",
+            "Situação ocorrida na internet",
 
         "outro":
-            "Outro motivo"
+            "Outro assunto"
 
     };
 
 
-    function formatarAssunto(
+    function obterDescricaoAssunto(
         valor
     ) {
 
         return (
-            nomesAssuntos[valor]
+            assuntos[valor]
             ||
-            "Solicitação de apoio"
+            "Solicitação de orientação"
         );
 
     }
 
 
     /* =========================================
-       ARMAZENAMENTO
+       STATUS — SOLICITAÇÕES
     ========================================== */
 
-    function lerTodasSolicitacoes() {
+    function formatarStatus(
+        status
+    ) {
 
-        const dados =
-            sessionStorage.getItem(
-                CHAVE_SOLICITACOES
-            );
+        const textos = {
+
+            pendente:
+                "Pendente",
+
+            em_atendimento:
+                "Em atendimento",
+
+            concluido:
+                "Concluída"
+
+        };
+
+
+        return (
+            textos[status]
+            ||
+            "Pendente"
+        );
+
+    }
+
+
+    /* =========================================
+       STATUS — VÍNCULOS
+    ========================================== */
+
+    function formatarStatusVinculo(
+        status
+    ) {
+
+        const textos = {
+
+            pendente:
+                "Pendente",
+
+            aprovado:
+                "Aprovado",
+
+            inativo:
+                "Inativo"
+
+        };
+
+
+        return (
+            textos[status]
+            ||
+            "Pendente"
+        );
+
+    }
+
+
+    function descricaoStatusVinculo(
+        status
+    ) {
+
+        const textos = {
+
+            pendente:
+                "Aguardando análise e confirmação da equipe escolar.",
+
+            aprovado:
+                "O vínculo foi confirmado pela instituição.",
+
+            inativo:
+                "Este vínculo está atualmente inativo."
+
+        };
+
+
+        return (
+            textos[status]
+            ||
+            "Aguardando análise da instituição."
+        );
+
+    }
+
+
+    /* =========================================
+       CONTADOR DA MENSAGEM
+    ========================================== */
+
+    function atualizarContadorMensagem() {
+
+        if (
+            !mensagem ||
+            !contadorMensagem
+        ) {
+
+            return;
+
+        }
+
+
+        contadorMensagem.textContent =
+
+            mensagem.value.length
+
+            +
+
+            " / "
+
+            +
+
+            TAMANHO_MAXIMO_MENSAGEM;
+
+    }
+
+
+    /* =========================================
+       ERROS — APOIO
+    ========================================== */
+
+    function limparErros() {
+
+        if (
+            erroTipo
+        ) {
+
+            erroTipo.hidden =
+                true;
+
+        }
 
 
         if (
-            !dados
+            erroMensagem
         ) {
 
-            return [];
+            erroMensagem.hidden =
+                true;
+
+        }
+
+
+        if (
+            erroConfirmacao
+        ) {
+
+            erroConfirmacao.hidden =
+                true;
+
+        }
+
+    }
+
+
+    function esconderMensagemSucesso() {
+
+        if (
+            mensagemSucesso
+        ) {
+
+            mensagemSucesso.hidden =
+                true;
+
+        }
+
+    }
+
+
+    /* =========================================
+       ERROS — VÍNCULO
+    ========================================== */
+
+    function limparErrosVinculo() {
+
+        if (
+            erroEmailVinculo
+        ) {
+
+            erroEmailVinculo.hidden =
+                true;
+
+        }
+
+
+        if (
+            erroParentescoVinculo
+        ) {
+
+            erroParentescoVinculo.hidden =
+                true;
+
+        }
+
+    }
+
+
+    function esconderMensagemVinculo() {
+
+        if (
+            mensagemVinculo
+        ) {
+
+            mensagemVinculo.hidden =
+                true;
+
+        }
+
+    }
+
+
+    /* =========================================
+       VALIDAR FORMULÁRIO DE APOIO
+    ========================================== */
+
+    function validarFormulario() {
+
+        limparErros();
+
+
+        const tipoValor =
+
+            tipoApoio
+
+                ? tipoApoio.value.trim()
+
+                : "";
+
+
+        const mensagemValor =
+
+            mensagem
+
+                ? mensagem.value.trim()
+
+                : "";
+
+
+        let valido =
+            true;
+
+
+        if (
+            !tipoValor ||
+            !assuntos[tipoValor]
+        ) {
+
+            if (
+                erroTipo
+            ) {
+
+                erroTipo.hidden =
+                    false;
+
+            }
+
+
+            valido =
+                false;
+
+        }
+
+
+        if (
+            mensagemValor.length <
+            TAMANHO_MINIMO_MENSAGEM
+
+            ||
+
+            mensagemValor.length >
+            TAMANHO_MAXIMO_MENSAGEM
+        ) {
+
+            if (
+                erroMensagem
+            ) {
+
+                erroMensagem.hidden =
+                    false;
+
+
+                erroMensagem.textContent =
+
+                    "Escreva uma mensagem com pelo menos "
+
+                    +
+
+                    TAMANHO_MINIMO_MENSAGEM
+
+                    +
+
+                    " caracteres.";
+
+            }
+
+
+            valido =
+                false;
+
+        }
+
+
+        if (
+            !confirmacao ||
+            !confirmacao.checked
+        ) {
+
+            if (
+                erroConfirmacao
+            ) {
+
+                erroConfirmacao.hidden =
+                    false;
+
+            }
+
+
+            valido =
+                false;
+
+        }
+
+
+        return {
+
+            valido:
+                valido,
+
+            tipo:
+                tipoValor,
+
+            mensagem:
+                mensagemValor
+
+        };
+
+    }
+
+
+    /* =========================================
+       VALIDAR FORMULÁRIO DE VÍNCULO
+    ========================================== */
+
+    function validarFormularioVinculo() {
+
+        limparErrosVinculo();
+
+
+        const emailValor =
+
+            emailAlunoVinculo
+
+                ? emailAlunoVinculo
+                    .value
+                    .trim()
+                    .toLowerCase()
+
+                : "";
+
+
+        const parentescoValor =
+
+            parentescoVinculo
+
+                ? parentescoVinculo
+                    .value
+                    .trim()
+
+                : "";
+
+
+        let valido =
+            true;
+
+
+        if (
+            !emailValido(
+                emailValor
+            )
+        ) {
+
+            if (
+                erroEmailVinculo
+            ) {
+
+                erroEmailVinculo.hidden =
+                    false;
+
+            }
+
+
+            valido =
+                false;
+
+        }
+
+
+        if (
+            !parentescoValor
+        ) {
+
+            if (
+                erroParentescoVinculo
+            ) {
+
+                erroParentescoVinculo.hidden =
+                    false;
+
+            }
+
+
+            valido =
+                false;
+
+        }
+
+
+        return {
+
+            valido:
+                valido,
+
+            email:
+                emailValor,
+
+            parentesco:
+                parentescoValor
+
+        };
+
+    }
+
+
+    /* =========================================
+       CARREGAR SESSÃO REAL
+    ========================================== */
+
+    async function carregarSessaoReal() {
+
+        if (
+            !window.SafeSchoolSupabaseReady
+        ) {
+
+            console.error(
+                "SafeSchool: Supabase não foi carregado."
+            );
+
+
+            return false;
 
         }
 
 
         try {
 
-            const resultado =
-                JSON.parse(
-                    dados
+            supabase =
+                await window.SafeSchoolSupabaseReady;
+
+
+            const {
+                data: dadosUsuario,
+                error: erroUsuario
+            } =
+                await supabase.auth.getUser();
+
+
+            if (
+                erroUsuario ||
+                !dadosUsuario ||
+                !dadosUsuario.user
+            ) {
+
+                console.error(
+
+                    "SafeSchool: não foi possível identificar o responsável autenticado.",
+
+                    erroUsuario
+
                 );
 
 
-            return Array.isArray(
-                resultado
-            )
+                return false;
 
-                ? resultado
+            }
 
-                : [];
+
+            usuarioAtual =
+                dadosUsuario.user;
+
+
+            const {
+                data: perfil,
+                error: erroPerfil
+            } =
+                await supabase
+
+                    .from(
+                        "perfis"
+                    )
+
+                    .select(
+                        "id,nome,perfil,escola_id,ativo"
+                    )
+
+                    .eq(
+                        "id",
+                        usuarioAtual.id
+                    )
+
+                    .single();
+
+
+            if (
+                erroPerfil ||
+                !perfil
+            ) {
+
+                console.error(
+
+                    "SafeSchool: não foi possível carregar o perfil do responsável.",
+
+                    erroPerfil
+
+                );
+
+
+                return false;
+
+            }
+
+
+            if (
+                !perfil.ativo ||
+                perfil.perfil !==
+                "responsavel"
+            ) {
+
+                console.error(
+                    "SafeSchool: perfil sem autorização para acessar a Área da Família."
+                );
+
+
+                return false;
+
+            }
+
+
+            perfilAtual =
+                perfil;
+
+
+            const {
+                data: escola,
+                error: erroEscola
+            } =
+                await supabase
+
+                    .from(
+                        "escolas"
+                    )
+
+                    .select(
+                        "id,codigo,nome,ativo"
+                    )
+
+                    .eq(
+                        "id",
+                        perfilAtual.escola_id
+                    )
+
+                    .single();
+
+
+            if (
+                erroEscola ||
+                !escola
+            ) {
+
+                console.error(
+
+                    "SafeSchool: não foi possível carregar a instituição vinculada.",
+
+                    erroEscola
+
+                );
+
+
+                return false;
+
+            }
+
+
+            if (
+                !escola.ativo
+            ) {
+
+                console.error(
+                    "SafeSchool: instituição inativa."
+                );
+
+
+                return false;
+
+            }
+
+
+            escolaAtual =
+                escola;
+
+
+            if (
+                nomeEscola
+            ) {
+
+                nomeEscola.textContent =
+                    escolaAtual.nome;
+
+            }
+
+
+            return true;
 
         }
 
@@ -528,168 +1118,192 @@
             erro
         ) {
 
-            return [];
+            console.error(
 
-        }
+                "SafeSchool: erro ao carregar a sessão da Área da Família.",
 
-    }
-
-
-    function salvarTodasSolicitacoes(
-        solicitacoes
-    ) {
-
-        sessionStorage.setItem(
-
-            CHAVE_SOLICITACOES,
-
-            JSON.stringify(
-                solicitacoes
-            )
-
-        );
-
-    }
-
-
-    function obterSolicitacoesDaConta() {
-
-        if (
-            !escola ||
-            !emailAtual
-        ) {
-
-            return [];
-
-        }
-
-
-        return lerTodasSolicitacoes()
-            .filter(
-
-                function (
-                    solicitacao
-                ) {
-
-                    return (
-
-                        solicitacao.escolaCodigo ===
-                        escola.codigo
-
-                        &&
-
-                        String(
-                            solicitacao.autorEmail ||
-                            ""
-                        )
-                        .trim()
-                        .toLowerCase()
-                        ===
-                        emailAtual
-
-                    );
-
-                }
-
-            )
-            .sort(
-
-                function (
-                    a,
-                    b
-                ) {
-
-                    return (
-                        new Date(
-                            b.criadoEm
-                        ).getTime()
-
-                        -
-
-                        new Date(
-                            a.criadoEm
-                        ).getTime()
-                    );
-
-                }
+                erro
 
             );
+
+
+            return false;
+
+        }
 
     }
 
 
     /* =========================================
-       REGISTRAR SOLICITAÇÃO
+       REGISTRAR SOLICITAÇÃO DA FAMÍLIA
     ========================================== */
 
-    function registrarSolicitacao(
-        assuntoValor,
+    async function registrarSolicitacao(
+        tipoValor,
         mensagemValor
     ) {
 
         if (
-            !escola ||
-            !emailAtual
+            !supabase ||
+            !usuarioAtual ||
+            !perfilAtual ||
+            !escolaAtual
         ) {
 
-            return null;
+            throw new Error(
+                "Sessão da família não está disponível."
+            );
 
         }
 
 
-        const novaSolicitacao = {
-
-            protocolo:
-                gerarProtocolo(),
-
-            escolaCodigo:
-                escola.codigo,
-
-            escolaNome:
-                escola.nome,
-
-            perfil:
-                "responsavel",
-
-            origem:
-                "solicitacao-responsavel",
-
-            autorEmail:
-                emailAtual,
-
-            assunto:
-                assuntoValor,
-
-            mensagem:
-                mensagemValor,
-
-            status:
-                "recebida",
-
-            criadoEm:
-                new Date().toISOString(),
-
-            atualizadoEm:
-                null
-
-        };
+        const assuntoValor =
+            obterDescricaoAssunto(
+                tipoValor
+            );
 
 
-        const todas =
-            lerTodasSolicitacoes();
+        const {
+            data,
+            error
+        } =
+            await supabase
+
+                .from(
+                    "solicitacoes_familia"
+                )
+
+                .insert({
+
+                    escola_id:
+                        escolaAtual.id,
+
+                    responsavel_id:
+                        usuarioAtual.id,
+
+                    aluno_id:
+                        null,
+
+                    assunto:
+                        assuntoValor,
+
+                    mensagem:
+                        mensagemValor,
+
+                    status:
+                        "pendente"
+
+                })
+
+                .select(
+                    "id,assunto,mensagem,status,criado_em,atualizado_em"
+                )
+
+                .single();
 
 
-        todas.push(
-            novaSolicitacao
+        if (
+            error
+        ) {
+
+            console.error(
+
+                "SafeSchool: erro ao registrar solicitação da família.",
+
+                error
+
+            );
+
+
+            throw new Error(
+                "Não foi possível registrar a solicitação."
+            );
+
+        }
+
+
+        return data;
+
+    }
+
+
+    /* =========================================
+       BUSCAR SOLICITAÇÕES
+    ========================================== */
+
+    async function buscarSolicitacoes() {
+
+        if (
+            !supabase ||
+            !usuarioAtual ||
+            !escolaAtual
+        ) {
+
+            return [];
+
+        }
+
+
+        const {
+            data,
+            error
+        } =
+            await supabase
+
+                .from(
+                    "solicitacoes_familia"
+                )
+
+                .select(
+                    "id,aluno_id,assunto,mensagem,status,criado_em,atualizado_em"
+                )
+
+                .eq(
+                    "responsavel_id",
+                    usuarioAtual.id
+                )
+
+                .eq(
+                    "escola_id",
+                    escolaAtual.id
+                )
+
+                .order(
+                    "criado_em",
+                    {
+                        ascending:
+                            false
+                    }
+                );
+
+
+        if (
+            error
+        ) {
+
+            console.error(
+
+                "SafeSchool: erro ao carregar as solicitações da família.",
+
+                error
+
+            );
+
+
+            throw new Error(
+                "Não foi possível carregar o histórico."
+            );
+
+        }
+
+
+        return (
+            Array.isArray(
+                data
+            )
+                ? data
+                : []
         );
-
-
-        salvarTodasSolicitacoes(
-            todas
-        );
-
-
-        return novaSolicitacao;
 
     }
 
@@ -698,7 +1312,7 @@
        RENDERIZAR SOLICITAÇÕES
     ========================================== */
 
-    function renderizarSolicitacoes() {
+    async function renderizarSolicitacoes() {
 
         if (
             !listaSolicitacoes
@@ -709,43 +1323,546 @@
         }
 
 
-        const solicitacoes =
-            obterSolicitacoesDaConta();
+        try {
+
+            const solicitacoes =
+                await buscarSolicitacoes();
 
 
-        listaSolicitacoes.innerHTML =
-            "";
+            listaSolicitacoes.innerHTML =
+                "";
 
 
-        if (
-            contadorSolicitacoes
-        ) {
+            if (
+                contadorSolicitacoes
+            ) {
 
-            contadorSolicitacoes.textContent =
+                contadorSolicitacoes.textContent =
 
-                solicitacoes.length === 1
+                    solicitacoes.length === 1
 
-                    ? "1 solicitação"
+                        ? "1 solicitação"
 
-                    : solicitacoes.length +
-                      " solicitações";
+                        : solicitacoes.length
+                          +
+                          " solicitações";
 
-        }
+            }
 
 
-        if (
-            solicitacoes.length === 0
-        ) {
+            if (
+                solicitacoes.length === 0
+            ) {
+
+                if (
+                    semSolicitacoes
+                ) {
+
+                    semSolicitacoes.hidden =
+                        false;
+
+                }
+
+
+                return;
+
+            }
+
 
             if (
                 semSolicitacoes
             ) {
 
                 semSolicitacoes.hidden =
-                    false;
+                    true;
 
             }
 
+
+            solicitacoes.forEach(
+
+                function (
+                    solicitacao
+                ) {
+
+                    const card =
+                        document.createElement(
+                            "article"
+                        );
+
+
+                    card.className =
+                        "card-solicitacao";
+
+
+                    const referencia =
+                        gerarReferencia(
+                            solicitacao.id
+                        );
+
+
+                    card.innerHTML = `
+
+                        <div class="solicitacao-topo">
+
+                            <span class="solicitacao-protocolo">
+
+                                ${escaparHTML(
+                                    referencia
+                                )}
+
+                            </span>
+
+
+                            <span
+                                class="solicitacao-status"
+                                data-status="${escaparHTML(
+                                    solicitacao.status
+                                )}"
+                            >
+
+                                ${escaparHTML(
+                                    formatarStatus(
+                                        solicitacao.status
+                                    )
+                                )}
+
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+
+                            ${escaparHTML(
+                                solicitacao.assunto
+                            )}
+
+                        </h3>
+
+
+                        <p>
+
+                            ${escaparHTML(
+                                solicitacao.mensagem
+                            )}
+
+                        </p>
+
+
+                        <span class="solicitacao-data">
+
+                            Enviada em
+
+                            ${escaparHTML(
+                                formatarDataHora(
+                                    solicitacao.criado_em
+                                )
+                            )}
+
+                        </span>
+
+                    `;
+
+
+                    listaSolicitacoes
+                        .appendChild(
+                            card
+                        );
+
+                }
+
+            );
+
+        }
+
+        catch (
+            erro
+        ) {
+
+            console.error(
+
+                "SafeSchool: falha ao renderizar histórico da família.",
+
+                erro
+
+            );
+
+        }
+
+    }
+
+
+    /* =========================================
+       SOLICITAR VÍNCULO
+    ========================================== */
+
+    async function solicitarVinculo(
+        emailAluno,
+        parentesco
+    ) {
+
+        if (
+            !supabase ||
+            !usuarioAtual
+        ) {
+
+            throw new Error(
+                "Sessão da família não está disponível."
+            );
+
+        }
+
+
+        const {
+            data,
+            error
+        } =
+            await supabase.rpc(
+
+                "solicitar_vinculo_responsavel",
+
+                {
+
+                    p_email_aluno:
+                        emailAluno,
+
+                    p_parentesco:
+                        parentesco
+
+                }
+
+            );
+
+
+        if (
+            error
+        ) {
+
+            console.error(
+
+                "SafeSchool: erro ao solicitar vínculo com estudante.",
+
+                error
+
+            );
+
+
+            throw new Error(
+                "Não foi possível solicitar o vínculo."
+            );
+
+        }
+
+
+        if (
+            !Array.isArray(
+                data
+            )
+
+            ||
+
+            data.length === 0
+        ) {
+
+            throw new Error(
+                "O Supabase não retornou o vínculo solicitado."
+            );
+
+        }
+
+
+        return data[0];
+
+    }
+
+
+    /* =========================================
+       BUSCAR VÍNCULOS
+    ========================================== */
+
+    async function buscarVinculos() {
+
+        if (
+            !supabase ||
+            !usuarioAtual
+        ) {
+
+            return [];
+
+        }
+
+
+        const {
+            data,
+            error
+        } =
+            await supabase
+
+                .from(
+                    "vinculos_responsaveis"
+                )
+
+                .select(
+                    "id,aluno_id,parentesco,status,criado_em,atualizado_em"
+                )
+
+                .eq(
+                    "responsavel_id",
+                    usuarioAtual.id
+                )
+
+                .order(
+                    "criado_em",
+                    {
+                        ascending:
+                            false
+                    }
+                );
+
+
+        if (
+            error
+        ) {
+
+            console.error(
+
+                "SafeSchool: erro ao carregar vínculos do responsável.",
+
+                error
+
+            );
+
+
+            throw new Error(
+                "Não foi possível carregar os vínculos."
+            );
+
+        }
+
+
+        return (
+            Array.isArray(
+                data
+            )
+                ? data
+                : []
+        );
+
+    }
+
+
+    /* =========================================
+       RENDERIZAR VÍNCULOS
+    ========================================== */
+
+    async function renderizarVinculos() {
+
+        if (
+            !listaVinculos
+        ) {
+
+            return;
+
+        }
+
+
+        try {
+
+            const vinculos =
+                await buscarVinculos();
+
+
+            listaVinculos.innerHTML =
+                "";
+
+
+            if (
+                contadorVinculos
+            ) {
+
+                contadorVinculos.textContent =
+
+                    vinculos.length === 1
+
+                        ? "1 vínculo"
+
+                        : vinculos.length
+                          +
+                          " vínculos";
+
+            }
+
+
+            if (
+                vinculos.length === 0
+            ) {
+
+                if (
+                    semVinculos
+                ) {
+
+                    semVinculos.hidden =
+                        false;
+
+                }
+
+
+                return;
+
+            }
+
+
+            if (
+                semVinculos
+            ) {
+
+                semVinculos.hidden =
+                    true;
+
+            }
+
+
+            vinculos.forEach(
+
+                function (
+                    vinculo
+                ) {
+
+                    const card =
+                        document.createElement(
+                            "article"
+                        );
+
+
+                    card.className =
+                        "card-solicitacao";
+
+
+                    const referencia =
+                        gerarReferenciaVinculo(
+                            vinculo.id
+                        );
+
+
+                    const parentesco =
+                        vinculo.parentesco
+                        ||
+                        "Não informado";
+
+
+                    card.innerHTML = `
+
+                        <div class="solicitacao-topo">
+
+                            <span class="solicitacao-protocolo">
+
+                                ${escaparHTML(
+                                    referencia
+                                )}
+
+                            </span>
+
+
+                            <span
+                                class="solicitacao-status"
+                                data-status="${escaparHTML(
+                                    vinculo.status
+                                )}"
+                            >
+
+                                ${escaparHTML(
+                                    formatarStatusVinculo(
+                                        vinculo.status
+                                    )
+                                )}
+
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Vínculo com estudante
+                        </h3>
+
+
+                        <p>
+
+                            <strong>
+                                Parentesco:
+                            </strong>
+
+                            ${escaparHTML(
+                                parentesco
+                            )}
+
+                        </p>
+
+
+                        <p>
+
+                            ${escaparHTML(
+                                descricaoStatusVinculo(
+                                    vinculo.status
+                                )
+                            )}
+
+                        </p>
+
+
+                        <span class="solicitacao-data">
+
+                            Solicitado em
+
+                            ${escaparHTML(
+                                formatarDataHora(
+                                    vinculo.criado_em
+                                )
+                            )}
+
+                        </span>
+
+                    `;
+
+
+                    listaVinculos
+                        .appendChild(
+                            card
+                        );
+
+                }
+
+            );
+
+        }
+
+        catch (
+            erro
+        ) {
+
+            console.error(
+
+                "SafeSchool: falha ao renderizar vínculos.",
+
+                erro
+
+            );
+
+        }
+
+    }
+
+
+    /* =========================================
+       CONFIGURAR FORMULÁRIO DE APOIO
+    ========================================== */
+
+    function configurarFormulario() {
+
+        if (
+            !formulario
+        ) {
 
             return;
 
@@ -753,91 +1870,240 @@
 
 
         if (
-            semSolicitacoes
+            mensagem
         ) {
 
-            semSolicitacoes.hidden =
-                true;
+            atualizarContadorMensagem();
+
+
+            mensagem.addEventListener(
+
+                "input",
+
+                function () {
+
+                    atualizarContadorMensagem();
+
+                    esconderMensagemSucesso();
+
+
+                    if (
+                        erroMensagem
+                    ) {
+
+                        erroMensagem.hidden =
+                            true;
+
+                    }
+
+                }
+
+            );
 
         }
 
 
-        solicitacoes.forEach(
+        if (
+            tipoApoio
+        ) {
 
-            function (
-                solicitacao
+            tipoApoio.addEventListener(
+
+                "change",
+
+                function () {
+
+                    esconderMensagemSucesso();
+
+
+                    if (
+                        erroTipo
+                    ) {
+
+                        erroTipo.hidden =
+                            true;
+
+                    }
+
+                }
+
+            );
+
+        }
+
+
+        if (
+            confirmacao
+        ) {
+
+            confirmacao.addEventListener(
+
+                "change",
+
+                function () {
+
+                    esconderMensagemSucesso();
+
+
+                    if (
+                        erroConfirmacao
+                    ) {
+
+                        erroConfirmacao.hidden =
+                            true;
+
+                    }
+
+                }
+
+            );
+
+        }
+
+
+        formulario.addEventListener(
+
+            "submit",
+
+            async function (
+                evento
             ) {
 
-                const card =
-                    document.createElement(
-                        "article"
+                evento.preventDefault();
+
+
+                esconderMensagemSucesso();
+
+
+                const validacao =
+                    validarFormulario();
+
+
+                if (
+                    !validacao.valido
+                ) {
+
+                    return;
+
+                }
+
+
+                const textoOriginalBotao =
+
+                    botaoEnviar
+
+                        ? botaoEnviar.textContent
+
+                        : "";
+
+
+                if (
+                    botaoEnviar
+                ) {
+
+                    botaoEnviar.disabled =
+                        true;
+
+
+                    botaoEnviar.textContent =
+                        "Registrando...";
+
+                }
+
+
+                try {
+
+                    const solicitacao =
+                        await registrarSolicitacao(
+
+                            validacao.tipo,
+
+                            validacao.mensagem
+
+                        );
+
+
+                    const referencia =
+                        gerarReferencia(
+                            solicitacao.id
+                        );
+
+
+                    formulario.reset();
+
+                    atualizarContadorMensagem();
+
+                    limparErros();
+
+
+                    if (
+                        mensagemSucesso
+                    ) {
+
+                        mensagemSucesso.hidden =
+                            false;
+
+
+                        mensagemSucesso.innerHTML = `
+
+                            <strong>
+                                Solicitação registrada com sucesso. ✓
+                            </strong>
+
+                            <br>
+
+                            Referência:
+
+                            <strong>
+                                ${escaparHTML(
+                                    referencia
+                                )}
+                            </strong>
+
+                        `;
+
+                    }
+
+
+                    await renderizarSolicitacoes();
+
+                }
+
+                catch (
+                    erro
+                ) {
+
+                    console.error(
+
+                        "SafeSchool: falha ao registrar solicitação da família.",
+
+                        erro
+
                     );
 
 
-                card.className =
-                    "card-solicitacao";
+                    alert(
+                        "Não foi possível registrar a solicitação. Tente novamente."
+                    );
+
+                }
+
+                finally {
+
+                    if (
+                        botaoEnviar
+                    ) {
+
+                        botaoEnviar.disabled =
+                            false;
 
 
-                card.innerHTML = `
+                        botaoEnviar.textContent =
+                            textoOriginalBotao;
 
-                    <div class="solicitacao-topo">
+                    }
 
-                        <span class="solicitacao-protocolo">
-
-                            ${escaparHTML(
-                                solicitacao.protocolo
-                            )}
-
-                        </span>
-
-
-                        <span class="solicitacao-status">
-
-                            Registrada
-
-                        </span>
-
-                    </div>
-
-
-                    <h3>
-
-                        ${escaparHTML(
-                            formatarAssunto(
-                                solicitacao.assunto
-                            )
-                        )}
-
-                    </h3>
-
-
-                    <p>
-
-                        ${escaparHTML(
-                            solicitacao.mensagem
-                        )}
-
-                    </p>
-
-
-                    <span class="solicitacao-data">
-
-                        Enviada em
-
-                        ${escaparHTML(
-                            formatarDataHora(
-                                solicitacao.criadoEm
-                            )
-                        )}
-
-                    </span>
-
-                `;
-
-
-                listaSolicitacoes.appendChild(
-                    card
-                );
+                }
 
             }
 
@@ -847,169 +2113,233 @@
 
 
     /* =========================================
-       FORMULÁRIO
+       CONFIGURAR FORMULÁRIO DE VÍNCULO
     ========================================== */
 
-    if (
-        formulario
-    ) {
+    function configurarFormularioVinculo() {
 
-        formulario.addEventListener(
+        if (
+            !formularioVinculo
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            emailAlunoVinculo
+        ) {
+
+            emailAlunoVinculo.addEventListener(
+
+                "input",
+
+                function () {
+
+                    esconderMensagemVinculo();
+
+
+                    if (
+                        erroEmailVinculo
+                    ) {
+
+                        erroEmailVinculo.hidden =
+                            true;
+
+                    }
+
+                }
+
+            );
+
+        }
+
+
+        if (
+            parentescoVinculo
+        ) {
+
+            parentescoVinculo.addEventListener(
+
+                "change",
+
+                function () {
+
+                    esconderMensagemVinculo();
+
+
+                    if (
+                        erroParentescoVinculo
+                    ) {
+
+                        erroParentescoVinculo.hidden =
+                            true;
+
+                    }
+
+                }
+
+            );
+
+        }
+
+
+        formularioVinculo.addEventListener(
 
             "submit",
 
-            function (
+            async function (
                 evento
             ) {
 
                 evento.preventDefault();
 
 
-                const assuntoValor =
-                    assunto.value
-                        .trim();
+                esconderMensagemVinculo();
 
 
-                const mensagemValor =
-                    mensagem.value
-                        .trim();
+                const validacao =
+                    validarFormularioVinculo();
 
 
                 if (
-                    !assuntoValor
+                    !validacao.valido
                 ) {
-
-                    alert(
-                        "Selecione o motivo do contato."
-                    );
-
-                    assunto.focus();
 
                     return;
 
                 }
 
 
+                const textoOriginalBotao =
+
+                    botaoEnviarVinculo
+
+                        ? botaoEnviarVinculo.textContent
+
+                        : "";
+
+
                 if (
-                    mensagemValor.length <
-                    15
+                    botaoEnviarVinculo
                 ) {
+
+                    botaoEnviarVinculo.disabled =
+                        true;
+
+
+                    botaoEnviarVinculo.textContent =
+                        "Solicitando...";
+
+                }
+
+
+                try {
+
+                    const vinculo =
+                        await solicitarVinculo(
+
+                            validacao.email,
+
+                            validacao.parentesco
+
+                        );
+
+
+                    const referencia =
+                        gerarReferenciaVinculo(
+                            vinculo.vinculo_id
+                        );
+
+
+                    formularioVinculo.reset();
+
+                    limparErrosVinculo();
+
+
+                    if (
+                        mensagemVinculo
+                    ) {
+
+                        mensagemVinculo.hidden =
+                            false;
+
+
+                        mensagemVinculo.innerHTML = `
+
+                            <strong>
+                                Solicitação de vínculo registrada. ✓
+                            </strong>
+
+                            <br>
+
+                            Referência:
+
+                            <strong>
+                                ${escaparHTML(
+                                    referencia
+                                )}
+                            </strong>
+
+                            <br>
+
+                            Status:
+
+                            <strong>
+                                ${escaparHTML(
+                                    formatarStatusVinculo(
+                                        vinculo.vinculo_status
+                                    )
+                                )}
+                            </strong>
+
+                        `;
+
+                    }
+
+
+                    await renderizarVinculos();
+
+                }
+
+                catch (
+                    erro
+                ) {
+
+                    console.error(
+
+                        "SafeSchool: falha ao solicitar vínculo.",
+
+                        erro
+
+                    );
+
 
                     alert(
 
-                        "Conte um pouco mais sobre como a escola pode ajudar."
+                        "Não foi possível solicitar o vínculo. Confira se o e-mail informado pertence a uma conta de Aluno ativa da mesma instituição."
 
                     );
 
-
-                    mensagem.focus();
-
-
-                    return;
-
                 }
 
+                finally {
 
-                if (
-                    !confirmacao.checked
-                ) {
+                    if (
+                        botaoEnviarVinculo
+                    ) {
 
-                    alert(
-
-                        "Confirme o envio da solicitação para continuar."
-
-                    );
+                        botaoEnviarVinculo.disabled =
+                            false;
 
 
-                    return;
+                        botaoEnviarVinculo.textContent =
+                            textoOriginalBotao;
 
-                }
-
-
-                const solicitacao =
-                    registrarSolicitacao(
-
-                        assuntoValor,
-
-                        mensagemValor
-
-                    );
-
-
-                if (
-                    !solicitacao
-                ) {
-
-                    alert(
-
-                        "Não foi possível registrar a solicitação."
-
-                    );
-
-
-                    return;
+                    }
 
                 }
-
-
-                formulario.reset();
-
-
-                if (
-                    mensagemFormulario
-                ) {
-
-                    mensagemFormulario.hidden =
-                        false;
-
-
-                    mensagemFormulario.innerHTML = `
-
-                        <strong>
-                            Solicitação registrada nesta demonstração. ✓
-                        </strong>
-
-                        <br>
-
-                        Protocolo:
-
-                        <strong>
-                            ${escaparHTML(
-                                solicitacao.protocolo
-                            )}
-                        </strong>
-
-                    `;
-
-                }
-
-
-                renderizarSolicitacoes();
-
-
-                setTimeout(
-
-                    function () {
-
-                        document
-                            .getElementById(
-                                "solicitacoes"
-                            )
-                            ?.scrollIntoView({
-
-                                behavior:
-                                    "smooth",
-
-                                block:
-                                    "start"
-
-                            });
-
-                    },
-
-                    450
-
-                );
 
             }
 
@@ -1025,7 +2355,7 @@
     function obterConfiguracaoPedagogica() {
 
         if (
-            !escola
+            !escolaAtual
         ) {
 
             return {
@@ -1074,7 +2404,9 @@
 
             const configuracao =
                 todas &&
-                todas[escola.codigo];
+                todas[
+                    escolaAtual.codigo
+                ];
 
 
             if (
@@ -1105,7 +2437,8 @@
 
                 destaqueCampanha:
                     configuracao.destaqueCampanha
-                    || null
+                    ||
+                    null
 
             };
 
@@ -1131,7 +2464,7 @@
 
 
     /* =========================================
-       CONTEÚDOS
+       ABRIR CONTEÚDO
     ========================================== */
 
     function abrirConteudo(
@@ -1146,7 +2479,8 @@
                 ) {
 
                     return (
-                        item.id === id
+                        item.id ===
+                        id
                     );
 
                 }
@@ -1155,7 +2489,8 @@
 
 
         if (
-            !conteudo
+            !conteudo ||
+            !leituraConteudo
         ) {
 
             return;
@@ -1163,24 +2498,54 @@
         }
 
 
-        iconeConteudo.textContent =
-            conteudo.icone;
+        if (
+            iconeConteudo
+        ) {
+
+            iconeConteudo.textContent =
+                conteudo.icone;
+
+        }
 
 
-        categoriaConteudo.textContent =
-            conteudo.categoria;
+        if (
+            categoriaConteudo
+        ) {
+
+            categoriaConteudo.textContent =
+                conteudo.categoria;
+
+        }
 
 
-        tituloConteudo.textContent =
-            conteudo.titulo;
+        if (
+            tituloConteudo
+        ) {
+
+            tituloConteudo.textContent =
+                conteudo.titulo;
+
+        }
 
 
-        textoConteudo.innerHTML =
-            conteudo.texto;
+        if (
+            textoConteudo
+        ) {
+
+            textoConteudo.innerHTML =
+                conteudo.texto;
+
+        }
 
 
-        reflexaoConteudo.textContent =
-            conteudo.reflexao;
+        if (
+            reflexaoConteudo
+        ) {
+
+            reflexaoConteudo.textContent =
+                conteudo.reflexao;
+
+        }
 
 
         leituraConteudo.hidden =
@@ -1200,6 +2565,10 @@
     }
 
 
+    /* =========================================
+       RENDERIZAR CONTEÚDOS
+    ========================================== */
+
     function renderizarConteudos() {
 
         if (
@@ -1216,7 +2585,8 @@
 
 
         if (
-            conteudos.length === 0
+            conteudos.length ===
+            0
         ) {
 
             gradeConteudos.innerHTML = `
@@ -1232,11 +2602,8 @@
                     </h3>
 
                     <p>
-
-                        Verifique se o arquivo
-                        biblioteca-conteudos.js
-                        foi carregado corretamente.
-
+                        Não foi possível carregar
+                        os conteúdos educativos.
                     </p>
 
                 </div>
@@ -1267,7 +2634,9 @@
 
 
                 const campanha =
-                    configuracao.destaqueCampanha ===
+                    configuracao
+                        .destaqueCampanha
+                    ===
                     conteudo.id;
 
 
@@ -1311,9 +2680,7 @@
                         <span
                             class="etiqueta-conteudo-familia recomendado"
                         >
-
                             ⭐ Recomendado pela escola
-
                         </span>
 
                     `;
@@ -1330,9 +2697,7 @@
                         <span
                             class="etiqueta-conteudo-familia campanha"
                         >
-
                             📢 Tema em destaque
-
                         </span>
 
                     `;
@@ -1344,7 +2709,9 @@
 
                     <div class="conteudo-familia-icone">
 
-                        ${conteudo.icone}
+                        ${escaparHTML(
+                            conteudo.icone
+                        )}
 
                     </div>
 
@@ -1386,19 +2753,20 @@
                     <button
                         type="button"
                         class="botao-ler-familia"
-                        data-conteudo-responsavel="${conteudo.id}"
+                        data-conteudo-responsavel="${escaparHTML(
+                            conteudo.id
+                        )}"
                     >
-
                         Ler conteúdo
-
                     </button>
 
                 `;
 
 
-                gradeConteudos.appendChild(
-                    card
-                );
+                gradeConteudos
+                    .appendChild(
+                        card
+                    );
 
             }
 
@@ -1441,36 +2809,104 @@
 
 
     /* =========================================
-       FECHAR CONTEÚDO
+       VOLTAR AOS CONTEÚDOS
+    ========================================== */
+
+    function configurarVoltarConteudos() {
+
+        if (
+            !botaoVoltarConteudos ||
+            !leituraConteudo
+        ) {
+
+            return;
+
+        }
+
+
+        botaoVoltarConteudos
+            .addEventListener(
+
+                "click",
+
+                function () {
+
+                    leituraConteudo.hidden =
+                        true;
+
+
+                    document
+                        .getElementById(
+                            "conteudos"
+                        )
+                        ?.scrollIntoView({
+
+                            behavior:
+                                "smooth",
+
+                            block:
+                                "start"
+
+                        });
+
+                }
+
+            );
+
+    }
+
+
+    /* =========================================
+       INICIAR ÁREA DA FAMÍLIA
+    ========================================== */
+
+    async function iniciarAreaFamilia() {
+
+        const sessaoValida =
+            await carregarSessaoReal();
+
+
+        if (
+            !sessaoValida
+        ) {
+
+            return;
+
+        }
+
+
+        configurarFormulario();
+
+        configurarFormularioVinculo();
+
+        configurarVoltarConteudos();
+
+        renderizarConteudos();
+
+
+        await renderizarSolicitacoes();
+
+        await renderizarVinculos();
+
+    }
+
+
+    /* =========================================
+       EXECUTAR
     ========================================== */
 
     if (
-        fecharConteudo
+        document.readyState ===
+        "loading"
     ) {
 
-        fecharConteudo.addEventListener(
+        document.addEventListener(
 
-            "click",
+            "DOMContentLoaded",
 
             function () {
 
-                leituraConteudo.hidden =
-                    true;
-
-
-                document
-                    .getElementById(
-                        "conteudos"
-                    )
-                    ?.scrollIntoView({
-
-                        behavior:
-                            "smooth",
-
-                        block:
-                            "start"
-
-                    });
+                iniciarAreaFamilia();
 
             }
 
@@ -1478,43 +2914,11 @@
 
     }
 
+    else {
 
-    /* =========================================
-       LOGOUT
-    ========================================== */
-
-    if (
-        botaoSair
-    ) {
-
-        botaoSair.addEventListener(
-
-            "click",
-
-            function () {
-
-                /*
-                    O escola.js é responsável pelo
-                    fluxo central de logout/proteção.
-
-                    Aqui não apagamos os dados da escola,
-                    das solicitações ou da demonstração.
-                */
-
-            }
-
-        );
+        iniciarAreaFamilia();
 
     }
-
-
-    /* =========================================
-       INICIAR
-    ========================================== */
-
-    renderizarSolicitacoes();
-
-    renderizarConteudos();
 
 
 })();

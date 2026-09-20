@@ -19,6 +19,7 @@ body {
     margin: 0;
 
     font-family:
+        "Segoe UI",
         Arial,
         Helvetica,
         sans-serif;
@@ -106,6 +107,7 @@ body {
     margin: 0;
 
     font-size: 20px;
+    font-weight: 700;
 
 }
 
@@ -114,7 +116,7 @@ body {
 
     margin: 3px 0 0;
 
-    color: #877c9e;
+    color: #776d8a;
 
     font-size: 12px;
 
@@ -141,12 +143,12 @@ body {
 
     border-radius: 10px;
 
-    color: #706681;
+    color: #655c76;
 
     text-decoration: none;
 
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 13px;
+    font-weight: 600;
 
 }
 
@@ -154,7 +156,7 @@ body {
 .menu a:hover,
 .menu a.ativo {
 
-    color: #6f50c7;
+    color: #6244bd;
 
     background: #f0eaff;
 
@@ -229,14 +231,14 @@ main {
 
     border-radius: 999px;
 
-    color: #7355c5;
+    color: #6849c0;
 
     background: #e5dcff;
 
     font-size: 12px;
-    font-weight: 800;
+    font-weight: 700;
 
-    letter-spacing: 0.8px;
+    letter-spacing: 0.7px;
 
 }
 
@@ -254,9 +256,11 @@ main {
             49px
         );
 
-    line-height: 1.12;
+    font-weight: 700;
 
-    letter-spacing: -1.4px;
+    line-height: 1.13;
+
+    letter-spacing: -1px;
 
 }
 
@@ -267,11 +271,11 @@ main {
 
     max-width: 690px;
 
-    color: #756c84;
+    color: #675f76;
 
     font-size: 16px;
 
-    line-height: 1.75;
+    line-height: 1.8;
 
 }
 
@@ -316,7 +320,7 @@ main {
 
     border-radius: 12px;
 
-    color: #675386;
+    color: #594771;
 
     background: #ffffff;
 
@@ -325,6 +329,9 @@ main {
         #dfd6f3;
 
     font-size: 13px;
+    font-weight: 500;
+
+    line-height: 1.5;
 
 }
 
@@ -395,9 +402,12 @@ main {
 
     display: block;
 
-    color: #7354ca;
+    color: #6848c5;
 
-    font-size: 29px;
+    font-size: 30px;
+    font-weight: 700;
+
+    line-height: 1.1;
 
 }
 
@@ -406,11 +416,14 @@ main {
 
     display: block;
 
-    margin-top: 3px;
+    margin-top: 5px;
 
-    color: #8a8196;
+    color: #6f667d;
 
-    font-size: 12px;
+    font-size: 13px;
+    font-weight: 500;
+
+    line-height: 1.4;
 
 }
 
@@ -435,12 +448,12 @@ main {
 
 .titulo-secao > span {
 
-    color: #8567ce;
+    color: #7659c3;
 
-    font-size: 11px;
-    font-weight: 800;
+    font-size: 12px;
+    font-weight: 700;
 
-    letter-spacing: 0.9px;
+    letter-spacing: 0.8px;
 
 }
 
@@ -452,6 +465,7 @@ main {
     color: #40345a;
 
     font-size: 30px;
+    font-weight: 700;
 
 }
 
@@ -460,11 +474,11 @@ main {
 
     margin: 0;
 
-    color: #82798f;
+    color: #6e667a;
 
-    font-size: 14px;
+    font-size: 15px;
 
-    line-height: 1.7;
+    line-height: 1.75;
 
 }
 
@@ -495,9 +509,9 @@ main {
 
     position: relative;
 
-    min-height: 310px;
+    min-height: 330px;
 
-    padding: 26px;
+    padding: 27px;
 
     display: flex;
     flex-direction: column;
@@ -547,12 +561,50 @@ main {
 }
 
 
+/* =========================================
+   CARD BLOQUEADO
+========================================= */
+
 .card-conquista.bloqueado {
 
-    opacity: 0.72;
+    opacity: 1;
+
+    border-color: #e1dce8;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #fbfafc
+        );
 
 }
 
+
+.card-conquista.bloqueado h3 {
+
+    color: #5d546a;
+
+}
+
+
+.card-conquista.bloqueado > p {
+
+    color: #746c7e;
+
+}
+
+
+.card-conquista.bloqueado .criterio {
+
+    color: #665e71;
+
+}
+
+
+/* =========================================
+   ÍCONE DO SELO
+========================================= */
 
 .selo-icone {
 
@@ -574,12 +626,18 @@ main {
 
 .card-conquista.bloqueado .selo-icone {
 
-    filter: grayscale(1);
+    filter: grayscale(0.85);
 
-    opacity: 0.65;
+    opacity: 0.55;
+
+    background: #f1eef4;
 
 }
 
+
+/* =========================================
+   STATUS
+========================================= */
 
 .status-selo {
 
@@ -588,84 +646,112 @@ main {
     top: 21px;
     right: 21px;
 
-    padding: 7px 10px;
+    padding: 7px 11px;
 
     border-radius: 999px;
 
-    font-size: 9px;
-    font-weight: 800;
+    font-size: 10.5px;
+    font-weight: 600;
+
+    line-height: 1.2;
 
 }
 
 
 .status-selo.conquistado {
 
-    color: #5b477e;
+    color: #553c93;
 
     background: #eae1ff;
+
+    border:
+        1px solid
+        #d9ccf8;
 
 }
 
 
 .status-selo.bloqueado {
 
-    color: #857d91;
+    color: #696172;
 
-    background: #f0edf3;
+    background: #f1eef4;
+
+    border:
+        1px solid
+        #e2dde6;
 
 }
 
+
+/* =========================================
+   TÍTULO DO SELO
+========================================= */
 
 .card-conquista h3 {
 
-    margin: 19px 0 9px;
+    margin: 20px 0 10px;
 
-    color: #473a61;
+    color: #433657;
 
-    font-size: 20px;
+    font-size: 21px;
+    font-weight: 700;
+
+    line-height: 1.35;
 
 }
 
+
+/* =========================================
+   DESCRIÇÃO
+========================================= */
 
 .card-conquista > p {
 
     margin: 0;
 
-    color: #83798f;
+    color: #6d6479;
 
-    font-size: 13px;
+    font-size: 14.5px;
+    font-weight: 400;
+
+    line-height: 1.72;
+
+}
+
+
+/* =========================================
+   CRITÉRIO
+========================================= */
+
+.criterio {
+
+    margin-top: 21px;
+
+    padding: 14px 15px;
+
+    border-radius: 12px;
+
+    color: #62566f;
+
+    background: #faf8ff;
+
+    border:
+        1px solid
+        #e9e2f2;
+
+    font-size: 12.5px;
 
     line-height: 1.65;
 
 }
 
 
-.criterio {
-
-    margin-top: 20px;
-
-    padding: 13px 14px;
-
-    border-radius: 12px;
-
-    color: #6f6184;
-
-    background: #faf8ff;
-
-    border:
-        1px solid
-        #ece6f4;
-
-    font-size: 11px;
-
-    line-height: 1.55;
-
-}
-
-
 .criterio strong {
 
-    color: #5b4b76;
+    color: #4c3d63;
+
+    font-weight: 700;
 
 }
 
@@ -678,23 +764,33 @@ main {
 
     margin-top: auto;
 
-    padding-top: 22px;
+    padding-top: 23px;
 
 }
 
 
 .progresso-cabecalho {
 
-    margin-bottom: 7px;
+    margin-bottom: 8px;
 
     display: flex;
     justify-content: space-between;
 
     gap: 10px;
 
-    color: #81768e;
+    color: #665d72;
 
-    font-size: 10px;
+    font-size: 11.5px;
+    font-weight: 500;
+
+}
+
+
+.progresso-cabecalho strong {
+
+    color: #554768;
+
+    font-weight: 700;
 
 }
 
@@ -702,13 +798,13 @@ main {
 .barra {
 
     width: 100%;
-    height: 8px;
+    height: 9px;
 
     overflow: hidden;
 
     border-radius: 999px;
 
-    background: #ece7f2;
+    background: #e8e3ed;
 
 }
 
@@ -739,7 +835,7 @@ main {
 
     margin-top: 55px;
 
-    padding: 30px;
+    padding: 31px;
 
     display: flex;
     align-items: center;
@@ -784,10 +880,10 @@ main {
 
 .proxima-conquista span {
 
-    color: #8467ca;
+    color: #7558bd;
 
-    font-size: 10px;
-    font-weight: 800;
+    font-size: 11px;
+    font-weight: 700;
 
     letter-spacing: 0.8px;
 
@@ -796,11 +892,14 @@ main {
 
 .proxima-conquista h2 {
 
-    margin: 6px 0 7px;
+    margin: 7px 0 9px;
 
-    color: #4b3d68;
+    color: #44365f;
 
-    font-size: 23px;
+    font-size: 24px;
+    font-weight: 700;
+
+    line-height: 1.35;
 
 }
 
@@ -809,18 +908,22 @@ main {
 
     margin: 0;
 
-    color: #7d738c;
+    color: #665d73;
 
-    font-size: 13px;
+    font-size: 14px;
 
-    line-height: 1.65;
+    line-height: 1.7;
 
 }
 
 
+/* =========================================
+   BOTÕES
+========================================= */
+
 .botoes-jornada {
 
-    margin-top: 17px;
+    margin-top: 18px;
 
     display: flex;
 
@@ -838,16 +941,16 @@ main {
     align-items: center;
     justify-content: center;
 
-    min-height: 42px;
+    min-height: 44px;
 
-    padding: 0 15px;
+    padding: 0 16px;
 
     border-radius: 11px;
 
     text-decoration: none;
 
-    font-size: 11px;
-    font-weight: 800;
+    font-size: 12px;
+    font-weight: 700;
 
 }
 
@@ -868,13 +971,13 @@ main {
 
 .botao-secundario {
 
-    color: #665581;
+    color: #58496f;
 
     background: #ffffff;
 
     border:
         1px solid
-        #ded5ef;
+        #d8cfea;
 
 }
 
@@ -887,11 +990,11 @@ footer {
 
     padding: 30px;
 
-    color: #92879f;
+    color: #7f758b;
 
     text-align: center;
 
-    font-size: 11px;
+    font-size: 12px;
 
 }
 
@@ -974,6 +1077,13 @@ footer {
     }
 
 
+    .hero-texto h2 {
+
+        font-size: 32px;
+
+    }
+
+
     .hero-visual {
 
         width: 95px;
@@ -987,6 +1097,29 @@ footer {
     .grade-conquistas {
 
         grid-template-columns: 1fr;
+
+    }
+
+
+    .card-conquista {
+
+        min-height: auto;
+
+        padding: 24px;
+
+    }
+
+
+    .card-conquista > p {
+
+        font-size: 14px;
+
+    }
+
+
+    .criterio {
+
+        font-size: 12.5px;
 
     }
 

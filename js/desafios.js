@@ -5,6 +5,34 @@
 
 
 /* =========================================
+   ESTADO REAL
+========================================= */
+
+let supabase =
+    null;
+
+
+let usuarioAtual =
+    null;
+
+
+let perfilAtual =
+    null;
+
+
+let autenticacaoVerificada =
+    false;
+
+
+let carregandoProgresso =
+    false;
+
+
+let registrandoConclusao =
+    false;
+
+
+/* =========================================
    DESAFIOS
 ========================================= */
 
@@ -531,114 +559,58 @@ let desafioAtual =
 
 
 /* =========================================
-   VERIFICAR LOGIN
+   PROGRESSO ATUAL
 ========================================= */
 
-function alunoEstaLogado() {
+let progressoAlunoAtual = {
 
-    const perfil =
-        (
-            sessionStorage.getItem(
-                "perfilSafeSchool"
-            ) || ""
-        )
-        .trim()
-        .toLowerCase();
+    conteudosConcluidos:
+        [],
+
+    desafiosConcluidos:
+        [],
+
+    pontos:
+        0,
+
+    selos:
+        []
+
+};
 
 
-    const email =
-        sessionStorage.getItem(
-            "usuarioEmailSafeSchool"
+/* =========================================
+   OBTER ESCOLA
+========================================= */
+
+function obterEscolaAtual() {
+
+    if (
+        window.SafeSchoolEscola
+
+        &&
+
+        typeof
+        window.SafeSchoolEscola.obter
+        ===
+        "function"
+    ) {
+
+        return (
+            window.SafeSchoolEscola.obter()
+            || null
         );
 
+    }
 
-    return (
-        perfil === "aluno" &&
-        Boolean(email)
-    );
+
+    return null;
+
 }
 
 
 /* =========================================
-   CHAVE DO ALUNO
-========================================= */
-
-function obterChaveAluno() {
-
-    if (
-        !alunoEstaLogado()
-    ) {
-
-        return null;
-
-    }
-
-
-    let codigoEscola =
-        null;
-
-
-    if (
-        window.SafeSchoolEscola &&
-        typeof window.SafeSchoolEscola.obter === "function"
-    ) {
-
-        const escola =
-            window.SafeSchoolEscola.obter();
-
-
-        if (
-            escola &&
-            escola.codigo
-        ) {
-
-            codigoEscola =
-                escola.codigo;
-
-        }
-
-    }
-
-
-    if (!codigoEscola) {
-
-        codigoEscola =
-            sessionStorage.getItem(
-                "codigoEscolaSafeSchool"
-            );
-
-    }
-
-
-    const email =
-        sessionStorage.getItem(
-            "usuarioEmailSafeSchool"
-        );
-
-
-    return (
-
-        (
-            codigoEscola ||
-            "SEM-ESCOLA"
-        )
-
-        +
-
-        "::"
-
-        +
-
-        email
-            .trim()
-            .toLowerCase()
-
-    );
-}
-
-
-/* =========================================
-   PROGRESSO
+   NORMALIZAR PROGRESSO
 ========================================= */
 
 function criarProgressoVazio() {
@@ -658,138 +630,391 @@ function criarProgressoVazio() {
             []
 
     };
+
 }
 
 
-function obterTodosProgressos() {
+function normalizarProgressoBanco(
+    progresso
+) {
 
-    const dados =
-        sessionStorage.getItem(
-            "progressoAlunoSafeSchool"
-        );
-
-
-    if (!dados) {
-
-        return {};
-
-    }
-
-
-    try {
-
-        const resultado =
-            JSON.parse(
-                dados
-            );
-
-
-        return (
-            resultado &&
-            typeof resultado === "object"
-        )
-            ? resultado
-            : {};
-
-    }
-
-    catch (erro) {
-
-        return {};
-
-    }
-}
-
-
-function obterProgressoAluno() {
-
-    const chave =
-        obterChaveAluno();
-
-
-    if (!chave) {
+    if (
+        !progresso ||
+        typeof progresso !== "object"
+    ) {
 
         return criarProgressoVazio();
 
     }
 
 
-    const todos =
-        obterTodosProgressos();
+    return {
+
+        conteudosConcluidos:
+
+            Array.isArray(
+                progresso.conteudos_concluidos
+            )
+
+                ? progresso.conteudos_concluidos
+
+                : [],
 
 
-    const progresso =
-        todos[chave] ||
-        criarProgressoVazio();
+        desafiosConcluidos:
+
+            Array.isArray(
+                progresso.desafios_concluidos
+            )
+
+                ? progresso.desafios_concluidos
+
+                : [],
 
 
-    if (
-        !Array.isArray(
-            progresso.conteudosConcluidos
-        )
-    ) {
+        pontos:
 
-        progresso.conteudosConcluidos =
-            [];
-
-    }
+            Number(
+                progresso.pontos || 0
+            ),
 
 
-    if (
-        !Array.isArray(
-            progresso.desafiosConcluidos
-        )
-    ) {
+        selos:
 
-        progresso.desafiosConcluidos =
-            [];
+            Array.isArray(
+                progresso.selos
+            )
 
-    }
+                ? progresso.selos
 
+                : []
 
-    if (
-        !Array.isArray(
-            progresso.selos
-        )
-    ) {
+    };
 
-        progresso.selos =
-            [];
-
-    }
-
-
-    progresso.pontos =
-        Number(
-            progresso.pontos || 0
-        );
-
-
-    return progresso;
 }
 
 
-function salvarProgressoAluno(
-    progresso
-) {
+/* =========================================
+   LOGIN REAL
+========================================= */
 
-    const chave =
-        obterChaveAluno();
+function alunoEstaLogado() {
+
+    return (
+
+        autenticacaoVerificada === true
+
+        &&
+
+        usuarioAtual !== null
+
+        &&
+
+        perfilAtual !== null
+
+        &&
+
+        perfilAtual.perfil === "aluno"
+
+        &&
+
+        perfilAtual.ativo === true
+
+    );
+
+}
 
 
-    if (!chave) {
+/* =========================================
+   SUPABASE
+========================================= */
 
-        return false;
+async function obterSupabase() {
+
+    if (
+        !window.SafeSchoolSupabaseReady
+    ) {
+
+        throw new Error(
+            "Cliente Supabase não inicializado."
+        );
 
     }
 
 
-    const todos =
-        obterTodosProgressos();
+    return await
+        window.SafeSchoolSupabaseReady;
+
+}
 
 
-    todos[chave] =
-        progresso;
+/* =========================================
+   CARREGAR USUÁRIO
+========================================= */
+
+async function carregarUsuarioAtual() {
+
+    const {
+        data,
+        error
+    } =
+        await supabase.auth
+            .getUser();
+
+
+    if (
+        error
+    ) {
+
+        throw error;
+
+    }
+
+
+    usuarioAtual =
+        data &&
+        data.user
+
+            ? data.user
+
+            : null;
+
+
+    if (
+        !usuarioAtual
+    ) {
+
+        perfilAtual =
+            null;
+
+
+        return;
+
+    }
+
+
+    const {
+        data: perfil,
+        error: erroPerfil
+    } =
+        await supabase
+            .from(
+                "perfis"
+            )
+            .select(
+                "id,nome,perfil,escola_id,ativo"
+            )
+            .eq(
+                "id",
+                usuarioAtual.id
+            )
+            .maybeSingle();
+
+
+    if (
+        erroPerfil
+    ) {
+
+        throw erroPerfil;
+
+    }
+
+
+    perfilAtual =
+        perfil || null;
+
+}
+
+
+/* =========================================
+   COMPATIBILIDADE TEMPORÁRIA
+========================================= */
+
+function obterChaveCompatibilidadeLocal() {
+
+    if (
+        !usuarioAtual ||
+        !usuarioAtual.email
+    ) {
+
+        return null;
+
+    }
+
+
+    const escola =
+        obterEscolaAtual();
+
+
+    let codigoEscola =
+        escola &&
+        escola.codigo
+
+            ? escola.codigo
+
+            : sessionStorage.getItem(
+                "codigoEscolaSafeSchool"
+            );
+
+
+    if (
+        !codigoEscola
+    ) {
+
+        codigoEscola =
+            "SEM-ESCOLA";
+
+    }
+
+
+    return (
+
+        codigoEscola
+
+        +
+
+        "::"
+
+        +
+
+        usuarioAtual.email
+            .trim()
+            .toLowerCase()
+
+    );
+
+}
+
+
+function sincronizarCompatibilidadeLocal() {
+
+    if (
+        !alunoEstaLogado()
+    ) {
+
+        return;
+
+    }
+
+
+    sessionStorage.setItem(
+        "perfilSafeSchool",
+        "aluno"
+    );
+
+
+    if (
+        usuarioAtual &&
+        usuarioAtual.email
+    ) {
+
+        sessionStorage.setItem(
+            "usuarioEmailSafeSchool",
+            usuarioAtual.email
+        );
+
+    }
+
+
+    const escola =
+        obterEscolaAtual();
+
+
+    if (
+        escola &&
+        escola.codigo
+    ) {
+
+        sessionStorage.setItem(
+            "codigoEscolaSafeSchool",
+            escola.codigo
+        );
+
+    }
+
+
+    const chave =
+        obterChaveCompatibilidadeLocal();
+
+
+    if (
+        !chave
+    ) {
+
+        return;
+
+    }
+
+
+    let todos =
+        {};
+
+
+    const dadosAtuais =
+        sessionStorage.getItem(
+            "progressoAlunoSafeSchool"
+        );
+
+
+    if (
+        dadosAtuais
+    ) {
+
+        try {
+
+            const convertido =
+                JSON.parse(
+                    dadosAtuais
+                );
+
+
+            if (
+                convertido &&
+                typeof convertido === "object"
+            ) {
+
+                todos =
+                    convertido;
+
+            }
+
+        }
+
+        catch (erro) {
+
+            todos =
+                {};
+
+        }
+
+    }
+
+
+    todos[chave] = {
+
+        conteudosConcluidos:
+            [
+                ...progressoAlunoAtual
+                    .conteudosConcluidos
+            ],
+
+        desafiosConcluidos:
+            [
+                ...progressoAlunoAtual
+                    .desafiosConcluidos
+            ],
+
+        pontos:
+            progressoAlunoAtual
+                .pontos,
+
+        selos:
+            [
+                ...progressoAlunoAtual
+                    .selos
+            ]
+
+    };
 
 
     sessionStorage.setItem(
@@ -802,8 +1027,76 @@ function salvarProgressoAluno(
 
     );
 
+}
 
-    return true;
+
+/* =========================================
+   PROGRESSO REAL
+========================================= */
+
+async function carregarProgressoAluno() {
+
+    if (
+        !alunoEstaLogado()
+    ) {
+
+        progressoAlunoAtual =
+            criarProgressoVazio();
+
+
+        return;
+
+    }
+
+
+    carregandoProgresso =
+        true;
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabase.rpc(
+                "garantir_progresso_aluno"
+            );
+
+
+        if (
+            error
+        ) {
+
+            throw error;
+
+        }
+
+
+        progressoAlunoAtual =
+            normalizarProgressoBanco(
+                data
+            );
+
+
+        sincronizarCompatibilidadeLocal();
+
+    }
+
+    finally {
+
+        carregandoProgresso =
+            false;
+
+    }
+
+}
+
+
+function obterProgressoAluno() {
+
+    return progressoAlunoAtual;
+
 }
 
 
@@ -812,6 +1105,15 @@ function salvarProgressoAluno(
 ========================================= */
 
 function renderizarDesafios() {
+
+    if (
+        !gradeDesafios
+    ) {
+
+        return;
+
+    }
+
 
     const progresso =
         obterProgressoAluno();
@@ -864,23 +1166,29 @@ function renderizarDesafios() {
 
 
                 <span class="card-categoria">
+
                     ${escaparHTML(
                         desafio.categoria
                     )}
+
                 </span>
 
 
                 <h3>
+
                     ${escaparHTML(
                         desafio.titulo
                     )}
+
                 </h3>
 
 
                 <p>
+
                     ${escaparHTML(
                         desafio.resumo
                     )}
+
                 </p>
 
 
@@ -954,6 +1262,16 @@ function abrirDesafio(
     id
 ) {
 
+    if (
+        carregandoProgresso ||
+        registrandoConclusao
+    ) {
+
+        return;
+
+    }
+
+
     desafioAtual =
         desafios.find(
 
@@ -968,7 +1286,9 @@ function abrirDesafio(
         );
 
 
-    if (!desafioAtual) {
+    if (
+        !desafioAtual
+    ) {
 
         return;
 
@@ -1085,19 +1405,65 @@ function renderizarAlternativas() {
 
 
 /* =========================================
+   DESABILITAR ALTERNATIVAS
+========================================= */
+
+function definirAlternativasDesabilitadas(
+    desabilitar
+) {
+
+    if (
+        !alternativas
+    ) {
+
+        return;
+
+    }
+
+
+    alternativas
+        .querySelectorAll(
+            ".botao-alternativa"
+        )
+        .forEach(
+
+            function (botao) {
+
+                botao.disabled =
+                    desabilitar;
+
+            }
+
+        );
+
+}
+
+
+/* =========================================
    RESPONDER
 ========================================= */
 
-function responderDesafio(
+async function responderDesafio(
     indice
 ) {
+
+    if (
+        registrandoConclusao
+    ) {
+
+        return;
+
+    }
+
 
     const alternativa =
         desafioAtual
             .alternativas[indice];
 
 
-    if (!alternativa) {
+    if (
+        !alternativa
+    ) {
 
         return;
 
@@ -1129,7 +1495,24 @@ function responderDesafio(
             false;
 
 
-        concluirDesafio();
+        definirAlternativasDesabilitadas(
+            true
+        );
+
+
+        const registrado =
+            await concluirDesafio();
+
+
+        if (
+            !registrado
+        ) {
+
+            definirAlternativasDesabilitadas(
+                false
+            );
+
+        }
 
 
         return;
@@ -1168,13 +1551,15 @@ function responderDesafio(
    CONCLUIR DESAFIO
 ========================================= */
 
-function concluirDesafio() {
+async function concluirDesafio() {
 
     if (
-        !desafioAtual
+        !desafioAtual ||
+        !alunoEstaLogado() ||
+        registrandoConclusao
     ) {
 
-        return;
+        return false;
 
     }
 
@@ -1192,57 +1577,166 @@ function concluirDesafio() {
 
 
     /*
-        Se já foi concluído antes,
-        permitimos jogar novamente,
-        mas não duplicamos os pontos.
+        O aluno pode jogar novamente.
+        Se já concluiu, não recebe
+        pontos novamente.
     */
 
-    if (jaConcluido) {
+    if (
+        jaConcluido
+    ) {
+
+        feedback.innerHTML += `
+
+            <br><br>
+
+            <span>
+                ✓ Você já havia concluído este desafio.
+                Seus pontos foram mantidos.
+            </span>
+
+        `;
+
 
         renderizarDesafios();
 
-        atualizarResumo();
 
-        return;
+        return true;
 
     }
 
 
-    progresso
-        .desafiosConcluidos
-        .push(
-            desafioAtual.id
+    registrandoConclusao =
+        true;
+
+
+    const pontosAntes =
+        Number(
+            progresso.pontos || 0
         );
 
 
-    progresso.pontos =
-        Number(
-            progresso.pontos || 0
-        )
-        +
-        20;
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabase.rpc(
+                "registrar_conclusao_desafio",
+                {
+                    p_desafio_id:
+                        desafioAtual.id
+                }
+            );
 
 
-    salvarProgressoAluno(
-        progresso
-    );
+        if (
+            error
+        ) {
+
+            throw error;
+
+        }
 
 
-    feedback.innerHTML += `
-
-        <br><br>
-
-        <strong>
-            🎉 Desafio concluído!
-            Você conquistou 20 pontos.
-        </strong>
-
-    `;
+        const novoProgresso =
+            normalizarProgressoBanco(
+                data
+            );
 
 
-    renderizarDesafios();
+        progressoAlunoAtual =
+            novoProgresso;
 
-    atualizarResumo();
+
+        sincronizarCompatibilidadeLocal();
+
+
+        const ganhouPontos =
+            novoProgresso.pontos >
+            pontosAntes;
+
+
+        if (
+            ganhouPontos
+        ) {
+
+            feedback.innerHTML += `
+
+                <br><br>
+
+                <strong>
+                    🎉 Desafio concluído!
+                    Você conquistou 20 pontos.
+                </strong>
+
+            `;
+
+        }
+
+        else {
+
+            feedback.innerHTML += `
+
+                <br><br>
+
+                <span>
+                    ✓ Este desafio já estava concluído.
+                    Seus pontos foram mantidos.
+                </span>
+
+            `;
+
+        }
+
+
+        renderizarDesafios();
+
+
+        return true;
+
+    }
+
+    catch (erro) {
+
+        console.error(
+            "SafeSchool: não foi possível registrar a conclusão do desafio.",
+            erro
+        );
+
+
+        feedback.className =
+            "feedback tentar";
+
+
+        feedback.innerHTML = `
+
+            <strong>
+                Não foi possível salvar seu progresso agora.
+            </strong>
+
+            <br><br>
+
+            Tente novamente em alguns instantes.
+
+        `;
+
+
+        feedback.hidden =
+            false;
+
+
+        return false;
+
+    }
+
+    finally {
+
+        registrandoConclusao =
+            false;
+
+    }
 
 }
 
@@ -1281,12 +1775,24 @@ function atualizarResumo() {
             );
 
 
-    numeroDesafiosConcluidos.textContent =
-        concluidosValidos.length;
+    if (
+        numeroDesafiosConcluidos
+    ) {
+
+        numeroDesafiosConcluidos.textContent =
+            concluidosValidos.length;
+
+    }
 
 
-    numeroTotalDesafios.textContent =
-        desafios.length;
+    if (
+        numeroTotalDesafios
+    ) {
+
+        numeroTotalDesafios.textContent =
+            desafios.length;
+
+    }
 
 }
 
@@ -1295,13 +1801,24 @@ function atualizarResumo() {
    FECHAR JOGO
 ========================================= */
 
-if (fecharJogo) {
+if (
+    fecharJogo
+) {
 
     fecharJogo.addEventListener(
 
         "click",
 
         function () {
+
+            if (
+                registrandoConclusao
+            ) {
+
+                return;
+
+            }
+
 
             areaJogo.hidden =
                 true;
@@ -1336,23 +1853,15 @@ function escaparHTML(
 
 
     return elemento.innerHTML;
+
 }
 
 
 /* =========================================
-   VERIFICAR ACESSO
+   REDIRECIONAR PARA LOGIN
 ========================================= */
 
-function verificarAcessoAluno() {
-
-    if (
-        alunoEstaLogado()
-    ) {
-
-        return true;
-
-    }
-
+function redirecionarLoginRestrito() {
 
     let codigoEscola =
         sessionStorage.getItem(
@@ -1386,17 +1895,80 @@ function verificarAcessoAluno() {
 
         (
             codigoEscola
+
                 ? (
                     "&escola=" +
                     encodeURIComponent(
                         codigoEscola
                     )
                 )
+
                 : ""
         );
 
+}
 
-    return false;
+
+/* =========================================
+   INICIALIZAR
+========================================= */
+
+async function inicializarDesafios() {
+
+    try {
+
+        supabase =
+            await obterSupabase();
+
+
+        await carregarUsuarioAtual();
+
+
+        autenticacaoVerificada =
+            true;
+
+
+        if (
+            !alunoEstaLogado()
+        ) {
+
+            redirecionarLoginRestrito();
+
+            return;
+
+        }
+
+
+        await carregarProgressoAluno();
+
+
+        renderizarDesafios();
+
+
+        console.log(
+            "SafeSchool: desafios integrados ao progresso real."
+        );
+
+    }
+
+    catch (erro) {
+
+        autenticacaoVerificada =
+            true;
+
+
+        console.error(
+            "SafeSchool: falha ao inicializar os desafios.",
+            erro
+        );
+
+
+        alert(
+            "Não foi possível carregar seus desafios agora."
+        );
+
+    }
+
 }
 
 
@@ -1404,10 +1976,4 @@ function verificarAcessoAluno() {
    INICIAR
 ========================================= */
 
-if (
-    verificarAcessoAluno()
-) {
-
-    renderizarDesafios();
-
-}
+inicializarDesafios();

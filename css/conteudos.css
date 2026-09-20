@@ -695,6 +695,8 @@ main {
     display: flex;
     flex-direction: column;
 
+    overflow: hidden;
+
     border:
         1px solid
         #e5def0;
@@ -710,7 +712,8 @@ main {
     transition:
         transform 0.18s ease,
         border-color 0.18s ease,
-        box-shadow 0.18s ease;
+        box-shadow 0.18s ease,
+        background 0.18s ease;
 
 }
 
@@ -728,19 +731,118 @@ main {
 }
 
 
+/* =========================================
+   CARD CONCLUÍDO
+========================================= */
+
 .card-conteudo.concluido {
 
-    border-color: #c7b3ed;
+    border:
+        1px solid
+        #bba5eb;
 
     background:
         linear-gradient(
-            180deg,
-            #ffffff,
-            #faf8ff
+            145deg,
+            #ffffff 0%,
+            #fcfbff 45%,
+            #f5f0ff 100%
+        );
+
+    box-shadow:
+        0 16px 38px
+        rgba(94, 66, 161, 0.12);
+
+}
+
+
+.card-conteudo.concluido::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #6e4ec9,
+            #9a6fe1,
+            #c5a7f3
         );
 
 }
 
+
+.card-conteudo.concluido::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    top: -52px;
+    right: -52px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(
+            132,
+            96,
+            214,
+            0.07
+        );
+
+    pointer-events: none;
+
+}
+
+
+.card-conteudo.concluido:hover {
+
+    transform: translateY(-4px);
+
+    border-color: #a58adf;
+
+    box-shadow:
+        0 19px 44px
+        rgba(94, 66, 161, 0.16);
+
+}
+
+
+.card-conteudo.concluido
+.card-conteudo-icone {
+
+    background:
+        linear-gradient(
+            135deg,
+            #eee7ff,
+            #f8f5ff
+        );
+
+    border:
+        1px solid
+        #ddd1f8;
+
+    box-shadow:
+        0 8px 18px
+        rgba(103, 75, 169, 0.08);
+
+}
+
+
+/* =========================================
+   RECOMENDADO / CAMPANHA
+========================================= */
 
 .card-conteudo.recomendado-escola {
 
@@ -763,6 +865,10 @@ main {
 }
 
 
+/* =========================================
+   ÍCONE
+========================================= */
+
 .card-conteudo-icone {
 
     width: 52px;
@@ -780,6 +886,10 @@ main {
 
 }
 
+
+/* =========================================
+   CATEGORIA
+========================================= */
 
 .card-conteudo > span:not(.selo-concluido) {
 
@@ -799,9 +909,16 @@ main {
 }
 
 
+/* =========================================
+   TÍTULO E TEXTO
+========================================= */
+
 .card-conteudo h3 {
 
-    margin: 8px 0 9px;
+    margin:
+        8px
+        0
+        9px;
 
     color: #493d61;
 
@@ -814,7 +931,10 @@ main {
 
 .card-conteudo p {
 
-    margin: 0 0 21px;
+    margin:
+        0
+        0
+        21px;
 
     color: #877f92;
 
@@ -824,6 +944,10 @@ main {
 
 }
 
+
+/* =========================================
+   BOTÃO DO CONTEÚDO
+========================================= */
 
 .botao-abrir-conteudo {
 
@@ -852,6 +976,11 @@ main {
     font-size: 12px;
     font-weight: 800;
 
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
+
 }
 
 
@@ -859,26 +988,120 @@ main {
 
     transform: translateY(-1px);
 
+    box-shadow:
+        0 8px 18px
+        rgba(111, 80, 190, 0.18);
+
 }
 
+
+/* =========================================
+   BOTÃO REVER
+========================================= */
+
+.card-conteudo.concluido
+.botao-abrir-conteudo {
+
+    position: relative;
+
+    color: #5c4395;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4f0ff,
+            #ebe3fb
+        );
+
+    border:
+        1px solid
+        #d5c7f1;
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.85);
+
+}
+
+
+.card-conteudo.concluido
+.botao-abrir-conteudo::after {
+
+    content: "  →";
+
+}
+
+
+.card-conteudo.concluido
+.botao-abrir-conteudo:hover {
+
+    color: #4f3789;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eee7ff,
+            #e4d8f9
+        );
+
+    border-color: #c6b3eb;
+
+    box-shadow:
+        0 6px 14px
+        rgba(103, 74, 170, 0.10);
+
+}
+
+
+/* =========================================
+   SELO CONCLUÍDO
+========================================= */
 
 .selo-concluido {
 
     position: absolute;
 
-    top: 18px;
-    right: 18px;
+    top: 16px;
+    right: 16px;
 
-    padding: 7px 10px;
+    min-height: 34px;
+
+    padding:
+        8px
+        13px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
     border-radius: 999px;
 
-    color: #655184;
+    color: #624b96;
 
-    background: #eee8fc;
+    background:
+        linear-gradient(
+            135deg,
+            #f3efff,
+            #eae3fa
+        );
 
-    font-size: 10px;
-    font-weight: 800;
+    border:
+        1px solid
+        #d5c9ef;
+
+    box-shadow:
+        0 6px 14px
+        rgba(91, 66, 147, 0.09);
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.15px;
+
+    line-height: 1;
+
+    z-index: 2;
 
 }
 
@@ -969,7 +1192,9 @@ main {
 
     margin-bottom: 15px;
 
-    padding: 10px 13px;
+    padding:
+        10px
+        13px;
 
     border:
         1px solid
@@ -1080,7 +1305,10 @@ main {
 
 .leitura-card > h2 {
 
-    margin: 8px 0 22px;
+    margin:
+        8px
+        0
+        22px;
 
     color: #403357;
 
@@ -1107,7 +1335,8 @@ main {
 .leitura-texto p {
 
     margin:
-        0 0
+        0
+        0
         18px;
 
 }
@@ -1221,7 +1450,16 @@ main {
 
     color: #5d4a79;
 
-    background: #eee7fb;
+    background:
+        linear-gradient(
+            135deg,
+            #f1ecff,
+            #e8e0f9
+        );
+
+    border:
+        1px solid
+        #d7caf1;
 
     box-shadow: none;
 
@@ -1293,7 +1531,10 @@ main {
 
 .mensagem-apoio h2 {
 
-    margin: 6px 0 7px;
+    margin:
+        6px
+        0
+        7px;
 
     color: #4b3d68;
 
@@ -1321,7 +1562,9 @@ main {
 
     margin-top: 15px;
 
-    padding: 10px 14px;
+    padding:
+        10px
+        14px;
 
     border-radius: 11px;
 
@@ -1416,7 +1659,9 @@ footer {
 
     .hero-conteudos {
 
-        padding: 29px 23px;
+        padding:
+            29px
+            23px;
 
         flex-direction: column;
 
@@ -1473,7 +1718,9 @@ footer {
 
     .leitura-card {
 
-        padding: 28px 21px;
+        padding:
+            28px
+            21px;
 
     }
 
@@ -1481,6 +1728,22 @@ footer {
     .mensagem-apoio {
 
         align-items: flex-start;
+
+    }
+
+
+    .selo-concluido {
+
+        top: 14px;
+        right: 14px;
+
+        min-height: 32px;
+
+        padding:
+            7px
+            11px;
+
+        font-size: 10px;
 
     }
 

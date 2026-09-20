@@ -416,15 +416,14 @@
                     <input
                         type="file"
                         id="evidencia"
-                        accept="image/*,.pdf"
+                        accept="image/jpeg,image/png,application/pdf"
                     >
 
 
                     <small>
 
-                        Nesta versão demonstrativa,
-                        apenas o nome do arquivo será registrado.
-                        O arquivo não será enviado.
+                        Você pode anexar uma imagem JPG, PNG
+                        ou um arquivo PDF de até 10 MB.
 
                     </small>
 
@@ -580,7 +579,7 @@
 
 
                 <h2>
-                    Seu relato identificado foi registrado nesta demonstração.
+                    Seu relato identificado foi registrado com sucesso.
                 </h2>
 
 
@@ -684,7 +683,7 @@
 
 
         <!-- =========================================
-             PROTÓTIPO
+             AMBIENTE
         ========================================== -->
 
         <section class="prototipo">
@@ -697,11 +696,11 @@
 
             <p>
 
-                Nesta versão, os dados ficam temporariamente
-                armazenados na sessão do navegador.
-                Em uma implementação real, autenticação,
-                proteção de dados e controle de acesso
-                dependerão de infraestrutura segura no servidor.
+                Nesta etapa do SafeSchool, a autenticação
+                e o registro dos relatos já utilizam
+                a infraestrutura do Supabase.
+                O acesso aos dados é controlado de acordo
+                com o perfil e a escola vinculada ao usuário.
 
             </p>
 
@@ -712,6 +711,12 @@
     </main>
 
 
+
+    <!-- =========================================
+         SCRIPTS
+    ========================================== -->
+
+    <script src="../js/supabase.js"></script>
 
     <script src="../js/escola.js"></script>
 

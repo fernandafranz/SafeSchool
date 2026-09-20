@@ -9,33 +9,8 @@
 
 
     /* =========================================
-       CONTAS INSTITUCIONAIS DA DEMONSTRAÇÃO
+       INICIAR
     ========================================= */
-
-    const contasInstitucionaisDemo = {
-
-        professor: {
-
-            email:
-                "professor@safeschool.test",
-
-            senha:
-                "prof2026"
-
-        },
-
-        psicologia: {
-
-            email:
-                "psicologia@safeschool.test",
-
-            senha:
-                "psi2026"
-
-        }
-
-    };
-
 
     document.addEventListener(
 
@@ -102,6 +77,14 @@
                 );
 
 
+            const botaoEntrar =
+                formLogin
+                    ? formLogin.querySelector(
+                        ".botao-entrar"
+                    )
+                    : null;
+
+
             const avisoRestrito =
                 document.getElementById(
                     "avisoRestrito"
@@ -144,30 +127,6 @@
                 );
 
 
-            const acessoInstitucionalDemo =
-                document.getElementById(
-                    "acessoInstitucionalDemo"
-                );
-
-
-            const emailDemoProfissional =
-                document.getElementById(
-                    "emailDemoProfissional"
-                );
-
-
-            const senhaDemoProfissional =
-                document.getElementById(
-                    "senhaDemoProfissional"
-                );
-
-
-            const preencherAcessoDemo =
-                document.getElementById(
-                    "preencherAcessoDemo"
-                );
-
-
             /* =========================================
                VERIFICAÇÃO
             ========================================= */
@@ -178,6 +137,15 @@
                 !campoEmail ||
                 !campoSenha
             ) {
+
+                alert(
+
+                    "Não foi possível carregar corretamente a tela de login.\n\n" +
+
+                    "Atualize a página e tente novamente."
+
+                );
+
 
                 return;
 
@@ -220,7 +188,7 @@
 
 
                 /* =====================================
-                   CADASTRO
+                   CADASTRO PÚBLICO
                 ====================================== */
 
                 if (
@@ -244,7 +212,10 @@
 
 
                 /* =====================================
-                   RECUPERAÇÃO
+                   RECUPERAÇÃO DE SENHA
+
+                   TODOS OS PERFIS PODEM RECUPERAR
+                   A PRÓPRIA SENHA PELO E-MAIL.
                 ====================================== */
 
                 if (
@@ -252,64 +223,25 @@
                 ) {
 
                     blocoRecuperarSenha.hidden =
-                        profissional;
+                        false;
 
                 }
 
+
+                /*
+                    A mensagem antiga informava que
+                    a recuperação profissional dependia
+                    da instituição.
+
+                    Agora ela não é mais utilizada.
+                */
 
                 if (
                     avisoRecuperacaoProfissional
                 ) {
 
                     avisoRecuperacaoProfissional.hidden =
-                        !profissional;
-
-                }
-
-
-                /* =====================================
-                   CREDENCIAIS DEMO
-                ====================================== */
-
-                if (
-                    acessoInstitucionalDemo
-                ) {
-
-                    acessoInstitucionalDemo.hidden =
-                        !profissional;
-
-                }
-
-
-                if (
-                    profissional &&
-                    contasInstitucionaisDemo[perfil]
-                ) {
-
-                    const conta =
-                        contasInstitucionaisDemo[
-                            perfil
-                        ];
-
-
-                    if (
-                        emailDemoProfissional
-                    ) {
-
-                        emailDemoProfissional.textContent =
-                            conta.email;
-
-                    }
-
-
-                    if (
-                        senhaDemoProfissional
-                    ) {
-
-                        senhaDemoProfissional.textContent =
-                            conta.senha;
-
-                    }
+                        true;
 
                 }
 
@@ -323,6 +255,27 @@
             function selecionarPerfil(
                 perfil
             ) {
+
+                const perfisPermitidos = [
+
+                    "aluno",
+                    "professor",
+                    "responsavel",
+                    "psicologia"
+
+                ];
+
+
+                if (
+                    !perfisPermitidos.includes(
+                        perfil
+                    )
+                ) {
+
+                    return;
+
+                }
+
 
                 campoPerfil.value =
                     perfil;
@@ -406,74 +359,7 @@
 
 
             /* =========================================
-               PREENCHER ACESSO DEMO
-            ========================================= */
-
-            if (
-                preencherAcessoDemo
-            ) {
-
-                preencherAcessoDemo.addEventListener(
-
-                    "click",
-
-                    function () {
-
-                        const perfil =
-                            campoPerfil.value;
-
-
-                        const conta =
-                            contasInstitucionaisDemo[
-                                perfil
-                            ];
-
-
-                        if (
-                            !conta
-                        ) {
-
-                            return;
-
-                        }
-
-
-                        campoEmail.value =
-                            conta.email;
-
-
-                        campoSenha.value =
-                            conta.senha;
-
-
-                        if (
-                            erroEmail
-                        ) {
-
-                            erroEmail.hidden =
-                                true;
-
-                        }
-
-
-                        if (
-                            erroSenha
-                        ) {
-
-                            erroSenha.hidden =
-                                true;
-
-                        }
-
-                    }
-
-                );
-
-            }
-
-
-            /* =========================================
-               MOSTRAR SENHA
+               MOSTRAR / OCULTAR SENHA
             ========================================= */
 
             if (
@@ -553,22 +439,22 @@
 
 
             /* =========================================
-               ESCOLA
+               ESCOLA DA NAVEGAÇÃO
             ========================================= */
 
             function obterEscolaAtual() {
 
-                /*
-                    A escola deve ter sido validada
-                    pelo escola.js.
-
-                    Não aceitamos diretamente qualquer
-                    código recebido na URL.
-                */
-
                 if (
-                    window.SafeSchoolEscola &&
-                    typeof window.SafeSchoolEscola.obter === "function"
+                    window.SafeSchoolEscola
+
+                    &&
+
+                    typeof
+                    window.SafeSchoolEscola.obter
+
+                    ===
+
+                    "function"
                 ) {
 
                     const escola =
@@ -588,35 +474,42 @@
 
 
                 const codigo =
-                    sessionStorage.getItem(
-                        "codigoEscolaSafeSchool"
-                    );
+                    (
+                        sessionStorage.getItem(
+                            "codigoEscolaSafeSchool"
+                        ) || ""
+                    )
+                    .trim()
+                    .toUpperCase();
 
 
                 const nome =
-                    sessionStorage.getItem(
-                        "nomeEscolaSafeSchool"
-                    );
+                    (
+                        sessionStorage.getItem(
+                            "nomeEscolaSafeSchool"
+                        ) || ""
+                    )
+                    .trim();
 
 
                 if (
-                    codigo
+                    !codigo
                 ) {
 
-                    return {
-
-                        codigo:
-                            codigo,
-
-                        nome:
-                            nome || ""
-
-                    };
+                    return null;
 
                 }
 
 
-                return null;
+                return {
+
+                    codigo:
+                        codigo,
+
+                    nome:
+                        nome
+
+                };
 
             }
 
@@ -691,7 +584,9 @@
                     true;
 
 
-                if (erroPerfil) {
+                if (
+                    erroPerfil
+                ) {
 
                     erroPerfil.hidden =
                         true;
@@ -699,7 +594,9 @@
                 }
 
 
-                if (erroEmail) {
+                if (
+                    erroEmail
+                ) {
 
                     erroEmail.hidden =
                         true;
@@ -707,7 +604,9 @@
                 }
 
 
-                if (erroSenha) {
+                if (
+                    erroSenha
+                ) {
 
                     erroSenha.hidden =
                         true;
@@ -719,7 +618,9 @@
                     !campoPerfil.value
                 ) {
 
-                    if (erroPerfil) {
+                    if (
+                        erroPerfil
+                    ) {
 
                         erroPerfil.hidden =
                             false;
@@ -739,7 +640,9 @@
                     )
                 ) {
 
-                    if (erroEmail) {
+                    if (
+                        erroEmail
+                    ) {
 
                         erroEmail.hidden =
                             false;
@@ -754,11 +657,12 @@
 
 
                 if (
-                    !campoSenha.value ||
-                    campoSenha.value.length < 4
+                    !campoSenha.value
                 ) {
 
-                    if (erroSenha) {
+                    if (
+                        erroSenha
+                    ) {
 
                         erroSenha.hidden =
                             false;
@@ -778,126 +682,12 @@
 
 
             /* =========================================
-               CONTAS CADASTRADAS
-            ========================================= */
-
-            function obterContas() {
-
-                const dados =
-                    localStorage.getItem(
-                        "contasSafeSchool"
-                    );
-
-
-                if (!dados) {
-
-                    return [];
-
-                }
-
-
-                try {
-
-                    const contas =
-                        JSON.parse(
-                            dados
-                        );
-
-
-                    return Array.isArray(
-                        contas
-                    )
-                        ? contas
-                        : [];
-
-                }
-
-                catch (erro) {
-
-                    return [];
-
-                }
-
-            }
-
-
-            /* =========================================
-               HASH DO PROTÓTIPO
-            ========================================= */
-
-            function gerarHashDemonstrativo(
-                senha
-            ) {
-
-                let hash =
-                    2166136261;
-
-
-                for (
-                    let i = 0;
-                    i < senha.length;
-                    i++
-                ) {
-
-                    hash ^=
-                        senha.charCodeAt(
-                            i
-                        );
-
-
-                    hash +=
-
-                        (hash << 1)
-
-                        +
-
-                        (hash << 4)
-
-                        +
-
-                        (hash << 7)
-
-                        +
-
-                        (hash << 8)
-
-                        +
-
-                        (hash << 24);
-
-                }
-
-
-                return (
-
-                    "demo-"
-
-                    +
-
-                    (
-                        hash >>> 0
-                    )
-                    .toString(16)
-
-                );
-
-            }
-
-
-            /* =========================================
                DESTINO
             ========================================= */
 
             function obterDestino(
                 perfil
             ) {
-
-                /*
-                    Se o aluno chegou ao login
-                    tentando acessar os desafios,
-                    após a autenticação ele retorna
-                    diretamente para essa área.
-                */
 
                 if (
                     perfil === "aluno"
@@ -910,13 +700,18 @@
 
 
                     const origem =
-                        parametros.get(
-                            "origem"
-                        );
+                        (
+                            parametros.get(
+                                "origem"
+                            ) || ""
+                        )
+                        .trim()
+                        .toLowerCase();
 
 
                     if (
-                        origem === "desafios"
+                        origem ===
+                        "desafios"
                     ) {
 
                         return "desafios.html";
@@ -952,271 +747,175 @@
 
 
             /* =========================================
-               AUTENTICAR ALUNO / RESPONSÁVEL
+               OBTÉM CLIENTE SUPABASE
             ========================================= */
 
-            function autenticarContaPublica(
-                perfil,
-                email,
-                senha,
-                escola
-            ) {
-
-                const contas =
-                    obterContas();
-
-
-                const conta =
-                    contas.find(
-
-                        function (item) {
-
-                            return (
-
-                                item.email ===
-                                email
-
-                                &&
-
-                                item.perfil ===
-                                perfil
-
-                                &&
-
-                                item.escolaCodigo ===
-                                escola.codigo
-
-                            );
-
-                        }
-
-                    );
-
+            async function obterSupabase() {
 
                 if (
-                    !conta
+                    !window.SafeSchoolSupabaseReady
                 ) {
 
-                    alert(
-
-                        "Não encontramos uma conta com este e-mail para o perfil selecionado.\n\n" +
-
-                        "Se ainda não possui cadastro, utilize a opção “Criar minha conta”."
-
+                    throw new Error(
+                        "Cliente Supabase não foi inicializado."
                     );
-
-
-                    return false;
 
                 }
 
 
-                const hashDigitado =
-                    gerarHashDemonstrativo(
-                        senha
-                    );
+                return await
+                    window.SafeSchoolSupabaseReady;
+
+            }
+
+
+            /* =========================================
+               BOTÃO PROCESSANDO
+            ========================================= */
+
+            function definirProcessando(
+                processando
+            ) {
+
+                if (
+                    !botaoEntrar
+                ) {
+
+                    return;
+
+                }
+
+
+                botaoEntrar.disabled =
+                    processando;
 
 
                 if (
-                    conta.senhaHash !==
-                    hashDigitado
+                    processando
                 ) {
 
-                    alert(
+                    botaoEntrar.dataset.textoOriginal =
+                        botaoEntrar.innerHTML;
+
+
+                    botaoEntrar.textContent =
+                        "Entrando...";
+
+                }
+
+                else {
+
+                    if (
+                        botaoEntrar.dataset.textoOriginal
+                    ) {
+
+                        botaoEntrar.innerHTML =
+                            botaoEntrar.dataset.textoOriginal;
+
+                    }
+
+
+                    delete
+                    botaoEntrar.dataset.textoOriginal;
+
+                }
+
+            }
+
+
+            /* =========================================
+               MENSAGEM DE ERRO
+            ========================================= */
+
+            function mensagemErroLogin(
+                erro
+            ) {
+
+                const mensagem =
+                    (
+                        erro &&
+                        erro.message
+                            ? erro.message
+                            : ""
+                    )
+                    .toLowerCase();
+
+
+                if (
+                    mensagem.includes(
+                        "email not confirmed"
+                    )
+                ) {
+
+                    return (
+
+                        "Seu e-mail ainda não foi confirmado.\n\n" +
+
+                        "Abra a mensagem enviada para o seu e-mail e confirme o cadastro antes de entrar."
+
+                    );
+
+                }
+
+
+                if (
+                    mensagem.includes(
+                        "invalid login credentials"
+                    )
+                ) {
+
+                    return (
                         "E-mail ou senha incorretos."
                     );
 
-
-                    return false;
-
-                }
-
-
-                return true;
-
-            }
-
-
-            /* =========================================
-               AUTENTICAR PROFISSIONAL
-            ========================================= */
-
-            function autenticarProfissional(
-                perfil,
-                email,
-                senha
-            ) {
-
-                const conta =
-                    contasInstitucionaisDemo[
-                        perfil
-                    ];
-
-
-                if (!conta) {
-
-                    return false;
-
                 }
 
 
                 if (
-
-                    email.toLowerCase()
-
-                    !==
-
-                    conta.email.toLowerCase()
+                    mensagem.includes(
+                        "too many"
+                    )
 
                     ||
 
-                    senha !==
-                    conta.senha
-
+                    mensagem.includes(
+                        "rate"
+                    )
                 ) {
 
-                    alert(
+                    return (
 
-                        "E-mail ou senha do acesso institucional estão incorretos."
+                        "Foram realizadas muitas tentativas em pouco tempo.\n\n" +
+
+                        "Aguarde alguns minutos e tente novamente."
 
                     );
-
-
-                    return false;
 
                 }
 
 
-                return true;
+                return (
+
+                    "Não foi possível entrar no SafeSchool neste momento.\n\n" +
+
+                    "Verifique sua conexão e tente novamente."
+
+                );
 
             }
 
 
             /* =========================================
-               REALIZAR LOGIN
+               SALVAR SESSÃO COMPATÍVEL
             ========================================= */
 
-            function realizarLogin() {
-
-                const perfil =
-                    campoPerfil.value;
-
-
-                const email =
-                    campoEmail.value
-                        .trim()
-                        .toLowerCase();
-
-
-                const senha =
-                    campoSenha.value;
-
-
-                const escola =
-                    obterEscolaAtual();
-
-
-                if (
-                    !escola ||
-                    !escola.codigo
-                ) {
-
-                    alert(
-
-                        "Este acesso precisa estar vinculado a uma escola.\n\n" +
-
-                        "Abra o SafeSchool pelo link da instituição e tente novamente."
-
-                    );
-
-
-                    return;
-
-                }
-
-
-                let acessoPermitido =
-                    false;
-
-
-                /* =====================================
-                   ALUNO / RESPONSÁVEL
-                ====================================== */
-
-                if (
-                    perfil === "aluno" ||
-                    perfil === "responsavel"
-                ) {
-
-                    acessoPermitido =
-                        autenticarContaPublica(
-
-                            perfil,
-
-                            email,
-
-                            senha,
-
-                            escola
-
-                        );
-
-                }
-
-
-                /* =====================================
-                   PROFESSOR / PSICOLOGIA
-                ====================================== */
-
-                else if (
-                    perfil === "professor" ||
-                    perfil === "psicologia"
-                ) {
-
-                    acessoPermitido =
-                        autenticarProfissional(
-
-                            perfil,
-
-                            email,
-
-                            senha
-
-                        );
-
-                }
-
-
-                if (
-                    !acessoPermitido
-                ) {
-
-                    return;
-
-                }
-
-
-                const destino =
-                    obterDestino(
-                        perfil
-                    );
-
-
-                if (!destino) {
-
-                    alert(
-                        "Perfil não reconhecido."
-                    );
-
-
-                    return;
-
-                }
-
-
-                /* =====================================
-                   CRIAR SESSÃO
-                ====================================== */
+            function salvarSessaoSafeSchool(
+                perfil,
+                email,
+                escola,
+                usuarioId,
+                nome
+            ) {
 
                 sessionStorage.setItem(
 
@@ -1236,6 +935,36 @@
                 );
 
 
+                if (
+                    usuarioId
+                ) {
+
+                    sessionStorage.setItem(
+
+                        "usuarioIdSafeSchool",
+
+                        usuarioId
+
+                    );
+
+                }
+
+
+                if (
+                    nome
+                ) {
+
+                    sessionStorage.setItem(
+
+                        "usuarioNomeSafeSchool",
+
+                        nome
+
+                    );
+
+                }
+
+
                 sessionStorage.setItem(
 
                     "codigoEscolaSafeSchool",
@@ -1245,17 +974,377 @@
                 );
 
 
+                sessionStorage.setItem(
+
+                    "nomeEscolaSafeSchool",
+
+                    escola.nome || ""
+
+                );
+
+            }
+
+
+            /* =========================================
+               BUSCAR PERFIL REAL
+            ========================================= */
+
+            async function buscarPerfilReal(
+                supabase,
+                usuarioId
+            ) {
+
+                const {
+                    data,
+                    error
+                } =
+                    await supabase
+
+                        .from(
+                            "perfis"
+                        )
+
+                        .select(
+                            "id,nome,perfil,escola_id,ativo"
+                        )
+
+                        .eq(
+                            "id",
+                            usuarioId
+                        )
+
+                        .single();
+
+
                 if (
-                    escola.nome
+                    error
                 ) {
 
-                    sessionStorage.setItem(
+                    console.error(
+                        "SafeSchool: erro ao buscar perfil.",
+                        error
+                    );
 
-                        "nomeEscolaSafeSchool",
 
-                        escola.nome
+                    throw new Error(
+                        "Perfil SafeSchool não encontrado."
+                    );
+
+                }
+
+
+                return data;
+
+            }
+
+
+            /* =========================================
+               BUSCAR ESCOLA REAL
+            ========================================= */
+
+            async function buscarEscolaReal(
+                supabase,
+                escolaId
+            ) {
+
+                const {
+                    data,
+                    error
+                } =
+                    await supabase
+
+                        .from(
+                            "escolas"
+                        )
+
+                        .select(
+                            "id,codigo,nome,ativo"
+                        )
+
+                        .eq(
+                            "id",
+                            escolaId
+                        )
+
+                        .single();
+
+
+                if (
+                    error
+                ) {
+
+                    console.error(
+                        "SafeSchool: erro ao buscar escola.",
+                        error
+                    );
+
+
+                    throw new Error(
+                        "Escola vinculada não encontrada."
+                    );
+
+                }
+
+
+                return data;
+
+            }
+
+
+            /* =========================================
+               LOGIN REAL NO SUPABASE
+
+               ALUNO
+               PROFESSOR
+               RESPONSÁVEL
+               PSICOLOGIA
+            ========================================= */
+
+            async function entrarComSupabase(
+                perfilSelecionado,
+                email,
+                senha
+            ) {
+
+                const supabase =
+                    await obterSupabase();
+
+
+                /* =====================================
+                   AUTENTICAR
+                ====================================== */
+
+                const {
+                    data,
+                    error
+                } =
+                    await supabase.auth
+                        .signInWithPassword(
+
+                            {
+
+                                email:
+                                    email,
+
+                                password:
+                                    senha
+
+                            }
+
+                        );
+
+
+                if (
+                    error
+                ) {
+
+                    throw error;
+
+                }
+
+
+                if (
+                    !data ||
+                    !data.user
+                ) {
+
+                    throw new Error(
+                        "Usuário não retornado após autenticação."
+                    );
+
+                }
+
+
+                const usuario =
+                    data.user;
+
+
+                /* =====================================
+                   BUSCAR PERFIL
+                ====================================== */
+
+                let perfilReal;
+
+
+                try {
+
+                    perfilReal =
+                        await buscarPerfilReal(
+
+                            supabase,
+
+                            usuario.id
+
+                        );
+
+                }
+
+                catch (
+                    erro
+                ) {
+
+                    await supabase.auth
+                        .signOut();
+
+
+                    throw erro;
+
+                }
+
+
+                /* =====================================
+                   CONTA ATIVA
+                ====================================== */
+
+                if (
+                    !perfilReal.ativo
+                ) {
+
+                    await supabase.auth
+                        .signOut();
+
+
+                    alert(
+
+                        "Este acesso está inativo.\n\n" +
+
+                        "Entre em contato com a instituição responsável pelo SafeSchool."
 
                     );
+
+
+                    return;
+
+                }
+
+
+                /* =====================================
+                   PERFIL SELECIONADO X PERFIL REAL
+                ====================================== */
+
+                if (
+                    perfilReal.perfil
+
+                    !==
+
+                    perfilSelecionado
+                ) {
+
+                    await supabase.auth
+                        .signOut();
+
+
+                    alert(
+
+                        "O perfil selecionado não corresponde à sua conta.\n\n" +
+
+                        "Selecione o perfil correto e tente novamente."
+
+                    );
+
+
+                    return;
+
+                }
+
+
+                /* =====================================
+                   BUSCAR ESCOLA
+                ====================================== */
+
+                let escola;
+
+
+                try {
+
+                    escola =
+                        await buscarEscolaReal(
+
+                            supabase,
+
+                            perfilReal.escola_id
+
+                        );
+
+                }
+
+                catch (
+                    erro
+                ) {
+
+                    await supabase.auth
+                        .signOut();
+
+
+                    throw erro;
+
+                }
+
+
+                if (
+                    !escola ||
+                    !escola.ativo
+                ) {
+
+                    await supabase.auth
+                        .signOut();
+
+
+                    alert(
+
+                        "A escola vinculada a esta conta não está disponível para acesso."
+
+                    );
+
+
+                    return;
+
+                }
+
+
+                /* =====================================
+                   SALVAR COMPATIBILIDADE
+                ====================================== */
+
+                salvarSessaoSafeSchool(
+
+                    perfilReal.perfil,
+
+                    usuario.email || email,
+
+                    escola,
+
+                    usuario.id,
+
+                    perfilReal.nome
+
+                );
+
+
+                /* =====================================
+                   DESTINO
+                ====================================== */
+
+                const destino =
+                    obterDestino(
+                        perfilReal.perfil
+                    );
+
+
+                if (
+                    !destino
+                ) {
+
+                    await supabase.auth
+                        .signOut();
+
+
+                    alert(
+                        "Perfil de acesso não reconhecido."
+                    );
+
+
+                    return;
 
                 }
 
@@ -1282,6 +1371,114 @@
 
 
             /* =========================================
+               REALIZAR LOGIN
+            ========================================= */
+
+            async function realizarLogin() {
+
+                const perfil =
+                    campoPerfil.value;
+
+
+                const email =
+                    campoEmail.value
+                        .trim()
+                        .toLowerCase();
+
+
+                const senha =
+                    campoSenha.value;
+
+
+                definirProcessando(
+                    true
+                );
+
+
+                try {
+
+                    await entrarComSupabase(
+
+                        perfil,
+
+                        email,
+
+                        senha
+
+                    );
+
+                }
+
+                catch (
+                    erro
+                ) {
+
+                    console.error(
+                        "SafeSchool: falha no login.",
+                        erro
+                    );
+
+
+                    if (
+                        erro &&
+                        erro.message ===
+                        "Perfil SafeSchool não encontrado."
+                    ) {
+
+                        alert(
+
+                            "Sua conta de autenticação existe, mas o perfil do SafeSchool não foi localizado.\n\n" +
+
+                            "Entre em contato com a instituição."
+
+                        );
+
+
+                        return;
+
+                    }
+
+
+                    if (
+                        erro &&
+                        erro.message ===
+                        "Escola vinculada não encontrada."
+                    ) {
+
+                        alert(
+
+                            "Não foi possível localizar a escola vinculada à sua conta.\n\n" +
+
+                            "Entre em contato com a instituição."
+
+                        );
+
+
+                        return;
+
+                    }
+
+
+                    alert(
+                        mensagemErroLogin(
+                            erro
+                        )
+                    );
+
+                }
+
+                finally {
+
+                    definirProcessando(
+                        false
+                    );
+
+                }
+
+            }
+
+
+            /* =========================================
                FORMULÁRIO
             ========================================= */
 
@@ -1289,7 +1486,9 @@
 
                 "submit",
 
-                function (evento) {
+                async function (
+                    evento
+                ) {
 
                     evento.preventDefault();
 
@@ -1303,7 +1502,7 @@
                     }
 
 
-                    realizarLogin();
+                    await realizarLogin();
 
                 }
 
@@ -1320,7 +1519,9 @@
 
                 function () {
 
-                    if (erroEmail) {
+                    if (
+                        erroEmail
+                    ) {
 
                         erroEmail.hidden =
                             true;
@@ -1338,7 +1539,9 @@
 
                 function () {
 
-                    if (erroSenha) {
+                    if (
+                        erroSenha
+                    ) {
 
                         erroSenha.hidden =
                             true;
